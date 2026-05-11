@@ -14,6 +14,7 @@ La metrica efectiva asociada
 tiene signatura Lorentziana (-,+,+,+).
 
 Sustenta:
+- book/chapters/18_Criterios_Espacio_Tiempo_Emergente.tex
 - book/chapters/19_Causalidad_Cono_Luz.tex
 - book/chapters/20_Causalidad_Continuo_vs_Discreto.tex
 """

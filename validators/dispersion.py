@@ -5,7 +5,7 @@ Validacion de la dispersion Dirac efectiva:
 
 Sustenta:
 - book/frontmatter/02_notacion_y_supuestos.tex (eq HDcanon)
-- book/chapters/0X_Derivacion_Grafeno_a_Dirac.tex
+- book/chapters/02_Derivacion_Grafeno_a_Dirac.tex
 """
 from __future__ import annotations
 

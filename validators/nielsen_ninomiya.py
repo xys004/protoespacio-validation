@@ -5,8 +5,8 @@ Validacion combinatoria SMT del teorema de Nielsen-Ninomiya:
   quirales sobre los nodos es cero.
 
 Sustenta:
-- book/chapters/0X_Nielsen_Ninomiya_y_Doblamento_Fermionico.tex
-- book/chapters/0X_Nielsen_Ninomiya_en_Weyl_y_Dirac_3p1.tex
+- book/chapters/26_Nielsen_Ninomiya_Doblamento.tex
+- book/chapters/27_Nielsen_Ninomiya_Weyl_Dirac_3p1.tex
 """
 from __future__ import annotations
 

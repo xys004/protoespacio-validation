@@ -10,6 +10,7 @@ el sector infrarrojo. Una condicion necesaria es v_x = v_y = v_z.
 Sustenta:
 - book/chapters/05_Isotropia_QW_Honeycomb.tex
 - book/chapters/09_Isotropia_QW_3D_Weyl.tex
+- book/chapters/18_Criterios_Espacio_Tiempo_Emergente.tex
 - book/chapters/22_Anisotropias_Geometria_Efectiva.tex
 """
 from __future__ import annotations

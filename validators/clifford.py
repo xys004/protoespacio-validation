@@ -3,8 +3,8 @@ Validacion de la relacion de Clifford {gamma^mu, gamma^nu} = 2 eta^{mu nu} I_4
 en la representacion de Dirac.
 
 Sustenta:
-- book/chapters/10_De_Bloques_a_Gamma_y_SL2C.tex
-- book/chapters/11_Generadores_Lorentz_desde_Gamma.tex
+- book/chapters/15_De_Bloques_a_Gamma_SL2C.tex
+- book/chapters/16_Generadores_Lorentz.tex
 """
 from __future__ import annotations
 
