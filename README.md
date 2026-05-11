@@ -1,74 +1,102 @@
-# Protoespacio Dirac-Weyl 2026
+# Protoespacio validators
 
-Consolidacion del corpus `Protoespacio_Dirac_Weyl_2026` con validacion formal
-(`sympy` + `z3`) acoplada a la compilacion del manuscrito.
+Companion repository for the Protoespacio / Dirac-Weyl project. The core of
+this repository is the executable validation layer: small `sympy` and `z3`
+modules that check the algebraic and finite combinatorial claims used by the
+manuscript.
 
-## Estructura
+Repository URL: <https://github.com/xys004/protoespacio-validation>
 
-- `book/`         manuscrito maestro (a)
-- `paper/`        recorte publicable (c)
-- `validators/`   modulos de validacion sympy/z3
-- `tests/`        pytest sobre validators
-- `notebooks/`    exploracion rama espectral / estructural (b)
-- `scripts/`      build + extraccion paper
+The current validation suite contains 146 tests. On the Windows-native project
+environment it passes in about 17 seconds.
 
-## Politica de validacion
+## Contents
 
-Cada lema en el LaTeX lleva un comentario:
+- `validators/`: symbolic and SMT validators.
+- `tests/`: pytest tests for every validator module.
+- `scripts/`: local test, doctor, and build helpers.
+- `paper/`: modular paper draft.
+- `paper 1/`: single-file Quantum-format paper draft.
+- `book/`: long-form source material.
 
-```
-% verified-by: validators/<modulo>.py::<test>
-```
+See `VALIDATION.md` for the module-by-module map.
 
-`scripts/build_book.sh` corre `pytest` antes de compilar. Si un test falla, el
-PDF no se produce.
+## Quick Start
 
-## Build Windows-nativo (workflow principal)
-
-Editor LaTeX: **TeXstudio** (doble click sobre cualquier `.tex`).
-Python: directo desde **PowerShell** con el env `protoespacio`.
+Recommended Windows-native workflow:
 
 ```powershell
-# desde C:\Users\Nelson\Dev\protoespacio
-powershell -File scripts\build_book.ps1    # pytest + latexmk + PDF
-powershell -File scripts\test.ps1          # solo pytest
-powershell -File scripts\doctor.ps1        # diagnostico
+# from C:\Users\Nelson\Dev\protoespacio
+powershell -ExecutionPolicy Bypass -File scripts\doctor.ps1
+powershell -ExecutionPolicy Bypass -File scripts\test.ps1
 ```
 
-Python interactivo:
+Build policy for the long manuscript:
+
 ```powershell
-& 'C:\Users\Nelson\.conda\envs\protoespacio\python.exe'
-# o agregar el env al PATH de la sesion:
-$env:Path = 'C:\Users\Nelson\.conda\envs\protoespacio;C:\Users\Nelson\.conda\envs\protoespacio\Scripts;' + $env:Path
+powershell -ExecutionPolicy Bypass -File scripts\build_book.ps1
 ```
 
-Internamente, `build_book.ps1` usa
-`C:\Users\Nelson\.conda\envs\protoespacio\python.exe` para pytest y
-`C:\texlive\2025\bin\windows\latexmk.exe` para el PDF.
+The build script runs pytest first. If any validator fails, the PDF build stops.
 
-## Build alternativo (WSL, opcional, fallback)
+Generic Python workflow, useful on GitHub Actions or a fresh environment:
 
 ```bash
-wsl.exe -d Ubuntu -- bash -lc "cd /mnt/c/Users/Nelson/Dev/protoespacio && bash scripts/build_book.sh"
+python -m pip install -e .
+python -m pytest
 ```
 
-Usa `~/miniconda3` + env `protoespacio` (Python 3.12) y `~/.TinyTeX`.
+## Validation Policy
 
-## Test rapido
+The intended link between manuscript and code is claim-level traceability. A
+LaTeX derivation can carry a comment of the form:
 
-```powershell
-# Windows
-powershell -File scripts\test.ps1
-
-# WSL
-bash scripts/test.sh
+```tex
+% verified-by: validators/<module>.py::<test>
 ```
 
-## Estado
+The corresponding pytest test calls the validator function. The tests do not
+constitute a full proof-assistant formalization; they certify local symbolic
+identities, expansions, matrix algebra, and finite SMT constraints.
 
-- Fase 0 (esqueleto): en curso
-- Fase 1 (sympy nucleo solido): Clifford OK, Lorentz pendiente
-- Fase 2 (z3 criterios): Nielsen-Ninomiya OK
-- Fase 3 (rama espectral): pendiente
-- Fase 4 (rama estructural): pendiente
-- Fase 5 (paper): pendiente
+## Current Status
+
+Validated areas include:
+
+- Pauli and Clifford algebra.
+- Lorentz-generator covariance and closure.
+- SSH, graphene, and honeycomb quantum-walk infrared limits.
+- Weyl/Dirac dispersion, chirality, splitting, and Wilson-sector checks.
+- Causality, isotropy, variable tetrad, and continuous/discrete-time comparison.
+- Nielsen-Ninomiya balance and graph-based structural/protospace checks.
+- Brillouin-zone corner and quasi-energy consistency checks.
+
+Latest local audit:
+
+```text
+146 passed in 17.09s
+```
+
+## AI Assistance Statement
+
+AI-assisted coding and editorial tools were used to help draft, refactor, and
+review parts of the validation code, tests, documentation, and paper text. The
+author reviewed the resulting code and remains responsible for all scientific
+claims, validator design, test interpretation, and manuscript content. See
+`AI_ASSISTANCE.md` for the repo-level statement.
+
+## Reproducibility Notes
+
+The local Windows project environment is:
+
+- Python 3.12 conda env: `C:\Users\Nelson\.conda\envs\protoespacio\python.exe`
+- TeX Live 2025 for LaTeX builds.
+- `sympy`, `z3-solver`, `numpy`, `scipy`, `matplotlib`, and `pytest`.
+
+`scripts/doctor.ps1` checks these assumptions.
+
+## Before Public Release
+
+- Choose and add a repository license.
+- Add the public GitHub URL to the paper's data/code availability statement.
+- Optionally tag a release and archive it with Zenodo for a DOI.

@@ -37,6 +37,7 @@ dist/
 book/main.pdf
 paper/main.pdf
 paper/cover_letter.pdf
+paper 1/main.pdf
 
 # Editor / OS
 .vscode/

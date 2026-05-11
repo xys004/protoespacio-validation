@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use these validators, please cite this repository."
+title: "Protoespacio validation code"
+version: "0.1.0"
+date-released: "2026-05-11"
+repository-code: "https://github.com/xys004/protoespacio-validation"
+authors:
+  - family-names: "Bolivar"
+    given-names: "Nelson"
+    email: "astrumdrivetechnologies@gmail.com"
