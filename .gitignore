@@ -33,6 +33,10 @@ _minted-*/
 build/
 dist/
 
+# Build artifacts (regenerados por scripts/build_book.sh)
+book/main.pdf
+paper/main.pdf
+
 # Editor / OS
 .vscode/
 .idea/
