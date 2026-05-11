@@ -1,0 +1,49 @@
+% Figure 1: dimensional ladder
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  every node/.style={align=center, font=\small},
+  box/.style={draw, rounded corners, minimum width=2.8cm, minimum height=1.7cm,
+              align=center, font=\small},
+  arr/.style={->, >=Latex, thick, shorten >=2pt, shorten <=2pt},
+]
+  % Top row: discrete models
+  \node[box, fill=blue!8]   (ssh)  at (0,2)
+    {SSH 1+1\\[2pt]\(H{=}(t_1{+}t_2\cos k)\sigma_x\)\\\(+ t_2\sin k\,\sigma_y\)};
+  \node[box, fill=green!8]  (gr)   at (4.2,2)
+    {Graphene 2+1\\[2pt]Tight-binding\\\(\Phi(\vec k)\;\sigma_+\) {+} h.c.};
+  \node[box, fill=orange!10] (qw)  at (8.4,2)
+    {Honeycomb QW\\[2pt]\(U=\prod_i S_i\,C(\theta)\)};
+  \node[box, fill=red!10]   (wd)   at (12.6,2)
+    {Weyl/Dirac 3D\\[2pt]\(H_W{=}v\,\vec\sigma\cdot\vec p\)};
+
+  % Bottom: continuum target
+  \node[box, fill=purple!10, minimum width=5cm] (dirac) at (6.3,-0.6)
+    {Dirac in 3+1 (effective infrared)\\[2pt]
+     \(H_D{=}v\,\tau_z\!\otimes\!\vec\sigma\!\cdot\!\vec p \,{+}\, m\,\tau_x\!\otimes\!\bbI\),
+     \quad \(H_D^2{=}(v^2|\vec p|^2{+}m^2)\bbI_4\)};
+
+  % Arrows along the top row
+  \draw[arr] (ssh) -- node[above, font=\scriptsize]
+              {add 2nd dim} (gr);
+  \draw[arr] (gr) -- node[above, font=\scriptsize]
+              {explicit step} (qw);
+  \draw[arr] (qw) -- node[above, font=\scriptsize]
+              {3D + chirality} (wd);
+
+  % Arrows from each top box down to Dirac 3+1
+  \draw[arr] (ssh.south) .. controls +(0,-0.8) and +(-1,1) .. (dirac.north west);
+  \draw[arr] (gr.south) -- ([xshift=-1.5cm]dirac.north);
+  \draw[arr] (qw.south) -- ([xshift=1.5cm]dirac.north);
+  \draw[arr] (wd.south) .. controls +(0,-0.8) and +(1,1) .. (dirac.north east);
+
+  % Side label
+  \node[font=\footnotesize\itshape, right=0.2cm of wd, xshift=-0.3cm, yshift=-0.4cm] {};
+\end{tikzpicture}
+\caption{The dimensional ladder. Four discrete models (top row) all flow
+under linearization plus continuum limit to the same effective Dirac block
+in $3{+}1$ (bottom). The algebraic objects that survive the limit
+(Clifford algebra, $\Sigma^{\mu\nu}$, chirality balance) are the same at
+each rung.}
+\label{p:fig:ladder}
+\end{figure}

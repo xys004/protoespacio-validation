@@ -1,0 +1,46 @@
+% Figure 2: Weyl splitting under axial perturbation
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  every node/.style={font=\small},
+  axis/.style={->, >=Latex, thick},
+  cone/.style={very thick},
+  band/.style={very thick, color=#1},
+  helpline/.style={dashed, color=black!40},
+]
+% --- Left: single Dirac point at p_z = 0 (b = 0)
+\begin{scope}[shift={(0,0)}]
+  \draw[axis] (-2,0) -- (2,0) node[right] {\(p_z\)};
+  \draw[axis] (0,-2) -- (0,2) node[above] {\(E\)};
+  % cone at origin
+  \draw[band=red!70!black] (-1.8,1.8) -- (1.8,-1.8);
+  \draw[band=blue!70!black] (-1.8,-1.8) -- (1.8,1.8);
+  \node at (0,-2.6) {\textbf{(a)} $b = 0$: single Dirac point};
+\end{scope}
+
+% --- Right: two Weyl points at p_z = +/- b/v
+\begin{scope}[shift={(7,0)}]
+  \draw[axis] (-3,0) -- (3,0) node[right] {\(p_z\)};
+  \draw[axis] (0,-2) -- (0,2) node[above] {\(E\)};
+  % left Weyl node at p_z = -b/v (call it -1.2)
+  \draw[band=red!70!black] (-2.6,1.4) -- (-1.2,0) -- (0.2,1.4);
+  \draw[band=blue!70!black] (-2.6,-1.4) -- (-1.2,0) -- (0.2,-1.4);
+  % right Weyl node at p_z = +b/v (call it 1.2)
+  \draw[band=red!70!black] (-0.2,1.4) -- (1.2,0) -- (2.6,1.4);
+  \draw[band=blue!70!black] (-0.2,-1.4) -- (1.2,0) -- (2.6,-1.4);
+  % markers
+  \draw[helpline] (-1.2,-2) -- (-1.2,2);
+  \draw[helpline] (1.2,-2) -- (1.2,2);
+  \node[below] at (-1.2,-0.1) {\scriptsize \(-b/v\)};
+  \node[below] at (1.2,-0.1) {\scriptsize \(+b/v\)};
+  \node[above right, font=\scriptsize, red!70!black] at (1.4,0.6) {\(\chi=+1\)};
+  \node[above left,  font=\scriptsize, blue!70!black] at (-1.4,0.6) {\(\chi=-1\)};
+  \node at (0,-2.6) {\textbf{(b)} \(b \ne 0\): two Weyl nodes split by \(2b/v\)};
+\end{scope}
+\end{tikzpicture}
+\caption{Controlled splitting of a Dirac point into two Weyl nodes by an
+axial Zeeman-like perturbation $b\,\bbI\otimes\sigma_z$. The single Dirac
+crossing at $\vec p = 0$ in (a) separates into two Weyl crossings of
+opposite chirality along $p_z$ in (b), at $p_z = \pm b/v$.}
+\label{p:fig:splitting}
+\end{figure}
