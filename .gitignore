@@ -40,5 +40,8 @@ paper/main.pdf
 # Editor / OS
 .vscode/
 .idea/
+.spyder/
+.spyproject/
+*.bak
 Thumbs.db
 .DS_Store
