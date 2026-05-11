@@ -46,7 +46,7 @@ Tomamos una convencion sencilla para los tres vectores que conectan un sitio de 
 \vdelta_2 = a\left(\frac{\sqrt{3}}{2},\frac{1}{2}\right),
 \qquad
 \vdelta_3 = a\left(-\frac{\sqrt{3}}{2},\frac{1}{2}\right),
-\label{eq:deltas}
+\label{c02:eq:deltas}
 \end{equation}
 donde \(a\) es la distancia entre atomos vecinos.
 
@@ -55,7 +55,7 @@ Con esta eleccion, dos vectores primitivos de la red de Bravais triangular asoci
 \va_1 = \vdelta_2 - \vdelta_3 = a(\sqrt{3},0),
 \qquad
 \va_2 = \vdelta_3 - \vdelta_1 = a\left(-\frac{\sqrt{3}}{2},\frac{3}{2}\right).
-\label{eq:primitive-real}
+\label{c02:eq:primitive-real}
 \end{equation}
 
 \begin{figure}[ht]
@@ -107,7 +107,7 @@ Con esta eleccion, dos vectores primitivos de la red de Bravais triangular asoci
   \fill[orange!85!black] (-2.48,-2.10) circle (2pt);
 \end{tikzpicture}
 \caption{Patch local de la red honeycomb de grafeno. Los sitios azules forman la subred \(A\) y los naranjas la subred \(B\). Los vectores \(\vdelta_i\) conectan primeros vecinos \(A\to B\), mientras que \(\va_1,\va_2\) generan la red de Bravais subyacente.}
-\label{fig:honeycomb}
+\label{c02:fig:honeycomb}
 \end{figure}
 
 \subsection{Por que aparecen dos componentes en la funcion de onda}
@@ -134,7 +134,7 @@ H = -t \sum_{\vR}\sum_{j=1}^3
 a_{\vR}^\dagger b_{\vR+\vdelta_j}
 + b_{\vR+\vdelta_j}^\dagger a_{\vR}
 \right),
-\label{eq:tb-real}
+\label{c02:eq:tb-real}
 \end{equation}
 donde:
 
@@ -146,7 +146,7 @@ donde:
 
 \subsection{Lectura fisica de la ecuacion}
 
-La expresion \eqref{eq:tb-real} dice algo muy concreto: un electron sentado en \(A\) puede saltar a cualquiera de sus tres vecinos \(B\), y viceversa. Toda la estructura no trivial de grafeno aparece porque esos tres caminos interfieren entre si cuando pasamos al espacio de momentos.
+La expresion \eqref{c02:eq:tb-real} dice algo muy concreto: un electron sentado en \(A\) puede saltar a cualquiera de sus tres vecinos \(B\), y viceversa. Toda la estructura no trivial de grafeno aparece porque esos tres caminos interfieren entre si cuando pasamos al espacio de momentos.
 
 \section{Paso al espacio recíproco}
 
@@ -157,11 +157,11 @@ Definimos
 a_{\vR} = \frac{1}{\sqrt{N}}\sum_{\vk}\ee^{\ii \vk\cdot\vR} a_{\vk},
 \qquad
 b_{\vR+\vdelta_j} = \frac{1}{\sqrt{N}}\sum_{\vk}\ee^{\ii \vk\cdot(\vR+\vdelta_j)} b_{\vk},
-\label{eq:fourier}
+\label{c02:eq:fourier}
 \end{equation}
 con \(N\) el numero de celdas unitarias.
 
-Sustituyendo \eqref{eq:fourier} en \eqref{eq:tb-real} se obtiene
+Sustituyendo \eqref{c02:eq:fourier} en \eqref{c02:eq:tb-real} se obtiene
 \begin{align}
 H
 &=
@@ -178,7 +178,7 @@ H
 \ee^{\ii \vk'\cdot\vdelta_j}\,
 a_{\vk}^\dagger b_{\vk'}
 + \text{h.c.}
-\label{eq:before-orthogonality}
+\label{c02:eq:before-orthogonality}
 \end{align}
 
 Ahora usamos la identidad de ortogonalidad
@@ -194,7 +194,7 @@ H=
 \ee^{\ii \vk\cdot\vdelta_j} a_{\vk}^\dagger b_{\vk}
 + \ee^{-\ii \vk\cdot\vdelta_j} b_{\vk}^\dagger a_{\vk}
 \right).
-\label{eq:hk-sum}
+\label{c02:eq:hk-sum}
 \end{equation}
 
 \subsection{La matriz de Bloch}
@@ -202,10 +202,10 @@ H=
 Introducimos la funcion estructural
 \begin{equation}
 f(\vk)=\sum_{j=1}^3 \ee^{\ii \vk\cdot\vdelta_j}.
-\label{eq:fk}
+\label{c02:eq:fk}
 \end{equation}
 
-Entonces \eqref{eq:hk-sum} se escribe como
+Entonces \eqref{c02:eq:hk-sum} se escribe como
 \begin{equation}
 H = \sum_{\vk}
 \begin{pmatrix}
@@ -219,7 +219,7 @@ a_{\vk}^\dagger & b_{\vk}^\dagger
 a_{\vk}\\
 b_{\vk}
 \end{pmatrix}.
-\label{eq:bloch-matrix}
+\label{c02:eq:bloch-matrix}
 \end{equation}
 
 Asi, el Hamiltoniano de una sola particula es
@@ -229,7 +229,7 @@ H(\vk)=
 0 & -t f(\vk)\\
 -t f^*(\vk) & 0
 \end{pmatrix}.
-\label{eq:Hk}
+\label{c02:eq:Hk}
 \end{equation}
 
 \section{Bandas de energia}
@@ -253,7 +253,7 @@ Como
 resulta
 \begin{equation}
 E_\pm(\vk)=\pm t |f(\vk)|.
-\label{eq:dispersion-general}
+\label{c02:eq:dispersion-general}
 \end{equation}
 
 Esto ya muestra dos cosas fundamentales:
@@ -265,7 +265,7 @@ Esto ya muestra dos cosas fundamentales:
 
 \subsection{Forma explicita de f(k)}
 
-Usando los vectores \eqref{eq:deltas},
+Usando los vectores \eqref{c02:eq:deltas},
 \begin{align}
 f(\vk)
 &=
@@ -276,7 +276,7 @@ f(\vk)
 &=
 \ee^{-\ii a k_y}
 + 2\,\ee^{\ii a k_y/2}\cos\!\left(\frac{\sqrt{3}}{2}a k_x\right).
-\label{eq:fk-explicit}
+\label{c02:eq:fk-explicit}
 \end{align}
 
 Al tomar el modulo al cuadrado se obtiene
@@ -286,7 +286,7 @@ Al tomar el modulo al cuadrado se obtiene
 1
 +4\cos^2\!\left(\frac{\sqrt{3}}{2}a k_x\right)
 +4\cos\!\left(\frac{\sqrt{3}}{2}a k_x\right)\cos\!\left(\frac{3}{2}a k_y\right).
-\label{eq:fk-mod}
+\label{c02:eq:fk-mod}
 \end{equation}
 
 Por tanto,
@@ -298,7 +298,7 @@ E_\pm(\vk)=
 +4\cos^2\!\left(\frac{\sqrt{3}}{2}a k_x\right)
 +4\cos\!\left(\frac{\sqrt{3}}{2}a k_x\right)\cos\!\left(\frac{3}{2}a k_y\right)
 }.
-\label{eq:graphene-dispersion}
+\label{c02:eq:graphene-dispersion}
 \end{equation}
 
 \section{La zona de Brillouin y los puntos de Dirac}
@@ -310,7 +310,7 @@ Las bandas se tocan cuando \(f(\vk)=0\). Una solucion especialmente importante e
 \vK=\left(\frac{4\pi}{3\sqrt{3}a},0\right),
 \qquad
 \vK'=\left(-\frac{4\pi}{3\sqrt{3}a},0\right).
-\label{eq:KKp}
+\label{c02:eq:KKp}
 \end{equation}
 
 Verificacion rapida en \(\vK\):
@@ -353,7 +353,7 @@ La misma cancelacion ocurre en \(\vK'\). Estos son dos puntos no equivalentes de
   \node[align=center] at (0,2.15) {\footnotesize Primera zona de Brillouin\\ \footnotesize y regiones de expansion de baja energia};
 \end{tikzpicture}
 \caption{Primera zona de Brillouin esquematica para grafeno. Los puntos \(K\) y \(K'\) son los puntos no equivalentes donde se anulan simultaneamente las bandas y alrededor de los cuales se hace la expansion lineal \(\vk=\vK+\vq\) o \(\vk=\vK'+\vq\).}
-\label{fig:bz}
+\label{c02:fig:bz}
 \end{figure}
 
 \subsection{Significado fisico}
@@ -389,14 +389,14 @@ Luego
 f(\vK+\vq)\approx
 \sum_{j=1}^3 \ee^{\ii \vK\cdot\vdelta_j}
 + \ii \sum_{j=1}^3 \ee^{\ii \vK\cdot\vdelta_j} \vq\cdot\vdelta_j.
-\label{eq:f-expand-general}
+\label{c02:eq:f-expand-general}
 \end{equation}
 
 El primer termino se anula porque \(f(\vK)=0\). Por tanto
 \begin{equation}
 f(\vK+\vq)\approx
 \ii \sum_{j=1}^3 \ee^{\ii \vK\cdot\vdelta_j} \vq\cdot\vdelta_j.
-\label{eq:linear-term-only}
+\label{c02:eq:linear-term-only}
 \end{equation}
 
 \subsection{Cuenta explicita}
@@ -419,7 +419,7 @@ Ademas,
 \vq\cdot\vdelta_3 &= a\left(-\frac{\sqrt{3}}{2}q_x+\frac{1}{2}q_y\right).
 \end{align}
 
-Sustituyendo en \eqref{eq:linear-term-only},
+Sustituyendo en \eqref{c02:eq:linear-term-only},
 \begin{align}
 f(\vK+\vq)
 &\approx
@@ -471,12 +471,12 @@ f(\vK+\vq)
 \nonumber\\[4pt]
 &=
 -\frac{3a}{2}(q_x+\ii q_y).
-\label{eq:fK-final}
+\label{c02:eq:fK-final}
 \end{align}
 
 \subsection{Hamiltoniano efectivo cerca de K}
 
-Insertando \eqref{eq:fK-final} en \eqref{eq:Hk},
+Insertando \eqref{c02:eq:fK-final} en \eqref{c02:eq:Hk},
 \begin{equation}
 H_K(\vq)
 \approx
@@ -490,7 +490,7 @@ q_x-\ii q_y & 0
 Definimos la velocidad de Fermi
 \begin{equation}
 v_F=\frac{3at}{2\hbar}.
-\label{eq:vf}
+\label{c02:eq:vf}
 \end{equation}
 
 Entonces
@@ -502,19 +502,19 @@ H_K(\vq)
 0 & q_x+\ii q_y\\
 q_x-\ii q_y & 0
 \end{pmatrix}.
-\label{eq:HK-matrix}
+\label{c02:eq:HK-matrix}
 \end{equation}
 
 En terminos de matrices de Pauli,
 \begin{equation}
 H_K(\vq)=\hbar v_F\,(q_x \sigma_x - q_y \sigma_y).
-\label{eq:HK-pauli}
+\label{c02:eq:HK-pauli}
 \end{equation}
 
 Con una simple redefinicion unitaria de la base de subred, esta forma es equivalente a la version mas difundida
 \begin{equation}
 H_K(\vq)\sim \hbar v_F\,(q_x \sigma_x + q_y \sigma_y).
-\label{eq:HK-standard}
+\label{c02:eq:HK-standard}
 \end{equation}
 
 El punto importante no es el signo de una convencion de base, sino que el Hamiltoniano es lineal en \(\vq\) y tiene estructura exacta de Dirac sin masa en \(2+1\).
@@ -531,7 +531,7 @@ Ahora escribimos
 Repitiendo la expansion se obtiene
 \begin{equation}
 f(\vK'+\vq)\approx \frac{3a}{2}(q_x-\ii q_y).
-\label{eq:fKp-final}
+\label{c02:eq:fKp-final}
 \end{equation}
 
 Por tanto,
@@ -543,14 +543,14 @@ H_{K'}(\vq)
 0 & q_x-\ii q_y\\
 q_x+\ii q_y & 0
 \end{pmatrix}.
-\label{eq:HKp-matrix}
+\label{c02:eq:HKp-matrix}
 \end{equation}
 
 De nuevo, dependiendo de la convencion de base, esto suele escribirse en forma compacta como
 \begin{equation}
 H_\tau(\vq)=\hbar v_F(\tau q_x \sigma_x + q_y \sigma_y),
 \qquad \tau=\pm 1,
-\label{eq:valley-compact}
+\label{c02:eq:valley-compact}
 \end{equation}
 donde \(\tau=+1\) corresponde a \(K\) y \(\tau=-1\) a \(K'\).
 
@@ -561,7 +561,7 @@ donde \(\tau=+1\) corresponde a \(K\) y \(\tau=-1\) a \(K'\).
 Para cualquiera de las dos valles, el Hamiltoniano efectivo tiene autovalores
 \begin{equation}
 E_\pm(\vq)=\pm \hbar v_F |\vq|.
-\label{eq:dirac-dispersion}
+\label{c02:eq:dirac-dispersion}
 \end{equation}
 
 Esto es una dispersion lineal, no cuadratica. Cerca del punto de contacto, las bandas forman un cono superior y otro inferior: el famoso cono de Dirac.
@@ -595,12 +595,12 @@ Esto es una dispersion lineal, no cuadratica. Cerca del punto de contacto, las b
 \end{axis}
 \end{tikzpicture}
 \caption{Dispersion efectiva cerca de un punto de Dirac. La energia es lineal en \(|\vq|\), de modo que las bandas de conduccion y valencia forman un doble cono que se toca en \(E=0\).}
-\label{fig:cone}
+\label{c02:fig:cone}
 \end{figure}
 
 \subsection{Interpretacion}
 
-La ecuacion \eqref{eq:dirac-dispersion} es la firma de fermiones relativistas efectivos sin masa. La velocidad de la luz \(c\) de la teoria relativista es reemplazada aqui por la velocidad de Fermi \(v_F\), y las matrices de Pauli actuan sobre el pseudospin de subred en lugar del espin real.
+La ecuacion \eqref{c02:eq:dirac-dispersion} es la firma de fermiones relativistas efectivos sin masa. La velocidad de la luz \(c\) de la teoria relativista es reemplazada aqui por la velocidad de Fermi \(v_F\), y las matrices de Pauli actuan sobre el pseudospin de subred en lugar del espin real.
 
 \section{Como se lee esto como ecuacion de Dirac}
 
@@ -611,7 +611,7 @@ La ecuacion de Schrodinger efectiva es
 \ii \hbar \,\partial_t \Psi = H_\tau \Psi.
 \end{equation}
 
-Usando \eqref{eq:valley-compact},
+Usando \eqref{c02:eq:valley-compact},
 \begin{equation}
 \ii \hbar \,\partial_t \Psi
 =
@@ -623,7 +623,7 @@ Al pasar a espacio real, \(q_x\to -\ii\partial_x\) y \(q_y\to -\ii\partial_y\), 
 \ii \partial_t \Psi
 =
 -\ii v_F(\tau \sigma_x \partial_x + \sigma_y \partial_y)\Psi.
-\label{eq:dirac-real-space}
+\label{c02:eq:dirac-real-space}
 \end{equation}
 
 Esta es exactamente una ecuacion de Dirac sin masa en \(2+1\), escrita en una representacion adaptada al problema de grafeno.
@@ -678,7 +678,7 @@ Esta es exactamente una ecuacion de Dirac sin masa en \(2+1\), escrita en una re
   \draw[arr] (r4) -- (r6);
 \end{tikzpicture}
 \caption{Mapa conceptual de la derivacion.}
-\label{fig:flow}
+\label{c02:fig:flow}
 \end{figure}
 
 \section{Que dejamos listo para el siguiente paso}

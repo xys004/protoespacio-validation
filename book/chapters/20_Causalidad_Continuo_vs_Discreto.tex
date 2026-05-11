@@ -49,7 +49,7 @@ En esta ruta, el objeto central es un Hamiltoniano local \(H\). La evolucion es
 i\partial_t \ket{\Psi(t)} = H\ket{\Psi(t)},
 \qquad
 \ket{\Psi(t)} = e^{-iHt}\ket{\Psi(0)}.
-\label{eq:cont-evol}
+\label{c20:eq:cont-evol}
 \end{equation}
 
 La red es discreta, pero el tiempo es un parametro continuo desde el comienzo.
@@ -68,7 +68,7 @@ En el capitulo anterior resumimos esto en una cota del tipo
 \lesssim
 e^{\norm{H}t}\left(\frac{e\norm{H}t}{L}\right)^L,
 \qquad L=d(\bm{n},\bm{m}).
-\label{eq:LRped}
+\label{c20:eq:LRped}
 \end{equation}
 
 \subsection{Lectura fisica}
@@ -109,7 +109,7 @@ El tiempo no se construye: ya esta dado desde el inicio. Por eso, si la meta es 
 En esta ruta el objeto central no es un Hamiltoniano, sino un operador unitario local \(U\):
 \begin{equation}
 \ket{\Psi_{n+1}} = U\ket{\Psi_n}.
-\label{eq:disc-evol}
+\label{c20:eq:disc-evol}
 \end{equation}
 
 Aqui \(n\) cuenta pasos temporales separados por \(\Delta t\). El tiempo ya no es primitivo y continuo, sino que tambien aparece discretizado.
@@ -151,7 +151,7 @@ S_{N+1} \subseteq B_{N+1}(\bm{x}_0).
 Por induccion:
 \begin{equation}
 S_N \subseteq B_N(\bm{x}_0).
-\label{eq:exactsupport}
+\label{c20:eq:exactsupport}
 \end{equation}
 
 \subsection{Lectura fisica}
@@ -192,7 +192,7 @@ r \le Na = \frac{a}{\Delta t} t.
 La velocidad maxima elemental es
 \begin{equation}
 c_\ast = \frac{a}{\Delta t}.
-\label{eq:cstar}
+\label{c20:eq:cstar}
 \end{equation}
 
 Aqui la velocidad limite no sale de una cota asintotica, sino de la propia definicion de la dinamica.
@@ -202,7 +202,7 @@ Aqui la velocidad limite no sale de una cota asintotica, sino de la propia defin
 En la ruta Hamiltoniana, Dirac emerge por linealizacion de \(H(\bm{k})\) cerca de un nodo:
 \begin{equation}
 H(\bm{k}_0+\bm{q}) \simeq v\sum_i q_i \alpha_i + m\beta.
-\label{eq:dirac-cont}
+\label{c20:eq:dirac-cont}
 \end{equation}
 
 La velocidad \(v\) aparece como pendiente del cono de Dirac. Debe ser compatible con la velocidad microscopica inducida por la localidad.
@@ -215,7 +215,7 @@ U(\bm{k}) \simeq \mathbb{I} - i\Delta t\,H_{\text{eff}}(\bm{k}),
 de donde se extrae un Hamiltoniano efectivo:
 \begin{equation}
 H_{\text{eff}}(\bm{k}) \simeq v\sum_i q_i \alpha_i + m\beta.
-\label{eq:dirac-disc}
+\label{c20:eq:dirac-disc}
 \end{equation}
 
 La diferencia crucial es que ahora:
@@ -235,7 +235,7 @@ H_{\text{eff}}(k)
 \simeq
 \frac{a}{\Delta t}k\,\sigma_z
 + \frac{\theta}{\Delta t}\sigma_y.
-\label{eq:qw-dirac}
+\label{c20:eq:qw-dirac}
 \end{equation}
 
 Vemos inmediatamente que:

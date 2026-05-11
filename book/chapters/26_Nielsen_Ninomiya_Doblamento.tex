@@ -55,7 +55,7 @@ La linealidad \(p\) de la teoria continua se vuelve entonces una funcion periodi
   \node[above right] at (1.1,0.9) {\small derivada discreta};
 \end{tikzpicture}
 \caption{Una discretizacion local simple convierte el momento lineal en una funcion periodica. Los ceros en la zona de Brillouin son inevitables y preparan el doblamiento fermionico.}
-\label{fig:sin-periodic}
+\label{c26:fig:sin-periodic}
 \end{figure}
 
 \section{Primer ejemplo: fermion de Dirac ingenuo en una dimension}
@@ -65,7 +65,7 @@ La linealidad \(p\) de la teoria continua se vuelve entonces una funcion periodi
 Tomemos el Hamiltoniano de Dirac mas simple en una dimension espacial:
 \begin{equation}
 H = \alpha\, p + \beta\, m,
-\label{eq:dirac-cont}
+\label{c26:eq:dirac-cont}
 \end{equation}
 donde \(\alpha\) y \(\beta\) son matrices \(2\times 2\) que satisfacen
 \begin{equation}
@@ -98,13 +98,13 @@ p \longrightarrow \frac{1}{a}\sin(ka).
 El Hamiltoniano de Bloch ingenuo queda
 \begin{equation}
 H(k) = \frac{1}{a}\sin(ka)\,\sigma_x + m\,\sigma_z.
-\label{eq:naive-1d}
+\label{c26:eq:naive-1d}
 \end{equation}
 
 Su espectro es
 \begin{equation}
 E(k)=\pm \sqrt{\frac{1}{a^2}\sin^2(ka)+m^2}.
-\label{eq:disp-naive-1d}
+\label{c26:eq:disp-naive-1d}
 \end{equation}
 
 Ya vemos el problema:
@@ -144,7 +144,7 @@ En otras palabras: \textbf{queriamos un fermion sin masa; la red nos dio dos}.
 \end{axis}
 \end{tikzpicture}
 \caption{Dispersion del fermion ingenuo sin masa en una red 1D. Hay un cono de Dirac cerca de \(k=0\), pero aparece otro en el borde de la zona de Brillouin. Ese segundo cruce es el doblador.}
-\label{fig:naive-1d-dispersion}
+\label{c26:fig:naive-1d-dispersion}
 \end{figure}
 
 \subsection{Linealizacion cerca de cada nodo}
@@ -188,7 +188,7 @@ Los dos nodos tienen la misma estructura efectiva, pero con pendiente opuesta. N
 La generalizacion ingenua a \(d\) dimensiones espaciales es inmediata:
 \begin{equation}
 H(\vk)=\sum_{i=1}^{d}\frac{1}{a}\sin(k_i a)\,\alpha_i + m\,\beta,
-\label{eq:naive-dd}
+\label{c26:eq:naive-dd}
 \end{equation}
 donde las matrices \(\alpha_i,\beta\) satisfacen las relaciones de Clifford apropiadas.
 
@@ -251,7 +251,7 @@ La red ingenua no produce una sola especie relativista. Produce una familia ente
   \node[below=6pt of two] {\small regla general: \(2^d\)};
 \end{tikzpicture}
 \caption{Conteo de dobladores para la discretizacion ingenua del operador de Dirac. Cada componente del momento puede anularse en dos lugares independientes de la zona de Brillouin.}
-\label{fig:2d-power}
+\label{c26:fig:2d-power}
 \end{figure}
 
 \section{La version conceptual del teorema}
@@ -292,7 +292,7 @@ H_{\text{eff}}(\vq)\simeq \sum_{i,j} v_{ij} q_j \sigma_i.
 La zona de Brillouin, al ser compacta, no permite una carga quiral neta distinta de cero. El resultado global es
 \begin{equation}
 \sum_{\text{nodos}} \chi = 0.
-\label{eq:chi-zero}
+\label{c26:eq:chi-zero}
 \end{equation}
 
 Esto obliga a que los nodos aparezcan en pares de quiralidad opuesta. En materia condensada esto se ve como una restriccion topologica natural. En teorias fundamentales discretizadas, se vuelve el problema del doblamiento.
@@ -321,7 +321,7 @@ Esto obliga a que los nodos aparezcan en pares de quiralidad opuesta. En materia
   \node at (0,-1.55) {\small la carga quiral total debe cancelarse};
 \end{tikzpicture}
 \caption{Lectura geometrica de la cancelacion quiral. Un nodo de Weyl positivo debe ir acompa\~nado de otro negativo para que la carga total en la zona de Brillouin sea nula.}
-\label{fig:chirality-pair}
+\label{c26:fig:chirality-pair}
 \end{figure}
 
 \section{Que significa esto para grafeno, Weyl y Dirac}
@@ -371,7 +371,7 @@ H_W(k)=\frac{1}{a}\sin(ka)\,\sigma_x
 \left[
 m + \frac{r}{a}(1-\cos ka)
 \right]\sigma_z.
-\label{eq:wilson-1d}
+\label{c26:eq:wilson-1d}
 \end{equation}
 
 Veamos que hace:
@@ -407,7 +407,7 @@ Asi, el modo fisico puede quedar liviano mientras los dobladores se vuelven pesa
 \end{axis}
 \end{tikzpicture}
 \caption{Efecto cualitativo del termino de Wilson en \(1D\). El modo ligero cerca de \(k=0\) sobrevive, mientras el doblador del borde adquiere una masa mucho mayor.}
-\label{fig:wilson}
+\label{c26:fig:wilson}
 \end{figure}
 
 \section{Otras estrategias conceptuales}
@@ -449,7 +449,7 @@ Podemos resumir la logica de la escalera conceptual asi:
   \draw[->,thick] (nn) -- (future);
 \end{tikzpicture}
 \caption{Ubicacion de este capitulo en el programa de investigacion. El doblamiento fermionico no es un detalle tecnico posterior: es el cuello de botella entre la intuicion de red y la ambicion de llegar a \(3+1\).}
-\label{fig:roadmap}
+\label{c26:fig:roadmap}
 \end{figure}
 
 \section{Resumen final}

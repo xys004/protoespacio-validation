@@ -58,7 +58,7 @@ Esa alternancia es exactamente lo que permite abrir o cerrar un gap. Cuando \(t_
   \node[below=7pt] at (2.5,-0.55) {\small celda \(n+1\)};
 \end{tikzpicture}
 \caption{Cadena SSH. Cada celda unitaria contiene dos sitios, \(A\) y \(B\). El acoplo intracelda es \(t_1\) y el acoplo interceldas es \(t_2\).}
-\label{fig:ssh-chain}
+\label{c01:fig:ssh-chain}
 \end{figure}
 
 \section{Hamiltoniano tight-binding}
@@ -73,7 +73,7 @@ t_1\, a_n^\dagger b_n
 + t_2\, a_{n+1}^\dagger b_n
 + \text{h.c.}
 \right).
-\label{eq:ssh-real}
+\label{c01:eq:ssh-real}
 \end{equation}
 
 Su lectura física es directa:
@@ -105,11 +105,11 @@ Tomamos
 a_n=\frac{1}{\sqrt{N}}\sum_k \ee^{\ii k n a} a_k,
 \qquad
 b_n=\frac{1}{\sqrt{N}}\sum_k \ee^{\ii k n a} b_k,
-\label{eq:ssh-fourier}
+\label{c01:eq:ssh-fourier}
 \end{equation}
 donde \(a\) es la longitud de la celda y \(N\) el número de celdas.
 
-Sustituimos \eqref{eq:ssh-fourier} en \eqref{eq:ssh-real}. El término intracelda queda
+Sustituimos \eqref{c01:eq:ssh-fourier} en \eqref{c01:eq:ssh-real}. El término intracelda queda
 \begin{equation}
 \sum_n t_1 a_n^\dagger b_n
 =
@@ -141,7 +141,7 @@ H(k)=
 0 & t_1+t_2\ee^{-\ii k a}\\
 t_1+t_2\ee^{\ii k a} & 0
 \end{pmatrix}.
-\label{eq:ssh-bloch}
+\label{c01:eq:ssh-bloch}
 \end{equation}
 
 \subsection{Escritura con matrices de Pauli}
@@ -162,7 +162,7 @@ con
 d_x(k)=t_1+t_2\cos(ka),
 \qquad
 d_y(k)=t_2\sin(ka).
-\label{eq:ssh-dxdy}
+\label{c01:eq:ssh-dxdy}
 \end{equation}
 
 Dependiendo de la convención, el signo delante de \(\sigma_y\) puede cambiar. La física no cambia.
@@ -176,7 +176,7 @@ Como el Hamiltoniano es de la forma \(H=\bm{d}\cdot\bm{\sigma}\), los autovalore
 E_\pm(k)=\pm \sqrt{d_x(k)^2+d_y(k)^2}.
 \end{equation}
 
-Sustituyendo \eqref{eq:ssh-dxdy},
+Sustituyendo \eqref{c01:eq:ssh-dxdy},
 \begin{equation}
 E_\pm(k)=
 \pm \sqrt{(t_1+t_2\cos ka)^2+t_2^2\sin^2 ka}.
@@ -186,7 +186,7 @@ Agrupando,
 \begin{equation}
 E_\pm(k)=
 \pm \sqrt{t_1^2+t_2^2+2t_1 t_2 \cos(ka)}.
-\label{eq:ssh-dispersion}
+\label{c01:eq:ssh-dispersion}
 \end{equation}
 
 \subsection{Condición de cierre del gap}
@@ -217,7 +217,7 @@ Luego el cierre del gap ocurre en
 k_0=\frac{\pi}{a},
 \qquad
 t_1=t_2.
-\label{eq:ssh-critical}
+\label{c01:eq:ssh-critical}
 \end{equation}
 
 Ese es el punto crítico del modelo SSH.
@@ -246,7 +246,7 @@ Ese es el punto crítico del modelo SSH.
 \end{axis}
 \end{tikzpicture}
 \caption{Dispersión del modelo SSH. En azul, el caso gapped \(t_1\neq t_2\). En rojo, el caso crítico \(t_1=t_2\), donde el gap se cierra en \(ka=\pi\).}
-\label{fig:ssh-disp}
+\label{c01:fig:ssh-disp}
 \end{figure}
 
 \section{Linealización alrededor del punto crítico}
@@ -276,7 +276,7 @@ Entonces
 \approx -qa.
 \end{align}
 
-Sustituyendo en \eqref{eq:ssh-dxdy},
+Sustituyendo en \eqref{c01:eq:ssh-dxdy},
 \begin{align}
 d_x(k)
 &\approx t_1-t_2,
@@ -288,7 +288,7 @@ d_y(k)
 Por tanto, cerca del punto crítico:
 \begin{equation}
 H(q)\approx (t_1-t_2)\sigma_x - t_2 a q\,\sigma_y.
-\label{eq:ssh-linear}
+\label{c01:eq:ssh-linear}
 \end{equation}
 
 \subsection{Caso exactamente crítico}
@@ -296,7 +296,7 @@ H(q)\approx (t_1-t_2)\sigma_x - t_2 a q\,\sigma_y.
 Si \(t_1=t_2=t\), el primer término desaparece y queda
 \begin{equation}
 H_{\text{crit}}(q)\approx - t a q\, \sigma_y.
-\label{eq:ssh-critical-linear}
+\label{c01:eq:ssh-critical-linear}
 \end{equation}
 
 Eso es ya un Hamiltoniano lineal en el momento, exactamente lo que esperamos de una teoría de Dirac sin masa en \(1+1\).
@@ -310,10 +310,10 @@ m \equiv t_1-t_2,
 v \equiv t a.
 \end{equation}
 
-Entonces \eqref{eq:ssh-linear} se escribe como
+Entonces \eqref{c01:eq:ssh-linear} se escribe como
 \begin{equation}
 H(q)\approx m\,\sigma_x - v q\,\sigma_y.
-\label{eq:ssh-massive-dirac}
+\label{c01:eq:ssh-massive-dirac}
 \end{equation}
 
 Esta es la forma estándar de un Hamiltoniano de Dirac masivo en \(1D\): un término lineal en el momento más un término de masa controlable.
@@ -328,7 +328,7 @@ Si promovemos \(q\to -\ii \partial_x\), la ecuación efectiva toma la forma
 \left(
 m\,\sigma_x + \ii v\,\sigma_y \partial_x
 \right)\Psi.
-\label{eq:ssh-dirac-real}
+\label{c01:eq:ssh-dirac-real}
 \end{equation}
 
 Con una redefinición conveniente de matrices, esto es equivalente a una ecuación de Dirac en \(1+1\):
@@ -348,10 +348,10 @@ Lo importante aquí no es la representación específica de las matrices gamma, 
 
 \subsection{Espectro efectivo}
 
-Del Hamiltoniano \eqref{eq:ssh-massive-dirac}, el espectro es
+Del Hamiltoniano \eqref{c01:eq:ssh-massive-dirac}, el espectro es
 \begin{equation}
 E_\pm(q)=\pm \sqrt{m^2+v^2 q^2}.
-\label{eq:ssh-effective-disp}
+\label{c01:eq:ssh-effective-disp}
 \end{equation}
 
 Si \(m=0\), obtenemos una dispersión lineal gapless. Si \(m\neq 0\), se abre un gap de tamaño
@@ -381,7 +381,7 @@ Si \(m=0\), obtenemos una dispersión lineal gapless. Si \(m\neq 0\), se abre un
 \end{axis}
 \end{tikzpicture}
 \caption{Dispersión efectiva del modelo linealizado. El caso crítico \(m=0\) produce un cono lineal en \(1D\); el caso \(m\neq 0\) abre una brecha.}
-\label{fig:ssh-effective}
+\label{c01:fig:ssh-effective}
 \end{figure}
 
 \section{Interpretación topológica mínima}
@@ -438,7 +438,7 @@ En otras palabras: SSH es el laboratorio mínimo donde aparecen, en forma limpia
   \draw[arr] (d) -- (f);
 \end{tikzpicture}
 \caption{Ruta conceptual del capítulo SSH.}
-\label{fig:ssh-roadmap}
+\label{c01:fig:ssh-roadmap}
 \end{figure}
 
 \section{Dónde encaja dentro del programa}

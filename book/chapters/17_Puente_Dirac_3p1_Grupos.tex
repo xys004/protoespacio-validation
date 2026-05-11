@@ -50,14 +50,14 @@ En \(3+1\), en cambio, el problema ya no es solo agregar un tercer momento \(p_z
 La ecuacion de Dirac covariante en \(3+1\) es
 \begin{equation}
 \left(\ii \gamma^\mu \partial_\mu - m\right)\psi = 0,
-\label{eq:dirac-cov}
+\label{c17:eq:dirac-cov}
 \end{equation}
 donde \(\mu=0,1,2,3\) y las matrices \(\gamma^\mu\) satisfacen
 \begin{equation}
 \{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu}\bbI,
 \qquad
 \eta^{\mu\nu}=\mathrm{diag}(1,-1,-1,-1).
-\label{eq:clifford}
+\label{c17:eq:clifford}
 \end{equation}
 
 Si separamos tiempo y espacio, el Hamiltoniano toma la forma
@@ -65,7 +65,7 @@ Si separamos tiempo y espacio, el Hamiltoniano toma la forma
 \ii\partial_t\psi = H\psi,
 \qquad
 H = \alpha_x p_x + \alpha_y p_y + \alpha_z p_z + \beta m,
-\label{eq:ham-dirac}
+\label{c17:eq:ham-dirac}
 \end{equation}
 con
 \begin{equation}
@@ -74,7 +74,7 @@ con
 \{\alpha_i,\alpha_j\}=2\delta_{ij}\bbI,
 \qquad
 \{\alpha_i,\beta\}=0.
-\label{eq:alpha-beta}
+\label{c17:eq:alpha-beta}
 \end{equation}
 
 Este es el verdadero objetivo algebraico del proyecto.
@@ -96,7 +96,7 @@ Una eleccion estandar es
 \alpha_i = \tau_x \otimes \sigma_i,
 \qquad
 \beta = \tau_z \otimes \bbI_2,
-\label{eq:dirac-rep}
+\label{c17:eq:dirac-rep}
 \end{equation}
 donde \(\tau_i\) y \(\sigma_i\) son dos copias independientes de matrices de Pauli.
 
@@ -121,7 +121,7 @@ Con esto, el espinor tiene cuatro componentes:
   \draw[->,thick] (b) -- (c);
 \end{tikzpicture}
 \caption{Una forma pedagogica de ver el espinor de Dirac en \(3+1\): aparece como combinacion de dos estructuras internas de dos componentes.}
-\label{fig:four-components}
+\label{c17:fig:four-components}
 \end{figure}
 
 \section{Segunda gran diferencia: aparece una jerarquia de grupos}
@@ -146,7 +146,7 @@ donde:
 Si el limite infrarrojo es relativista, entonces lo que debe emerger es algo mucho mas grande:
 \begin{equation}
 \mathcal P = SO(3,1)\ltimes \bbR^{3,1},
-\label{eq:poincare}
+\label{c17:eq:poincare}
 \end{equation}
 el grupo de Poincare.
 
@@ -155,7 +155,7 @@ el grupo de Poincare.
 Pero Dirac no se formula realmente sobre \(SO(3,1)\) a secas, sino sobre su recubrimiento doble
 \begin{equation}
 SL(2,\bbC).
-\label{eq:sl2c}
+\label{c17:eq:sl2c}
 \end{equation}
 
 Ese es el grupo que actua naturalmente sobre los espinores de Weyl. Y un espinor de Dirac puede verse como
@@ -175,7 +175,7 @@ Ese es el grupo que actua naturalmente sobre los espinores de Weyl. Y un espinor
   \draw[->,thick] (s) -- (d);
 \end{tikzpicture}
 \caption{La jerarquia conceptual que no debemos perder. El problema no es solo cinetico: es tambien grupal y espinorial.}
-\label{fig:group-ladder}
+\label{c17:fig:group-ladder}
 \end{figure}
 
 \section{Tercera gran diferencia: Weyl y Dirac ya no son lo mismo}
@@ -202,9 +202,9 @@ Si queremos un objetivo algebraico claro para la siguiente etapa, el Hamiltonian
 H_{\mathrm{target}}(\vq)
 =
 v_x q_x \alpha_x + v_y q_y \alpha_y + v_z q_z \alpha_z + m\beta,
-\label{eq:target}
+\label{c17:eq:target}
 \end{equation}
-con \(\alpha_i,\beta\) satisfaciendo \eqref{eq:alpha-beta}.
+con \(\alpha_i,\beta\) satisfaciendo \eqref{c17:eq:alpha-beta}.
 
 En el caso isotropo:
 \begin{equation}
@@ -212,13 +212,13 @@ H_{\mathrm{target}}(\vq)
 =
 v\,\vtau_x\otimes(\sigma_x q_x + \sigma_y q_y + \sigma_z q_z)
  + m\,\tau_z\otimes \bbI_2.
-\label{eq:target-iso}
+\label{c17:eq:target-iso}
 \end{equation}
 
 Su espectro es
 \begin{equation}
 E(\vq)=\pm \sqrt{v^2(q_x^2+q_y^2+q_z^2)+m^2}.
-\label{eq:dispersion31}
+\label{c17:eq:dispersion31}
 \end{equation}
 
 Este es el análogo directo del cono de Dirac que vimos antes, pero ahora en tres dimensiones espaciales y con la estructura espinorial correcta.
@@ -237,7 +237,7 @@ Este es el análogo directo del cono de Dirac que vimos antes, pero ahora en tre
   \draw[->,thick] (m) -- (d);
 \end{tikzpicture}
 \caption{La meta algebraica minima del proyecto. No basta con tres direcciones espaciales: tambien hace falta la matriz de masa y una representacion espinorial adecuada.}
-\label{fig:target}
+\label{c17:fig:target}
 \end{figure}
 
 \section{Que deberia preservar una construccion discreta}
@@ -305,7 +305,7 @@ Si queremos continuar de forma realmente natural y sin perder la meta, la siguie
   \item identificar sus simetrias discretas y su espacio interno;
   \item mostrar su limite continuo sin masa;
   \item duplicar o acoplar dos sectores de quiralidad opuesta;
-  \item introducir un termino de masa y verificar que aparece el Hamiltoniano de Dirac \eqref{eq:target}.
+  \item introducir un termino de masa y verificar que aparece el Hamiltoniano de Dirac \eqref{c17:eq:target}.
 \end{enumerate}
 
 Esta ruta es mucho mas limpia que intentar saltar directamente desde grafeno a una ecuacion de Dirac completa en \(3+1\).
@@ -330,7 +330,7 @@ Esta ruta es mucho mas limpia que intentar saltar directamente desde grafeno a u
   \draw[->,thick] (e) -- (d);
 \end{tikzpicture}
 \caption{La estructura del problema a partir de ahora. La teoria de grupos ya no es decoracion: es el esqueleto del paso a \(3+1\).}
-\label{fig:final-map}
+\label{c17:fig:final-map}
 \end{figure}
 
 \section{Resumen final}

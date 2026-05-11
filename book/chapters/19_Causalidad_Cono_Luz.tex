@@ -54,7 +54,7 @@ H = \sum_{\bm{n}} \psi_{\bm{n}}^\dagger M_0 \psi_{\bm{n}}
 \psi_{\bm{n}}^\dagger T_i \psi_{\bm{n}+\hat{\imath}}
 + \psi_{\bm{n}+\hat{\imath}}^\dagger T_i^\dagger \psi_{\bm{n}}
 \right),
-\label{eq:Hlocal}
+\label{c19:eq:Hlocal}
 \end{equation}
 donde:
 \begin{enumerate}[label=\arabic*.]
@@ -72,7 +72,7 @@ La dinamica de Schrodinger es
 i\partial_t \ket{\Psi(t)} = H\ket{\Psi(t)},
 \qquad
 \ket{\Psi(t)} = e^{-iHt}\ket{\Psi(0)}.
-\label{eq:evol}
+\label{c19:eq:evol}
 \end{equation}
 
 La pregunta de causalidad es ahora muy concreta: si al tiempo \(t=0\) excitamos solo un sitio \(\bm{m}\), \textbf{cuanto tarda en aparecer amplitud apreciable en un sitio lejano \(\bm{n}\)?}
@@ -84,7 +84,7 @@ Este es el corazon del argumento.
 Definamos la distancia Manhattan entre dos sitios como
 \begin{equation}
 d(\bm{n},\bm{m}) = \abs{n_x-m_x}+\abs{n_y-m_y}+\abs{n_z-m_z}.
-\label{eq:dist}
+\label{c19:eq:dist}
 \end{equation}
 
 Si el Hamiltoniano solo conecta primeros vecinos, entonces una aplicacion de \(H\) puede cambiar la posicion, como mucho, en una unidad de esta distancia.
@@ -95,7 +95,7 @@ Por tanto:
 \mel{\bm{n}}{H^r}{\bm{m}} = 0
 \qquad
 \text{si } d(\bm{n},\bm{m}) > r.
-\label{eq:Hrzero}
+\label{c19:eq:Hrzero}
 \end{equation}
 
 \subsubsection*{Lectura fisica}
@@ -136,21 +136,21 @@ Expandamos el operador de evolucion:
 \begin{equation}
 U(t)=e^{-iHt}
 = \sum_{r=0}^{\infty}\frac{(-it)^r}{r!}H^r.
-\label{eq:Useries}
+\label{c19:eq:Useries}
 \end{equation}
 
 Tomemos el elemento matricial entre \(\bm{m}\) y \(\bm{n}\):
 \begin{equation}
 \mel{\bm{n}}{U(t)}{\bm{m}}
 = \sum_{r=0}^{\infty}\frac{(-it)^r}{r!}\mel{\bm{n}}{H^r}{\bm{m}}.
-\label{eq:matrixel}
+\label{c19:eq:matrixel}
 \end{equation}
 
-Usando \eqref{eq:Hrzero}, si \(L=d(\bm{n},\bm{m})\), los terminos con \(r<L\) desaparecen:
+Usando \eqref{c19:eq:Hrzero}, si \(L=d(\bm{n},\bm{m})\), los terminos con \(r<L\) desaparecen:
 \begin{equation}
 \mel{\bm{n}}{U(t)}{\bm{m}}
 = \sum_{r=L}^{\infty}\frac{(-it)^r}{r!}\mel{\bm{n}}{H^r}{\bm{m}}.
-\label{eq:tailseries}
+\label{c19:eq:tailseries}
 \end{equation}
 
 \subsection{La consecuencia inmediata}
@@ -166,7 +166,7 @@ y por tanto
 \abs{\mel{\bm{n}}{U(t)}{\bm{m}}}
 \le
 \sum_{r=L}^{\infty}\frac{(\norm{H}t)^r}{r!}.
-\label{eq:tailbound}
+\label{c19:eq:tailbound}
 \end{equation}
 
 Para \(L>\norm{H}t\), esta cola factorial cae rapidamente. Una cota pedagogica util es
@@ -175,7 +175,7 @@ Para \(L>\norm{H}t\), esta cola factorial cae rapidamente. Una cota pedagogica u
 \le
 e^x\left(\frac{ex}{L}\right)^L,
 \qquad x=\norm{H}t.
-\label{eq:factorialbound}
+\label{c19:eq:factorialbound}
 \end{equation}
 
 Luego:
@@ -183,7 +183,7 @@ Luego:
 \abs{\mel{\bm{n}}{U(t)}{\bm{m}}}
 \lesssim
 e^{\norm{H}t}\left(\frac{e\norm{H}t}{L}\right)^L.
-\label{eq:finalbound}
+\label{c19:eq:finalbound}
 \end{equation}
 
 \subsection{Que significa la cota}
@@ -203,7 +203,7 @@ r \sim a\,e\norm{H}\, t.
 Esto sugiere una velocidad maxima microscopica del orden
 \begin{equation}
 v_{\text{micro}} \sim a\,e\norm{H}.
-\label{eq:vmicro}
+\label{c19:eq:vmicro}
 \end{equation}
 
 \subsection{Interpretacion correcta}
@@ -249,12 +249,12 @@ Hasta aqui solo hemos mostrado una velocidad maxima nacida de la localidad. Ahor
 En el subsector infrarrojo tenemos
 \begin{equation}
 H_{\text{eff}}(\bm{q}) = v\,\bm{\alpha}\cdot\bm{q} + m\beta,
-\label{eq:Heff}
+\label{c19:eq:Heff}
 \end{equation}
 con dispersion
 \begin{equation}
 E(\bm{q})=\pm\sqrt{m^2+v^2\abs{\bm{q}}^2}.
-\label{eq:dispdirac}
+\label{c19:eq:dispdirac}
 \end{equation}
 
 \subsection{Velocidad de grupo}
@@ -262,7 +262,7 @@ La velocidad de grupo es
 \begin{equation}
 \bm{v}_g = \nabla_{\bm{q}} E(\bm{q})
 = \pm \frac{v^2 \bm{q}}{\sqrt{m^2+v^2\abs{\bm{q}}^2}}.
-\label{eq:vg}
+\label{c19:eq:vg}
 \end{equation}
 
 Su modulo satisface
@@ -271,7 +271,7 @@ Su modulo satisface
 =
 \frac{v^2\abs{\bm{q}}}{\sqrt{m^2+v^2\abs{\bm{q}}^2}}
 \le v.
-\label{eq:vgbound}
+\label{c19:eq:vgbound}
 \end{equation}
 
 \subsection{Lectura fisica}
@@ -287,14 +287,14 @@ Para que la interpretacion geometrica sea limpia, queremos que estas dos estruct
 La condicion minima es:
 \begin{equation}
 v \le v_{\text{micro}}.
-\label{eq:compat}
+\label{c19:eq:compat}
 \end{equation}
 
 \subsection{Por que}
 Si el sector Dirac predijera paquetes de onda con velocidad mayor que la permitida por la microdinamica, entonces el continuo efectivo seria inconsistente con el modelo subyacente.
 
 \subsection{Lo que idealmente queremos}
-Idealmente, no solo queremos \eqref{eq:compat}. Queremos ademas que:
+Idealmente, no solo queremos \eqref{c19:eq:compat}. Queremos ademas que:
 \begin{enumerate}[label=\arabic*.]
     \item el cono infrarrojo este bien contenido en el cono microscopico;
     \item las correcciones de red deformen ese cono solo a orden alto;
@@ -350,7 +350,7 @@ r \le Na.
 Como \(t=N\Delta t\), esto da
 \begin{equation}
 r \le \frac{a}{\Delta t} t.
-\label{eq:qwspeed}
+\label{c19:eq:qwspeed}
 \end{equation}
 
 \subsection{Diferencia conceptual}

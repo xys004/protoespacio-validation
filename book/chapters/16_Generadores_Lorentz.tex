@@ -6,7 +6,7 @@
 En el capitulo anterior llegamos a la ecuacion covariante de Dirac
 \begin{equation}
 (i\gamma^\mu \partial_\mu - m)\Psi = 0,
-\label{eq:dirac}
+\label{c16:eq:dirac}
 \end{equation}
 y vimos que la estructura de grupos relevante ya no es solo la de rotaciones espaciales, sino la del grupo de Lorentz y su recubrimiento espinorial.
 
@@ -39,7 +39,7 @@ x^\mu \mapsto x'^\mu = \Lambda^\mu{}_\nu x^\nu,
 preservando la metrica de Minkowski:
 \begin{equation}
 \Lambda^\mu{}_\rho \Lambda^\nu{}_\sigma \eta_{\mu\nu} = \eta_{\rho\sigma}.
-\label{eq:lorcond}
+\label{c16:eq:lorcond}
 \end{equation}
 
 Cuando $\Lambda$ esta muy cerca de la identidad, podemos escribirla como
@@ -48,10 +48,10 @@ Cuando $\Lambda$ esta muy cerca de la identidad, podemos escribirla como
 \qquad
 \abs{\omega^\mu{}_\nu}\ll 1.
 \end{equation}
-Al imponer \eqref{eq:lorcond} a primer orden, se obtiene
+Al imponer \eqref{c16:eq:lorcond} a primer orden, se obtiene
 \begin{equation}
 \omega_{\mu\nu} = -\omega_{\nu\mu}.
-\label{eq:antisym}
+\label{c16:eq:antisym}
 \end{equation}
 
 Eso significa que el grupo de Lorentz tiene seis parametros infinitesimales independientes:
@@ -102,7 +102,7 @@ tal que la ecuacion de Dirac conserve su forma.
 La condicion algebraica clave es
 \begin{equation}
 S(\Lambda)^{-1}\gamma^\mu S(\Lambda)=\Lambda^\mu{}_\nu \gamma^\nu.
-\label{eq:covgamma}
+\label{c16:eq:covgamma}
 \end{equation}
 
 Esta ecuacion dice todo lo esencial: la accion espinorial debe reorganizar las matrices gamma exactamente del mismo modo en que la transformacion de Lorentz reorganiza los indices del espacio-tiempo.
@@ -111,13 +111,13 @@ Esta ecuacion dice todo lo esencial: la accion espinorial debe reorganizar las m
 Para una transformacion infinitesimal escribimos
 \begin{equation}
 S(\Lambda)=\mathbb{I}-\frac{i}{2}\omega_{\mu\nu}\Sigma^{\mu\nu}+O(\omega^2),
-\label{eq:sinf}
+\label{c16:eq:sinf}
 \end{equation}
 donde las matrices $\Sigma^{\mu\nu}$ son los generadores espinoriales que buscamos.
 
 La pregunta ahora se vuelve concreta:
 \begin{displayquote}
-\textbf{Que eleccion de $\Sigma^{\mu\nu}$ hace verdadera la condicion \eqref{eq:covgamma}?}
+\textbf{Que eleccion de $\Sigma^{\mu\nu}$ hace verdadera la condicion \eqref{c16:eq:covgamma}?}
 \end{displayquote}
 
 \section{Definicion de los generadores espinoriales}
@@ -126,7 +126,7 @@ La respuesta estandar, y la que vamos a justificar, es
 \boxed{
 \Sigma^{\mu\nu}=\frac{i}{4}[\gamma^\mu,\gamma^\nu].
 }
-\label{eq:sigmadef}
+\label{c16:eq:sigmadef}
 \end{equation}
 
 Como el conmutador cambia de signo al intercambiar indices, estas matrices satisfacen automaticamente
@@ -138,7 +138,7 @@ Como el conmutador cambia de signo al intercambiar indices, estas matrices satis
 La algebra de Clifford nos da
 \begin{equation}
 \{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu}\mathbb{I}_4.
-\label{eq:cliff}
+\label{c16:eq:cliff}
 \end{equation}
 
 La parte antisimetrica del producto $\gamma^\mu\gamma^\nu$ no esta fijada por la anticomutacion. Esa parte antisimetrica es precisamente el objeto natural para representar generadores de transformaciones que tambien son antisimetrizadas en dos indices, como ocurre con Lorentz.
@@ -151,7 +151,7 @@ En otras palabras:
 \end{enumerate}
 
 \section{Verificacion de la formula generadora}
-Ahora queremos ver que \eqref{eq:sigmadef} realmente implementa \eqref{eq:covgamma}.
+Ahora queremos ver que \eqref{c16:eq:sigmadef} realmente implementa \eqref{c16:eq:covgamma}.
 
 \subsection{Expansión a primer orden}
 Tomamos
@@ -168,7 +168,7 @@ S^{-1}\gamma^\mu S
 \\
 &=
 \gamma^\mu+\frac{i}{2}\omega_{\rho\sigma}[\Sigma^{\rho\sigma},\gamma^\mu]+O(\omega^2).
-\label{eq:firstorder}
+\label{c16:eq:firstorder}
 \end{align}
 
 Por otro lado, del lado vectorial queremos
@@ -178,7 +178,7 @@ Por otro lado, del lado vectorial queremos
 (\delta^\mu{}_\nu+\omega^\mu{}_\nu)\gamma^\nu
 =
 \gamma^\mu+\omega^\mu{}_\nu\gamma^\nu.
-\label{eq:vectorial}
+\label{c16:eq:vectorial}
 \end{equation}
 
 Por tanto basta probar que
@@ -186,16 +186,16 @@ Por tanto basta probar que
 \frac{i}{2}\omega_{\rho\sigma}[\Sigma^{\rho\sigma},\gamma^\mu]
 =
 \omega^\mu{}_\nu\gamma^\nu.
-\label{eq:need}
+\label{c16:eq:need}
 \end{equation}
 
 \subsection{Conmutador central}
-Usando \eqref{eq:sigmadef}, el conmutador buscado satisface la identidad
+Usando \eqref{c16:eq:sigmadef}, el conmutador buscado satisface la identidad
 \begin{equation}
 [\Sigma^{\rho\sigma},\gamma^\mu]
 =
 i(\eta^{\mu\rho}\gamma^\sigma-\eta^{\mu\sigma}\gamma^\rho).
-\label{eq:master}
+\label{c16:eq:master}
 \end{equation}
 
 Esta relacion es la pieza central de todo el capitulo. Vamos a derivarla con calma.
@@ -223,7 +223,7 @@ Entonces
 -\gamma^\mu\gamma^\rho\gamma^\sigma
 +\gamma^\mu\gamma^\sigma\gamma^\rho
 \right).
-\label{eq:longcomm}
+\label{c16:eq:longcomm}
 \end{align}
 
 Ahora usamos repetidamente la algebra de Clifford para mover $\gamma^\mu$ hacia la derecha o hacia la izquierda. Por ejemplo,
@@ -248,7 +248,7 @@ Entonces
 \gamma^\mu\gamma^\rho\gamma^\sigma
 -2\eta^{\rho\mu}\gamma^\sigma
 +2\eta^{\sigma\mu}\gamma^\rho.
-\label{eq:term1}
+\label{c16:eq:term1}
 \end{align}
 
 De manera similar,
@@ -258,10 +258,10 @@ De manera similar,
 \gamma^\mu\gamma^\sigma\gamma^\rho
 -2\eta^{\sigma\mu}\gamma^\rho
 +2\eta^{\rho\mu}\gamma^\sigma.
-\label{eq:term2}
+\label{c16:eq:term2}
 \end{equation}
 
-Sustituimos \eqref{eq:term1} y \eqref{eq:term2} en \eqref{eq:longcomm}. Los terminos cubicos se cancelan exactamente y queda
+Sustituimos \eqref{c16:eq:term1} y \eqref{c16:eq:term2} en \eqref{c16:eq:longcomm}. Los terminos cubicos se cancelan exactamente y queda
 \begin{align}
 [\Sigma^{\rho\sigma},\gamma^\mu]
 &=
@@ -282,7 +282,7 @@ Sustituimos \eqref{eq:term1} y \eqref{eq:term2} en \eqref{eq:longcomm}. Los term
 i(\eta^{\mu\sigma}\gamma^\rho-\eta^{\mu\rho}\gamma^\sigma).
 \end{align}
 
-Esta expresion es la misma que \eqref{eq:master}, salvo un intercambio de nombres mudos y un signo global equivalente por orden de indices. La forma estandar que usaremos es
+Esta expresion es la misma que \eqref{c16:eq:master}, salvo un intercambio de nombres mudos y un signo global equivalente por orden de indices. La forma estandar que usaremos es
 \begin{equation}
 [\Sigma^{\rho\sigma},\gamma^\mu]
 =
@@ -290,7 +290,7 @@ i(\eta^{\mu\rho}\gamma^\sigma-\eta^{\mu\sigma}\gamma^\rho).
 \end{equation}
 
 \subsection{Cierre de la verificacion}
-Insertamos ahora esta identidad en \eqref{eq:firstorder}:
+Insertamos ahora esta identidad en \eqref{c16:eq:firstorder}:
 \begin{align}
 S^{-1}\gamma^\mu S
 &=
@@ -309,7 +309,7 @@ S^{-1}\gamma^\mu S
 =
 \gamma^\mu+\omega^\mu{}_\nu\gamma^\nu,
 \end{equation}
-que coincide exactamente con \eqref{eq:vectorial}. Por tanto, la definicion \eqref{eq:sigmadef} es correcta.
+que coincide exactamente con \eqref{c16:eq:vectorial}. Por tanto, la definicion \eqref{c16:eq:sigmadef} es correcta.
 
 \begin{figure}[h!]
 \centering
@@ -335,7 +335,7 @@ Ya sabemos que los seis generadores viven en $\Sigma^{\mu\nu}$. Ahora queremos s
 Definimos
 \begin{equation}
 J_i = \frac{1}{2}\epsilon_{ijk}\Sigma^{jk}.
-\label{eq:Jdef}
+\label{c16:eq:Jdef}
 \end{equation}
 Como $\Sigma^{jk}$ solo involucra indices espaciales, estos son los generadores de rotaciones.
 
@@ -398,7 +398,7 @@ J_i=
 0 & \sigma_i
 \end{pmatrix}.
 }
-\label{eq:Jmatrix}
+\label{c16:eq:Jmatrix}
 \end{equation}
 
 Este resultado es muy importante: ambos sectores quirales rotan de la misma manera bajo rotaciones espaciales.
@@ -407,7 +407,7 @@ Este resultado es muy importante: ambos sectores quirales rotan de la misma mane
 Definimos
 \begin{equation}
 K_i = \Sigma^{0i}.
-\label{eq:Kdef}
+\label{c16:eq:Kdef}
 \end{equation}
 
 Calculamos primero el conmutador:
@@ -441,7 +441,7 @@ K_i=\Sigma^{0i}
 0 & \sigma_i
 \end{pmatrix}.
 }
-\label{eq:Kmatrix}
+\label{c16:eq:Kmatrix}
 \end{equation}
 
 Este resultado complementa al anterior de una forma muy reveladora: bajo boosts, los dos sectores quirales no transforman igual, sino con signo opuesto.
@@ -463,11 +463,11 @@ Los generadores fisicos deben satisfacer la algebra de Lorentz:
 [J_i,J_j] &= i\epsilon_{ijk}J_k,\\
 [J_i,K_j] &= i\epsilon_{ijk}K_k,\\
 [K_i,K_j] &= -i\epsilon_{ijk}J_k.
-\label{eq:loralg}
+\label{c16:eq:loralg}
 \end{align}
 
 \subsection{Chequeo de la primera relacion}
-Usando \eqref{eq:Jmatrix},
+Usando \eqref{c16:eq:Jmatrix},
 \begin{align}
 [J_i,J_j]
 &=
@@ -489,7 +489,7 @@ i\epsilon_{ijk}J_k.
 \end{align}
 
 \subsection{Chequeo de la segunda relacion}
-Con \eqref{eq:Jmatrix} y \eqref{eq:Kmatrix},
+Con \eqref{c16:eq:Jmatrix} y \eqref{c16:eq:Kmatrix},
 \begin{align}
 [J_i,K_j]
 &=
@@ -540,20 +540,20 @@ Ahora aparece uno de los puntos mas profundos del capitulo. Si definimos
 A_i = \frac{1}{2}(J_i+iK_i),
 \qquad
 B_i = \frac{1}{2}(J_i-iK_i),
-\label{eq:AB}
+\label{c16:eq:AB}
 \end{equation}
 entonces se obtiene
 \begin{align}
 [A_i,A_j] &= i\epsilon_{ijk}A_k,\\
 [B_i,B_j] &= i\epsilon_{ijk}B_k,\\
 [A_i,B_j] &= 0.
-\label{eq:su2su2}
+\label{c16:eq:su2su2}
 \end{align}
 
 Esto significa que la algebra complejificada de Lorentz se separa en dos copias independientes de la algebra de \(SU(2)\).
 
 \subsection{Lectura en la base quiral}
-Si insertamos \eqref{eq:Jmatrix} y \eqref{eq:Kmatrix}, vemos que un sector quiral queda asociado a una de esas copias, y el otro sector a la otra. Esa es la forma algebraica precisa de decir que:
+Si insertamos \eqref{c16:eq:Jmatrix} y \eqref{c16:eq:Kmatrix}, vemos que un sector quiral queda asociado a una de esas copias, y el otro sector a la otra. Esa es la forma algebraica precisa de decir que:
 \begin{enumerate}[label=\arabic*.]
     \item el espinor izquierdo transforma en \((1/2,0)\);
     \item el espinor derecho transforma en \((0,1/2)\).

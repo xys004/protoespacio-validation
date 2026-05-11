@@ -29,13 +29,13 @@ Un fermion de Dirac en \(3D\) puede verse como la superposicion de dos sectores 
 La perturbacion mas pedagogica para hacer eso es un termino axial o tipo Zeeman:
 \begin{equation}
 b\,\mathbb{I}_\tau\otimes \sigma_z.
-\label{eq:bterm}
+\label{c12:eq:bterm}
 \end{equation}
 
 Este termino selecciona el eje \(z\) y separa la degeneracion del punto Dirac ligero a lo largo de esa direccion.
 
 \subsection{Lectura de simetria}
-El termino \eqref{eq:bterm} no es un adorno. Tiene una funcion estructural:
+El termino \eqref{c12:eq:bterm} no es un adorno. Tiene una funcion estructural:
 \begin{enumerate}[label=\arabic*.]
     \item rompe la isotropia completa al escoger un eje;
     \item rompe la simetria que protegia el punto Dirac doble;
@@ -68,12 +68,12 @@ H_0(\bm{k})=
 \frac{v}{a}\sum_{i=1}^3 \sin(k_i a)\,\alpha_i
 +
 M(\bm{k})\,\beta,
-\label{eq:H0}
+\label{c12:eq:H0}
 \end{equation}
 con
 \begin{equation}
 M(\bm{k}) = m + r\sum_{i=1}^3 \left(1-\cos(k_i a)\right).
-\label{eq:Mk}
+\label{c12:eq:Mk}
 \end{equation}
 
 Usamos la misma realizacion matricial de siempre:
@@ -86,12 +86,12 @@ Usamos la misma realizacion matricial de siempre:
 Ahora añadimos la perturbacion
 \begin{equation}
 H_b = b\,\mathbb{I}_\tau\otimes \sigma_z,
-\label{eq:Hb}
+\label{c12:eq:Hb}
 \end{equation}
 y definimos el Hamiltoniano total
 \begin{equation}
 H(\bm{k}) = H_0(\bm{k}) + H_b.
-\label{eq:Htot}
+\label{c12:eq:Htot}
 \end{equation}
 
 \section{Por que esta perturbacion es la adecuada}
@@ -124,7 +124,7 @@ H(0,0,k_z)=
 M_z\,\tau_x\otimes \mathbb{I}_2
 +
 b\,\mathbb{I}_\tau\otimes \sigma_z,
-\label{eq:axis}
+\label{c12:eq:axis}
 \end{equation}
 donde
 \begin{equation}
@@ -147,7 +147,7 @@ s\,\frac{v}{a}\sin(k_z a)\,\tau_z
 M_z\,\tau_x
 +
 s\,b\,\mathbb{I}_2.
-\label{eq:Hs}
+\label{c12:eq:Hs}
 \end{equation}
 
 Su espectro es inmediato:
@@ -158,17 +158,17 @@ s\,b
 \sqrt{
 \frac{v^2}{a^2}\sin^2(k_z a)+M_z^2
 }.
-\label{eq:axisenergy}
+\label{c12:eq:axisenergy}
 \end{equation}
 
 \section{Condicion exacta para el cierre de gap}
-Un nodo de Weyl aparece cuando una de estas energias se hace cero. De \eqref{eq:axisenergy} obtenemos la condicion
+Un nodo de Weyl aparece cuando una de estas energias se hace cero. De \eqref{c12:eq:axisenergy} obtenemos la condicion
 \begin{equation}
 b^2=
 \frac{v^2}{a^2}\sin^2(k_z a)
 +
 \left[m+r(1-\cos(k_z a))\right]^2.
-\label{eq:exactnode}
+\label{c12:eq:exactnode}
 \end{equation}
 
 Esta ecuacion es muy importante porque contiene toda la transicion entre:
@@ -200,13 +200,13 @@ m\beta
 b\,\mathbb{I}_\tau\otimes \sigma_z
 +
 O(q^2).
-\label{eq:lightH}
+\label{c12:eq:lightH}
 \end{equation}
 
 Este es el modelo continuo minimo de un Dirac con perturbacion axial.
 
 \subsection{Espectro del sector ligero}
-El espectro conocido de \eqref{eq:lightH} es
+El espectro conocido de \eqref{c12:eq:lightH} es
 \begin{equation}
 E(\bm{q})=
 \pm
@@ -217,7 +217,7 @@ v^2(q_x^2+q_y^2)
 \sqrt{v^2 q_z^2 + m^2}\pm b
 \right)^2
 }.
-\label{eq:lowspec}
+\label{c12:eq:lowspec}
 \end{equation}
 
 Esta formula merece leerse despacio:
@@ -237,7 +237,7 @@ q_x=q_y=0,
 Esto solo es posible si
 \begin{equation}
 |b|>|m|.
-\label{eq:splitcondition}
+\label{c12:eq:splitcondition}
 \end{equation}
 
 En ese caso aparecen dos nodos en
@@ -245,7 +245,7 @@ En ese caso aparecen dos nodos en
 q_z=\pm q_0,
 \qquad
 q_0=\frac{\sqrt{b^2-m^2}}{v}.
-\label{eq:q0}
+\label{c12:eq:q0}
 \end{equation}
 
 En cambio:
@@ -277,7 +277,7 @@ q_x=\delta q_x,
 q_y=\delta q_y.
 \end{equation}
 
-Al expandir \eqref{eq:lowspec} cerca de cada nodo se obtiene
+Al expandir \eqref{c12:eq:lowspec} cerca de cada nodo se obtiene
 \begin{equation}
 E^2 \simeq
 v^2(\delta q_x^2+\delta q_y^2)
@@ -289,7 +289,7 @@ con velocidad longitudinal
 v_z = \frac{v^2 q_0}{|b|}
 =
 v\frac{\sqrt{b^2-m^2}}{|b|}.
-\label{eq:vz}
+\label{c12:eq:vz}
 \end{equation}
 
 Asi, cada nodo es un cono lineal anisotropo. El Hamiltoniano proyectado sobre el subespacio de baja energia toma la forma
@@ -301,13 +301,13 @@ v\,\sigma_x \delta q_x
 v\,\sigma_y \delta q_y
 \pm
 v_z\,\sigma_z \delta q_z.
-\label{eq:Weylpair}
+\label{c12:eq:Weylpair}
 \end{equation}
 
 El signo \(\pm\) delante del termino longitudinal es justamente lo que hace que los dos nodos tengan quiralidad opuesta.
 
 \subsection{Quiralidad}
-La matriz de velocidades de \eqref{eq:Weylpair} es
+La matriz de velocidades de \eqref{c12:eq:Weylpair} es
 \begin{equation}
 V_\pm = \mathrm{diag}(v,v,\pm v_z).
 \end{equation}
@@ -332,13 +332,13 @@ En el capitulo anterior vimos que los distintos puntos especiales tienen masas e
 M_n = m + 2rN_n,
 \qquad
 N_n=0,1,2,3.
-\label{eq:Mn}
+\label{c12:eq:Mn}
 \end{equation}
 
-Alrededor de cada uno de esos sectores, el Hamiltoniano efectivo tiene la misma estructura que \eqref{eq:lightH}, pero con \(m\) reemplazado por \(M_n\). Por tanto el criterio de desdoblamiento en ese sector es
+Alrededor de cada uno de esos sectores, el Hamiltoniano efectivo tiene la misma estructura que \eqref{c12:eq:lightH}, pero con \(m\) reemplazado por \(M_n\). Por tanto el criterio de desdoblamiento en ese sector es
 \begin{equation}
 |b|>|M_n|.
-\label{eq:criterionMn}
+\label{c12:eq:criterionMn}
 \end{equation}
 
 \subsection{Condicion para que solo se desdoble el sector central}
@@ -351,7 +351,7 @@ Queremos:
 Eso exige simultaneamente
 \begin{equation}
 |b|>|m|
-\label{eq:want1}
+\label{c12:eq:want1}
 \end{equation}
 y
 \begin{equation}
@@ -361,7 +361,7 @@ y
 |m+4r|,
 |m+6r|
 \right\}.
-\label{eq:want2}
+\label{c12:eq:want2}
 \end{equation}
 
 Estas dos desigualdades son la ventana de parametros verdaderamente importante del capitulo.
@@ -375,7 +375,7 @@ entonces la condicion practica se vuelve muy clara:
 \boxed{
 |m|<|b|\ll 2r.
 }
-\label{eq:mainwindow}
+\label{c12:eq:mainwindow}
 \end{equation}
 
 \section{Interpretacion de la ventana \texorpdfstring{\(|m|<|b|\ll 2r\)}{|m|<|b|<<2r}}

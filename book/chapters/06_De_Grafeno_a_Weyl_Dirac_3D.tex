@@ -21,7 +21,7 @@ La respuesta corta es: en tres dimensiones aparece un tercer termino lineal con 
 En grafeno, cerca de un valle, el Hamiltoniano efectivo toma la forma
 \begin{equation}
 H_{\text{graphene}}(\vq)=\hbar v_F(\sigma_x q_x + \sigma_y q_y),
-\label{eq:graphene2d}
+\label{c06:eq:graphene2d}
 \end{equation}
 salvo convenciones de signos y base.
 
@@ -45,7 +45,7 @@ Ese Hamiltoniano es de Dirac sin masa en \(2+1\). El paso a 3D consiste en enten
 Todo Hamiltoniano hermitico \(2\times 2\) puede escribirse como
 \begin{equation}
 H(\vk)= d_0(\vk)\,I + d_x(\vk)\sigma_x + d_y(\vk)\sigma_y + d_z(\vk)\sigma_z.
-\label{eq:generic2band}
+\label{c06:eq:generic2band}
 \end{equation}
 
 De forma compacta,
@@ -58,18 +58,18 @@ H(\vk)=d_0(\vk)\,I + \vd(\vk)\cdot\vsigma,
 Los autovalores son
 \begin{equation}
 E_\pm(\vk)=d_0(\vk)\pm |\vd(\vk)|.
-\label{eq:generic-dispersion}
+\label{c06:eq:generic-dispersion}
 \end{equation}
 
 Por tanto, las bandas se tocan si y solo si
 \begin{equation}
 d_x(\vk)=d_y(\vk)=d_z(\vk)=0.
-\label{eq:crossing-condition}
+\label{c06:eq:crossing-condition}
 \end{equation}
 
 \subsection{Por que 3D cambia el juego}
 
-La condicion \eqref{eq:crossing-condition} son tres ecuaciones.
+La condicion \eqref{c06:eq:crossing-condition} son tres ecuaciones.
 
 \begin{enumerate}[leftmargin=*]
   \item En \(2D\), el momento tiene solo dos componentes \((k_x,k_y)\). Tres ecuaciones para dos variables suelen ser demasiadas, asi que un cruce lineal necesita simetrias extra.
@@ -91,7 +91,7 @@ Esa es una de las razones profundas por las que en tres dimensiones aparecen nod
   \draw[->,thick] (b) -- (d);
 \end{tikzpicture}
 \caption{Comparacion conceptual entre 2D y 3D para un Hamiltoniano de dos bandas.}
-\label{fig:2d-vs-3d}
+\label{c06:fig:2d-vs-3d}
 \end{figure}
 
 \section{Linearizacion alrededor de un cruce en 3D}
@@ -112,7 +112,7 @@ Escribimos entonces
 Expandimos cada componente de \(\vd(\vk)\) a primer orden:
 \begin{equation}
 d_i(\vk_0+\vq)\approx \sum_{j=x,y,z} A_{ij} q_j,
-\label{eq:linearization-matrix}
+\label{c06:eq:linearization-matrix}
 \end{equation}
 donde
 \begin{equation}
@@ -122,10 +122,10 @@ A_{ij}=
 \right|_{\vk_0}.
 \end{equation}
 
-Sustituyendo en \eqref{eq:generic2band},
+Sustituyendo en \eqref{c06:eq:generic2band},
 \begin{equation}
 H(\vk_0+\vq)\approx \sum_{i,j} A_{ij}q_j \sigma_i.
-\label{eq:weyl-general}
+\label{c06:eq:weyl-general}
 \end{equation}
 
 Esta es la forma mas general del Hamiltoniano de Weyl linealizado.
@@ -137,23 +137,23 @@ Si por simplicidad la matriz \(A_{ij}\) puede llevarse a
 A_{ij}=\chi v\,\delta_{ij},
 \qquad \chi=\pm 1,
 \end{equation}
-entonces \eqref{eq:weyl-general} se reduce a
+entonces \eqref{c06:eq:weyl-general} se reduce a
 \begin{equation}
 H_\chi(\vq)=\chi\, v \,(q_x\sigma_x + q_y\sigma_y + q_z\sigma_z).
-\label{eq:weyl-isotropic}
+\label{c06:eq:weyl-isotropic}
 \end{equation}
 
 Sus autovalores son
 \begin{equation}
 E_\pm(\vq)=\pm v\sqrt{q_x^2+q_y^2+q_z^2}.
-\label{eq:weyl-dispersion}
+\label{c06:eq:weyl-dispersion}
 \end{equation}
 
 Eso es un fermion de Weyl: un cruce lineal en tres dimensiones descrito por un Hamiltoniano \(2\times 2\).
 
 \section{Que significa la quiralidad}
 
-El signo \(\chi=\pm 1\) en \eqref{eq:weyl-isotropic} se llama quiralidad o carga quiral del nodo. De manera intuitiva:
+El signo \(\chi=\pm 1\) en \eqref{c06:eq:weyl-isotropic} se llama quiralidad o carga quiral del nodo. De manera intuitiva:
 
 \begin{enumerate}[leftmargin=*]
   \item \(\chi=+1\) corresponde a un nodo de una mano;
@@ -163,7 +163,7 @@ El signo \(\chi=\pm 1\) en \eqref{eq:weyl-isotropic} se llama quiralidad o carga
 Matematicamente, la quiralidad esta relacionada con el signo del determinante de la matriz de velocidades:
 \begin{equation}
 \chi = \mathrm{sign}\,\det(A_{ij}).
-\label{eq:chirality-det}
+\label{c06:eq:chirality-det}
 \end{equation}
 
 Esta cantidad no cambia bajo deformaciones suaves mientras el nodo no se aniquile con otro de quiralidad opuesta.
@@ -183,7 +183,7 @@ Esta cantidad no cambia bajo deformaciones suaves mientras el nodo no se aniquil
   \node at (0,1.05) {\footnotesize par minimo de nodos de Weyl};
 \end{tikzpicture}
 \caption{Un semimetal de Weyl contiene nodos con quiralidades opuestas. En un cristal real, los nodos aparecen al menos en pares.}
-\label{fig:weyl-pair}
+\label{c06:fig:weyl-pair}
 \end{figure}
 
 \section{Por que los nodos de Weyl vienen en pares}
@@ -193,7 +193,7 @@ Grafeno ya nos habia entrenado para esta idea: los puntos \(K\) y \(K'\) aparece
 De manera esquematica,
 \begin{equation}
 \sum_{\text{nodos}} \chi_n = 0.
-\label{eq:sum-chirality}
+\label{c06:eq:sum-chirality}
 \end{equation}
 
 Esta es una version fisica del mismo principio que luego se formaliza con Nielsen--Ninomiya: la red impone un balance global de quiralidad.
@@ -215,7 +215,7 @@ H_D(\vq)=
 v(q_x\sigma_x+q_y\sigma_y+q_z\sigma_z) & 0\\
 0 & -v(q_x\sigma_x+q_y\sigma_y+q_z\sigma_z)
 \end{pmatrix}.
-\label{eq:dirac4x4}
+\label{c06:eq:dirac4x4}
 \end{equation}
 
 Este Hamiltoniano contiene dos bloques de Weyl:
@@ -229,7 +229,7 @@ Como ambos bloques se encuentran en el mismo punto \(\vq=0\), el sistema exhibe 
 
 \subsection{Dispersion}
 
-Los autovalores de \eqref{eq:dirac4x4} son
+Los autovalores de \eqref{c06:eq:dirac4x4} son
 \begin{equation}
 E_\pm(\vq)=\pm v\sqrt{q_x^2+q_y^2+q_z^2},
 \end{equation}
@@ -256,7 +256,7 @@ con degeneracion doble por el solapamiento de los dos sectores de Weyl.
   \draw[dashed,gray] (3.8,0) circle (0.5);
 \end{tikzpicture}
 \caption{Interpretacion pedagogica: un punto de Dirac puede verse como dos nodos de Weyl de quiralidad opuesta exactamente superpuestos. Si una simetria que los mantenia pegados se rompe, el punto de Dirac puede separarse en dos nodos de Weyl.}
-\label{fig:dirac-splitting}
+\label{c06:fig:dirac-splitting}
 \end{figure}
 
 \section{Como se separa un punto de Dirac}
@@ -270,7 +270,7 @@ H_{\text{split}}(\vq)=
 v(q_x\sigma_x+q_y\sigma_y+(q_z-b)\sigma_z) & 0\\
 0 & -v(q_x\sigma_x+q_y\sigma_y+(q_z+b)\sigma_z)
 \end{pmatrix}.
-\label{eq:split-model}
+\label{c06:eq:split-model}
 \end{equation}
 
 Este Hamiltoniano sigue siendo block-diagonal, pero ahora los ceros de energia ya no coinciden.
@@ -292,7 +292,7 @@ Por tanto, el punto de Dirac inicial en \(\vq=0\) se separa en dos nodos de Weyl
 \vq_+= (0,0,b),
 \qquad
 \vq_-=(0,0,-b).
-\label{eq:node-separation}
+\label{c06:eq:node-separation}
 \end{equation}
 
 \subsection{Lectura fisica}
@@ -360,7 +360,7 @@ No vamos a derivarla todavia, pero ya queda claro por que este fenomeno no apare
   \draw[arr] (d) -- (s);
 \end{tikzpicture}
 \caption{Ruta conceptual del paso actual del proyecto.}
-\label{fig:roadmap}
+\label{c06:fig:roadmap}
 \end{figure}
 
 \section{Siguiente paso natural}

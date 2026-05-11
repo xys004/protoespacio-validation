@@ -6,7 +6,7 @@
 En el capitulo anterior obtuvimos una teoria efectiva de cuatro componentes de la forma
 \begin{equation}
 H_D(\bm{q}) = v\,\tau_z\otimes(\sigma_x q_x+\sigma_y q_y+\sigma_z q_z)+m\,\tau_x\otimes \mathbb{I}_2.
-\label{eq:HDbloques}
+\label{c15:eq:HDbloques}
 \end{equation}
 Aqui las matrices $\sigma_i$ actuan sobre el sector tipo Weyl dentro de cada bloque de dos componentes, mientras que las matrices $\tau_i$ distinguen los dos sectores de quiralidad opuesta que luego se acoplan mediante la masa.
 
@@ -25,17 +25,17 @@ La idea de este capitulo es responder eso sin perder el hilo fisico. Vamos a hac
 \end{enumerate}
 
 \section{El punto de partida: una ecuacion de evolucion}
-La forma hamiltoniana asociada a \eqref{eq:HDbloques} es
+La forma hamiltoniana asociada a \eqref{c15:eq:HDbloques} es
 \begin{equation}
 i\partial_t \Psi(t,\bm{x}) = \left[-i\,v\sum_{i=1}^3 \alpha^i \partial_i + m\,\beta\right]\Psi(t,\bm{x}),
-\label{eq:hamiltonevo}
+\label{c15:eq:hamiltonevo}
 \end{equation}
 donde hemos definido
 \begin{equation}
 \alpha^i = \tau_z\otimes \sigma_i,
 \qquad
 \beta = \tau_x\otimes \mathbb{I}_2.
-\label{eq:alphabeta}
+\label{c15:eq:alphabeta}
 \end{equation}
 
 La ventaja de esta escritura es que ya tiene exactamente la forma habitual del Hamiltoniano de Dirac. Lo unico que aun no hicimos es empaquetarla en una expresion manifiestamente covariante.
@@ -58,7 +58,7 @@ La ventaja de esta escritura es que ya tiene exactamente la forma habitual del H
 \end{figure}
 
 \section{\texorpdfstring{Que propiedades deben satisfacer \(\alpha^i\) y \(\beta\)}{Que propiedades deben satisfacer alpha^i y beta}}
-Para que \eqref{eq:hamiltonevo} describa una particula relativista libre con espectro
+Para que \eqref{c15:eq:hamiltonevo} describa una particula relativista libre con espectro
 \begin{equation}
 E^2 = v^2\abs{\bm{q}}^2 + m^2,
 \end{equation}
@@ -69,10 +69,10 @@ las matrices $\alpha^i$ y $\beta$ no pueden ser arbitrarias. Deben satisfacer
 \{\alpha^i,\beta\}=0,
 \qquad
 \beta^2=\mathbb{I}_4.
-\label{eq:diracalg}
+\label{c15:eq:diracalg}
 \end{equation}
 
-Con las definiciones \eqref{eq:alphabeta}, estas relaciones salen directamente de las reglas de Pauli:
+Con las definiciones \eqref{c15:eq:alphabeta}, estas relaciones salen directamente de las reglas de Pauli:
 \begin{equation}
 \{\sigma_i,\sigma_j\}=2\delta_{ij}\mathbb{I}_2,
 \qquad
@@ -109,7 +109,7 @@ En la formulacion covariante de Dirac se trabaja con matrices $\gamma^\mu$ que s
 \{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu}\mathbb{I}_4,
 \qquad
 \eta^{\mu\nu}=\mathrm{diag}(1,-1,-1,-1).
-\label{eq:cliff}
+\label{c15:eq:cliff}
 \end{equation}
 
 La relacion entre la forma hamiltoniana y la forma covariante es
@@ -117,7 +117,7 @@ La relacion entre la forma hamiltoniana y la forma covariante es
 \gamma^0=\beta,
 \qquad
 \gamma^i=\beta\,\alpha^i.
-\label{eq:defgamma}
+\label{c15:eq:defgamma}
 \end{equation}
 
 Con nuestras matrices esto da
@@ -129,7 +129,7 @@ Con nuestras matrices esto da
 Como $\tau_x\tau_z=-i\tau_y$, obtenemos
 \begin{equation}
 \gamma^i=-i\,\tau_y\otimes \sigma_i.
-\label{eq:gammatau}
+\label{c15:eq:gammatau}
 \end{equation}
 
 \subsection{La forma explicita en bloques}
@@ -154,7 +154,7 @@ entonces las matrices anteriores toman la forma
 0 & \sigma_i\\
 -\sigma_i & 0
 \end{pmatrix}.
-\label{eq:weylbasis}
+\label{c15:eq:weylbasis}
 \end{equation}
 Esta es precisamente la base quiral o base de Weyl.
 
@@ -186,7 +186,7 @@ Esta es precisamente la base quiral o base de Weyl.
 \end{figure}
 
 \subsection{Chequeo del algebra de Clifford}
-Ahora podemos verificar \eqref{eq:cliff} de forma directa:
+Ahora podemos verificar \eqref{c15:eq:cliff} de forma directa:
 \begin{align}
 (\gamma^0)^2 &= \beta^2 = \mathbb{I}_4,\\
 \{\gamma^0,\gamma^i\}
@@ -210,7 +210,7 @@ Ese signo menos en las componentes espaciales es exactamente el que distingue la
 
 \section{La ecuacion covariante}
 \subsection{\texorpdfstring{Multiplicar por \(\beta\)}{Multiplicar por beta}}
-Partimos de \eqref{eq:hamiltonevo}:
+Partimos de \eqref{c15:eq:hamiltonevo}:
 \begin{equation}
 i\partial_t \Psi =
 \left(
@@ -229,12 +229,12 @@ Multiplicamos por $\beta$ a la izquierda:
 i\beta\partial_t + i\,v\,\beta\alpha^i\partial_i - m
 \right)\Psi=0.
 \end{equation}
-Usando \eqref{eq:defgamma}, esto queda
+Usando \eqref{c15:eq:defgamma}, esto queda
 \begin{equation}
 \left(
 i\gamma^0\partial_t + i\,v\,\gamma^i\partial_i - m
 \right)\Psi=0.
-\label{eq:almostcov}
+\label{c15:eq:almostcov}
 \end{equation}
 
 \subsection{Introducir una coordenada temporal efectiva}
@@ -244,7 +244,7 @@ x^0 = v t,
 \qquad
 \partial_0 = \frac{1}{v}\partial_t,
 \end{equation}
-la ecuacion \eqref{eq:almostcov} toma la forma
+la ecuacion \eqref{c15:eq:almostcov} toma la forma
 \begin{equation}
 \left(
 i\gamma^0\partial_0 + i\gamma^i\partial_i - m
@@ -255,7 +255,7 @@ Reuniendo indice temporal y espaciales:
 \boxed{
 (i\gamma^\mu\partial_\mu - m)\Psi=0.
 }
-\label{eq:diraccov}
+\label{c15:eq:diraccov}
 \end{equation}
 
 Ya llegamos exactamente a la ecuacion covariante de Dirac.
@@ -289,7 +289,7 @@ toma la forma
 -\mathbb{I}_2 & 0\\
 0 & \mathbb{I}_2
 \end{pmatrix}.
-\label{eq:gamma5}
+\label{c15:eq:gamma5}
 \end{equation}
 
 Esto permite definir proyectores quirales:
@@ -351,7 +351,7 @@ SL(2,\mathbb{C}) \longrightarrow SO^+(3,1).
 La condicion clave es que exista una accion espinorial $S(\Lambda)$ tal que
 \begin{equation}
 S(\Lambda)^{-1}\gamma^\mu S(\Lambda)=\Lambda^\mu{}_{\nu}\gamma^\nu.
-\label{eq:spinlorentz}
+\label{c15:eq:spinlorentz}
 \end{equation}
 Esta es la version compacta de \enquote{la ecuacion de Dirac tiene la simetria correcta}.
 
@@ -399,7 +399,7 @@ Con este capitulo ya fijamos de manera limpia el nucleo algebraico del objetivo:
     \item una dinamica discreta efectiva puede producir sectores tipo Weyl;
     \item dos sectores de quiralidad opuesta pueden reorganizarse como un espinor de Dirac;
     \item la masa acopla esos sectores;
-    \item el Hamiltoniano en bloques se traduce exactamente a la ecuacion covariante \eqref{eq:diraccov};
+    \item el Hamiltoniano en bloques se traduce exactamente a la ecuacion covariante \eqref{c15:eq:diraccov};
     \item la estructura relevante de grupos pasa de $SU(2)$ y rotaciones a $SL(2,\mathbb{C})$ y Lorentz.
 \end{enumerate}
 

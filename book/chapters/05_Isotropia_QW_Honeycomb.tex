@@ -29,12 +29,12 @@ Tomamos las tres direcciones de primeros vecinos:
 \vdelta_2 = a\left(\frac{\sqrt{3}}{2},\frac{1}{2}\right),
 \qquad
 \vdelta_3 = a\left(-\frac{\sqrt{3}}{2},\frac{1}{2}\right),
-\label{eq:deltas}
+\label{c05:eq:deltas}
 \end{equation}
 con la propiedad geometrica clave
 \begin{equation}
 \vdelta_1+\vdelta_2+\vdelta_3 = 0.
-\label{eq:sumzero}
+\label{c05:eq:sumzero}
 \end{equation}
 
 Si definimos \(\hat{\vdelta}_i=\vdelta_i/a\), entonces la caminata usa estas tres direcciones como base elemental de propagacion.
@@ -60,7 +60,7 @@ Si definimos \(\hat{\vdelta}_i=\vdelta_i/a\), entonces la caminata usa estas tre
 Introducimos un espacio interno de dos componentes y asociamos a cada direccion una matriz interna
 \begin{equation}
 \tau_i = \hat{\delta}_i^x \sigma_x + \hat{\delta}_i^y \sigma_y.
-\label{eq:taui}
+\label{c05:eq:taui}
 \end{equation}
 
 Explícitamente:
@@ -70,7 +70,7 @@ Explícitamente:
 \tau_2 = \frac{\sqrt{3}}{2}\sigma_x + \frac{1}{2}\sigma_y,
 \qquad
 \tau_3 = -\frac{\sqrt{3}}{2}\sigma_x + \frac{1}{2}\sigma_y.
-\label{eq:taus}
+\label{c05:eq:taus}
 \end{equation}
 
 Este es el punto fino del modelo: la estructura interna copia la geometria angular de las direcciones de propagacion.
@@ -79,7 +79,7 @@ Este es el punto fino del modelo: la estructura interna copia la geometria angul
 Tomamos un paso unitario de la forma
 \begin{equation}
 U = S_3 S_2 S_1 C_m,
-\label{eq:U}
+\label{c05:eq:U}
 \end{equation}
 donde
 \begin{equation}
@@ -88,12 +88,12 @@ S_i = \ee^{-\,\ii \varepsilon v \tau_i p_i},
 p_i = \hat{\vdelta}_i\cdot \vp,
 \qquad
 \vp = -\ii \nabla,
-\label{eq:Si}
+\label{c05:eq:Si}
 \end{equation}
 y
 \begin{equation}
 C_m = \ee^{-\,\ii \varepsilon m \sigma_z}.
-\label{eq:Cm}
+\label{c05:eq:Cm}
 \end{equation}
 
 La interpretacion es transparente:
@@ -122,7 +122,7 @@ Por comparacion con \(U\simeq \bbI - \ii\varepsilon H_{\text{eff}}\), obtenemos
 \begin{equation}
 H_{\text{eff}} =
 v\sum_{i=1}^3 \tau_i p_i + m\sigma_z.
-\label{eq:Heffraw}
+\label{c05:eq:Heffraw}
 \end{equation}
 
 \subsection{La cuenta central}
@@ -135,7 +135,7 @@ p_1 = -p_y,
 p_2 = \frac{\sqrt{3}}{2}p_x + \frac{1}{2}p_y,
 \qquad
 p_3 = -\frac{\sqrt{3}}{2}p_x + \frac{1}{2}p_y.
-\label{eq:pi}
+\label{c05:eq:pi}
 \end{equation}
 
 Entonces:
@@ -183,7 +183,7 @@ Al sumar:
 \sum_{i=1}^3 \tau_i p_i
 =
 \frac{3}{2}\sigma_x p_x + \frac{3}{2}\sigma_y p_y.
-\label{eq:keysum}
+\label{c05:eq:keysum}
 \end{equation}
 
 Por tanto,
@@ -192,11 +192,11 @@ H_{\text{eff}}
 =
 \frac{3v}{2}\left(\sigma_x p_x + \sigma_y p_y\right)
 + m\sigma_z.
-\label{eq:Dirac2p1}
+\label{c05:eq:Dirac2p1}
 \end{equation}
 
 \section{Por que esto significa isotropia efectiva}
-El resultado \eqref{eq:Dirac2p1} es crucial. Aunque la microdinamica distinguia tres direcciones concretas, el Hamiltoniano efectivo solo depende de la combinacion
+El resultado \eqref{c05:eq:Dirac2p1} es crucial. Aunque la microdinamica distinguia tres direcciones concretas, el Hamiltoniano efectivo solo depende de la combinacion
 \begin{equation}
 \sigma_x p_x + \sigma_y p_y,
 \end{equation}
@@ -206,7 +206,7 @@ que es la forma canonica de Dirac en \(2+1\).
 El espectro viene dado por
 \begin{equation}
 E(\vp)=\pm\sqrt{m^2+\left(\frac{3v}{2}\right)^2(p_x^2+p_y^2)}.
-\label{eq:disp}
+\label{c05:eq:disp}
 \end{equation}
 
 Luego las curvas de energia constante satisfacen
@@ -258,7 +258,7 @@ Pero como la estructura interna esta alineada con esas direcciones, la rotacion 
 Definimos
 \begin{equation}
 V(\phi)=\ee^{-\,\ii \frac{\phi}{2}\sigma_z}.
-\label{eq:Vphi}
+\label{c05:eq:Vphi}
 \end{equation}
 
 Entonces:
@@ -272,7 +272,7 @@ Para \(\phi=2\pi/3\), esto rota exactamente los vectores internos \(\tau_i\) del
 \text{rotacion espacial de } 2\pi/3
 \quad+\quad
 \text{rotacion interna } V(2\pi/3).
-\label{eq:combined}
+\label{c05:eq:combined}
 \end{equation}
 
 \begin{figure}[h!]
@@ -307,7 +307,7 @@ es invariante bajo rotaciones continuas en el plano si las acompa\~namos con la 
 El generador efectivo es
 \begin{equation}
 J_z = L_z + \frac{1}{2}\sigma_z.
-\label{eq:Jz}
+\label{c05:eq:Jz}
 \end{equation}
 
 Esto significa que la simetria continua \(SO(2)\) no estaba presente microscópicamente: emerge solo en el infrarrojo, cuando el sistema ya no resuelve la estructura angular fina de la red.

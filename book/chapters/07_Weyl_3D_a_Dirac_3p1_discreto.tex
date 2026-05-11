@@ -25,13 +25,13 @@ Vamos a hacer tres cosas:
 La meta inmediata no es aun el grupo de Poincare completo, sino este Hamiltoniano sin masa:
 \begin{equation}
 H_W(\vq)= v\left(\sigma_x q_x + \sigma_y q_y + \sigma_z q_z\right).
-\label{eq:weyl-target}
+\label{c07:eq:weyl-target}
 \end{equation}
 
 Su espectro es
 \begin{equation}
 E_\pm(\vq)=\pm v\sqrt{q_x^2+q_y^2+q_z^2}.
-\label{eq:weyl-disp}
+\label{c07:eq:weyl-disp}
 \end{equation}
 
 Este es el cono de Weyl tridimensional. La idea es construirlo como limite efectivo de una evolucion discreta y local.
@@ -48,7 +48,7 @@ Inspirados por las quantum walks anteriores, tomamos una evolucion por pasos:
 La forma minima y natural para \(3D\) es componer tres subpasos espaciales, uno por direccion:
 \begin{equation}
 U_W = U_z\,U_y\,U_x,
-\label{eq:Uw}
+\label{c07:eq:Uw}
 \end{equation}
 con
 \begin{equation}
@@ -57,7 +57,7 @@ U_x = \ee^{-\,\ii a p_x \sigma_x},
 U_y = \ee^{-\,\ii a p_y \sigma_y},
 \qquad
 U_z = \ee^{-\,\ii a p_z \sigma_z}.
-\label{eq:UxUyUz}
+\label{c07:eq:UxUyUz}
 \end{equation}
 
 La lectura es simple:
@@ -79,7 +79,7 @@ La lectura es simple:
   \node[below=0.55cm of y] {\small tres subpasos espaciales independientes};
 \end{tikzpicture}
 \caption{Un paso discreto minimo tipo Weyl en \(3D\). Cada direccion espacial aparece con su propia matriz de Pauli.}
-\label{fig:three-steps}
+\label{c07:fig:three-steps}
 \end{figure}
 
 \subsection{Expansion a baja energia}
@@ -101,7 +101,7 @@ U_W
 Reteniendo solo primer orden:
 \begin{equation}
 U_W \simeq \bbI - \ii a\left(p_x\sigma_x + p_y\sigma_y + p_z\sigma_z\right).
-\label{eq:Uw-expand}
+\label{c07:eq:Uw-expand}
 \end{equation}
 
 Pero tambien sabemos que
@@ -122,7 +122,7 @@ v=\frac{a}{\Delta t},
 queda exactamente
 \begin{equation}
 H_{\text{eff}}=v\left(p_x\sigma_x + p_y\sigma_y + p_z\sigma_z\right).
-\label{eq:weyl-eff}
+\label{c07:eq:weyl-eff}
 \end{equation}
 
 Ya llegamos al Hamiltoniano de Weyl.
@@ -149,7 +149,7 @@ H_W(\vq)=\sum_{i,j} v_{ij} q_j \sigma_i,
 la quiralidad es
 \begin{equation}
 \chi = \mathrm{sign}\!\left[\det(v_{ij})\right].
-\label{eq:chirality}
+\label{c07:eq:chirality}
 \end{equation}
 
 Para nuestro ejemplo minimo, \(v_{ij}=v\delta_{ij}\), de modo que
@@ -179,7 +179,7 @@ Si invertimos el signo global de una direccion impar del bloque de Pauli, obtene
   \node at (0,-1.45) {\small dos sectores de quiralidad opuesta};
 \end{tikzpicture}
 \caption{Para llegar a Dirac, necesitamos dos conos tipo Weyl con quiralidades opuestas.}
-\label{fig:two-chiralities}
+\label{c07:fig:two-chiralities}
 \end{figure}
 
 \section{El paso decisivo: duplicar la teoria}
@@ -202,7 +202,7 @@ H_0(\vq)=
 v\,\vsigma\cdot \vq & 0\\
 0 & -v\,\vsigma\cdot \vq
 \end{pmatrix}.
-\label{eq:block-weyl}
+\label{c07:eq:block-weyl}
 \end{equation}
 
 Esto es exactamente \enquote{dos Weyl de quiralidad opuesta uno al lado del otro}.
@@ -210,7 +210,7 @@ Esto es exactamente \enquote{dos Weyl de quiralidad opuesta uno al lado del otro
 Usando matrices \(\tau_i\) para distinguir el sector izquierdo/derecho:
 \begin{equation}
 H_0(\vq)=v\,\tau_z\otimes(\sigma_x q_x+\sigma_y q_y+\sigma_z q_z).
-\label{eq:block-tauz}
+\label{c07:eq:block-tauz}
 \end{equation}
 
 \section{Introducir la masa}
@@ -218,7 +218,7 @@ H_0(\vq)=v\,\tau_z\otimes(\sigma_x q_x+\sigma_y q_y+\sigma_z q_z).
 Ahora agregamos el termino que mezcla los dos sectores:
 \begin{equation}
 H_m = m\,\tau_x\otimes \bbI_2.
-\label{eq:mass-term}
+\label{c07:eq:mass-term}
 \end{equation}
 
 Entonces el Hamiltoniano total es
@@ -226,7 +226,7 @@ Entonces el Hamiltoniano total es
 H_D(\vq)=
 v\,\tau_z\otimes(\sigma_x q_x+\sigma_y q_y+\sigma_z q_z)
  + m\,\tau_x\otimes \bbI_2.
-\label{eq:dirac-block}
+\label{c07:eq:dirac-block}
 \end{equation}
 
 Este es ya un Hamiltoniano de Dirac en \(3+1\), escrito en forma de bloques de Weyl.
@@ -258,7 +258,7 @@ y se verifican las relaciones
 \{\alpha_i,\beta\}=0,
 \qquad
 \beta^2=\bbI_4.
-\label{eq:dirac-clifford}
+\label{c07:eq:dirac-clifford}
 \end{equation}
 
 \begin{figure}[ht]
@@ -273,7 +273,7 @@ y se verifican las relaciones
   \draw[->,thick] (m) -- (d);
 \end{tikzpicture}
 \caption{La construccion conceptual clave: dos sectores de Weyl de quiralidad opuesta, mas un acoplamiento de masa, producen un fermion de Dirac.}
-\label{fig:weyl-to-dirac}
+\label{c07:fig:weyl-to-dirac}
 \end{figure}
 
 \section{El espectro}
@@ -288,7 +288,7 @@ porque los terminos cruzados desaparecen por anticonmutacion.
 Luego,
 \begin{equation}
 E(\vq)=\pm \sqrt{v^2(q_x^2+q_y^2+q_z^2)+m^2}.
-\label{eq:dirac-spectrum}
+\label{c07:eq:dirac-spectrum}
 \end{equation}
 
 Es exactamente el espectro de Dirac esperado.
@@ -362,7 +362,7 @@ Este orden protege la investigacion de dos errores:
   \draw[->,thick] (d) -- (e);
 \end{tikzpicture}
 \caption{Orden natural del proyecto a partir de ahora. La teoria de grupos sigue siendo central, pero no debe adelantarse al bloque algebraico minimo.}
-\label{fig:next-step}
+\label{c07:fig:next-step}
 \end{figure}
 
 \section{Resumen final}

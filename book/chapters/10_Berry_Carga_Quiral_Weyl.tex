@@ -24,7 +24,7 @@ H_\chi(\bm{q})=
 \chi\, v\, \bm{\sigma}\cdot \bm{q},
 \qquad
 \chi=\pm 1.
-\label{eq:weyl}
+\label{c10:eq:weyl}
 \end{equation}
 
 Aqui:
@@ -56,14 +56,14 @@ La conexion de Berry de una banda \(n\) es
 \bm{\mathcal{A}}_n(\bm{q})
 =
 i\bra{u_n(\bm{q})}\bm{\nabla}_{\bm{q}}\ket{u_n(\bm{q})},
-\label{eq:berryconn}
+\label{c10:eq:berryconn}
 \end{equation}
 y la curvatura de Berry es
 \begin{equation}
 \bm{\Omega}_n(\bm{q})
 =
 \bm{\nabla}_{\bm{q}}\times \bm{\mathcal{A}}_n(\bm{q}).
-\label{eq:berrycurv}
+\label{c10:eq:berrycurv}
 \end{equation}
 
 \subsection{Interpretacion minima}
@@ -105,7 +105,7 @@ e^{i\phi}\sin(\theta/2)
 -e^{-i\phi}\sin(\theta/2)\\[0.4em]
 \cos(\theta/2)
 \end{pmatrix}.
-\label{eq:eigenstates}
+\label{c10:eq:eigenstates}
 \end{equation}
 
 Estas funciones ya muestran algo importante: el estado depende solo de la direccion de \(\bm{q}\), es decir, del punto sobre la esfera en espacio de momentos.
@@ -120,7 +120,7 @@ Calculamos
 =
 i\bra{u_+}\partial_\theta u_+\rangle.
 \end{equation}
-Usando \eqref{eq:eigenstates} se obtiene
+Usando \eqref{c10:eq:eigenstates} se obtiene
 \begin{equation}
 \mathcal{A}_\theta=0.
 \end{equation}
@@ -162,7 +162,7 @@ Usando
 podemos escribir
 \begin{equation}
 \mathcal{A}_\phi = -\frac{1-\cos\theta}{2}.
-\label{eq:Aphi}
+\label{c10:eq:Aphi}
 \end{equation}
 
 Esta expresion tiene la forma típica del potencial de un monopolo magnético en una carta local.
@@ -175,7 +175,7 @@ La curvatura en coordenadas esfericas sale de
 \frac{1}{q^2\sin\theta}
 \partial_\theta \mathcal{A}_\phi.
 \end{equation}
-Usando \eqref{eq:Aphi},
+Usando \eqref{c10:eq:Aphi},
 \begin{equation}
 \partial_\theta \mathcal{A}_\phi
 =
@@ -195,7 +195,7 @@ Es decir, para la banda positiva del nodo con \(\chi=+1\),
 -\frac{1}{2}\frac{\hat{\bm{q}}}{q^2}
 =
 -\frac{\bm{q}}{2\abs{\bm{q}}^3}.
-\label{eq:omega-plus}
+\label{c10:eq:omega-plus}
 \end{equation}
 
 Para la banda negativa el signo cambia:
@@ -203,7 +203,7 @@ Para la banda negativa el signo cambia:
 \bm{\Omega}_-(\bm{q})
 =
 \frac{\bm{q}}{2\abs{\bm{q}}^3}.
-\label{eq:omega-minus}
+\label{c10:eq:omega-minus}
 \end{equation}
 
 \subsection{Con quiralidad general}
@@ -218,13 +218,13 @@ Si el nodo tiene quiralidad \(\chi=\pm 1\), la expresion se escribe de forma com
 =
 -\chi\,\frac{\bm{q}}{2\abs{\bm{q}}^3}.
 }
-\label{eq:omegageneral}
+\label{c10:eq:omegageneral}
 \end{equation}
 
 Aqui `val` y `cond` denotan banda de valencia y de conduccion.
 
 \section{Lectura geométrica: un monopolo en espacio recíproco}
-La forma \eqref{eq:omegageneral} es exactamente la de un campo radial de monopolo:
+La forma \eqref{c10:eq:omegageneral} es exactamente la de un campo radial de monopolo:
 \begin{equation}
 \bm{\Omega}(\bm{q}) \propto \frac{\bm{q}}{\abs{\bm{q}}^3}.
 \end{equation}
@@ -261,10 +261,10 @@ Por eso se dice que un nodo Weyl es una fuente o sumidero topológico:
 La cantidad topológica relevante es el flujo de la curvatura de Berry a través de una esfera \(S^2\) que encierra el nodo:
 \begin{equation}
 \Phi = \oint_{S^2} \bm{\Omega}\cdot d\bm{S}.
-\label{eq:flux}
+\label{c10:eq:flux}
 \end{equation}
 
-Tomando la banda de valencia y usando \eqref{eq:omegageneral},
+Tomando la banda de valencia y usando \eqref{c10:eq:omegageneral},
 \begin{equation}
 \bm{\Omega}=
 \chi\,\frac{\hat{\bm{q}}}{2q^2},
@@ -289,13 +289,13 @@ q^2\sin\theta\, d\theta\, d\phi
 \\
 &=
 2\pi \chi.
-\label{eq:fluxresult}
+\label{c10:eq:fluxresult}
 \end{align}
 
 El numero de Chern asociado es
 \begin{equation}
 C = \frac{1}{2\pi}\Phi = \chi.
-\label{eq:chern}
+\label{c10:eq:chern}
 \end{equation}
 
 Esta ecuacion es el corazon topologico del capitulo:

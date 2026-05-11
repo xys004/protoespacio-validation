@@ -53,7 +53,7 @@ donde \(U\) es un operador unitario local.
   \draw[->,thick] (b3) -- (c);
 \end{tikzpicture}
 \caption{Las dos rutas principales del proyecto. Ambas pueden conducir a una dinamica efectiva de Dirac, pero no parten del mismo objeto matematico.}
-\label{fig:two-routes}
+\label{c21:fig:two-routes}
 \end{figure}
 
 \section{Estrategia A: espacio discreto y tiempo continuo}
@@ -63,7 +63,7 @@ donde \(U\) es un operador unitario local.
 Esta es la estrategia que ya venimos usando en SSH, grafeno y modelos de Dirac/Weyl. El espacio se discretiza en una red, pero el tiempo sigue siendo continuo. La evolucion esta gobernada por
 \begin{equation}
 \ii \partial_t \psi = H \psi.
-\label{eq:sch-time}
+\label{c21:eq:sch-time}
 \end{equation}
 
 La informacion del sistema vive en un Hamiltoniano \(H\), construido a partir de saltos locales entre sitios, subredes, orbitales o grados de libertad internos.
@@ -73,7 +73,7 @@ La informacion del sistema vive en un Hamiltoniano \(H\), construido a partir de
 Tomemos el Hamiltoniano ingenuo de Dirac en red de una dimension:
 \begin{equation}
 H(k)=\frac{1}{a}\sin(ka)\,\sigma_x + m\,\sigma_z.
-\label{eq:lattice-dirac-cont}
+\label{c21:eq:lattice-dirac-cont}
 \end{equation}
 
 Aqui:
@@ -97,7 +97,7 @@ Si ahora miramos solo excitaciones de baja energia cerca de \(k=0\), usamos
 y obtenemos
 \begin{equation}
 H(k)\simeq k\,\sigma_x + m\,\sigma_z.
-\label{eq:dirac-lowk}
+\label{c21:eq:dirac-lowk}
 \end{equation}
 
 Volviendo a espacio real, \(k\to -\ii \partial_x\), llegamos a
@@ -107,7 +107,7 @@ Volviendo a espacio real, \(k\to -\ii \partial_x\), llegamos a
 \left(
 -\ii \sigma_x \partial_x + m \sigma_z
 \right)\psi(x,t),
-\label{eq:dirac-11-cont}
+\label{c21:eq:dirac-11-cont}
 \end{equation}
 que es la forma canonica de una ecuacion de Dirac en \(1+1\).
 
@@ -142,7 +142,7 @@ que es la forma canonica de una ecuacion de Dirac en \(1+1\).
   \node[draw,rounded corners,fill=blue!6,minimum width=3.0cm,minimum height=1.0cm] at (9.2,0.5) {\(\ii \partial_t \psi = H\psi\)};
 \end{tikzpicture}
 \caption{En esta ruta la red es espacial, pero el tiempo sigue siendo un parametro continuo.}
-\label{fig:continuous-time-picture}
+\label{c21:fig:continuous-time-picture}
 \end{figure}
 
 \section{Estrategia B: espacio-tiempo discreto con quantum walks}
@@ -152,7 +152,7 @@ que es la forma canonica de una ecuacion de Dirac en \(1+1\).
 Ahora damos un paso mucho mas ambicioso. En lugar de escribir una ecuacion diferencial en el tiempo, imponemos una evolucion por pasos:
 \begin{equation}
 \psi_{n+1}=U\,\psi_n,
-\label{eq:unitary-step}
+\label{c21:eq:unitary-step}
 \end{equation}
 donde \(n\) cuenta instantes separados por \(\Delta t\).
 
@@ -191,7 +191,7 @@ S\,\lvert x,\downarrow \rangle=\lvert x-a,\downarrow \rangle.
 Entonces un paso completo es
 \begin{equation}
 U = S\,C(\theta).
-\label{eq:U-step}
+\label{c21:eq:U-step}
 \end{equation}
 
 \subsection{Como actua en espacio de momentos}
@@ -204,7 +204,7 @@ S(k)=\ee^{-\ii ka \sigma_z}.
 Por tanto,
 \begin{equation}
 U(k)=\ee^{-\ii ka \sigma_z}\,\ee^{-\ii \theta \sigma_y}.
-\label{eq:Uk}
+\label{c21:eq:Uk}
 \end{equation}
 
 Ahora viene el paso clave. Si \(ka\) y \(\theta\) son pequenos, expandimos:
@@ -217,7 +217,7 @@ Ahora viene el paso clave. Si \(ka\) y \(\theta\) son pequenos, expandimos:
 Multiplicando y reteniendo solo primer orden:
 \begin{equation}
 U(k)\simeq I-\ii\left(ka\,\sigma_z + \theta\,\sigma_y\right).
-\label{eq:Uk-expand}
+\label{c21:eq:Uk-expand}
 \end{equation}
 
 Pero una evolucion por un paso pequeno tambien puede escribirse como
@@ -227,10 +227,10 @@ U(k)\simeq \ee^{-\ii \Delta t\, H_{\text{eff}}(k)}
 I-\ii \Delta t\, H_{\text{eff}}(k).
 \end{equation}
 
-Comparando con \eqref{eq:Uk-expand}, identificamos
+Comparando con \eqref{c21:eq:Uk-expand}, identificamos
 \begin{equation}
 H_{\text{eff}}(k)=\frac{a}{\Delta t}k\,\sigma_z + \frac{\theta}{\Delta t}\sigma_y.
-\label{eq:Heff-walk}
+\label{c21:eq:Heff-walk}
 \end{equation}
 
 Si definimos
@@ -251,7 +251,7 @@ Al volver a espacio real, \(k\to -\ii \partial_x\), obtenemos
 \left(
 -\ii c\,\sigma_z \partial_x + m\,\sigma_y
 \right)\psi(x,t),
-\label{eq:dirac-qw}
+\label{c21:eq:dirac-qw}
 \end{equation}
 que es de nuevo una ecuacion tipo Dirac en \(1+1\).
 
@@ -289,7 +289,7 @@ La ecuacion de Dirac no fue puesta a mano. Emergió del producto entre:
   \node[right] at (5.5,0.55) {\small \(\downarrow\) tiende a la izquierda};
 \end{tikzpicture}
 \caption{Esquema minimo de una caminata cuantica 1D. En cada paso temporal discreto, una componente se desplaza hacia la derecha y la otra hacia la izquierda, despues de una mezcla interna.}
-\label{fig:quantum-walk}
+\label{c21:fig:quantum-walk}
 \end{figure}
 
 \section{De quantum walks a QCA}
@@ -336,7 +336,7 @@ Si lo que se quiere es solo reproducir la fisica efectiva de Dirac en un materia
   };
 \end{tikzpicture}
 \caption{Idea estructural de un QCA. La nocion de causalidad local queda incorporada desde el nivel microscopico.}
-\label{fig:qca-logic}
+\label{c21:fig:qca-logic}
 \end{figure}
 
 \section{Comparacion paso a paso}
@@ -414,7 +414,7 @@ En otras palabras:
   \draw[->,thick] (qca) -- (final);
 \end{tikzpicture}
 \caption{Ubicacion de este capitulo en la investigacion. Las dos estrategias no son enemigas: funcionan como dos ramas complementarias despues de haber entendido la emergencia de Dirac y el problema del doblamiento.}
-\label{fig:project-map}
+\label{c21:fig:project-map}
 \end{figure}
 
 \section{Resumen final}
@@ -436,21 +436,3 @@ Por eso, el proyecto no necesita elegir entre una y otra demasiado pronto. Puede
   \item despues, para preguntar si esa red puede reinterpretarse como una dinamica discreta del propio espacio-tiempo.
 \end{enumerate}
 
-\begin{thebibliography}{99}
-
-\bibitem{FarrellyShort2014}
-T. C. Farrelly y A. J. Short,
-\newblock \enquote{Causal fermions in discrete space-time},
-\newblock \emph{Physical Review A} \textbf{89}, 012302 (2014).
-
-\bibitem{Farrelly2020}
-T. C. Farrelly,
-\newblock \enquote{A review of Quantum Cellular Automata},
-\newblock \emph{Quantum} \textbf{4}, 368 (2020).
-
-\bibitem{Arrighi2018}
-P. Arrighi, G. Di Molfetta, I. M\'arquez-Mart\'in y A. P\'erez,
-\newblock \enquote{The Dirac equation as a quantum walk over the honeycomb and triangular lattices},
-\newblock \emph{Physical Review A} \textbf{97}, 062111 (2018).
-
-\end{thebibliography}
