@@ -16,3 +16,6 @@ dependencies = [
 testpaths = ["tests"]
 addopts = "-ra -q --tb=short"
 pythonpath = ["."]
+filterwarnings = [
+  "ignore::DeprecationWarning:mpmath.*",
+]
