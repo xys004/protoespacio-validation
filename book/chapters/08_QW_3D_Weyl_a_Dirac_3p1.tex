@@ -1,0 +1,355 @@
+% Importado desde: 2026-03-28_QW_3D_Weyl_a_Dirac_3p1_consistente.tex
+\chapter{Derivacion Pedagogica: --- de dos bloques Weyl discretos a una construccion --- consistente de Dirac en \(3+1\)}
+\label{ch:qw-3d-weyl-a-dirac-3p1}
+
+\section{Objetivo}
+En el capitulo anterior construimos una \textit{quantum walk} minima en \(3D\) cuyo limite infrarrojo produce un bloque de Weyl isotropo:
+\begin{equation}
+H_W = v(\sigma_x p_x+\sigma_y p_y+\sigma_z p_z).
+\end{equation}
+
+El siguiente paso solo tiene sentido si es \textbf{algebraicamente consistente}. Es decir, no basta decir \enquote{ponemos dos Weyl juntos y agregamos una masa}; hay que verificar que:
+\begin{enumerate}[label=\arabic*.]
+    \item la dinamica discreta ampliada puede escribirse de forma natural;
+    \item el limite efectivo produce exactamente un Hamiltoniano de Dirac de cuatro componentes;
+    \item la masa anticommuta con el bloque cinetico;
+    \item y de ahi emerge una realizacion explicita de la algebra de Clifford.
+\end{enumerate}
+
+Ese es el objetivo de este capitulo.
+
+\section{Primer bloque: recordar el sector Weyl}
+Partimos de la caminata discreta elemental
+\begin{equation}
+U_W = U_z U_y U_x,
+\qquad
+U_i = \ee^{-\,\ii a p_i \sigma_i}.
+\label{eq:UW}
+\end{equation}
+
+Para \(a|\vp|\ll 1\), esta produce
+\begin{equation}
+U_W \simeq \bbI - \ii \Delta t\,H_W,
+\qquad
+H_W = v(\sigma_x p_x+\sigma_y p_y+\sigma_z p_z),
+\label{eq:HW}
+\end{equation}
+con
+\begin{equation}
+v=\frac{a}{\Delta t}.
+\end{equation}
+
+Este es el bloque de quiralidad positiva.
+
+\section{Segundo bloque: construir la quiralidad opuesta}
+Para pasar a Dirac necesitamos otro bloque con orientacion opuesta. La forma mas limpia es
+\begin{equation}
+H_{-W} = -\,v(\sigma_x p_x+\sigma_y p_y+\sigma_z p_z).
+\label{eq:Hminus}
+\end{equation}
+
+\subsection{Version unitaria}
+La caminata correspondiente puede escribirse como
+\begin{equation}
+U_{-W} = U_x^{-1} U_y^{-1} U_z^{-1},
+\label{eq:UmW}
+\end{equation}
+porque, a primer orden,
+\begin{equation}
+U_i^{-1} = \ee^{+\,\ii a p_i \sigma_i}
+\simeq \bbI + \ii a p_i \sigma_i.
+\end{equation}
+
+Entonces
+\begin{equation}
+U_{-W}\simeq \bbI + \ii a(\sigma_x p_x+\sigma_y p_y+\sigma_z p_z)
+= \bbI - \ii \Delta t\,H_{-W}.
+\end{equation}
+
+\subsection{Leccion}
+No estamos inventando el segundo bloque a mano: sale de una dinamica discreta igualmente local, pero con orientacion opuesta.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.2cm]
+  \node[draw,rounded corners,fill=blue!7,minimum width=3.2cm,minimum height=0.95cm,align=center] (a) {bloque Weyl \(+\)\\\(U_zU_yU_x\)};
+  \node[draw,rounded corners,fill=blue!7,minimum width=3.2cm,minimum height=0.95cm,align=center,right=4cm of a] (b) {bloque Weyl \(-\)\\\(U_x^{-1}U_y^{-1}U_z^{-1}\)};
+  \draw[<->,thick] (a) -- node[above] {\small quiralidad opuesta} (b);
+\end{tikzpicture}
+\caption{Los dos bloques discretos que usaremos para construir el sector Dirac.}
+\end{figure}
+
+\section{Tercer paso: ensamblar el espacio de cuatro componentes}
+Ahora introducimos un nuevo espacio interno de dos componentes, descrito por matrices \(\tau_i\), para distinguir ambos sectores Weyl.
+
+El espinor ampliado es
+\begin{equation}
+\Psi=
+\begin{pmatrix}
+\psi_+\\
+\psi_-
+\end{pmatrix},
+\end{equation}
+donde \(\psi_+\) y \(\psi_-\) son espinores de dos componentes.
+
+\subsection{Operador unitario sin masa}
+La evolucion conjunta sin masa puede escribirse, a primer orden, como
+\begin{equation}
+U_0 \simeq \bbI - \ii \Delta t\,H_0,
+\end{equation}
+con
+\begin{equation}
+H_0=
+\begin{pmatrix}
+H_W & 0\\
+0 & H_{-W}
+\end{pmatrix}.
+\label{eq:H0block}
+\end{equation}
+
+Usando \eqref{eq:HW} y \eqref{eq:Hminus}, esto equivale a
+\begin{equation}
+H_0 = v\,\tau_z\otimes(\sigma_x p_x+\sigma_y p_y+\sigma_z p_z).
+\label{eq:H0tau}
+\end{equation}
+
+\subsection{Interpretacion}
+El signo de \(\tau_z\) separa exactamente los dos sectores de quiralidad opuesta.
+
+\section{Cuarto paso: introducir la masa como mezcla local}
+La masa debe mezclar ambos bloques. La forma minima es
+\begin{equation}
+H_m = m\,\tau_x\otimes \bbI_2.
+\label{eq:Hm}
+\end{equation}
+
+\subsection{Version discreta}
+En lenguaje de caminata, esto corresponde a una moneda interna adicional
+\begin{equation}
+M = \ee^{-\,\ii \Delta t\,m\,\tau_x\otimes \bbI_2}.
+\label{eq:M}
+\end{equation}
+
+Tomando primero el paso sin masa y luego la mezcla:
+\begin{equation}
+U_D = M\,U_0.
+\label{eq:UD}
+\end{equation}
+
+Para \(\Delta t\) peque\~no:
+\begin{equation}
+M \simeq \bbI - \ii \Delta t\,m\,\tau_x\otimes\bbI_2.
+\end{equation}
+
+Por tanto,
+\begin{equation}
+U_D \simeq \bbI - \ii \Delta t(H_0+H_m),
+\end{equation}
+y el Hamiltoniano efectivo total es
+\begin{equation}
+H_D = v\,\tau_z\otimes(\sigma_x p_x+\sigma_y p_y+\sigma_z p_z)
++ m\,\tau_x\otimes \bbI_2.
+\label{eq:HD}
+\end{equation}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.1cm]
+  \node[draw,rounded corners,fill=blue!7,minimum width=2.8cm,minimum height=0.88cm,align=center] (w1) {Weyl \(+\)};
+  \node[draw,rounded corners,fill=blue!7,minimum width=2.8cm,minimum height=0.88cm,align=center,right=3.2cm of w1] (w2) {Weyl \(-\)};
+  \node[draw,rounded corners,fill=orange!10,minimum width=2.8cm,minimum height=0.88cm,align=center,below=1.45cm of $(w1)!0.5!(w2)$] (m) {mezcla \(m\,\tau_x\)};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.5cm,minimum height=0.95cm,align=center,below=1.45cm of m] (d) {Dirac \(3+1\)};
+  \draw[->,thick] (w1) -- (d);
+  \draw[->,thick] (w2) -- (d);
+  \draw[->,thick] (m) -- (d);
+\end{tikzpicture}
+\caption{La masa no es un adorno: es el acoplamiento local que convierte dos bloques Weyl en un sector Dirac.}
+\end{figure}
+
+\section{Verificacion de consistencia algebraica}
+Ahora viene la parte decisiva.
+
+\subsection{Definiciones}
+Definimos
+\begin{equation}
+\alpha_i = \tau_z\otimes \sigma_i,
+\qquad
+\beta = \tau_x\otimes \bbI_2.
+\label{eq:alphabeta}
+\end{equation}
+
+Entonces \eqref{eq:HD} toma la forma estandar
+\begin{equation}
+H_D = v\sum_{i=1}^3 \alpha_i p_i + m\beta.
+\label{eq:HDstandard}
+\end{equation}
+
+\subsection{Cuadrados}
+Como \(\tau_z^2=\tau_x^2=\bbI_2\) y \(\sigma_i^2=\bbI_2\), tenemos
+\begin{equation}
+\alpha_i^2=\bbI_4,
+\qquad
+\beta^2=\bbI_4.
+\end{equation}
+
+\subsection{Anticonmutacion espacial}
+Para \(i\neq j\),
+\begin{equation}
+\{\alpha_i,\alpha_j\}
+=
+\tau_z^2\otimes\{\sigma_i,\sigma_j\}
+=0,
+\end{equation}
+y para \(i=j\),
+\begin{equation}
+\{\alpha_i,\alpha_i\}=2\bbI_4.
+\end{equation}
+
+Luego
+\begin{equation}
+\{\alpha_i,\alpha_j\}=2\delta_{ij}\bbI_4.
+\label{eq:aa}
+\end{equation}
+
+\subsection{Anticonmutacion con la masa}
+Usamos \(\{\tau_z,\tau_x\}=0\):
+\begin{equation}
+\{\alpha_i,\beta\}
+=
+\{\tau_z\otimes\sigma_i,\tau_x\otimes\bbI_2\}
+=
+\{\tau_z,\tau_x\}\otimes \sigma_i
+=0.
+\label{eq:ab}
+\end{equation}
+
+\subsection{Conclusion algebraica}
+Las relaciones \eqref{eq:aa} y \eqref{eq:ab} son exactamente las del Hamiltoniano de Dirac. Por tanto, la construccion es consistente.
+
+\begin{displayquote}
+\textbf{la masa propuesta no destruye el bloque Weyl; lo completa en una realizacion de cuatro componentes que satisface la algebra correcta.}
+\end{displayquote}
+
+\section{Chequeo del espectro}
+La mejor prueba de consistencia es cuadrar el Hamiltoniano:
+\begin{align}
+H_D^2
+&=
+v^2\sum_{i,j}\alpha_i\alpha_j p_i p_j
++ mv\sum_i(\alpha_i\beta+\beta\alpha_i)p_i
++ m^2\beta^2
+\notag\\
+&=
+v^2(p_x^2+p_y^2+p_z^2)\bbI_4 + m^2\bbI_4,
+\end{align}
+porque los terminos cruzados desaparecen por anticonmutacion.
+
+Luego:
+\begin{equation}
+E(\vp)=\pm\sqrt{v^2(p_x^2+p_y^2+p_z^2)+m^2}.
+\label{eq:DiracSpec}
+\end{equation}
+
+Esto coincide exactamente con el espectro de Dirac esperado.
+
+\section{Lectura en terminos de matrices gamma}
+Una vez identificado \(\alpha_i\) y \(\beta\), definimos
+\begin{equation}
+\gamma^0=\beta,
+\qquad
+\gamma^i=\beta\alpha_i.
+\label{eq:gamma}
+\end{equation}
+
+Con nuestras matrices:
+\begin{equation}
+\gamma^0=\tau_x\otimes\bbI_2,
+\qquad
+\gamma^i=-\,\ii \tau_y\otimes \sigma_i.
+\end{equation}
+
+Estas satisfacen
+\begin{equation}
+\{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu}\bbI_4,
+\qquad
+\eta^{\mu\nu}=\mathrm{diag}(1,-1,-1,-1).
+\end{equation}
+
+O sea: la construccion no solo es consistente a nivel hamiltoniano, sino que ya instala una realizacion explicita de la estructura de Clifford \(Cl_{1,3}\).
+
+\section{Que simetrias conserva y cuales no}
+\subsection{Lo que si conserva}
+La construccion mantiene:
+\begin{enumerate}[label=\arabic*.]
+    \item localidad del paso;
+    \item estructura discreta de traslaciones;
+    \item el uso de bloques Weyl con orientacion controlada;
+    \item y la posibilidad de recuperar isotropia efectiva en el infrarrojo.
+\end{enumerate}
+
+\subsection{Lo que aun no garantiza}
+No garantiza todavia, por si sola:
+\begin{enumerate}[label=\arabic*.]
+    \item la emergencia exacta de todo el grupo de Lorentz;
+    \item el control global de dobladores en toda la zona de Brillouin;
+    \item ni la unicidad de esta construccion como realizacion microscópica.
+\end{enumerate}
+
+Eso esta bien: en esta etapa solo queriamos consistencia del paso \enquote{Weyl discreto \(\to\) Dirac \(3+1\)}.
+
+\section{Por que este paso si es coherente con el programa}
+Ahora ya podemos responder a tu pregunta implicita: \textbf{si, este paso es consistente con la ruta del proyecto}.
+
+\subsection{Por que}
+Porque respeta exactamente el orden que nos habiamos impuesto:
+\begin{enumerate}[label=\arabic*.]
+    \item primero un bloque discreto tipo Weyl;
+    \item luego su quiralidad;
+    \item luego el doblamiento controlado en un espacio interno mayor;
+    \item y solo entonces la masa y la estructura de Clifford.
+\end{enumerate}
+
+No hay aqui ningun salto arbitrario ni una identificacion apresurada. El paso a Dirac aparece como prolongacion natural del bloque Weyl.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, thick, align=center, minimum width=3.7cm, minimum height=1.02cm},
+    arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=blue!7] (a) at (0,0) {QW Weyl \(+\)};
+\node[box, fill=blue!7] (b) at (4.5,0) {QW Weyl \(-\)};
+\node[box, fill=yellow!12] (c) at (9,0) {mezcla local\\de masa};
+\node[box, fill=green!8] (d) at (13.5,0) {Dirac \(3+1\)\\consistente};
+\draw[arr] (a) -- (c);
+\draw[arr] (b) -- (c);
+\draw[arr] (c) -- (d);
+\end{tikzpicture}
+\caption{La consistencia del paso Weyl \(\to\) Dirac queda asegurada por la estructura de bloques y la anticonmutacion del termino de masa.}
+\end{figure}
+
+\section{Mapa del siguiente paso}
+Con esta pieza cerrada, el siguiente paso natural ya no es preguntar \enquote{si se puede}. Eso ya quedo mostrado a nivel efectivo.
+
+La pregunta que sigue es mas fina:
+\begin{displayquote}
+\textbf{como se insertan Nielsen--Ninomiya, la estructura global de la zona de Brillouin y las simetrias discretas completas dentro de esta construccion de cuatro componentes?}
+\end{displayquote}
+
+En otras palabras: el siguiente bloque serio deberia estudiar la \textbf{consistencia global}, no solo local.
+
+\section{Resumen final}
+Tomando dos bloques discretos de Weyl con quiralidad opuesta y una mezcla local de masa, construimos una dinamica ampliada de cuatro componentes cuyo Hamiltoniano efectivo es
+\begin{equation}
+H_D = v\,\tau_z\otimes(\vsigma\cdot\vp) + m\,\tau_x\otimes\bbI_2.
+\end{equation}
+
+Verificamos paso a paso que:
+\begin{enumerate}[label=\arabic*.]
+    \item la construccion viene de un paso unitario discreto natural;
+    \item la masa anticommuta con el bloque cinetico;
+    \item el espectro es el de Dirac;
+    \item y la algebra de Clifford \(Cl_{1,3}\) aparece de forma explicita.
+\end{enumerate}
+
+Eso hace que este sea, efectivamente, un paso consistente dentro del programa. No cierra toda la investigacion, pero si cierra de forma limpia el puente local entre \textit{Weyl discreto} y \textit{Dirac \(3+1\)}.

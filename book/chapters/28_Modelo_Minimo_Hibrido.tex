@@ -1,0 +1,269 @@
+% Importado desde: 2026-03-28_Modelo_Minimo_Hibrido_de_Protoespacio.tex
+\chapter{Propuesta inicial: --- modelo minimo hibrido de protoespacio discreto --- con subsector Dirac en el infrarrojo}
+\label{ch:modelo-minimo-hibrido}
+
+\section{Objetivo}
+Despues de comparar \enquote{grafo local} y \enquote{red causal discreta}, el siguiente paso natural es proponer un modelo minimo concreto que combine ambas ideas.
+
+La meta de este capitulo es construir un candidato sobrio:
+\begin{displayquote}
+\textbf{una estructura discreta con vecindad local, orientacion causal elemental, fibra interna de cuatro componentes y una regla de actualizacion que produzca Dirac \(3+1\) en el infrarrojo.}
+\end{displayquote}
+
+No pretendemos todavia demostrar que este sea \emph{el} protoespacio correcto. Solo queremos fijar un modelo minimo de trabajo que:
+\begin{enumerate}[label=\arabic*.]
+    \item no dependa conceptualmente de Brillouin como punto de partida;
+    \item incorpore causalidad en la estructura misma;
+    \item y siga siendo compatible con la construccion efectiva de Dirac que ya controlamos.
+\end{enumerate}
+
+\section{Los datos del modelo}
+La propuesta minima sera
+\begin{equation}
+\cP_{\mathrm{min}}=(X,\cN,\prec,\cH_{\mathrm{loc}},\cU,\cG_{\mathrm{micro}}).
+\label{eq:Pmin}
+\end{equation}
+
+\subsection{Conjunto de eventos}
+Tomamos
+\begin{equation}
+X=\mathbb{Z}\times\mathbb{Z}^3.
+\end{equation}
+
+Un elemento de \(X\) se escribe como
+\begin{equation}
+(n,\bm{m}),
+\qquad
+n\in\mathbb{Z},
+\qquad
+\bm{m}=(m_x,m_y,m_z)\in\mathbb{Z}^3.
+\end{equation}
+
+La interpretacion es:
+\begin{enumerate}[label=\arabic*.]
+    \item \(n\) etiqueta capas temporales discretas;
+    \item \(\bm{m}\) etiqueta vertices de una red cubica en cada capa.
+\end{enumerate}
+
+\subsection{Vecindad espacial}
+Dentro de cada capa, la vecindad basica es la de primeros vecinos:
+\begin{equation}
+\cN(\bm{m})=
+\{\bm{m}\pm \hat{x},\bm{m}\pm \hat{y},\bm{m}\pm \hat{z}\}.
+\end{equation}
+
+\subsection{Relacion causal elemental}
+La relacion causal primaria no une puntos arbitrarios, sino eventos en capas consecutivas:
+\begin{equation}
+(n,\bm{m}) \prec (n+1,\bm{m}')
+\end{equation}
+si \(\bm{m}'\) esta entre los sitios permitidos por la regla local del paso.
+
+\subsection{Fibra local}
+En cada evento vive una fibra de cuatro componentes:
+\begin{equation}
+\cH_{\mathrm{loc}}\cong \mathbb{C}^2_{\mathrm{quiralidad}}\otimes \mathbb{C}^2_{\mathrm{Weyl}}.
+\label{eq:fiber}
+\end{equation}
+
+\section{La intuicion geometrica}
+El objeto ya no es una red espacial sola, ni una red causal desnuda. Es una red de capas discretas con:
+\begin{enumerate}[label=\arabic*.]
+    \item conectividad espacial local;
+    \item orientacion temporal entre capas;
+    \item y una fibra interna que decide como se propaga la amplitud.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=1.0,>=Latex]
+  \foreach \x in {0,1.5,3} {
+    \foreach \y in {0,1.2,2.4} {
+      \fill[blue!60] (\x,\y) circle (1.5pt);
+      \fill[blue!60] (\x+5.2,\y+0.8) circle (1.5pt);
+    }
+  }
+  \foreach \x in {0,1.5} {
+    \foreach \y in {0,1.2,2.4} {
+      \draw[gray!60] (\x,\y) -- (\x+1.5,\y);
+      \draw[gray!60] (\x+5.2,\y+0.8) -- (\x+6.7,\y+0.8);
+    }
+  }
+  \foreach \x in {0,1.5,3} {
+    \foreach \y in {0,1.2} {
+      \draw[gray!60] (\x,\y) -- (\x,\y+1.2);
+      \draw[gray!60] (\x+5.2,\y+0.8) -- (\x+5.2,\y+2.0);
+    }
+  }
+  \draw[->,thick,orange!80!black] (1.5,1.2) -- (6.7,2.0);
+  \draw[->,thick,orange!80!black] (1.5,1.2) -- (5.2,0.8);
+  \draw[->,thick,orange!80!black] (1.5,1.2) -- (6.7,0.8);
+  \node at (1.5,-0.45) {\small capa \(n\)};
+  \node at (6.7,3.45) {\small capa \(n+1\)};
+\end{tikzpicture}
+\caption{Imagen minima del modelo hibrido: vecindad local dentro de cada capa y flecha causal entre capas sucesivas.}
+\end{figure}
+
+\section{Regla dinamica local}
+\subsection{Proyectores internos}
+En el bloque Weyl introducimos
+\begin{equation}
+P_i^\pm=\frac{1}{2}\left(\bbI_2\pm \sigma_i\right),
+\qquad i=x,y,z.
+\end{equation}
+
+\subsection{Desplazamientos condicionales}
+Sea \(T_{\pm \hat{\imath}}\) el operador que desplaza la amplitud una unidad en la direccion \(\pm \hat{\imath}\). Definimos entonces
+\begin{equation}
+S_i=
+T_{+\hat{\imath}}\otimes P_i^+
++
+T_{-\hat{\imath}}\otimes P_i^-.
+\label{eq:Si}
+\end{equation}
+
+Este operador hace algo muy importante:
+\begin{enumerate}[label=\arabic*.]
+    \item la direccion del salto depende del estado interno;
+    \item la propagacion sigue siendo estrictamente local;
+    \item la estructura causal del paso queda ya codificada en la propia actualizacion.
+\end{enumerate}
+
+\subsection{Bloque Weyl}
+El paso Weyl positivo se toma como
+\begin{equation}
+U_W=S_zS_yS_x.
+\label{eq:UW}
+\end{equation}
+
+El bloque opuesto se toma como
+\begin{equation}
+U_{-W}=S_x^{-1}S_y^{-1}S_z^{-1}.
+\label{eq:UmW}
+\end{equation}
+
+\subsection{Paso Dirac}
+En la fibra ampliada de cuatro componentes:
+\begin{equation}
+U_0=
+\begin{pmatrix}
+U_W & 0\\
+0 & U_{-W}
+\end{pmatrix},
+\end{equation}
+y luego introducimos una mezcla local de masa
+\begin{equation}
+M=\ee^{-\,\ii \Delta t\,m\,\tau_x\otimes\bbI_2}.
+\label{eq:M}
+\end{equation}
+
+El paso total es
+\begin{equation}
+U_D=MU_0.
+\label{eq:UD}
+\end{equation}
+
+\section{Por que este modelo es realmente hibrido}
+No es un grafo puro porque la regla no es solo adyacencia: tiene orientacion temporal elemental. No es una red causal pura porque la dinamica usa de forma esencial la fibra local y los desplazamientos condicionados.
+
+En una frase:
+\begin{displayquote}
+\textbf{la causalidad viene del orden de capas y del soporte local del paso; la estructura tipo Dirac viene de la fibra interna y de la mezcla entre bloques Weyl.}
+\end{displayquote}
+
+\section{Sector infrarrojo}
+Si pasamos al espacio de momentos dentro de una capa homogénea, los desplazamientos dan
+\begin{equation}
+S_i(\vk)=\ee^{-\,\ii a k_i \sigma_i},
+\end{equation}
+de modo que
+\begin{equation}
+U_W(\vk)=
+\ee^{-\,\ii a k_z \sigma_z}
+\ee^{-\,\ii a k_y \sigma_y}
+\ee^{-\,\ii a k_x \sigma_x}.
+\end{equation}
+
+Para \(a|\vp|\ll 1\),
+\begin{equation}
+U_W\simeq \bbI-\ii\Delta t\,H_W,
+\qquad
+H_W=v(\sigma_x p_x+\sigma_y p_y+\sigma_z p_z),
+\end{equation}
+con
+\begin{equation}
+v=\frac{a}{\Delta t}.
+\end{equation}
+
+Al pasar a cuatro componentes:
+\begin{equation}
+H_D=
+v\,\tau_z\otimes(\sigma_x p_x+\sigma_y p_y+\sigma_z p_z)
++m\,\tau_x\otimes\bbI_2.
+\label{eq:HD}
+\end{equation}
+
+Luego el mismo modelo hibrido reproduce el subsector Dirac que ya venimos construyendo.
+
+\section{Que gana esta formulacion respecto de Brillouin}
+La ventaja conceptual es importante. La estructura primaria ya no es:
+\[
+\text{toro de Brillouin + cuasienergia}.
+\]
+
+Ahora la estructura primaria es:
+\[
+\text{eventos + vecindad + orden causal + fibra + dinamica local}.
+\]
+
+El lenguaje espectral aparece solo \emph{despues}, si queremos analizar:
+\begin{enumerate}[label=\arabic*.]
+    \item homogeneidad;
+    \item dispersion;
+    \item subsector infrarrojo;
+    \item estabilidad de ciertos modos.
+\end{enumerate}
+
+\section{Que simetrias exactas conserva}
+Para el modelo minimo ordenado, las simetrias exactas siguen siendo discretas:
+\begin{enumerate}[label=\arabic*.]
+    \item traslaciones espaciales \(\mathbb{Z}^3\);
+    \item traslaciones temporales discretas \(\mathbb{Z}\);
+    \item y el subgrupo puntual residual compatible con el orden del paso.
+\end{enumerate}
+
+No asumimos desde el comienzo ni isotropia continua exacta ni grupo de Poincare.
+
+\section{Limites actuales del modelo}
+Este modelo minimo aun deja abiertas varias cosas:
+\begin{enumerate}[label=\arabic*.]
+    \item sigue usando una red regular por comodidad;
+    \item todavia no demuestra robustez bajo deformaciones no periodicas;
+    \item todavia no sabemos si puede generalizarse manteniendo isotropia efectiva sin depender tanto de homogeneidad exacta;
+    \item y todavia no hemos probado que capture una geometria comun para varios observables distintos.
+\end{enumerate}
+
+\section{Valor del modelo}
+Pese a esas limitaciones, el modelo me parece valioso por tres razones:
+\begin{enumerate}[label=\arabic*.]
+    \item es el primer candidato concreto de protoespacio hibrido del proyecto;
+    \item ya contiene causalidad local y estructura espinorial en el mismo objeto;
+    \item y permite seguir usando toda la maquinaria Dirac/Weyl que ya desarrollamos, sin volver a una lectura puramente cristalina.
+\end{enumerate}
+
+\section{Conclusion}
+La propuesta minima que sale de esta etapa es bastante clara:
+\begin{displayquote}
+\textbf{un buen candidato inicial de protoespacio no es una red espacial sola ni una red causal desnuda, sino una estructura en capas con vecindad local, orientacion causal elemental, fibra interna y una regla de paso local que en el infrarrojo produzca Dirac.}
+\end{displayquote}
+
+Eso nos da por fin un objeto de trabajo positivo, no solo una critica a Brillouin.
+
+\section{Siguiente paso natural}
+Desde aqui el paso siguiente mas interesante seria uno de estos dos:
+\begin{enumerate}[label=\arabic*.]
+    \item deformar suavemente este modelo para romper periodicidad exacta y ver que sobrevive del sector Dirac;
+    \item o intentar reescribir el mismo modelo en lenguaje de grafo dirigido o red causal local sin referencia inicial a coordenadas cartesianas.
+\end{enumerate}
+
+El primero parece mejor para no perder demasiado control tecnico demasiado pronto.

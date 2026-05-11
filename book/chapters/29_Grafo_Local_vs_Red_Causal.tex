@@ -1,0 +1,222 @@
+% Importado desde: 2026-03-28_Grafo_Local_vs_Red_Causal_para_Protoespacio.tex
+\chapter{Exploracion estructural: --- grafo local versus red causal discreta --- como candidatos de protoespacio}
+\label{ch:grafo-local-vs-red-causal}
+
+\section{Objetivo}
+En el documento anterior fijamos una idea importante:
+\begin{displayquote}
+\textbf{el protoespacio debe describirse primero por su estructura local y su dinamica, no por su representacion espectral.}
+\end{displayquote}
+
+Eso nos deja ahora con una pregunta mas concreta:
+\begin{displayquote}
+\textbf{si queremos una formulacion primaria del protoespacio, conviene pensarla como un grafo local o como una red causal discreta?}
+\end{displayquote}
+
+Este capitulo compara ambas opciones con calma y cierra proponiendo una forma hibrida que, por ahora, parece la mas prometedora para nuestro programa.
+
+\section{Dos candidatos naturales}
+\subsection{Candidato A: grafo local}
+Un primer candidato natural es un grafo
+\begin{equation}
+G=(V,E),
+\end{equation}
+donde:
+\begin{enumerate}[label=\arabic*.]
+    \item \(V\) es el conjunto de vertices;
+    \item \(E\) codifica vecindades o acoplos elementales;
+    \item en cada vertice vive una fibra local \(\cH_v\);
+    \item y la dinamica usa solo la estructura de adyacencia del grafo.
+\end{enumerate}
+
+\subsection{Candidato B: red causal discreta}
+El segundo candidato natural es una estructura de eventos con relacion causal:
+\begin{equation}
+\cC=(X,\prec),
+\end{equation}
+donde:
+\begin{enumerate}[label=\arabic*.]
+    \item \(X\) es el conjunto de eventos;
+    \item \(x\prec y\) significa que \(x\) puede influir causalmente en \(y\);
+    \item la estructura ya distingue pasado y futuro;
+    \item la dinamica debe respetar esa orientacion.
+\end{enumerate}
+
+\section{Que capta bien un grafo local}
+\subsection{Ventaja 1: la vecindad espacial}
+Un grafo local describe muy bien una idea de \enquote{quien es vecino de quien}. Eso lo vuelve muy natural para:
+\begin{enumerate}[label=\arabic*.]
+    \item modelos tipo tight-binding;
+    \item Hamiltonianos locales;
+    \item walks sobre redes;
+    \item construcciones donde el espacio interno vive sobre vertices.
+\end{enumerate}
+
+\subsection{Ventaja 2: la estructura algebraica local}
+Es facil implementar en un grafo:
+\begin{enumerate}[label=\arabic*.]
+    \item matrices internas por sitio;
+    \item acoplos entre vecinos;
+    \item operadores de masa;
+    \item reglas locales de mezcla quiral.
+\end{enumerate}
+
+Esto lo vuelve especialmente compatible con el camino que ya hicimos hacia Dirac y Weyl.
+
+\subsection{Ventaja 3: la linealizacion efectiva}
+Si el grafo es regular o casi regular, es razonable esperar:
+\begin{enumerate}[label=\arabic*.]
+    \item sectores colectivos bien definidos;
+    \item dispersion efectiva lineal en algun regime;
+    \item y una lectura mas directa del limite continuo.
+\end{enumerate}
+
+\section{Que no capta tan bien un grafo local}
+\subsection{Problema 1: el tiempo no viene dado}
+Un grafo de adyacencia espacial no trae por si solo una orientacion temporal. Para tener dinamica hay que agregar:
+\begin{enumerate}[label=\arabic*.]
+    \item un Hamiltoniano con tiempo continuo;
+    \item o un operador de paso con tiempo discreto.
+\end{enumerate}
+
+En otras palabras:
+\begin{displayquote}
+\textbf{el grafo espacial organiza muy bien la vecindad, pero no organiza por si solo la causalidad.}
+\end{displayquote}
+
+\subsection{Problema 2: espacio y causalidad quedan separados}
+Si la meta final es un proto-\emph{espacio-tiempo}, un grafo puro obliga a introducir despues la parte temporal como estructura adicional. Eso no es invalido, pero si menos ambicioso.
+
+\section{Que capta bien una red causal}
+\subsection{Ventaja 1: la causalidad es primaria}
+En una red causal, la pregunta \enquote{quien puede influir a quien?} ya viene incorporada desde el comienzo. Esto es muy atractivo para nuestro proyecto, porque la causalidad fue apareciendo como una de las piezas mas profundas.
+
+\subsection{Ventaja 2: el tiempo deja de ser externo}
+Una red causal permite que el orden temporal no sea un parametro añadido desde afuera, sino parte de la estructura discreta misma.
+
+\subsection{Ventaja 3: cercania a la idea de protoespacio-tiempo}
+Si el objetivo es mas fuerte que reproducir un Hamiltoniano bonito, y apunta a una lectura realmente geometrica, una estructura causal parece conceptualmente mas cercana al blanco que un simple grafo espacial.
+
+\section{Que no capta tan bien una red causal sola}
+\subsection{Problema 1: la estructura espinorial no viene gratis}
+Una red causal por si sola no dice:
+\begin{enumerate}[label=\arabic*.]
+    \item que fibra interna vive en cada evento;
+    \item como implementar pseudospin o quiralidad;
+    \item como construir matrices tipo Pauli o tipo gamma.
+\end{enumerate}
+
+\subsection{Problema 2: el paso a Dirac no es automatico}
+Aunque la causalidad sea mas fundamental, el camino tecnico hacia una ecuacion de Dirac efectiva puede volverse menos directo si no hay una organizacion clara de los grados internos y de la vecindad local.
+
+\subsection{Problema 3: la isotropia puede ser mas dificil de controlar}
+En una red causal muy general, la isotropia efectiva puede ser mas delicada que en una red regular con vecindad homogénea.
+
+\section{Comparacion directa}
+\begin{center}
+\begin{tabular}{@{}p{4.2cm}p{4.5cm}p{4.5cm}@{}}
+\toprule
+Aspecto & Grafo local & Red causal discreta \\
+\midrule
+Vecindad local & muy natural & natural, pero orientada \\
+Espacio interno & muy facil de anexar & hay que añadirlo explicitamente \\
+Causalidad primaria & no & si \\
+Tiempo como parte del sustrato & no necesariamente & si, al menos como orden \\
+Ruta tecnica hacia Dirac & mas directa & menos directa al principio \\
+Potencial interpretativo como protoespacio-tiempo & intermedio & alto \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{La leccion importante}
+La comparacion sugiere algo muy claro:
+\begin{displayquote}
+\textbf{ninguno de los dos candidatos, tomado aisladamente, parece suficiente para lo que queremos.}
+\end{displayquote}
+
+El grafo local es mejor para controlar la estructura algebraica y la emergencia de Dirac. La red causal es mejor para que la causalidad y el tiempo no entren como añadidos artificiales.
+
+\section{Propuesta hibrida}
+La opcion que mejor encaja con el proyecto, al menos en esta etapa, es un objeto hibrido:
+\begin{equation}
+\cP_{\mathrm{hyb}}=(X,\cN,\prec,\cH_{\mathrm{loc}},\cU,\cG_{\mathrm{micro}}),
+\label{eq:hybrid}
+\end{equation}
+donde:
+\begin{enumerate}[label=\arabic*.]
+    \item \(X\) es el conjunto de puntos o eventos;
+    \item \(\cN\) da una vecindad local tipo grafo;
+    \item \(\prec\) da una orientacion causal o un orden elemental;
+    \item \(\cH_{\mathrm{loc}}\) lleva la fibra interna;
+    \item \(\cU\) implementa la dinamica local respetando \(\cN\) y \(\prec\);
+    \item \(\cG_{\mathrm{micro}}\) recoge las simetrias exactas del objeto.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+box/.style={draw, rounded corners, thick, align=center, minimum width=2.7cm, minimum height=0.95cm},
+arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=blue!8] (a) at (0,0) {\(X\)\\eventos};
+\node[box, fill=green!8] (b) at (3.4,0) {\(\cN\)\\vecindad};
+\node[box, fill=yellow!12] (c) at (6.8,0) {\(\prec\)\\orden causal};
+\node[box, fill=orange!10] (d) at (10.2,0) {\(\cH_{\mathrm{loc}}\)\\fibra};
+\node[box, fill=red!8] (e) at (13.6,0) {\(\cU\)\\dinamica};
+\draw[arr] (a) -- (b);
+\draw[arr] (b) -- (c);
+\draw[arr] (c) -- (d);
+\draw[arr] (d) -- (e);
+\end{tikzpicture}
+\caption{La propuesta hibrida combina vecindad tipo grafo con estructura causal elemental.}
+\end{figure}
+
+\section{Interpretacion de la propuesta}
+\subsection{El grafo da la cercania}
+La parte \(\cN\) sirve para decir quien interactua localmente con quien y como se propagan los grados internos.
+
+\subsection{La relacion causal da la orientacion}
+La parte \(\prec\) sirve para que el protoespacio no sea meramente espacial, sino que ya traiga una flecha elemental de influencia.
+
+\subsection{La fibra da la posibilidad de Dirac}
+La fibra local \(\cH_{\mathrm{loc}}\) es la que permite que aparezcan sectores tipo Weyl, acoplamientos de masa y eventualmente una estructura Clifford efectiva.
+
+\section{Que gana el proyecto con esta reformulacion}
+Esta reformulacion gana tres cosas muy valiosas:
+\begin{enumerate}[label=\arabic*.]
+    \item deja de depender conceptualmente de Brillouin;
+    \item mantiene cerca la ruta tecnica hacia Dirac;
+    \item y eleva la causalidad a un papel estructural mas primario.
+\end{enumerate}
+
+\section{Que sigue abierto}
+Por supuesto, todavia no resolvemos varias cosas:
+\begin{enumerate}[label=\arabic*.]
+    \item como imponer isotropia efectiva sin recurrir enseguida a periodicidad exacta;
+    \item como definir de forma sobria \(\prec\) en una construccion concreta;
+    \item como reconocer cuando una red hibrida produce de verdad un solo sector Dirac robusto;
+    \item y como recuperar una geometria efectiva comun para varios observables.
+\end{enumerate}
+
+\section{Conclusion}
+La comparacion entre grafo local y red causal no da un ganador absoluto. Da algo mejor: una leccion estructural.
+
+\begin{displayquote}
+\textbf{Si queremos un protoespacio que siga siendo tecnicamente util para construir Dirac, pero que tambien tenga una lectura genuinamente espacio-temporal, la opcion mas prometedora no parece ser un grafo puro ni una red causal pura, sino una estructura local fibrada con vecindad y orientacion causal.}
+\end{displayquote}
+
+Esa conclusion me parece muy alineada con todo lo que fuimos encontrando:
+\begin{enumerate}[label=\arabic*.]
+    \item la vecindad local importa;
+    \item la causalidad importa;
+    \item la fibra interna importa;
+    \item y la dinamica elemental no puede quedar fuera de la definicion del objeto.
+\end{enumerate}
+
+\section{Siguiente paso natural}
+El siguiente paso mas natural ya no seria comparar modelos en abstracto, sino escoger una version concreta de esta estructura hibrida y preguntar:
+\begin{displayquote}
+\textbf{cual es el modelo minimo de red local fibrada con orientacion causal que aun puede producir un subsector Dirac isotropo?}
+\end{displayquote}
+
+Ese ya seria un paso mucho mas constructivo.

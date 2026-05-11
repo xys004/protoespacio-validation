@@ -1,0 +1,339 @@
+% Importado desde: 2026-03-28_Deformacion_Suave_de_la_Regla_de_Paso_y_Estabilidad_Dirac.tex
+\chapter{Deformacion suave de la regla de paso local: --- estabilidad del subsector Dirac en un protoespacio discreto}
+\label{ch:deformacion-regla-paso}
+
+\begin{abstract}
+Una vez propuesto un modelo minimo de protoespacio discreto con subsector Dirac en el infrarrojo, la pregunta decisiva ya no es solo \enquote{si aparece Dirac}, sino \enquote{si Dirac sobrevive cuando la regla microscopia deja de ser perfectamente regular}. Este documento estudia deformaciones suaves de la regla de paso local. La idea central es distinguir tres situaciones: deformaciones que solo renormalizan velocidades y preservan un sector tipo Dirac; deformaciones que conservan la linealidad pero introducen anisotropia o fondos efectivos; y deformaciones que destruyen el nodo relativista abriendo gap o desplazando el minimo. El resultado conceptual es que el protoespacio no debe identificarse con una configuracion rigidamente cartesiana, sino con una clase de dinamicas locales cuya fisica infrarroja puede mantenerse relativista de forma robusta.
+\end{abstract}
+
+\section{Pregunta de partida}
+En el documento anterior se propuso un protoespacio minimo de la forma
+\begin{equation}
+\mathcal P_{\mathrm{min}}
+=
+\bigl(X,\mathcal N,\prec,\cH_{\mathrm{loc}},\mathcal U,\mathcal G_{\mathrm{micro}}\bigr),
+\end{equation}
+con una dinamica discreta local cuya aproximacion infrarroja produce un Hamiltoniano de Dirac en \(3+1\) dimensiones.
+
+Ese resultado es importante, pero todavia insuficiente. Si la ecuacion de Dirac solo aparece para una regla de paso extremadamente afinada, entonces no tenemos una estructura robusta, sino un punto singular en el espacio de modelos.
+
+La pregunta correcta pasa a ser:
+\begin{quote}
+\textbf{Si deformamos suavemente la regla de paso local, que parte del sector Dirac sobrevive y que parte cambia?}
+\end{quote}
+
+\section{Regla de paso no deformada}
+Tomamos como punto de partida el bloque de Weyl discreto
+\begin{equation}
+U_W^{(0)} = S_z S_y S_x,
+\end{equation}
+donde cada desplazamiento condicionado se escribe como
+\begin{equation}
+S_i = T_{+\hat{i}}\otimes P_i^+ + T_{-\hat{i}}\otimes P_i^-,
+\qquad
+P_i^\pm = \frac{\bbI \pm \sigma_i}{2}.
+\end{equation}
+
+En espacio de momentos homogeno,
+\begin{equation}
+S_i(\vk)=\ee^{-\ii a k_i \sigma_i},
+\end{equation}
+de modo que, para \(\abs{\vk a}\ll 1\),
+\begin{equation}
+U_W^{(0)}(\vk)
+\simeq
+\bbI
+-\ii a(k_x\sigma_x+k_y\sigma_y+k_z\sigma_z).
+\end{equation}
+Si identificamos \(a=v\Delta t\), entonces
+\begin{equation}
+U_W^{(0)}(\vk)\simeq \bbI-\ii\Delta t\, H_W^{(0)},
+\qquad
+H_W^{(0)}=v\,\vsigma\cdot\vp.
+\end{equation}
+
+Acoplando dos bloques de quiralidad opuesta y una mezcla de masa,
+\begin{equation}
+U_D^{(0)} = \ee^{-\ii \Delta t m\,\tau_x\otimes \bbI_2}
+\begin{pmatrix}
+U_W^{(0)} & 0\\
+0 & \bigl(U_W^{(0)}\bigr)^{-1}
+\end{pmatrix},
+\end{equation}
+se obtiene en el infrarrojo
+\begin{equation}
+H_D^{(0)}
+=
+v\,\tau_z\otimes(\vsigma\cdot\vp)
++ m\,\tau_x\otimes \bbI_2.
+\label{eq:Dirac0}
+\end{equation}
+
+\section{Que significa deformar suavemente la regla}
+No vamos a deformar todavia la vecindad \(\mathcal N\) ni la fibra local \(\cH_{\mathrm{loc}}\). Solo deformaremos la \textbf{regla de actualizacion} en cada subpaso.
+
+La idea mas simple es insertar pequenas rotaciones locales en el espacio interno:
+\begin{equation}
+\widetilde S_i
+=
+C_i\,S_i,
+\qquad
+C_i=\ee^{-\ii\varepsilon A_i},
+\qquad
+0<\varepsilon\ll 1,
+\end{equation}
+donde \(A_i\) es un operador hermitico \(2\times 2\) en el sector Weyl.
+
+La nueva regla de paso sera
+\begin{equation}
+U_W(\varepsilon)=\widetilde S_z \widetilde S_y \widetilde S_x
+=
+C_z S_z C_y S_y C_x S_x.
+\label{eq:UWdeformed}
+\end{equation}
+
+La deformacion es \emph{suave} por dos razones:
+\begin{enumerate}[label=\arabic*.]
+    \item no cambia la conectividad local de la red;
+    \item modifica solo de manera pequena la accion interna en cada subpaso.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[>=Latex, node distance=1.8cm]
+  \node[draw, rounded corners, fill=blue!8, minimum width=1.8cm, minimum height=0.9cm] (sx) {$S_x$};
+  \node[draw, rounded corners, fill=orange!15, minimum width=1.8cm, minimum height=0.9cm, right=of sx] (sy) {$S_y$};
+  \node[draw, rounded corners, fill=green!12, minimum width=1.8cm, minimum height=0.9cm, right=of sy] (sz) {$S_z$};
+
+  \node[draw, rounded corners, fill=blue!20, minimum width=1.3cm, minimum height=0.7cm, above=0.8cm of sx] (cx) {$C_x$};
+  \node[draw, rounded corners, fill=orange!25, minimum width=1.3cm, minimum height=0.7cm, above=0.8cm of sy] (cy) {$C_y$};
+  \node[draw, rounded corners, fill=green!20, minimum width=1.3cm, minimum height=0.7cm, above=0.8cm of sz] (cz) {$C_z$};
+
+  \draw[->, thick] ($(sx.west)+(-1.0,0)$) -- (sx.west);
+  \draw[->, thick] (sx.east) -- (sy.west);
+  \draw[->, thick] (sy.east) -- (sz.west);
+  \draw[->, thick] (sz.east) -- ($(sz.east)+(1.0,0)$);
+
+  \draw[->, thick, gray!70] (cx) -- (sx);
+  \draw[->, thick, gray!70] (cy) -- (sy);
+  \draw[->, thick, gray!70] (cz) -- (sz);
+\end{tikzpicture}
+\caption{Deformacion suave de la regla de paso: cada desplazamiento condicionado recibe una pequena correccion local en la fibra interna.}
+\end{figure}
+
+\section{Expansion a primer orden}
+\subsection{Desarrollo de los factores locales}
+Como \(\varepsilon\) es pequeno,
+\begin{equation}
+C_i = \bbI - \ii\varepsilon A_i + O(\varepsilon^2).
+\end{equation}
+Ademas, para pequenos momentos,
+\begin{equation}
+S_i(\vk)=\bbI-\ii a k_i \sigma_i + O(k_i^2).
+\end{equation}
+
+Sustituyendo esto en \eqref{eq:UWdeformed} y reteniendo solo terminos lineales en \(\varepsilon\) y en \(\vk\), obtenemos
+\begin{equation}
+U_W(\varepsilon,\vk)
+\simeq
+\bbI
+-\ii\varepsilon(A_x+A_y+A_z)
+-\ii a(k_x\sigma_x+k_y\sigma_y+k_z\sigma_z).
+\label{eq:first-linear}
+\end{equation}
+
+Esta expresion ya contiene una leccion importante:
+\begin{quote}
+\textbf{a primer orden, una deformacion local homogenea no destruye automaticamente el nodo de Weyl; primero aparece como un termino interno adicional.}
+\end{quote}
+
+\subsection{Descomposicion general de la deformacion}
+Cualquier operador hermitico \(2\times 2\) puede escribirse como
+\begin{equation}
+A_i = \alpha_i \bbI + \bm{\beta}_i\cdot\vsigma.
+\end{equation}
+Por tanto,
+\begin{equation}
+A_x+A_y+A_z
+=
+\alpha\,\bbI+\bm{\beta}\cdot\vsigma,
+\end{equation}
+con
+\begin{equation}
+\alpha=\alpha_x+\alpha_y+\alpha_z,
+\qquad
+\bm{\beta}=\bm{\beta}_x+\bm{\beta}_y+\bm{\beta}_z.
+\end{equation}
+
+La ecuacion \eqref{eq:first-linear} adopta la forma
+\begin{equation}
+U_W(\varepsilon,\vk)
+\simeq
+\bbI-\ii\Delta t\,H_W^{\mathrm{eff}},
+\end{equation}
+con
+\begin{equation}
+H_W^{\mathrm{eff}}
+=
+v\,\vsigma\cdot\vp
++ \frac{\varepsilon}{\Delta t}\alpha\,\bbI
++ \frac{\varepsilon}{\Delta t}\bm{\beta}\cdot\vsigma.
+\label{eq:HeffWeyl1}
+\end{equation}
+
+\section{Interpretacion fisica de los nuevos terminos}
+La expresion \eqref{eq:HeffWeyl1} muestra tres clases de efectos.
+
+\subsection{Termino escalar}
+El termino
+\begin{equation}
+\mu_0\,\bbI,
+\qquad
+\mu_0=\frac{\varepsilon}{\Delta t}\alpha,
+\end{equation}
+solo desplaza la cuasienergia de referencia. En el sector homogeneo se puede interpretar como un corrimiento del cero de energia efectivo. No destruye por si mismo la estructura tipo Weyl.
+
+\subsection{Termino vectorial interno}
+El termino
+\begin{equation}
+\bm{b}\cdot\vsigma,
+\qquad
+\bm{b}=\frac{\varepsilon}{\Delta t}\bm{\beta},
+\end{equation}
+es mas delicado. Si \(\bm{b}\neq 0\), entonces
+\begin{equation}
+H_W^{\mathrm{eff}} = v\,\vsigma\cdot\vp+\bm{b}\cdot\vsigma+\mu_0\bbI
+=
+v\,\vsigma\cdot\left(\vp+\frac{\bm{b}}{v}\right)+\mu_0\bbI.
+\end{equation}
+
+Esto significa que el nodo no desaparece necesariamente: puede \emph{desplazarse} en el espacio de momentos efectivo.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=0.95,>=Latex]
+  \draw[->] (-3.0,0) -- (3.2,0) node[below] {$p$};
+  \draw[->] (0,-0.3) -- (0,2.5) node[left] {$E$};
+  \draw[thick,blue!70] (-2.2,2.2) -- (0,0) -- (2.2,2.2);
+  \draw[dashed,gray!70] (0,0) -- (0,-0.2);
+  \node[blue!70] at (1.5,1.7) {no deformado};
+
+  \begin{scope}[xshift=6.3cm]
+    \draw[->] (-3.0,0) -- (3.2,0) node[below] {$p$};
+    \draw[->] (0,-0.3) -- (0,2.5) node[left] {$E$};
+    \draw[thick,red!75!black] (-1.2,2.2) -- (1.0,0) -- (3.2,2.2);
+    \draw[dashed,gray!70] (1.0,0) -- (1.0,-0.2);
+    \node[red!75!black] at (1.4,1.7) {nodo desplazado};
+  \end{scope}
+\end{tikzpicture}
+\caption{Una deformacion suave puede mover el nodo infrarrojo sin destruir la linealidad local.}
+\end{figure}
+
+\subsection{Deformacion de velocidades}
+La situacion mas interesante aparece cuando permitimos que las correcciones dependan ligeramente del subpaso y del eje. Entonces la expansion lineal ya no toma exactamente la forma \(v\,\sigma_i p_i\), sino
+\begin{equation}
+H_W^{\mathrm{eff}}
+=
+\sum_{i,j=1}^3 v_{ij}\,\sigma_i p_j
++\bm{b}\cdot\vsigma
++\mu_0\bbI.
+\label{eq:anisotropicWeyl}
+\end{equation}
+
+La matriz \(v_{ij}\) resume la geometria infrarroja emergente. Si
+\begin{equation}
+v_{ij}=v\,\delta_{ij},
+\end{equation}
+recuperamos el caso isotropo. Si \(v_{ij}\) es invertible pero no proporcional a \(\delta_{ij}\), seguimos teniendo un nodo lineal, pero ahora en una geometria anisotropa.
+
+\section{Cuando sigue siendo Dirac y cuando deja de serlo}
+\subsection{Criterio minimo de estabilidad}
+La estructura tipo Weyl o tipo Dirac sigue viva mientras el operador lineal en momento tenga rango completo:
+\begin{equation}
+\det(v_{ij})\neq 0.
+\end{equation}
+En ese caso, cerca del nodo desplazado, el espectro sigue siendo lineal:
+\begin{equation}
+E_\pm(\vp)\simeq \mu_0 \pm \sqrt{(v_{ij}p_j+b_i)(v_{ik}p_k+b_i)}.
+\end{equation}
+
+Esto significa que la fisica infrarroja no deja de ser relativista de inmediato; mas bien se deforma hacia una version anisotropa o con fondo efectivo.
+
+\subsection{Acoplamiento de dos sectores}
+Al ensamblar dos bloques de quiralidad opuesta, el Hamiltoniano efectivo mas general a este orden puede escribirse como
+\begin{equation}
+H_D^{\mathrm{eff}}
+=
+\tau_z\otimes\left(\sum_{i,j}v_{ij}\sigma_i p_j + \bm{b}\cdot\vsigma\right)
++ m\,\tau_x\otimes\bbI_2
++ \mu_0\,\tau_0\otimes\bbI_2.
+\label{eq:DiracDeformed}
+\end{equation}
+
+Comparado con \eqref{eq:Dirac0}, vemos tres escenarios:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Estabilidad fuerte:} \(v_{ij}=v\delta_{ij}\), \(\bm{b}=0\). Sigue apareciendo Dirac isotropo.
+    \item \textbf{Estabilidad deformada:} \(v_{ij}\) invertible, \(\bm{b}\neq 0\). Sigue habiendo un sector tipo Dirac, pero en una geometria efectiva deformada.
+    \item \textbf{Perdida del nodo:} si la deformacion induce terminos que abren gap sin la estructura adecuada o hace singular a \(v_{ij}\), el sector relativista deja de ser el organizador infrarrojo.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[>=Latex, node distance=2.5cm]
+  \node[draw, rounded corners, fill=blue!8, align=center, minimum width=3.2cm, minimum height=1.1cm] (a) {Dirac isotropo\\$v_{ij}=v\delta_{ij}$};
+  \node[draw, rounded corners, fill=orange!12, align=center, minimum width=3.5cm, minimum height=1.1cm, right=of a] (b) {Dirac deformado\\$v_{ij}$ anisotropo, $\bm b\neq 0$};
+  \node[draw, rounded corners, fill=red!10, align=center, minimum width=3.0cm, minimum height=1.1cm, right=of b] (c) {nodo destruido\\o sector no relativista};
+
+  \draw[->, thick] (a) -- node[above] {deformacion suave} (b);
+  \draw[->, thick] (b) -- node[above] {deformacion fuerte} (c);
+\end{tikzpicture}
+\caption{La deformacion de la regla de paso no lleva de una vez a la perdida de Dirac. Primero suele aparecer un sector Dirac deformado.}
+\end{figure}
+
+\section{Lectura geométrica}
+Lo que emerge de \eqref{eq:anisotropicWeyl} y \eqref{eq:DiracDeformed} es muy importante para la pregunta del protoespacio.
+
+La ecuacion de Dirac infrarroja no depende solo de \enquote{tener una red}; depende de una combinacion entre:
+\begin{enumerate}[label=\arabic*.]
+    \item estructura de vecindad;
+    \item orden del paso causal;
+    \item accion de la fibra interna;
+    \item y simetria aproximada de los coeficientes lineales.
+\end{enumerate}
+
+Por eso el protoespacio no debe pensarse como un conjunto de puntos desnudos. Debe pensarse como una estructura dinamica cuyas deformaciones cambian la \emph{geometria efectiva} vista por el sector infrarrojo.
+
+En esa lectura,
+\begin{equation}
+v_{ij}
+\end{equation}
+juega un papel analogo al de un \enquote{tensor de velocidades} o, de manera mas prudente, a una estructura lineal efectiva que codifica como responde el sector espinorial a las tres direcciones locales.
+
+\section{Que aprendemos de este paso}
+Este analisis permite fijar varias ideas.
+
+\begin{enumerate}[label=\arabic*.]
+    \item La emergencia de Dirac no es necesariamente un punto aislado: puede formar una region de estabilidad en el espacio de reglas locales.
+    \item Lo primero que suele perderse no es la linealidad, sino la isotropia exacta.
+    \item Una deformacion suave puede desplazar nodos, renormalizar velocidades e introducir fondos efectivos sin destruir el caracter espinorial infrarrojo.
+    \item El problema central del proyecto se vuelve mas preciso: identificar que clase de deformaciones del protoespacio preservan un sector Dirac robusto.
+\end{enumerate}
+
+\section{Siguiente paso natural}
+Ahora que tenemos un modelo minimo y una primera teoria de su deformacion suave, el paso mas natural es escoger una familia concreta de deformaciones y estudiarla en detalle.
+
+Las dos rutas mas limpias son:
+\begin{enumerate}[label=\arabic*.]
+    \item introducir anisotropias controladas \(v_x\neq v_y\neq v_z\) y estudiar si pueden reinterpretarse geometricamente;
+    \item introducir dependencias lentas en el espacio y en el tiempo de los operadores \(C_i\), para ver si el sector Dirac siente algo parecido a un fondo efectivo.
+\end{enumerate}
+
+La primera ruta parece la mejor para mantener control matematico sin perder profundidad fisica.
+
+\section*{Conclusion}
+El resultado de este capitulo puede resumirse asi:
+\begin{quote}
+\textbf{deformar suavemente la regla de paso no destruye de inmediato el sector Dirac; primero lo convierte en un sector Dirac deformado, cuya isotropia, velocidad efectiva y posicion del nodo pasan a codificar propiedades del protoespacio.}
+\end{quote}
+
+Eso es precisamente lo que necesitabamos para avanzar: un lenguaje en el que el protoespacio ya no sea un soporte rigido, sino un objeto cuya dinamica local deja huellas controlables en la teoria infrarroja.

@@ -1,0 +1,290 @@
+% Importado desde: 2026-03-28_Criterios_para_Espacio_Tiempo_Emergente_desde_Dirac_Isotropo.tex
+\chapter{Derivacion Pedagogica: --- criterios para espacio-tiempo emergente desde un sector Dirac isotropo}
+\label{ch:criterios-espacio-tiempo-emergente}
+
+\section{Objetivo}
+Despues de estudiar el caso Weyl, la conclusion metodologica fue clara: si queremos pensar en una posible conexion con un \enquote{espacio-tiempo intrinseco}, el mejor punto de apoyo no es la fase con eje privilegiado, sino el sector Dirac isotropo antes del desdoblamiento.
+
+La pregunta de este capitulo es entonces:
+\begin{displayquote}
+\textbf{que condiciones debe satisfacer un sector Dirac isotropo emergente para empezar a ser interpretable, al menos en primera aproximacion, como un candidato de espacio-tiempo efectivo?}
+\end{displayquote}
+
+No vamos a afirmar aqui que ya tenemos un modelo de espacio-tiempo. Lo que vamos a hacer es algo mas sobrio y mas util:
+\begin{enumerate}[label=\arabic*.]
+    \item identificar las condiciones minimas que un modelo discreto deberia cumplir;
+    \item distinguir condiciones necesarias de condiciones meramente convenientes;
+    \item ubicar exactamente donde nuestro modelo actual si cumple y donde aun no cumple.
+\end{enumerate}
+
+\section{El punto de partida correcto}
+El subsector mas prometedor que construimos es el sector Dirac ligero e isotropo descrito por
+\begin{equation}
+H_{\text{Dirac}}(\bm{q})=
+v\sum_{i=1}^3 q_i \alpha_i + m\beta,
+\label{eq:HDirac}
+\end{equation}
+con
+\begin{equation}
+\{\alpha_i,\alpha_j\}=2\delta_{ij}\mathbb{I}_4,
+\qquad
+\{\alpha_i,\beta\}=0,
+\qquad
+\beta^2=\mathbb{I}_4.
+\end{equation}
+
+En este sector:
+\begin{enumerate}[label=\arabic*.]
+    \item el espectro es isotropo;
+    \item la dinamica puede escribirse con matrices gamma;
+    \item aparece una covariancia relativista efectiva en baja energia;
+    \item no existe todavia un eje espacial privilegiado como en el caso Weyl.
+\end{enumerate}
+
+Por eso este es el mejor lugar para volver a la pregunta grande.
+
+\section{Primera aclaracion: que significaria \enquote{espacio-tiempo emergente}}
+Antes de imponer criterios, conviene fijar que estamos pidiendo.
+
+\subsection{Interpretacion debil}
+En el sentido debil, decir que emerge un espacio-tiempo significa solo esto:
+\begin{enumerate}[label=\arabic*.]
+    \item existe una dinamica efectiva de baja energia;
+    \item esa dinamica se expresa en variables continuas \((t,\bm{x})\);
+    \item las excitaciones obedecen una ecuacion relativista tipo Dirac.
+\end{enumerate}
+
+Esta es la nocion minima y ya estamos bastante cerca de ella.
+
+\subsection{Interpretacion fuerte}
+En un sentido mas fuerte, hablar de espacio-tiempo emergente implicaria ademas:
+\begin{enumerate}[label=\arabic*.]
+    \item que la geometria efectiva no sea un mero artificio de coordenadas;
+    \item que exista una estructura robusta de causalidad, simetria y localidad;
+    \item que distintos observables fisicos \enquote{vean} la misma geometria efectiva;
+    \item que la isotropia y la relatividad efectiva no dependan de ajustes extremadamente finos.
+\end{enumerate}
+
+Este sentido fuerte es mucho mas exigente, y todavia no lo hemos alcanzado.
+
+\section{Los cinco criterios centrales}
+Voy a proponer cinco criterios principales. No todos tienen el mismo peso, pero juntos forman una muy buena lista de control para el proyecto.
+
+\subsection{Criterio 1: localidad microscopica}
+El modelo subyacente debe ser local o cuasi-local en la red.
+
+\subsubsection*{Por que importa}
+Si la microfisica tuviera acoplos arbitrariamente no locales, seria mucho mas dificil justificar:
+\begin{enumerate}[label=\arabic*.]
+    \item una nocion de vecindad;
+    \item una velocidad maxima efectiva;
+    \item una interpretacion geometrica del continuo emergente.
+\end{enumerate}
+
+\subsubsection*{Estado de nuestro modelo}
+Aqui vamos bien. El Hamiltoniano de Wilson--Dirac y las construcciones tipo tight-binding o pasos unitarios locales cumplen esta condicion de forma bastante natural.
+
+\subsection{Criterio 2: isotropia efectiva}
+El sector infrarrojo debe ser lo bastante isotropo como para que la dinamica no privilegie direcciones espaciales.
+
+\subsubsection*{Por que importa}
+Un espacio-tiempo relativista efectivo requiere, al menos en primer orden, que:
+\begin{equation}
+E^2 \simeq v^2\abs{\bm{q}}^2 + m^2.
+\label{eq:isotropicdisp}
+\end{equation}
+Si en cambio tuvieramos
+\begin{equation}
+E^2 \simeq v_x^2 q_x^2 + v_y^2 q_y^2 + v_z^2 q_z^2 + m^2,
+\end{equation}
+con \(v_x,v_y,v_z\) muy distintos, la geometria efectiva seria anisotropa.
+
+\subsubsection*{Estado de nuestro modelo}
+En el sector Dirac ligero sin el fondo axial \(b\), esta condicion se puede satisfacer. Ese es precisamente uno de los argumentos por los cuales el caso Dirac isotropo es mejor candidato que el caso Weyl desdoblado.
+
+\subsection{Criterio 3: algebra de Clifford efectiva}
+El modelo debe reproducir de forma robusta una estructura espinorial completa, no solo un cono lineal.
+
+\subsubsection*{Por que importa}
+Un cono lineal por si solo no basta. Lo importante es que la dinamica admita matrices que satisfagan:
+\begin{equation}
+\{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu}\mathbb{I}.
+\end{equation}
+Eso garantiza que:
+\begin{enumerate}[label=\arabic*.]
+    \item existe una nocion espinorial bien definida;
+    \item la ecuacion covariante de Dirac emerge de verdad;
+    \item tiene sentido hablar de generadores espinoriales y de grupo de Lorentz efectivo.
+\end{enumerate}
+
+\subsubsection*{Estado de nuestro modelo}
+Este criterio ya lo cumplimos bastante bien. La identificacion de \(\alpha_i\), \(\beta\), \(\gamma^\mu\) y \(\Sigma^{\mu\nu}\) ya quedo construida de forma explicita.
+
+\subsection{Criterio 4: control de dobladores}
+El sector que pretendemos interpretar geometricamente debe quedar bien separado de los demas sectores no deseados.
+
+\subsubsection*{Por que importa}
+Si varios dobladores contribuyen con la misma energia, entonces:
+\begin{enumerate}[label=\arabic*.]
+    \item no existe una sola dinamica efectiva limpia;
+    \item la nocion de continuo emergente se vuelve ambigua;
+    \item la geometria efectiva depende de que mezcla de sectores estemos observando.
+\end{enumerate}
+
+\subsubsection*{Estado de nuestro modelo}
+El mecanismo tipo Wilson nos dio precisamente esta separacion. Esta es una de las piezas mas valiosas de todo el camino que ya construimos.
+
+\subsection{Criterio 5: estabilidad del infrarrojo}
+La estructura relativista efectiva no debe depender de una sintonizacion infinitamente delicada.
+
+\subsubsection*{Por que importa}
+Si la simetria efectiva aparece solo en un punto exacto del espacio de parametros y desaparece ante cualquier perturbacion minima, entonces su interpretacion geometrica fuerte es debil.
+
+\subsubsection*{Que seria ideal}
+Lo ideal es que exista una region de parametros donde:
+\begin{enumerate}[label=\arabic*.]
+    \item la isotropia efectiva sea buena;
+    \item el subsector ligero permanezca bien aislado;
+    \item las correcciones que rompen Lorentz aparezcan solo a orden alto.
+\end{enumerate}
+
+\subsubsection*{Estado de nuestro modelo}
+Todavia estamos en una situacion intermedia. Hay una ventana razonable de parametros, pero aun no hemos demostrado una robustez universal frente a todas las perturbaciones relevantes.
+
+\section{Dos criterios adicionales muy importantes}
+Ademas de los cinco anteriores, hay dos criterios mas que para la pregunta de espacio-tiempo son casi inevitables.
+
+\subsection{Criterio 6: una sola geometria efectiva para varios observables}
+No basta con que una rama del espectro vea una metrica efectiva. Idealmente, distintos sectores fisicos deberian ver la misma geometria.
+
+\subsubsection*{Por que importa}
+Si cada especie efectiva, cada polarizacion o cada sector ve una \enquote{velocidad de la luz} distinta, entonces no emerge un solo espacio-tiempo, sino varias cinematica superpuestas.
+
+\subsubsection*{Estado de nuestro modelo}
+De momento solo controlamos bien un sector fermionico. Eso es suficiente para avanzar, pero no para una interpretacion fuerte y unificada.
+
+\subsection{Criterio 7: nocion de causalidad efectiva}
+Debe existir alguna estructura que haga de analogia de cono causal.
+
+\subsubsection*{Por que importa}
+En un espacio-tiempo relativista, la geometria no es solo un espectro isotropo: tambien organiza una nocion de propagacion maxima.
+
+\subsubsection*{Como aparece aqui}
+En modelos discretos locales, la localidad y la velocidad efectiva \(v\) sugieren una version emergente de cono causal:
+\begin{equation}
+\text{distancia recorrida} \lesssim v \times \text{tiempo}.
+\end{equation}
+
+\subsubsection*{Estado de nuestro modelo}
+Esto esta sugerido, pero todavia no formalizado con el cuidado que tendria un tratamiento de Lieb--Robinson o una version unitaria con tiempo discreto.
+
+\section{Un diagrama de evaluacion del modelo actual}
+Podemos resumir el estado del proyecto asi:
+
+\begin{center}
+\begin{tabular}{p{5.2cm} p{3.3cm} p{5cm}}
+\toprule
+Criterio & Estado actual & Comentario \\
+\midrule
+Localidad microscopica & fuerte & modelo de red local \\
+Isotropia efectiva & bueno en sector Dirac & se pierde en la fase Weyl \\
+Algebra de Clifford & fuerte & ya construida explicitamente \\
+Control de dobladores & bueno & via Wilson \\
+Estabilidad infrarroja & parcial & necesita estudio mas sistematico \\
+Geometria unica para varios observables & debil & solo sector fermionico controlado \\
+Causalidad efectiva & sugerida & falta formalizacion mas fuerte \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Por que el caso Weyl no es el mejor candidato final}
+Esto no invalida el trabajo que hicimos con Weyl. Al contrario: lo vuelve mas inteligible.
+
+\subsection{Lo que el caso Weyl nos ense\~na}
+El caso Weyl nos ense\~na:
+\begin{enumerate}[label=\arabic*.]
+    \item como aparece la quiralidad;
+    \item como entran fondos que rompen simetrias;
+    \item como la topologia organiza la estructura de bandas.
+\end{enumerate}
+
+\subsection{Pero por que no es el mejor candidato de espacio-tiempo}
+Para una lectura de espacio-tiempo intrinseco, el problema es que:
+\begin{enumerate}[label=\arabic*.]
+    \item introduce un eje privilegiado;
+    \item rompe la isotropia efectiva;
+    \item el fondo axial se parece mas a una geometria deformada o a un campo de fondo que a un vacio relativista isotropo.
+\end{enumerate}
+
+Por eso, si pensamos en una etapa fundacional del proyecto, el caso Dirac isotropo debe verse como el \enquote{punto base}, y el caso Weyl como una deformacion controlada de ese punto base.
+
+\section{Que significaria avanzar de verdad hacia espacio-tiempo emergente}
+Con el camino que ya tenemos, el siguiente salto serio seria demostrar tres cosas adicionales.
+
+\subsection{Primera}
+Que el sector Dirac isotropo no es solo un accidente fino, sino una fase infrarroja robusta dentro de una region de parametros.
+
+\subsection{Segunda}
+Que la nocion de velocidad efectiva y de propagacion maxima puede formularse de manera estructural, no solo espectral.
+
+\subsection{Tercera}
+Que la geometria efectiva reconstruida desde el sector fermionico coincide con la que verian otros observables o excitaciones relevantes del mismo modelo.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, thick, align=center, minimum width=4cm, minimum height=1.3cm},
+    arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=blue!7] (a) at (0,0) {sector Dirac\\isotropo};
+\node[box, fill=yellow!10] (b) at (5.2,0) {criterios minimos\\cumplidos};
+\node[box, fill=green!7] (c) at (10.4,0) {robustez + causalidad\\+ geometria comun};
+\node[box, fill=red!7] (d) at (15.6,0) {candidato mas serio\\de espacio-tiempo emergente};
+\draw[arr] (a) -- (b);
+\draw[arr] (b) -- (c);
+\draw[arr] (c) -- (d);
+\end{tikzpicture}
+\caption{La hoja de ruta conceptual a partir del sector Dirac isotropo.}
+\end{figure}
+
+\section{Una reformulacion honesta de la meta}
+Con todo lo visto, creo que la meta del proyecto puede expresarse de manera mas precisa y menos ambigua asi:
+\begin{displayquote}
+\textbf{buscar modelos discretos locales que admitan un sector infrarrojo Dirac isotropo, estable y geometricamente interpretable, y estudiar bajo que condiciones esa estructura puede leerse como una pregeometria o proto-espacio-tiempo efectivo.}
+\end{displayquote}
+
+Esta formulacion es mejor porque:
+\begin{enumerate}[label=\arabic*.]
+    \item no confunde materia condensada con espacio-tiempo fisico de forma apresurada;
+    \item pone el enfasis en la estructura efectiva y no en la analogia superficial;
+    \item deja espacio para preguntar despues por tiempo discreto, causalidad y unificacion geometrica.
+\end{enumerate}
+
+\section{Lo que ya podemos afirmar y lo que no}
+\subsection*{Lo que ya podemos afirmar}
+\begin{enumerate}[label=\arabic*.]
+    \item una red discreta puede producir un sector Dirac efectivo;
+    \item ese sector puede aislarse de los dobladores;
+    \item en una ventana adecuada puede ser isotropo;
+    \item lleva una estructura espinorial completa.
+\end{enumerate}
+
+\subsection*{Lo que todavia no podemos afirmar}
+\begin{enumerate}[label=\arabic*.]
+    \item que ya tenemos una metrica emergente unica y universal;
+    \item que el tiempo emergente esta tan bien controlado como el espacio;
+    \item que el modelo reproduce una nocion completa de espacio-tiempo fisico;
+    \item que la relatividad efectiva sea exacta mas alla del infrarrojo.
+\end{enumerate}
+
+\section{Mapa del siguiente paso}
+Si seguimos fieles a esta direccion, el paso mas natural ahora es uno de estos dos:
+\begin{enumerate}[label=\arabic*.]
+    \item formalizar mejor la nocion de causalidad efectiva y velocidad maxima en el modelo discreto;
+    \item comparar la estrategia de tiempo continuo con la de tiempo discreto tipo quantum walk/QCA para ver cual sirve mejor como proto-espacio-tiempo.
+\end{enumerate}
+
+\section{Resumen final}
+El caso Dirac isotropo es el mejor candidato que tenemos hasta ahora para pensar una posible conexion con espacio-tiempo emergente. No porque ya sea un espacio-tiempo, sino porque es el subsector donde mejor coinciden las piezas que importan: localidad, isotropia efectiva, algebra de Clifford, control de dobladores y una dinamica relativista de baja energia.
+
+El capitulo deja tambien una conclusion importante de metodo. El caso Weyl es valioso como deformacion controlada y como laboratorio de quiralidad y topologia, pero si la pregunta central es un \enquote{espacio-tiempo intrinseco}, la base debe ser el sector Dirac isotropo. A partir de aqui, lo correcto no es saltar a afirmaciones demasiado fuertes, sino consolidar exactamente dos cosas: la causalidad efectiva y la estabilidad robusta del infrarrojo relativista.

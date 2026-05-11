@@ -1,0 +1,406 @@
+% Importado desde: 2026-03-28_Estructura_de_Simetrias_en_el_Par_Weyl.tex
+\chapter{Derivacion Pedagogica: --- estructura de simetrias en el par Weyl controlado}
+\label{ch:simetrias-par-weyl}
+
+\section{Objetivo}
+Ya tenemos un par Weyl limpio, una lectura topologica de su quiralidad y una construccion discreta controlada. El siguiente paso natural es ordenar con mucho cuidado la estructura de simetrias.
+
+La pregunta que guia este capitulo es:
+\begin{displayquote}
+\textbf{que simetrias tiene realmente el sistema en cada nivel del problema, y que parte de esa estructura podria ser relevante para una interpretacion de tipo espacio-tiempo emergente?}
+\end{displayquote}
+
+Este punto es importante porque en nuestro camino aparecen varios niveles distintos:
+\begin{enumerate}[label=\arabic*.]
+    \item simetrias microscopicas de red;
+    \item simetrias del Hamiltoniano de Bloch;
+    \item simetrias efectivas del sector Dirac ligero;
+    \item simetrias remanentes despues del desdoblamiento a Weyl;
+    \item simetrias geometricas y topologicas asociadas a la curvatura de Berry.
+\end{enumerate}
+
+Si no distinguimos esos niveles, corremos el riesgo de confundir:
+\begin{enumerate}[label=\arabic*.]
+    \item una simetria exacta de la microfisica;
+    \item una simetria solo aproximada del infrarrojo;
+    \item una propiedad topologica que no es, estrictamente, una simetria.
+\end{enumerate}
+
+\section{El modelo concreto que usamos}
+Seguimos con el Hamiltoniano ya construido:
+\begin{equation}
+H(\bm{k})=
+\frac{v}{a}\sum_{i=1}^3 \sin(k_i a)\,\alpha_i
++
+M(\bm{k})\,\beta
++
+b\,\mathbb{I}_\tau\otimes \sigma_z,
+\label{eq:H}
+\end{equation}
+con
+\begin{equation}
+M(\bm{k})=
+m+r\sum_{i=1}^3\left(1-\cos(k_i a)\right),
+\label{eq:M}
+\end{equation}
+y
+\begin{equation}
+\alpha_i=\tau_z\otimes \sigma_i,
+\qquad
+\beta=\tau_x\otimes \mathbb{I}_2.
+\label{eq:ab}
+\end{equation}
+
+El termino proporcional a \(b\) es el que separa el sector Dirac ligero en un par Weyl a lo largo del eje \(z\).
+
+\section{Primera capa: simetrias microscopicas de red}
+\subsection{Traslaciones discretas}
+La simetria mas basica de una red periodica es la invariancia bajo traslaciones discretas:
+\begin{equation}
+\bm{x}\mapsto \bm{x}+\bm{R},
+\end{equation}
+donde \(\bm{R}\) es un vector de la red.
+
+En espacio recíproco, esta simetria es la razon por la cual el Hamiltoniano se organiza como \(H(\bm{k})\) y \(\bm{k}\) vive en una zona de Brillouin compacta.
+
+Esta simetria:
+\begin{enumerate}[label=\arabic*.]
+    \item es exacta en el modelo de red;
+    \item no es una traslacion continua del espacio fisico;
+    \item es la base tanto del analisis de bandas como del problema de doblamiento.
+\end{enumerate}
+
+\subsection{Grupo puntual}
+Sin el termino \(b\), el modelo de Wilson--Dirac de referencia tiene una estructura espacial isotropa en \(x,y,z\), al menos a nivel del Hamiltoniano escrito con los tres ejes tratados simetricamente.
+
+Pero al encender
+\begin{equation}
+b\,\mathbb{I}\otimes \sigma_z,
+\end{equation}
+el eje \(z\) queda privilegiado. Eso reduce el grupo puntual efectivo:
+\begin{enumerate}[label=\arabic*.]
+    \item ya no hay simetria completa que intercambie \(x,y,z\);
+    \item queda distinguido el subgrupo de transformaciones que preservan el eje \(z\);
+    \item en el limite continuo isotropo, eso se ve como una simetria de rotacion alrededor de \(z\).
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, thick, align=center, minimum width=4cm, minimum height=1.3cm},
+    arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=blue!7] (a) at (0,0) {red discreta\\traslaciones + grupo puntual};
+\node[box, fill=yellow!10] (b) at (5.2,0) {perturbacion\\\(b\,\sigma_z\)};
+\node[box, fill=green!7] (c) at (10.4,0) {eje \(z\) privilegiado\\simetria reducida};
+\draw[arr] (a) -- (b);
+\draw[arr] (b) -- (c);
+\end{tikzpicture}
+\caption{El termino que crea el par Weyl tambien reduce la simetria espacial del modelo.}
+\end{figure}
+
+\section{Segunda capa: inversion y reversal temporal}
+Estas dos simetrias son centrales porque, en materiales tipo Weyl, romper una de ellas suele ser el mecanismo que desdobla un punto Dirac.
+
+\subsection{Inversion}
+Definimos el operador
+\begin{equation}
+\mathcal{P}=\beta=\tau_x\otimes \mathbb{I}_2.
+\label{eq:P}
+\end{equation}
+
+Queremos verificar si
+\begin{equation}
+\mathcal{P}H(\bm{k})\mathcal{P}^{-1}=H(-\bm{k}).
+\label{eq:Pinv}
+\end{equation}
+
+Usando \(\beta\alpha_i\beta=-\alpha_i\), \(\beta^2=\mathbb{I}\) y el hecho de que \(\beta\) conmuta con \(\mathbb{I}\otimes \sigma_z\), obtenemos:
+\begin{align}
+\mathcal{P}H(\bm{k})\mathcal{P}^{-1}
+&=
+\frac{v}{a}\sum_i \sin(k_i a)(-\alpha_i)
++
+M(\bm{k})\beta
++
+b\,\mathbb{I}\otimes \sigma_z
+\\
+&=
+\frac{v}{a}\sum_i \sin(-k_i a)\alpha_i
++
+M(-\bm{k})\beta
++
+b\,\mathbb{I}\otimes \sigma_z
+\\
+&=
+H(-\bm{k}).
+\end{align}
+
+Entonces la inversion se preserva.
+
+\subsection{Reversal temporal}
+Tomamos el operador de reversal temporal tipo espin \(1/2\):
+\begin{equation}
+\mathcal{T}=
+\left(\mathbb{I}_\tau\otimes i\sigma_y\right)\mathcal{K},
+\label{eq:T}
+\end{equation}
+donde \(\mathcal{K}\) denota conjugacion compleja.
+
+Este operador satisface
+\begin{equation}
+\mathcal{T}\sigma_i \mathcal{T}^{-1} = -\sigma_i.
+\end{equation}
+Por tanto:
+\begin{enumerate}[label=\arabic*.]
+    \item la parte cinetica del Hamiltoniano es invariante, porque \(\sin(k_i a)\) cambia de signo bajo \(\bm{k}\to -\bm{k}\) y \(\sigma_i\) tambien;
+    \item el termino \(M(\bm{k})\beta\) es invariante;
+    \item pero el termino \(b\,\mathbb{I}\otimes \sigma_z\) cambia de signo.
+\end{enumerate}
+
+Explicitamente,
+\begin{equation}
+\mathcal{T}\left(b\,\mathbb{I}\otimes \sigma_z\right)\mathcal{T}^{-1}
+=
+-b\,\mathbb{I}\otimes \sigma_z.
+\end{equation}
+
+Asi que
+\begin{equation}
+\mathcal{T}H(\bm{k})\mathcal{T}^{-1}\neq H(-\bm{k})
+\end{equation}
+cuando \(b\neq 0\).
+
+\subsection{Lectura fisica}
+Tenemos entonces la situacion caracteristica:
+\begin{equation}
+\text{inversion preservada},
+\qquad
+\text{reversal temporal rota}.
+\end{equation}
+
+Esta es una de las rutas estandar para obtener un par Weyl. Y encaja exactamente con el comportamiento de nuestro modelo.
+
+\section{Tercera capa: el sector Dirac ligero antes del desdoblamiento}
+Si tomamos primero \(b=0\) y nos quedamos en el subsector central, el Hamiltoniano efectivo era
+\begin{equation}
+H_{\text{Dirac}}(\bm{q})=
+v\sum_{i=1}^3 q_i\alpha_i + m\beta.
+\label{eq:Diraceff}
+\end{equation}
+
+Cuando \(v_x=v_y=v_z=v\), esta expresion tiene una forma isotropa. En ese caso:
+\begin{enumerate}[label=\arabic*.]
+    \item el espectro depende solo de \(\abs{\bm{q}}\);
+    \item el sector ligero admite una lectura relativista efectiva;
+    \item el algebra de Dirac y los generadores \(\Sigma^{\mu\nu}\) quedan bien definidos, como ya vimos.
+\end{enumerate}
+
+\subsection{Punto delicado}
+Esta simetria relativista efectiva no era microscopica. Era una simetria emergente del infrarrojo:
+\begin{enumerate}[label=\arabic*.]
+    \item aproximada;
+    \item dependiente del limite de baja energia;
+    \item compatible con una microfisica de red que no es Lorentz-invariante.
+\end{enumerate}
+
+Este matiz es crucial para el proyecto de espacio-tiempo emergente.
+
+\section{Cuarta capa: que cambia al pasar de Dirac a Weyl}
+Al encender \(b\neq 0\), el sector ligero queda descrito por
+\begin{equation}
+H_{\text{light}}(\bm{q})=
+v\sum_{i=1}^3 q_i \alpha_i
++
+m\beta
++
+b\,\mathbb{I}\otimes \sigma_z.
+\label{eq:light}
+\end{equation}
+
+Este Hamiltoniano ya no tiene la misma simetria que \eqref{eq:Diraceff}. El vector axial \(b\) introduce una direccion espacial fija.
+
+\subsection{Lectura como campo de fondo}
+Una forma muy util de entender esto es tratar a \(b\) como un fondo axial fijo. Entonces:
+\begin{enumerate}[label=\arabic*.]
+    \item las ecuaciones pueden seguir escribiendose con objetos tipo Dirac;
+    \item pero el fondo selecciona una direccion privilegiada;
+    \item por tanto la simetria efectiva completa ya no es \(SO(3,1)\), sino un subgrupo que preserva esa estructura.
+\end{enumerate}
+
+\subsection{Consecuencia}
+Esto nos obliga a distinguir entre dos nociones:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{covariancia formal:} podemos escribir el modelo con matrices gamma y espinores;
+    \item \textbf{simetria efectiva real:} el sistema fisico concreto ya no tiene toda la isotropia ni toda la Lorentz efectiva del caso Dirac no perturbado.
+\end{enumerate}
+
+\section{Quinta capa: simetria remanente del par Weyl}
+Despues del desdoblamiento, los nodos quedan en
+\begin{equation}
+\bm{q}_\pm=(0,0,\pm q_0),
+\end{equation}
+con quiralidades opuestas.
+
+\subsection{Inversion y el intercambio de nodos}
+Como la inversion envia \(\bm{q}\to -\bm{q}\), intercambia los dos nodos:
+\begin{equation}
+\mathcal{P}:\quad \bm{q}_+ \leftrightarrow \bm{q}_-.
+\end{equation}
+
+Esto es importante porque muestra que los nodos no son independientes por completo: forman un par relacionado por simetria.
+
+\subsection{Rotaciones alrededor de \(z\)}
+Si localmente el Hamiltoniano alrededor de cada nodo es
+\begin{equation}
+H_\pm(\delta \bm{q})
+\simeq
+v\,\sigma_x \delta q_x
++
+v\,\sigma_y \delta q_y
+\pm
+v_z\,\sigma_z \delta q_z,
+\label{eq:weyllocal}
+\end{equation}
+entonces:
+\begin{enumerate}[label=\arabic*.]
+    \item en el plano \(xy\) sigue habiendo simetria circular efectiva cuando \(v_x=v_y\);
+    \item el eje \(z\) queda distinguido;
+    \item la simetria continua efectiva local se reduce a rotaciones alrededor de \(z\), no a rotaciones completas en \(3D\).
+\end{enumerate}
+
+\subsection{Una simetria local distinta de la global}
+Este punto merece subrayarse:
+\begin{displayquote}
+\textbf{cerca de cada nodo, el cono puede parecer casi relativista; pero el par completo lleva una separacion \(\pm q_0\hat{z}\) que rompe la simetria isotropa global del sector ligero.}
+\end{displayquote}
+
+Es decir:
+\begin{enumerate}[label=\arabic*.]
+    \item cada nodo por separado tiene una estructura muy simple;
+    \item el conjunto de ambos nodos recuerda que existe un eje privilegiado;
+    \item esa informacion global no puede ignorarse si uno piensa en una interpretacion tipo espacio-tiempo.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, thick, align=center, minimum width=4cm, minimum height=1.3cm},
+    arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=blue!7] (a) at (0,0) {Dirac ligero\\simetria efectiva mas alta};
+\node[box, fill=yellow!10] (b) at (5.2,0) {fondo axial\\\(b\hat{z}\)};
+\node[box, fill=green!7] (c) at (10.4,0) {par Weyl\\simetria reducida};
+\draw[arr] (a) -- (b);
+\draw[arr] (b) -- (c);
+\end{tikzpicture}
+\caption{El desdoblamiento no solo separa nodos: tambien reduce la simetria efectiva.}
+\end{figure}
+
+\section{Sexta capa: la curvatura de Berry no es una simetria}
+En el capitulo anterior vimos que cada nodo Weyl carga flujo de curvatura de Berry y se comporta como un monopolo topologico.
+
+Eso no debe confundirse con una simetria.
+
+\subsection{Que es la curvatura de Berry}
+La curvatura de Berry:
+\begin{enumerate}[label=\arabic*.]
+    \item es un objeto geometrico en el espacio de momentos;
+    \item codifica la estructura de las autofunciones;
+    \item lleva informacion topologica sobre las bandas.
+\end{enumerate}
+
+\subsection{Que no es}
+No es:
+\begin{enumerate}[label=\arabic*.]
+    \item un grupo de transformaciones;
+    \item un generador de invariancias dinamicas;
+    \item una simetria en el mismo sentido que inversion o reversal temporal.
+\end{enumerate}
+
+\subsection{Como conviven ambas estructuras}
+Lo correcto es decir:
+\begin{enumerate}[label=\arabic*.]
+    \item la estructura de simetrias determina que perturbaciones son posibles y que nodos pueden aparecer;
+    \item una vez aparecidos los nodos, la curvatura de Berry describe su carga topologica;
+    \item simetria y topologia estan relacionadas, pero no son lo mismo.
+\end{enumerate}
+
+\section{Lo que esto sugiere para una conexion con espacio-tiempo}
+Aqui es donde conviene ser muy cuidadosos.
+
+\subsection{Lo prometedor}
+Hay dos aspectos muy suggestivos para un programa de espacio-tiempo emergente:
+\begin{enumerate}[label=\arabic*.]
+    \item la aparicion de espinores, matrices gamma y una dinamica efectiva tipo relativista;
+    \item la posibilidad de interpretar la direccion privilegiada y los fondos efectivos como parametros geometricos emergentes.
+\end{enumerate}
+
+\subsection{Lo que obliga a ser prudentes}
+Pero tambien hay limites serios:
+\begin{enumerate}[label=\arabic*.]
+    \item el par Weyl no tiene ya simetria Lorentz efectiva completa;
+    \item existe un eje privilegiado \(\hat{z}\);
+    \item la microfisica sigue siendo de red y, por tanto, anisotropa y discreta;
+    \item la geometria de Berry vive en espacio de momentos, no directamente en espacio-tiempo fisico.
+\end{enumerate}
+
+\subsection{Consecuencia metodologica}
+Si el objetivo final es una lectura \enquote{intrinseca} de espacio-tiempo, entonces el caso Weyl no debe tomarse como el modelo final, sino como una pieza intermedia muy instructiva:
+\begin{enumerate}[label=\arabic*.]
+    \item muestra como aparecen espinores y quiralidad;
+    \item muestra como entran fondos que rompen simetrias;
+    \item pero tambien muestra que no toda fase interesante topologicamente es automaticamente un buen candidato de espacio-tiempo emergente isotropo.
+\end{enumerate}
+
+\section{Una palabra sobre arcos de Fermi y estados de borde}
+Tu intuicion de ponerlos en segundo plano aqui es razonable.
+
+\subsection{Por que no son el centro del argumento actual}
+Los arcos de Fermi y los estados de borde:
+\begin{enumerate}[label=\arabic*.]
+    \item dependen de la presencia de una frontera;
+    \item son observables de borde;
+    \item revelan la no trivialidad topologica del bulk.
+\end{enumerate}
+
+Pero si lo que buscamos es una conexion con un \enquote{espacio-tiempo intrinseco}, lo primero es entender el bulk y su algebra de simetrias, no la fisica de superficies.
+
+\subsection{Como podrian volver mas adelante}
+Eso no significa que no importen nunca. Podrian ser utiles despues como:
+\begin{enumerate}[label=\arabic*.]
+    \item diagnostico de la estructura topologica del modelo;
+    \item pista sobre como aparecen grados de libertad efectivos en fronteras;
+    \item analogia para horizontes, defectos o interfaces en modelos mas geometricos.
+\end{enumerate}
+
+Pero no son la pieza central del argumento de espacio-tiempo en esta etapa.
+
+\section{Sintesis por niveles}
+Ya podemos resumir la estructura de simetrias en una tabla conceptual:
+
+\begin{center}
+\begin{tabular}{p{3.5cm} p{4.4cm} p{5.3cm}}
+\toprule
+Nivel & Simetria principal & Comentario \\
+\midrule
+Red microscopica & traslaciones discretas + grupo puntual & exactas, no relativistas \\
+Wilson--Dirac sin \(b\) & inversion, reversal temporal, sector Dirac ligero & simetria efectiva mas alta en el infrarrojo \\
+Con \(b\neq 0\) & inversion preservada, reversal temporal rota & aparece eje privilegiado \\
+Par Weyl local & rotaciones efectivas alrededor de \(z\), intercambio por inversion & dos nodos de quiralidad opuesta \\
+Geometria de Berry & carga topologica monopolar & no es simetria, sino estructura geometrica \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Mapa del siguiente paso}
+Ahora el hilo natural puede seguir por dos rutas, y ambas ya estan mejor fundamentadas gracias a esta aclaracion:
+\begin{enumerate}[label=\arabic*.]
+    \item volver al sector Dirac isotropo y preguntar que condiciones hacen mas plausible una lectura tipo espacio-tiempo emergente;
+    \item estudiar si el fondo axial \(b\hat{z}\) puede reinterpretarse como un campo geometrico efectivo, mas que como una simple perturbacion material.
+\end{enumerate}
+
+\section{Resumen final}
+El par Weyl controlado que construimos no solo tiene una topologia interesante; tambien tiene una estructura de simetrias muy precisa. El modelo conserva inversion, rompe reversal temporal y selecciona un eje espacial privilegiado. Por eso, aunque cada nodo localmente se parezca mucho a un cono relativista, el sistema completo ya no posee la misma simetria efectiva que el sector Dirac isotropo original.
+
+Este resultado es importante para el proyecto grande. Nos dice que la emergencia de espinores, quiralidad y carga topologica no implica automaticamente una buena candidata de espacio-tiempo isotropo. Tambien nos dice por que tiene sentido, por ahora, concentrarnos en la estructura bulk y en las simetrias antes que en arcos de Fermi o estados de borde: esos son diagnosticos valiosos, pero la pregunta de fondo sobre espacio-tiempo emergente se juega primero en la algebra y en la geometria efectiva del volumen.

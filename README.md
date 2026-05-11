@@ -25,26 +25,26 @@ PDF no se produce.
 
 ## Build Windows-nativo (workflow principal)
 
-Editor: **TeXstudio** (`book/main.tex`) + **Spyder** (env `protoespacio`).
+Editor LaTeX: **TeXstudio** (doble click sobre cualquier `.tex`).
+Python: directo desde **PowerShell** con el env `protoespacio`.
 
 ```powershell
 # desde C:\Users\Nelson\Dev\protoespacio
-powershell -File scripts\build_book.ps1
+powershell -File scripts\build_book.ps1    # pytest + latexmk + PDF
+powershell -File scripts\test.ps1          # solo pytest
+powershell -File scripts\doctor.ps1        # diagnostico
 ```
 
-Internamente activa `C:\Users\Nelson\.conda\envs\protoespacio\python.exe`
-para pytest y usa `C:\texlive\2025\bin\windows\latexmk.exe` para el PDF.
+Python interactivo:
+```powershell
+& 'C:\Users\Nelson\.conda\envs\protoespacio\python.exe'
+# o agregar el env al PATH de la sesion:
+$env:Path = 'C:\Users\Nelson\.conda\envs\protoespacio;C:\Users\Nelson\.conda\envs\protoespacio\Scripts;' + $env:Path
+```
 
-### Spyder
-
-Cambiar interprete a:
-`C:\Users\Nelson\.conda\envs\protoespacio\python.exe`
-(Tools -> Preferences -> Python interpreter).
-
-### TeXstudio
-
-Master file: `book/main.tex`. Compilador por defecto: `latexmk`
-(Options -> Configure -> Build -> Default Compiler).
+Internamente, `build_book.ps1` usa
+`C:\Users\Nelson\.conda\envs\protoespacio\python.exe` para pytest y
+`C:\texlive\2025\bin\windows\latexmk.exe` para el PDF.
 
 ## Build alternativo (WSL, opcional, fallback)
 

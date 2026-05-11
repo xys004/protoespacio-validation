@@ -1,0 +1,406 @@
+% Importado desde: 2026-03-28_Curvatura_Berry_y_Carga_Quiral_Weyl.tex
+\chapter{Derivacion Pedagogica: --- curvatura de Berry y carga quiral en un par Weyl}
+\label{ch:berry-carga-quiral-weyl}
+
+\section{Objetivo}
+En el capitulo anterior obtuvimos, de manera controlada, un par de nodos Weyl separados en el espacio recíproco. Ahora queremos entender su lectura geométrica.
+
+La pregunta central de este paso es:
+\begin{displayquote}
+\textbf{que significa geometricamente decir que un nodo Weyl tiene quiralidad \(+1\) o \(-1\), y como se expresa eso en terminos de curvatura de Berry y flujo topologico?}
+\end{displayquote}
+
+Este paso es importante porque traduce el lenguaje algebraico de quiralidad a un lenguaje geométrico y topológico. Eso nos permite entender:
+\begin{enumerate}[label=\arabic*.]
+    \item por que un nodo Weyl actua como una fuente o sumidero;
+    \item por que la carga quiral se conserva globalmente;
+    \item por que un par Weyl aislado infrarrojo sigue obedeciendo la contabilidad global de la zona de Brillouin.
+\end{enumerate}
+
+\section{El modelo local de un nodo Weyl}
+Trabajamos primero con un solo nodo Weyl idealizado, centrado en \(\bm{q}=0\):
+\begin{equation}
+H_\chi(\bm{q})=
+\chi\, v\, \bm{\sigma}\cdot \bm{q},
+\qquad
+\chi=\pm 1.
+\label{eq:weyl}
+\end{equation}
+
+Aqui:
+\begin{enumerate}[label=\arabic*.]
+    \item \(v\) es la velocidad efectiva;
+    \item \(\bm{q}\) mide la distancia al nodo;
+    \item \(\chi\) es la quiralidad.
+\end{enumerate}
+
+El espectro es
+\begin{equation}
+E_\pm(\bm{q})=\pm v\abs{\bm{q}}.
+\end{equation}
+
+Las autofunciones dependen de la direccion de \(\bm{q}\), no solo de su modulo. Esa dependencia angular es justamente la puerta de entrada a la conexion de Berry.
+
+\section{Por que aparece la geometria de Berry}
+Cuando un Hamiltoniano depende suavemente de parametros, sus autovectores pueden arrastrar una geometria intrinseca en el espacio de esos parametros.
+
+Aqui el espacio de parametros es el espacio recíproco local, coordinado por \(\bm{q}\). Por tanto:
+\begin{enumerate}[label=\arabic*.]
+    \item el estado de banda \(\ket{u_n(\bm{q})}\) cambia al movernos en \(\bm{q}\);
+    \item ese cambio define una conexion;
+    \item la rotacional de esa conexion define una curvatura.
+\end{enumerate}
+
+La conexion de Berry de una banda \(n\) es
+\begin{equation}
+\bm{\mathcal{A}}_n(\bm{q})
+=
+i\bra{u_n(\bm{q})}\bm{\nabla}_{\bm{q}}\ket{u_n(\bm{q})},
+\label{eq:berryconn}
+\end{equation}
+y la curvatura de Berry es
+\begin{equation}
+\bm{\Omega}_n(\bm{q})
+=
+\bm{\nabla}_{\bm{q}}\times \bm{\mathcal{A}}_n(\bm{q}).
+\label{eq:berrycurv}
+\end{equation}
+
+\subsection{Interpretacion minima}
+La conexion depende de la fase local elegida para los autovectores, pero la curvatura es invariante de gauge. Por eso la cantidad fisica natural es \(\bm{\Omega}_n\), no \(\bm{\mathcal{A}}_n\) por separado.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, thick, align=center, minimum width=3.8cm, minimum height=1.3cm},
+    arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=blue!7] (a) at (0,0) {autovectores\\\(\ket{u_n(\bm{q})}\)};
+\node[box, fill=yellow!10] (b) at (5,0) {conexion\\\(\bm{\mathcal{A}}_n\)};
+\node[box, fill=green!7] (c) at (10,0) {curvatura\\\(\bm{\Omega}_n\)};
+\node[box, fill=red!7] (d) at (15,0) {flujo y\\carga quiral};
+\draw[arr] (a) -- (b);
+\draw[arr] (b) -- (c);
+\draw[arr] (c) -- (d);
+\end{tikzpicture}
+\caption{La secuencia conceptual del capitulo.}
+\end{figure}
+
+\section{Autovectores del Hamiltoniano Weyl}
+Es util escribir
+\begin{equation}
+\bm{q} = q(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta).
+\end{equation}
+
+Para \(\chi=+1\), una eleccion conveniente de autovectores normalizados es
+\begin{equation}
+\ket{u_+(\theta,\phi)}=
+\begin{pmatrix}
+\cos(\theta/2)\\[0.4em]
+e^{i\phi}\sin(\theta/2)
+\end{pmatrix},
+\qquad
+\ket{u_-(\theta,\phi)}=
+\begin{pmatrix}
+-e^{-i\phi}\sin(\theta/2)\\[0.4em]
+\cos(\theta/2)
+\end{pmatrix}.
+\label{eq:eigenstates}
+\end{equation}
+
+Estas funciones ya muestran algo importante: el estado depende solo de la direccion de \(\bm{q}\), es decir, del punto sobre la esfera en espacio de momentos.
+
+\section{Calculo directo de la conexion de Berry}
+Tomemos la banda positiva \(\ket{u_+}\). En coordenadas esfericas, la unica componente no trivial de la conexion sera la azimutal.
+
+\subsection{Componente polar}
+Calculamos
+\begin{equation}
+\mathcal{A}_\theta
+=
+i\bra{u_+}\partial_\theta u_+\rangle.
+\end{equation}
+Usando \eqref{eq:eigenstates} se obtiene
+\begin{equation}
+\mathcal{A}_\theta=0.
+\end{equation}
+
+\subsection{Componente azimutal}
+Ahora
+\begin{equation}
+\partial_\phi \ket{u_+}
+=
+\begin{pmatrix}
+0\\
+i e^{i\phi}\sin(\theta/2)
+\end{pmatrix}.
+\end{equation}
+Entonces
+\begin{align}
+\mathcal{A}_\phi
+&=
+i\bra{u_+}\partial_\phi u_+\rangle
+\\
+&=
+i\left[
+\cos(\theta/2)\cdot 0
++
+e^{-i\phi}\sin(\theta/2)\cdot i e^{i\phi}\sin(\theta/2)
+\right]
+\\
+&=
+i\left[i\sin^2(\theta/2)\right]
+\\
+&=
+-\sin^2(\theta/2).
+\end{align}
+
+Usando
+\begin{equation}
+\sin^2(\theta/2)=\frac{1-\cos\theta}{2},
+\end{equation}
+podemos escribir
+\begin{equation}
+\mathcal{A}_\phi = -\frac{1-\cos\theta}{2}.
+\label{eq:Aphi}
+\end{equation}
+
+Esta expresion tiene la forma típica del potencial de un monopolo magnético en una carta local.
+
+\section{Curvatura de Berry}
+La curvatura en coordenadas esfericas sale de
+\begin{equation}
+\Omega_r
+=
+\frac{1}{q^2\sin\theta}
+\partial_\theta \mathcal{A}_\phi.
+\end{equation}
+Usando \eqref{eq:Aphi},
+\begin{equation}
+\partial_\theta \mathcal{A}_\phi
+=
+-\frac{1}{2}\sin\theta.
+\end{equation}
+Entonces
+\begin{equation}
+\Omega_r
+=
+-\frac{1}{2q^2}.
+\end{equation}
+
+Es decir, para la banda positiva del nodo con \(\chi=+1\),
+\begin{equation}
+\bm{\Omega}_+(\bm{q})
+=
+-\frac{1}{2}\frac{\hat{\bm{q}}}{q^2}
+=
+-\frac{\bm{q}}{2\abs{\bm{q}}^3}.
+\label{eq:omega-plus}
+\end{equation}
+
+Para la banda negativa el signo cambia:
+\begin{equation}
+\bm{\Omega}_-(\bm{q})
+=
+\frac{\bm{q}}{2\abs{\bm{q}}^3}.
+\label{eq:omega-minus}
+\end{equation}
+
+\subsection{Con quiralidad general}
+Si el nodo tiene quiralidad \(\chi=\pm 1\), la expresion se escribe de forma compacta como
+\begin{equation}
+\boxed{
+\bm{\Omega}_{\text{val}}(\bm{q})
+=
+\chi\,\frac{\bm{q}}{2\abs{\bm{q}}^3},
+\qquad
+\bm{\Omega}_{\text{cond}}(\bm{q})
+=
+-\chi\,\frac{\bm{q}}{2\abs{\bm{q}}^3}.
+}
+\label{eq:omegageneral}
+\end{equation}
+
+Aqui `val` y `cond` denotan banda de valencia y de conduccion.
+
+\section{Lectura geométrica: un monopolo en espacio recíproco}
+La forma \eqref{eq:omegageneral} es exactamente la de un campo radial de monopolo:
+\begin{equation}
+\bm{\Omega}(\bm{q}) \propto \frac{\bm{q}}{\abs{\bm{q}}^3}.
+\end{equation}
+
+Por eso se dice que un nodo Weyl es una fuente o sumidero topológico:
+\begin{enumerate}[label=\arabic*.]
+    \item \(\chi=+1\): fuente de flujo;
+    \item \(\chi=-1\): sumidero de flujo.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=1.2]
+\draw[thick] (0,0) circle (2);
+\fill[blue!70!black] (0,0) circle (1.5pt);
+\foreach \ang in {0,30,...,330} {
+    \draw[-{Latex[length=2.5mm]}, blue!70!black, thick] (0,0) -- ({1.8*cos(\ang)},{1.8*sin(\ang)});
+}
+\node[blue!70!black] at (0,-2.45) {\(\chi=+1\): fuente};
+
+\begin{scope}[xshift=8cm]
+\draw[thick] (0,0) circle (2);
+\fill[red!70!black] (0,0) circle (1.5pt);
+\foreach \ang in {0,30,...,330} {
+    \draw[-{Latex[length=2.5mm]}, red!70!black, thick] ({1.8*cos(\ang)},{1.8*sin(\ang)}) -- (0,0);
+}
+\node[red!70!black] at (0,-2.45) {\(\chi=-1\): sumidero};
+\end{scope}
+\end{tikzpicture}
+\caption{Lectura geométrica de la quiralidad como flujo radial de curvatura de Berry.}
+\end{figure}
+
+\section{Flujo y carga topologica}
+La cantidad topológica relevante es el flujo de la curvatura de Berry a través de una esfera \(S^2\) que encierra el nodo:
+\begin{equation}
+\Phi = \oint_{S^2} \bm{\Omega}\cdot d\bm{S}.
+\label{eq:flux}
+\end{equation}
+
+Tomando la banda de valencia y usando \eqref{eq:omegageneral},
+\begin{equation}
+\bm{\Omega}=
+\chi\,\frac{\hat{\bm{q}}}{2q^2},
+\qquad
+d\bm{S}= \hat{\bm{q}}\, q^2\sin\theta\, d\theta\, d\phi.
+\end{equation}
+Entonces
+\begin{align}
+\Phi
+&=
+\int_0^{2\pi}\int_0^\pi
+\chi\,\frac{1}{2q^2}
+q^2\sin\theta\, d\theta\, d\phi
+\\
+&=
+\frac{\chi}{2}
+\int_0^{2\pi}d\phi
+\int_0^\pi \sin\theta\, d\theta
+\\
+&=
+\frac{\chi}{2}(2\pi)(2)
+\\
+&=
+2\pi \chi.
+\label{eq:fluxresult}
+\end{align}
+
+El numero de Chern asociado es
+\begin{equation}
+C = \frac{1}{2\pi}\Phi = \chi.
+\label{eq:chern}
+\end{equation}
+
+Esta ecuacion es el corazon topologico del capitulo:
+\begin{displayquote}
+\textbf{la quiralidad de un nodo Weyl es exactamente su carga monopolar de curvatura de Berry, o equivalentemente el numero de Chern del cascaron esferico que lo rodea.}
+\end{displayquote}
+
+\section{Volver al par Weyl que construimos}
+En el capitulo anterior obtuvimos dos nodos en
+\begin{equation}
+\bm{q}_\pm = (0,0,\pm q_0),
+\qquad
+q_0=\frac{\sqrt{b^2-m^2}}{v},
+\end{equation}
+con quiralidades opuestas:
+\begin{equation}
+\chi_+=+1,
+\qquad
+\chi_-=-1.
+\end{equation}
+
+Por tanto:
+\begin{enumerate}[label=\arabic*.]
+    \item el nodo en \(+q_0\) emite flujo \(+2\pi\);
+    \item el nodo en \(-q_0\) absorbe flujo \(-2\pi\);
+    \item la suma total del flujo es cero.
+\end{enumerate}
+
+\subsection{Compatibilidad con Nielsen--Ninomiya}
+Esto encaja perfectamente con lo ya discutido. Aunque en el infrarrojo vemos un par Weyl limpio, la carga total sigue cancelandose:
+\begin{equation}
+\chi_+ + \chi_- = 0.
+\end{equation}
+
+No hemos violado Nielsen--Ninomiya. Lo que hicimos fue aislar un par infrarrojo bien controlado, no crear una carga quiral neta global en la red.
+
+\section{Lectura por cortes bidimensionales}
+Hay otra manera muy util de ver la misma fisica. Fijemos \(q_z\) y miremos el sistema como una familia de problemas \(2D\). Entonces:
+\begin{enumerate}[label=\arabic*.]
+    \item para valores de \(q_z\) entre ambos nodos, el corte \(2D\) tiene un numero de Chern no trivial;
+    \item fuera de esa region, el numero de Chern cambia;
+    \item el salto ocurre precisamente al cruzar un nodo Weyl.
+\end{enumerate}
+
+En otras palabras, cada nodo actua como punto donde el invariante topologico de los cortes \(2D\) cambia en una unidad.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, thick, align=center, minimum width=3.8cm, minimum height=1.3cm},
+    arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=blue!7] (a) at (0,0) {cortes \(2D\)\\para \(q_z< -q_0\)};
+\node[box, fill=yellow!10] (b) at (5,0) {cruce del nodo\\\(-q_0\)};
+\node[box, fill=green!7] (c) at (10,0) {region entre nodos\\Chern distinto};
+\node[box, fill=yellow!10] (d) at (15,0) {cruce del nodo\\\(+q_0\)};
+\draw[arr] (a) -- (b);
+\draw[arr] (b) -- (c);
+\draw[arr] (c) -- (d);
+\end{tikzpicture}
+\caption{Los nodos Weyl marcan saltos topológicos en los cortes bidimensionales.}
+\end{figure}
+
+\section{Que hemos aprendido de verdad}
+Conviene resumir lo ganado con cuidado.
+
+\subsection*{Primero}
+La quiralidad no es solo el signo del determinante de la matriz de velocidades. Tambien es una carga topologica medible por flujo de Berry.
+
+\subsection*{Segundo}
+La curvatura de Berry de una banda cerca de un nodo Weyl tiene forma monopolar:
+\begin{equation}
+\bm{\Omega}(\bm{q})\sim \chi \frac{\bm{q}}{2\abs{\bm{q}}^3}.
+\end{equation}
+
+\subsection*{Tercero}
+El flujo a traves de una esfera alrededor del nodo vale \(2\pi\chi\), y el numero de Chern correspondiente es \(\chi\).
+
+\subsection*{Cuarto}
+En el par Weyl que construimos antes, las dos cargas son opuestas y la suma global se cancela, como debe ocurrir en una red completa.
+
+\section{Por que este paso importa para el proyecto}
+Ahora la escalera conceptual queda todavia mas firme:
+\begin{enumerate}[label=\arabic*.]
+    \item construimos una dinamica discreta;
+    \item controlamos los dobladores;
+    \item aislamos un sector Dirac ligero;
+    \item lo desdoblamos en un par Weyl controlado;
+    \item entendimos la quiralidad de ese par como una carga topologica.
+\end{enumerate}
+
+Eso es importante porque el programa ya no solo reproduce una ecuacion efectiva: tambien reproduce la geometria topologica que distingue a los semimetales de Weyl.
+
+\section{Mapa del siguiente paso}
+Ahora los dos caminos mas naturales son:
+\begin{enumerate}[label=\arabic*.]
+    \item estudiar como esta estructura topologica se relaciona con estados de borde y arcos de Fermi;
+    \item volver a la pregunta de simetria efectiva y analizar como conviven los generadores tipo Lorentz con una geometria de Berry no trivial.
+\end{enumerate}
+
+\section{Resumen final}
+Partiendo del Hamiltoniano local de Weyl, calculamos paso a paso la conexion de Berry, obtuvimos la curvatura correspondiente y vimos que toma exactamente la forma de un campo monopolar en espacio recíproco. El flujo a traves de una esfera que rodea al nodo vale
+\[
+\Phi = 2\pi \chi,
+\]
+de modo que la quiralidad \(\chi\) coincide con la carga topologica del nodo.
+
+Aplicado al par Weyl construido en el capitulo anterior, esto significa que uno de los nodos es fuente y el otro sumidero de curvatura de Berry. La suma total sigue siendo cero, en acuerdo con Nielsen--Ninomiya. Con esto ya no solo tenemos un par Weyl controlado algebraicamente: tambien entendemos su significado geométrico y topológico.

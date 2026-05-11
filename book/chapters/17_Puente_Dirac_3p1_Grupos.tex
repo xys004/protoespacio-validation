@@ -1,0 +1,348 @@
+% Importado desde: 2026-03-28_Puente_a_Dirac_3p1_y_Estructura_de_Grupos.tex
+\chapter{Derivacion Pedagogica: --- Puente hacia Dirac en \(3+1\) y la estructura de grupos que no debemos perder}
+\label{ch:puente-dirac-3p1-grupos}
+
+\section{Objetivo}
+
+Hasta aqui ya construimos una escalera bastante clara:
+
+\begin{enumerate}[leftmargin=*]
+  \item SSH como Dirac en \(1+1\);
+  \item grafeno como Dirac en \(2+1\);
+  \item semimetales de Dirac/Weyl en \(3D\);
+  \item Nielsen--Ninomiya como restriccion estructural;
+  \item quantum walks y QCA como ruta hacia una dinamica discreta del espacio-tiempo;
+  \item una caminata tipo honeycomb que vuelve a producir Dirac en \(2+1\).
+\end{enumerate}
+
+Pero ahora hay que hacer una pausa metodologica importante:
+
+\begin{displayquote}
+\textbf{No podemos perder de vista que la meta no es solo \enquote{tener algo tipo Dirac}, sino entender bajo que estructura algebraica y de simetrias puede emerger la ecuacion de Dirac en \(3+1\).}
+\end{displayquote}
+
+La pregunta central de este documento es entonces:
+
+\begin{displayquote}
+\enquote{Que cambia realmente cuando pasamos de \(2+1\) a \(3+1\), y que estructura de grupos y de algebra debe preservarse o emerger para que el proyecto no se desvie de su objetivo?}
+\end{displayquote}
+
+\section{El cambio de perspectiva}
+
+En \(2+1\), muchas veces basta con un Hamiltoniano de dos componentes:
+\begin{equation}
+H_{2+1}\sim v(\sigma_x p_x + \sigma_y p_y) + m\sigma_z.
+\end{equation}
+
+Eso funciona muy bien para grafeno, para quantum walks bidimensionales y para muchas teorias efectivas.
+
+En \(3+1\), en cambio, el problema ya no es solo agregar un tercer momento \(p_z\). Tambien hay que responder:
+
+\begin{enumerate}[leftmargin=*]
+  \item que espacio espinorial representa correctamente la teoria;
+  \item que matrices implementan la algebra de Clifford adecuada;
+  \item que grupo actua sobre esas matrices y sobre los espinores;
+  \item como emerge esa estructura a partir de una red o de una dinamica discreta.
+\end{enumerate}
+
+\section{Lo que de verdad queremos reproducir}
+
+La ecuacion de Dirac covariante en \(3+1\) es
+\begin{equation}
+\left(\ii \gamma^\mu \partial_\mu - m\right)\psi = 0,
+\label{eq:dirac-cov}
+\end{equation}
+donde \(\mu=0,1,2,3\) y las matrices \(\gamma^\mu\) satisfacen
+\begin{equation}
+\{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu}\bbI,
+\qquad
+\eta^{\mu\nu}=\mathrm{diag}(1,-1,-1,-1).
+\label{eq:clifford}
+\end{equation}
+
+Si separamos tiempo y espacio, el Hamiltoniano toma la forma
+\begin{equation}
+\ii\partial_t\psi = H\psi,
+\qquad
+H = \alpha_x p_x + \alpha_y p_y + \alpha_z p_z + \beta m,
+\label{eq:ham-dirac}
+\end{equation}
+con
+\begin{equation}
+\alpha_i^2=\beta^2=\bbI,
+\qquad
+\{\alpha_i,\alpha_j\}=2\delta_{ij}\bbI,
+\qquad
+\{\alpha_i,\beta\}=0.
+\label{eq:alpha-beta}
+\end{equation}
+
+Este es el verdadero objetivo algebraico del proyecto.
+
+\section{Primera gran diferencia: dos componentes ya no bastan}
+
+En \(2+1\) pudimos trabajar con matrices de Pauli \(2\times 2\). En \(3+1\), si queremos una teoria de Dirac masiva completa, necesitamos una representacion con \textbf{cuatro componentes}.
+
+La razon es muy concreta:
+
+\begin{enumerate}[leftmargin=*]
+  \item necesitamos tres matrices espaciales que anticomuten entre si;
+  \item ademas necesitamos una cuarta matriz \(\beta\) que anticomute con las tres;
+  \item eso no cabe en una representacion \(2\times 2\).
+\end{enumerate}
+
+Una eleccion estandar es
+\begin{equation}
+\alpha_i = \tau_x \otimes \sigma_i,
+\qquad
+\beta = \tau_z \otimes \bbI_2,
+\label{eq:dirac-rep}
+\end{equation}
+donde \(\tau_i\) y \(\sigma_i\) son dos copias independientes de matrices de Pauli.
+
+Con esto, el espinor tiene cuatro componentes:
+\begin{equation}
+\psi=
+\begin{pmatrix}
+\psi_1\\
+\psi_2\\
+\psi_3\\
+\psi_4
+\end{pmatrix}.
+\end{equation}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.2cm]
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.8cm,minimum height=0.9cm,align=center] (a) {sector \(\tau\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.8cm,minimum height=0.9cm,align=center,right=of a] (b) {sector \(\sigma\)};
+  \node[draw,rounded corners,fill=orange!10,minimum width=4.8cm,minimum height=1.0cm,align=center,below=1.4cm of $(a)!0.5!(b)$] (c) {espinor de Dirac de \(4\) componentes};
+  \draw[->,thick] (a) -- (c);
+  \draw[->,thick] (b) -- (c);
+\end{tikzpicture}
+\caption{Una forma pedagogica de ver el espinor de Dirac en \(3+1\): aparece como combinacion de dos estructuras internas de dos componentes.}
+\label{fig:four-components}
+\end{figure}
+
+\section{Segunda gran diferencia: aparece una jerarquia de grupos}
+
+Aqui es donde tu observacion sobre la estructura de grupos se vuelve central.
+
+\subsection{Nivel microscopico}
+
+Una red o un automata discreto no tiene de entrada el grupo de Poincare. Lo que suele tener es algo del tipo
+\begin{equation}
+G_{\mathrm{micro}} = T_{\mathrm{disc}} \rtimes P_{\mathrm{disc}},
+\end{equation}
+donde:
+
+\begin{enumerate}[leftmargin=*]
+  \item \(T_{\mathrm{disc}}\) son traslaciones discretas;
+  \item \(P_{\mathrm{disc}}\) es un grupo puntual o un grupo de simetrias locales del paso unitario.
+\end{enumerate}
+
+\subsection{Nivel efectivo continuo}
+
+Si el limite infrarrojo es relativista, entonces lo que debe emerger es algo mucho mas grande:
+\begin{equation}
+\mathcal P = SO(3,1)\ltimes \bbR^{3,1},
+\label{eq:poincare}
+\end{equation}
+el grupo de Poincare.
+
+\subsection{Nivel espinorial}
+
+Pero Dirac no se formula realmente sobre \(SO(3,1)\) a secas, sino sobre su recubrimiento doble
+\begin{equation}
+SL(2,\bbC).
+\label{eq:sl2c}
+\end{equation}
+
+Ese es el grupo que actua naturalmente sobre los espinores de Weyl. Y un espinor de Dirac puede verse como
+\begin{equation}
+\text{Dirac} = \text{Weyl izquierdo} \oplus \text{Weyl derecho}.
+\end{equation}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.2cm]
+  \node[draw,rounded corners,fill=green!8,minimum width=3.4cm,minimum height=0.9cm,align=center] (m) {simetrias discretas\\de red / QW / QCA};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.4cm,minimum height=0.9cm,align=center,below=of m] (l) {simetria efectiva\\de Lorentz};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.4cm,minimum height=0.9cm,align=center,below=of l] (s) {\(SL(2,\bbC)\)\\estructura espinorial};
+  \node[draw,rounded corners,fill=orange!10,minimum width=3.8cm,minimum height=0.9cm,align=center,right=2.6cm of l] (d) {Dirac en \(3+1\)};
+  \draw[->,thick] (m) -- (l);
+  \draw[->,thick] (l) -- (s);
+  \draw[->,thick] (s) -- (d);
+\end{tikzpicture}
+\caption{La jerarquia conceptual que no debemos perder. El problema no es solo cinetico: es tambien grupal y espinorial.}
+\label{fig:group-ladder}
+\end{figure}
+
+\section{Tercera gran diferencia: Weyl y Dirac ya no son lo mismo}
+
+En \(3+1\), la ecuacion de Weyl masiva no existe como teoria independiente simple. Lo natural es:
+
+\begin{enumerate}[leftmargin=*]
+  \item un fermion de Weyl sin masa: dos componentes;
+  \item dos fermiones de Weyl de quiralidades opuestas;
+  \item un termino de masa que los acopla;
+  \item el conjunto forma un fermion de Dirac de cuatro componentes.
+\end{enumerate}
+
+Este punto es crucial para el proyecto, porque indica un camino muy natural desde construcciones discretas:
+
+\begin{displayquote}
+\textbf{Primero construir dinamicas tipo Weyl. Despues entender como acoplar sectores quirales opuestos para formar Dirac en \(3+1\).}
+\end{displayquote}
+
+\section{Un modelo minimo para no perder el norte}
+
+Si queremos un objetivo algebraico claro para la siguiente etapa, el Hamiltoniano minimo que debemos tener en la cabeza es
+\begin{equation}
+H_{\mathrm{target}}(\vq)
+=
+v_x q_x \alpha_x + v_y q_y \alpha_y + v_z q_z \alpha_z + m\beta,
+\label{eq:target}
+\end{equation}
+con \(\alpha_i,\beta\) satisfaciendo \eqref{eq:alpha-beta}.
+
+En el caso isotropo:
+\begin{equation}
+H_{\mathrm{target}}(\vq)
+=
+v\,\vtau_x\otimes(\sigma_x q_x + \sigma_y q_y + \sigma_z q_z)
+ + m\,\tau_z\otimes \bbI_2.
+\label{eq:target-iso}
+\end{equation}
+
+Su espectro es
+\begin{equation}
+E(\vq)=\pm \sqrt{v^2(q_x^2+q_y^2+q_z^2)+m^2}.
+\label{eq:dispersion31}
+\end{equation}
+
+Este es el análogo directo del cono de Dirac que vimos antes, pero ahora en tres dimensiones espaciales y con la estructura espinorial correcta.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.25cm]
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.5cm,minimum height=0.85cm,align=center] (wx) {\(\alpha_x q_x\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.5cm,minimum height=0.85cm,align=center,right=of wx] (wy) {\(\alpha_y q_y\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.5cm,minimum height=0.85cm,align=center,right=of wy] (wz) {\(\alpha_z q_z\)};
+  \node[draw,rounded corners,fill=orange!10,minimum width=2.5cm,minimum height=0.85cm,align=center,below=1.3cm of wy] (m) {\(\beta m\)};
+  \node[draw,rounded corners,fill=green!8,minimum width=4.2cm,minimum height=1.0cm,align=center,below=1.3cm of m] (d) {Dirac \(3+1\)};
+  \draw[->,thick] (wx) -- (d);
+  \draw[->,thick] (wy) -- (d);
+  \draw[->,thick] (wz) -- (d);
+  \draw[->,thick] (m) -- (d);
+\end{tikzpicture}
+\caption{La meta algebraica minima del proyecto. No basta con tres direcciones espaciales: tambien hace falta la matriz de masa y una representacion espinorial adecuada.}
+\label{fig:target}
+\end{figure}
+
+\section{Que deberia preservar una construccion discreta}
+
+Ahora podemos formular las condiciones que realmente importan.
+
+\subsection{Condicion 1: tres direcciones espaciales independientes}
+
+No podemos quedarnos con una geometria efectivamente bidimensional. La discretizacion debe generar, en el limite efectivo, tres operadores independientes que hagan el papel de \(p_x,p_y,p_z\).
+
+\subsection{Condicion 2: estructura interna suficiente}
+
+La dinamica discreta debe tener suficientes grados de libertad internos para alojar una representacion \(4\times 4\) de la algebra de Clifford \(Cl_{1,3}\).
+
+\subsection{Condicion 3: isotropia efectiva}
+
+Aunque la red microscopica no sea isotropa, la teoria de baja energia debe aproximar
+\begin{equation}
+v_x \simeq v_y \simeq v_z
+\end{equation}
+o al menos permitir una reescala controlada para recuperar una forma relativista efectiva.
+
+\subsection{Condicion 4: control de sectores quirales}
+
+Si la construccion parte de bloques tipo Weyl, debe quedar claro:
+
+\begin{enumerate}[leftmargin=*]
+  \item cuales son los dos sectores de quiralidad opuesta;
+  \item como se acoplan;
+  \item bajo que termino aparece la masa de Dirac.
+\end{enumerate}
+
+\subsection{Condicion 5: compatibilidad con Nielsen--Ninomiya}
+
+No podemos olvidar el teorema de doblamiento. Cualquier construccion seria en red o en QCA tendra que explicar como aparecen, se emparejan o se controlan los modos extra.
+
+\section{La lectura de grupos en forma compacta}
+
+Podemos resumir el problema de fondo asi:
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Nivel & Objeto & Pregunta clave \\
+\midrule
+Microscopico & grupo discreto de red/paso & \enquote{Que simetrias exactas tengo?} \\
+Efectivo & Lorentz/Poincare & \enquote{Que simetria emerge a baja energia?} \\
+Espinorial & \(SL(2,\bbC)\) y Clifford & \enquote{Como se organizan los espinores?} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Esta tabla es importante porque evita una confusion comun:
+
+\begin{displayquote}
+\enquote{No necesitamos que la red \emph{sea} el grupo de Poincare. Necesitamos que el limite efectivo reconstruya la algebra y las representaciones adecuadas.}
+\end{displayquote}
+
+\section{Como se ve el siguiente paso concreto}
+
+Si queremos continuar de forma realmente natural y sin perder la meta, la siguiente etapa deberia tener esta forma:
+
+\begin{enumerate}[leftmargin=*]
+  \item construir una \textbf{dinamica discreta tipo Weyl en \(3D\)};
+  \item identificar sus simetrias discretas y su espacio interno;
+  \item mostrar su limite continuo sin masa;
+  \item duplicar o acoplar dos sectores de quiralidad opuesta;
+  \item introducir un termino de masa y verificar que aparece el Hamiltoniano de Dirac \eqref{eq:target}.
+\end{enumerate}
+
+Esta ruta es mucho mas limpia que intentar saltar directamente desde grafeno a una ecuacion de Dirac completa en \(3+1\).
+
+\section{Mapa conceptual final}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.25cm]
+  \node[draw,rounded corners,fill=blue!6,minimum width=3.0cm,minimum height=0.9cm,align=center] (a) {grafeno / QW\\en \(2+1\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=3.0cm,minimum height=0.9cm,align=center,right=of a] (b) {Weyl efectivo\\en \(3D\)};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.2cm,minimum height=0.9cm,align=center,right=of b] (c) {acoplamiento\\quiral};
+  \node[draw,rounded corners,fill=orange!10,minimum width=3.2cm,minimum height=0.9cm,align=center,right=of c] (d) {Dirac en \(3+1\)};
+
+  \node[draw,rounded corners,fill=purple!8,minimum width=4.3cm,minimum height=0.95cm,align=center,below=1.5cm of b] (e) {grupo de Poincare, \(SL(2,\bbC)\), Clifford};
+
+  \draw[->,thick] (a) -- (b);
+  \draw[->,thick] (b) -- (c);
+  \draw[->,thick] (c) -- (d);
+  \draw[->,thick] (e) -- (b);
+  \draw[->,thick] (e) -- (c);
+  \draw[->,thick] (e) -- (d);
+\end{tikzpicture}
+\caption{La estructura del problema a partir de ahora. La teoria de grupos ya no es decoracion: es el esqueleto del paso a \(3+1\).}
+\label{fig:final-map}
+\end{figure}
+
+\section{Resumen final}
+
+La conclusion de este capitulo es muy simple y muy importante:
+
+\begin{enumerate}[leftmargin=*]
+  \item pasar de \(2+1\) a \(3+1\) no es solo agregar una coordenada;
+  \item obliga a introducir una estructura espinorial de cuatro componentes;
+  \item obliga a reproducir la algebra de Clifford \(Cl_{1,3}\);
+  \item obliga a tener presente la jerarquia \(G_{\mathrm{micro}} \to SO(3,1) \to SL(2,\bbC)\);
+  \item por eso, la siguiente construccion discreta debe pensarse primero como una teoria tipo Weyl en \(3D\), y solo despues como una teoria de Dirac con masa.
+\end{enumerate}
+
+Este es el punto que no podemos perder de vista. A partir de aqui, la investigacion deja de ser una cadena de analogias y pasa a ser un problema de representaciones, simetrias y acoplamientos controlados.

@@ -1,0 +1,375 @@
+% Importado desde: 2026-03-28_Simetrias_Exactas_y_Grupo_Efectivo_del_Paso_Dirac.tex
+\chapter{Derivacion Pedagogica: --- simetrias exactas del paso discreto --- y grupo efectivo emergente en Dirac \(3+1\)}
+\label{ch:simetrias-grupo-paso-dirac}
+
+\section{Objetivo}
+En el capitulo anterior vimos que la construccion discreta tipo Dirac en \(3+1\) es consistente en el sector infrarrojo, pero globalmente vive sobre un objeto mas rico: toro de Brillouin, cuasienergia periodica, fibra interna de cuatro componentes y un paso unitario local ordenado.
+
+Ahora toca fijar con cuidado una pregunta muy importante:
+\begin{displayquote}
+\textbf{cuales son exactamente las simetrias del paso discreto completo, y como se relacionan con el grupo continuo relativista que aparece solo en el limite infrarrojo?}
+\end{displayquote}
+
+Este capitulo quiere dejar clara la jerarquia correcta:
+\begin{enumerate}[label=\arabic*.]
+    \item un nivel \textbf{microscopico exacto}, con simetrias discretas del paso unitario;
+    \item un nivel \textbf{efectivo infrarrojo}, donde emerge el Hamiltoniano de Dirac;
+    \item y un nivel \textbf{espinorial relativista}, donde aparecen \(SO^+(3,1)\), Poincare y \(SL(2,\mathbb{C})\).
+\end{enumerate}
+
+\section{El objeto exacto}
+Tomamos el bloque Weyl elemental
+\begin{equation}
+U_W(\vk)=
+\ee^{-\,\ii a k_z \sigma_z}
+\ee^{-\,\ii a k_y \sigma_y}
+\ee^{-\,\ii a k_x \sigma_x},
+\label{eq:UW}
+\end{equation}
+y armamos la caminata Dirac de cuatro componentes como
+\begin{equation}
+U_D(\vk)=M\,U_0(\vk),
+\qquad
+M=\ee^{-\,\ii \Delta t\,m\,\tau_x\otimes \bbI},
+\label{eq:UD}
+\end{equation}
+con
+\begin{equation}
+U_0(\vk)=
+\begin{pmatrix}
+U_W(\vk) & 0\\
+0 & U_{-W}(\vk)
+\end{pmatrix},
+\qquad
+U_{-W}(\vk)=
+\ee^{+\,\ii a k_x \sigma_x}
+\ee^{+\,\ii a k_y \sigma_y}
+\ee^{+\,\ii a k_z \sigma_z}.
+\label{eq:U0}
+\end{equation}
+
+En el infrarrojo,
+\begin{equation}
+U_D(\vk)\simeq \bbI-\ii\Delta t\,H_D,
+\end{equation}
+con
+\begin{equation}
+H_D=
+v\,\tau_z\otimes(\sigma_x p_x+\sigma_y p_y+\sigma_z p_z)
++m\,\tau_x\otimes\bbI.
+\label{eq:HD}
+\end{equation}
+
+\section{Que significa una simetria exacta del paso}
+Para una caminata discreta, la nocion correcta de simetria exacta no es \enquote{el Hamiltoniano parece isotropo}, sino la siguiente:
+
+\begin{displayquote}
+\textbf{Diremos que una transformacion espacial discreta \(g\) es simetria exacta del paso si existe una unitaria interna \(S_g\) tal que}
+\[
+S_g\,U_D(\vk)\,S_g^{-1}=U_D(g\vk)
+\]
+\textbf{para todo \(\vk\) de la zona de Brillouin.}
+\end{displayquote}
+
+Esta definicion separa bien dos cosas:
+\begin{enumerate}[label=\arabic*.]
+    \item la accion sobre el espacio de momentos;
+    \item la accion espinorial sobre la fibra interna de cuatro componentes.
+\end{enumerate}
+
+Si la igualdad vale solo al expandir para \(\vk\approx 0\), entonces no es una simetria exacta, sino una \textbf{simetria efectiva}.
+
+\section{Primer nivel: simetrias exactas garantizadas}
+\subsection{Traslaciones espaciales discretas}
+Como el mismo paso local actua en cada celda, la red admite invariancia exacta bajo traslaciones de \(\mathbb{Z}^3\). En espacio recíproco, eso se refleja en que \(\vk\) es una buena etiqueta de Bloch.
+
+Luego la primera pieza del grupo microscopico es
+\begin{equation}
+\Lambda_{\mathrm{esp}}=\mathbb{Z}^3.
+\end{equation}
+
+\subsection{Traslacion temporal discreta}
+El tiempo no es continuo en este nivel. La evolucion exacta viene dada por iteraciones enteras del paso:
+\begin{equation}
+\Psi_{n+1}=U_D\,\Psi_n.
+\end{equation}
+Por tanto, tambien hay una estructura exacta de traslaciones temporales discretas:
+\begin{equation}
+\Lambda_t=\mathbb{Z}.
+\end{equation}
+
+Esta observacion parece simple, pero es central: el grupo de tiempo exacto no es \(\mathbb{R}\), sino \(\mathbb{Z}\).
+
+\section{Segundo nivel: simetrias puntuales exactas del paso minimo}
+\subsection{La idea general}
+Si el paso estuviera completamente simetrizado entre \(x\), \(y\) y \(z\), podriamos esperar un grupo puntual microscopico grande. Pero nuestro modelo minimo usa un producto \textbf{ordenado}:
+\[
+U_W=U_zU_yU_x.
+\]
+
+Ese orden deja memoria microscopica. Por eso no debemos asumir que todo el grupo cubico actua exactamente.
+
+\subsection{Rotacion exacta de orden dos alrededor del eje z}
+Consideremos
+\begin{equation}
+R_z(\pi):(k_x,k_y,k_z)\mapsto(-k_x,-k_y,k_z).
+\end{equation}
+La accion espinorial correspondiente sobre el bloque Weyl es
+\begin{equation}
+V_z=\ii\sigma_z.
+\end{equation}
+
+Usando
+\begin{equation}
+V_z\sigma_xV_z^{-1}=-\sigma_x,
+\qquad
+V_z\sigma_yV_z^{-1}=-\sigma_y,
+\qquad
+V_z\sigma_zV_z^{-1}=+\sigma_z,
+\label{eq:Vzaction}
+\end{equation}
+obtenemos
+\begin{align}
+V_z\,U_W(\vk)\,V_z^{-1}
+&=
+\ee^{-\,\ii a k_z \sigma_z}
+\ee^{+\,\ii a k_y \sigma_y}
+\ee^{+\,\ii a k_x \sigma_x}\notag\\
+&=
+U_W\!\bigl(R_z(\pi)\vk\bigr).
+\label{eq:C2zW}
+\end{align}
+
+El punto importante es que el orden \(z,y,x\) se conserva. Solo cambian signos.
+
+\subsection{Extension al bloque Dirac}
+En cuatro componentes tomamos
+\begin{equation}
+S_z=\bbI_{\tau}\otimes V_z.
+\end{equation}
+Entonces
+\begin{equation}
+S_z\,U_0(\vk)\,S_z^{-1}=U_0\!\bigl(R_z(\pi)\vk\bigr).
+\end{equation}
+Ademas, como el termino de masa es proporcional a \(\tau_x\otimes\bbI\), conmuta con \(S_z\):
+\begin{equation}
+[S_z,M]=0.
+\end{equation}
+Por tanto,
+\begin{equation}
+S_z\,U_D(\vk)\,S_z^{-1}=U_D\!\bigl(R_z(\pi)\vk\bigr).
+\label{eq:C2zD}
+\end{equation}
+
+Luego \(R_z(\pi)\) es una simetria exacta del paso Dirac minimo.
+
+\subsection{Las otras dos rotaciones de orden dos}
+El mismo razonamiento funciona para
+\begin{equation}
+R_x(\pi),\qquad R_y(\pi),
+\end{equation}
+con
+\begin{equation}
+S_x=\bbI_{\tau}\otimes(\ii\sigma_x),
+\qquad
+S_y=\bbI_{\tau}\otimes(\ii\sigma_y).
+\end{equation}
+
+Estas tres rotaciones satisfacen
+\begin{equation}
+R_x(\pi)^2=R_y(\pi)^2=R_z(\pi)^2=\bbI,
+\qquad
+R_x(\pi)R_y(\pi)=R_z(\pi),
+\end{equation}
+y generan un grupo discreto de cuatro elementos:
+\begin{equation}
+D_2=\{\bbI,\,R_x(\pi),\,R_y(\pi),\,R_z(\pi)\}.
+\label{eq:D2}
+\end{equation}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.8cm]
+  \node[draw,rounded corners,fill=blue!8,minimum width=2.2cm,minimum height=0.9cm] (e) {\(\bbI\)};
+  \node[draw,rounded corners,fill=green!8,minimum width=2.2cm,minimum height=0.9cm,right=of e] (x) {\(R_x(\pi)\)};
+  \node[draw,rounded corners,fill=green!8,minimum width=2.2cm,minimum height=0.9cm,below=of e] (y) {\(R_y(\pi)\)};
+  \node[draw,rounded corners,fill=green!8,minimum width=2.2cm,minimum height=0.9cm,below=of x] (z) {\(R_z(\pi)\)};
+  \draw[->,thick] (e) -- (x);
+  \draw[->,thick] (e) -- (y);
+  \draw[->,thick] (x) -- node[right] {\small \(\times R_y\)} (z);
+  \draw[->,thick] (y) -- node[below] {\small \(\times R_x\)} (z);
+\end{tikzpicture}
+\caption{En el paso minimo ordenado aparece de manera limpia un subgrupo puntual residual \(D_2\).}
+\end{figure}
+
+\subsection{Por que la rotacion de cuarto de vuelta no es exacta aqui}
+Una rotacion \(R_z(\pi/2)\) envia
+\begin{equation}
+(k_x,k_y,k_z)\mapsto(k_y,-k_x,k_z).
+\end{equation}
+En el Hamiltoniano efectivo eso no trae problemas, pero en el paso exacto ocurre algo mas delicado:
+\[
+U_zU_yU_x
+\quad\longrightarrow\quad
+U_z\,U_{-x}\,U_y.
+\]
+
+Eso ya no es el mismo producto ordenado. Para restaurarlo haria falta una reorganizacion microscopica adicional del paso. Por eso, en el modelo minimo, la rotacion de \(\pi/2\) es \textbf{solo efectiva}, no exacta.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.5cm]
+  \node[draw,rounded corners,fill=blue!8,minimum width=4cm,minimum height=0.95cm] (a) {\(U_z\,U_y\,U_x\)};
+  \node[draw,rounded corners,fill=red!8,minimum width=4cm,minimum height=0.95cm,right=4.5cm of a] (b) {\(U_z\,U_{-x}\,U_y\)};
+  \draw[->,thick] (a) -- node[above,align=center] {\small rotacion de \(\pi/2\)\\\small cambia ejes y orden} (b);
+\end{tikzpicture}
+\caption{La memoria del orden de subpasos rompe la simetria rotacional exacta amplia del modelo minimo.}
+\end{figure}
+
+\section{Grupo microscopico del paso minimo}
+Con lo anterior, la propuesta mas honesta para el grupo exacto del modelo minimo es
+\begin{equation}
+G_{\mathrm{micro}}=
+\mathbb{Z}_t\times\bigl(\mathbb{Z}^3\rtimes D_2\bigr),
+\label{eq:Gmicro}
+\end{equation}
+donde:
+\begin{enumerate}[label=\arabic*.]
+    \item \(\mathbb{Z}_t\) describe los pasos enteros de tiempo;
+    \item \(\mathbb{Z}^3\) describe las traslaciones espaciales de red;
+    \item \(D_2\) es el subgrupo puntual residual que preserva exactamente el paso ordenado.
+\end{enumerate}
+
+Esta formula no debe sobreinterpretarse: corresponde al \textbf{modelo minimo} que venimos construyendo. Si uno simetriza el protocolo temporal o amplía la celda unitaria, el grupo puntual exacto podria crecer. Pero en esta version, el mensaje importante es otro:
+\begin{displayquote}
+\textbf{el grupo exacto del protoespacio discreto no es Poincare, ni tampoco el grupo cubico completo.}
+\end{displayquote}
+
+\section{Tercer nivel: el grupo efectivo infrarrojo}
+\subsection{Recuperacion de rotaciones continuas}
+Cuando \(a|\vp|\ll 1\), el paso se aproxima por el Hamiltoniano Dirac
+\[
+H_D=
+v\,\tau_z\otimes(\vsigma\cdot\vp)
++m\,\tau_x\otimes\bbI.
+\]
+
+En ese nivel, el generador total de rotaciones es
+\begin{equation}
+\bm{J}=\bm{L}+\bm{S},
+\qquad
+\bm{S}=\frac{1}{2}\,\bbI_{\tau}\otimes\bm{\sigma},
+\label{eq:J}
+\end{equation}
+y se verifica
+\begin{equation}
+[J_i,H_D]=0.
+\label{eq:JH}
+\end{equation}
+
+La razon es la misma que en la ecuacion de Dirac usual: el momento \(\vp\) y el espin interno \(\vsigma\) rotan juntos y dejan invariante el escalar \(\vsigma\cdot\vp\).
+
+Luego el grupo de rotaciones efectivas en el infrarrojo ya no es \(D_2\), sino
+\begin{equation}
+SO(3),
+\end{equation}
+con su accion espinorial levantada a
+\begin{equation}
+SU(2).
+\end{equation}
+
+\subsection{Aparicion de Lorentz y Poincare}
+Si reescribimos el sector infrarrojo en forma covariante,
+\begin{equation}
+(\ii\gamma^\mu\partial_\mu-m)\Psi=0,
+\end{equation}
+entonces la simetria efectiva relevante deja de ser solo rotacional y pasa a ser
+\begin{equation}
+\mathcal{P}=SO^+(3,1)\ltimes\mathbb{R}^{3,1},
+\end{equation}
+es decir, el grupo de Poincare.
+
+Al nivel espinorial, esto se levanta al recubrimiento doble
+\begin{equation}
+SL(2,\mathbb{C})\longrightarrow SO^+(3,1).
+\end{equation}
+
+Pero ahora la distincion metodologica es crucial:
+\begin{enumerate}[label=\arabic*.]
+    \item \(SO^+(3,1)\) y Poincare no son simetrias exactas del paso discreto global;
+    \item son simetrias del \textbf{sector efectivo linealizado};
+    \item aparecen porque el infrarrojo ya no resuelve la granularidad del protocolo microscopico.
+\end{enumerate}
+
+\section{Por que los boosts no pueden ser exactos microscopicamente}
+Este punto conviene decirlo sin rodeos. Un boost continuo mezcla espacio y tiempo. Pero en el nivel exacto del modelo tenemos:
+\begin{enumerate}[label=\arabic*.]
+    \item espacio discreto \(\mathbb{Z}^3\);
+    \item tiempo discreto \(\mathbb{Z}\);
+    \item un paso elemental con orden fijo;
+    \item zona de Brillouin compacta y cuasienergia periodica.
+\end{enumerate}
+
+Ese conjunto de rasgos no es compatible con un grupo continuo exacto de boosts de Lorentz. Por eso la estructura relativista solo puede emerger localmente, cerca de un nodo y para momentos pequenos.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.2cm]
+  \node[draw,rounded corners,fill=blue!8,minimum width=4.4cm,minimum height=0.95cm,align=center] (a) {nivel exacto\\\(\mathbb{Z}_t\times(\mathbb{Z}^3\rtimes D_2)\)};
+  \node[draw,rounded corners,fill=green!8,minimum width=4.4cm,minimum height=0.95cm,align=center,below=of a] (b) {nivel infrarrojo\\\(\mathbb{R}^3\rtimes SO(3)\)};
+  \node[draw,rounded corners,fill=yellow!12,minimum width=4.4cm,minimum height=0.95cm,align=center,below=of b] (c) {nivel covariante efectivo\\Poincare y \(SL(2,\mathbb{C})\)};
+  \draw[->,thick] (a) -- node[right] {\small coarse graining} (b);
+  \draw[->,thick] (b) -- node[right] {\small linealizacion covariante} (c);
+\end{tikzpicture}
+\caption{La jerarquia correcta de grupos en el proyecto.}
+\end{figure}
+
+\section{Lectura para el protoespacio discreto}
+Con todo lo anterior, el objeto discreto candidato queda mejor descrito como
+\begin{equation}
+\mathfrak{P}_{\mathrm{disc}}=
+\bigl(\Lambda,\mathbb{C}^4,U_D,G_{\mathrm{micro}}\bigr),
+\label{eq:proto}
+\end{equation}
+donde:
+\begin{enumerate}[label=\arabic*.]
+    \item \(\Lambda=\mathbb{Z}^3\) es la red espacial;
+    \item \(\mathbb{C}^4\) es la fibra local tipo Dirac;
+    \item \(U_D\) es la ley dinamica elemental;
+    \item \(G_{\mathrm{micro}}\) es el grupo exacto discreto que realmente preserva la construccion.
+\end{enumerate}
+
+Esta descripcion es mejor que decir solo \enquote{la red cubica es el protoespacio}. La red sola no basta. Lo que importa es la \textbf{red mas su fibra interna mas su dinamica local mas sus simetrias exactas}.
+
+\section{Tabla de jerarquia}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Nivel & Grupo relevante & Significado \\
+\midrule
+Microscopico exacto & \(\mathbb{Z}_t\times(\mathbb{Z}^3\rtimes D_2)\) & paso discreto real \\
+Infrarrojo espacial & \(\mathbb{R}^3\rtimes SO(3)\) & isotropia efectiva \\
+Espinorial infrarrojo & \(SU(2)\) & rotaciones de espin \\
+Covariante efectivo & \(SO^+(3,1)\ltimes\mathbb{R}^{3,1}\) & Dirac relativista \\
+Recubrimiento espinorial & \(SL(2,\mathbb{C})\) & accion sobre espinores \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Conclusion}
+Este paso aclara una confusion muy facil de cometer. El hecho de que el sector infrarrojo reproduzca Dirac en \(3+1\) \textbf{no} significa que el modelo microscopico tenga ya el grupo de Poincare como simetria exacta.
+
+Lo que si significa es algo mas preciso y mas valioso:
+\begin{enumerate}[label=\arabic*.]
+    \item existe una microdinamica discreta bien definida;
+    \item esa dinamica tiene un grupo exacto discreto identificable;
+    \item en el infrarrojo emerge una simetria continua mas grande;
+    \item y en ese limite aparece la estructura espinorial relativista correcta.
+\end{enumerate}
+
+Eso ordena mejor la investigacion. La pregunta ya no es \enquote{si hay Dirac}, porque eso ya quedo construido. La pregunta pasa a ser:
+\begin{displayquote}
+\textbf{que condiciones adicionales tendria que satisfacer el grupo microscopico exacto para que la emergencia relativista no sea solo local, sino geometricamente mas robusta?}
+\end{displayquote}
+
+Ese es el siguiente paso natural del proyecto.

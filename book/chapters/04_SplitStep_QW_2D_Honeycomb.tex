@@ -1,0 +1,450 @@
+% Importado desde: 2026-03-28_SplitStep_QW_y_2D_Honeycomb.tex
+\chapter{Derivacion Pedagogica: --- De la quantum walk minima al split-step y al salto a \(2D\) tipo honeycomb}
+\label{ch:splitstep-qw-2d-honeycomb}
+
+\section{Objetivo}
+
+En el capitulo anterior vimos la idea mas simple:
+
+\begin{enumerate}[leftmargin=*]
+  \item una caminata cuantica \(1D\) tiene una mezcla interna;
+  \item despues aplica un corrimiento condicionado;
+  \item en el limite de pasos pequenos aparece una ecuacion efectiva tipo Dirac.
+\end{enumerate}
+
+Ahora queremos hacer dos cosas, pero sin romper el hilo:
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{refinar la caminata \(1D\)} con una \emph{split-step quantum walk}, que es mas flexible y mas cercana a una estructura topologica seria;
+  \item \textbf{dar el salto a \(2D\)} de una forma natural, primero con una caminata bidimensional minima y luego con una geometria inspirada en redes honeycomb/triangular, que es la puerta conceptual hacia grafeno.
+\end{enumerate}
+
+\section{La idea guia}
+
+La intuicion que conviene fijar es esta:
+
+\begin{displayquote}
+\enquote{Una quantum walk construye Dirac combinando mezclas internas y corrimientos locales. Si repartimos esos pasos con mas cuidado, o si los hacemos en varias direcciones, ganamos control sobre masa, anisotropia y geometria efectiva.}
+\end{displayquote}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.5cm]
+  \node[draw,rounded corners,fill=blue!6,minimum width=3.2cm,minimum height=0.95cm,align=center] (a) {QW minima\\\(1D\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=3.2cm,minimum height=0.95cm,align=center,right=of a] (b) {split-step\\\(1D\)};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.2cm,minimum height=0.95cm,align=center,right=of b] (c) {QW minima\\\(2D\)};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.6cm,minimum height=0.95cm,align=center,right=of c] (d) {geometria\\honeycomb/triangular};
+  \draw[->,thick] (a) -- (b);
+  \draw[->,thick] (b) -- (c);
+  \draw[->,thick] (c) -- (d);
+\end{tikzpicture}
+\caption{El hilo que vamos a seguir. No son temas separados: cada paso agrega estructura a la caminata anterior.}
+\label{fig:thread}
+\end{figure}
+
+\section{Recordatorio: la quantum walk minima en \(1D\)}
+
+En su forma mas simple, un paso de la caminata se escribe como
+\begin{equation}
+U=S\,C(\theta),
+\end{equation}
+donde
+\begin{equation}
+C(\theta)=\ee^{-\ii\theta\sigma_y}
+\end{equation}
+mezcla las dos componentes internas, y \(S\) desplaza una componente a la derecha y la otra a la izquierda.
+
+En espacio de momentos:
+\begin{equation}
+U(k)=\ee^{-\ii ka\sigma_z}\,\ee^{-\ii\theta\sigma_y}.
+\end{equation}
+
+Para \(ka\ll 1\) y \(\theta\ll 1\), eso se convierte en
+\begin{equation}
+U(k)\simeq I-\ii\left(ka\,\sigma_z+\theta\,\sigma_y\right),
+\end{equation}
+y por lo tanto
+\begin{equation}
+H_{\text{eff}}(k)\simeq \frac{a}{\Delta t}k\,\sigma_z+\frac{\theta}{\Delta t}\sigma_y.
+\label{eq:heff-min}
+\end{equation}
+
+Ya aparece una estructura de Dirac en \(1+1\):
+
+\begin{enumerate}[leftmargin=*]
+  \item el termino lineal en \(k\) hace el papel cinetico;
+  \item el angulo \(\theta\) hace el papel de masa.
+\end{enumerate}
+
+\section{Por que pasar al split-step}
+
+La caminata minima funciona, pero tiene una limitacion: todo el paso dinamico esta comprimido en una sola mezcla y un solo corrimiento.
+
+La idea del \textbf{split-step} es repartir el paso en subpasos:
+
+\begin{enumerate}[leftmargin=*]
+  \item una primera rotacion interna;
+  \item un primer corrimiento;
+  \item una segunda rotacion interna;
+  \item un segundo corrimiento.
+\end{enumerate}
+
+Eso puede parecer un detalle tecnico, pero no lo es. Al separar los subpasos:
+
+\begin{enumerate}[leftmargin=*]
+  \item aparecen mas parametros de control;
+  \item se puede mover el sistema entre fases distintas;
+  \item el punto donde el gap se cierra queda mucho mas claro;
+  \item la geometria del paso se vuelve mas facil de generalizar a varias direcciones.
+\end{enumerate}
+
+\section{La split-step quantum walk en \(1D\)}
+
+\subsection{Definicion del paso}
+
+Tomamos dos corrimientos parciales:
+\begin{equation}
+S_+:\ \lvert x,\uparrow\rangle \mapsto \lvert x+a,\uparrow\rangle,
+\qquad
+\lvert x,\downarrow\rangle \mapsto \lvert x,\downarrow\rangle,
+\end{equation}
+y
+\begin{equation}
+S_-:\ \lvert x,\uparrow\rangle \mapsto \lvert x,\uparrow\rangle,
+\qquad
+\lvert x,\downarrow\rangle \mapsto \lvert x-a,\downarrow\rangle.
+\end{equation}
+
+Luego definimos dos monedas internas:
+\begin{equation}
+C(\theta_1)=\ee^{-\ii\theta_1\sigma_y},
+\qquad
+C(\theta_2)=\ee^{-\ii\theta_2\sigma_y}.
+\end{equation}
+
+Un paso split-step completo es
+\begin{equation}
+U_{\text{ss}}=S_-\,C(\theta_2)\,S_+\,C(\theta_1).
+\label{eq:uss}
+\end{equation}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.15cm]
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.1cm,minimum height=0.8cm] (c1) {\(C(\theta_1)\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.1cm,minimum height=0.8cm,right=of c1] (s1) {\(S_+\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.1cm,minimum height=0.8cm,right=of s1] (c2) {\(C(\theta_2)\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.1cm,minimum height=0.8cm,right=of c2] (s2) {\(S_-\)};
+  \draw[->,thick] (c1) -- (s1);
+  \draw[->,thick] (s1) -- (c2);
+  \draw[->,thick] (c2) -- (s2);
+  \node[below=0.55cm of s1] {\small primer subpaso espacial};
+  \node[below=0.55cm of s2] {\small segundo subpaso espacial};
+\end{tikzpicture}
+\caption{Arquitectura del split-step. El paso se descompone en dos rotaciones y dos corrimientos parciales.}
+\label{fig:split-step-sequence}
+\end{figure}
+
+\subsection{Representacion en espacio de momentos}
+
+En momentos, los corrimientos parciales se escriben como
+\begin{equation}
+S_+(k)=
+\begin{pmatrix}
+\ee^{+\ii ka} & 0\\
+0 & 1
+\end{pmatrix},
+\qquad
+S_-(k)=
+\begin{pmatrix}
+1 & 0\\
+0 & \ee^{-\ii ka}
+\end{pmatrix}.
+\end{equation}
+
+No hace falta multiplicar todo exactamente para captar la idea. Lo importante es que, cuando \(ka\), \(\theta_1\) y \(\theta_2\) son pequenos, el operador efectivo puede escribirse como
+\begin{equation}
+U_{\text{ss}}(k)\simeq I-\ii\left(v\,k\,\sigma_z + m_{\text{eff}}\sigma_y + \delta\,\sigma_x\right)\Delta t.
+\label{eq:split-qual}
+\end{equation}
+
+Aqui:
+
+\begin{enumerate}[leftmargin=*]
+  \item \(v\) depende del tamano del corrimiento;
+  \item \(m_{\text{eff}}\) depende de una combinacion de \(\theta_1\) y \(\theta_2\);
+  \item \(\delta\) aparece si la simetria entre subpasos no es exacta.
+\end{enumerate}
+
+Una forma pedagogica de resumirlo es
+\begin{equation}
+H_{\text{eff}}^{\text{ss}}(k)\sim v\,k\,\sigma_z + m_{\text{eff}}\sigma_y + \delta\,\sigma_x.
+\label{eq:heff-ss}
+\end{equation}
+
+\subsection{Que se aprende fisicamente}
+
+El split-step ense\~na tres ideas muy importantes:
+
+\begin{enumerate}[leftmargin=*]
+  \item la masa efectiva ya no depende de un solo parametro;
+  \item podemos forzar cierres de gap ajustando \(\theta_1,\theta_2\);
+  \item la estructura del paso se parece mas a una composicion local de bloques elementales, que es exactamente la filosofia de un QCA.
+\end{enumerate}
+
+\subsection{Esquema de fases}
+
+No necesitamos entrar en toda la clasificacion topologica para extraer la intuicion. Basta con pensar que el plano \((\theta_1,\theta_2)\) contiene regiones gapped separadas por curvas donde el gap se cierra.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,scale=1.0]
+  \draw[->] (-3.2,0) -- (3.2,0) node[right] {\(\theta_1\)};
+  \draw[->] (0,-3.2) -- (0,3.2) node[above] {\(\theta_2\)};
+
+  \draw[very thick,blue!70!black] (-3,-3) -- (3,3);
+  \draw[very thick,red!70!black] (-3,3) -- (3,-3);
+
+  \node at (1.8,1.2) {\small fase A};
+  \node at (-1.8,1.2) {\small fase B};
+  \node at (-1.8,-1.2) {\small fase A};
+  \node at (1.8,-1.2) {\small fase B};
+  \node[above left] at (1.0,1.0) {\small cierre de gap};
+  \node[below left] at (1.0,-1.0) {\small cierre de gap};
+\end{tikzpicture}
+\caption{Esquema cualitativo del espacio de parametros del split-step. Las fronteras donde cambia la fase son lugares naturales donde el Hamiltoniano efectivo se vuelve tipo Dirac.}
+\label{fig:split-phase}
+\end{figure}
+
+\section{Por que esto prepara el salto a \(2D\)}
+
+Ahora viene la idea central del hilo.
+
+En \(1D\), una caminata minima usa:
+\begin{equation}
+\text{mezcla interna} + \text{desplazamiento en una direccion}.
+\end{equation}
+
+En \(2D\), la generalizacion natural es:
+\begin{equation}
+\text{mezcla interna} + \text{desplazamientos en dos o mas direcciones independientes}.
+\end{equation}
+
+El split-step ya nos entreno a pensar la evolucion como una composicion ordenada de subpasos. Por eso el paso a \(2D\) no es un salto brusco: solo agregamos otra direccion espacial al mismo mecanismo.
+
+\section{Quantum walk minima en \(2D\)}
+
+\subsection{La idea mas simple}
+
+En lugar de una sola coordenada \(x\), ahora tenemos \(x\) e \(y\). El objetivo es que el Hamiltoniano efectivo se parezca a
+\begin{equation}
+H_{\text{Dirac}}^{(2+1)}\sim v_x q_x \Gamma_x + v_y q_y \Gamma_y + m\Gamma_m,
+\label{eq:dirac21}
+\end{equation}
+donde las matrices \(\Gamma\) satisfacen relaciones de Clifford apropiadas.
+
+En una version pedagogica minima, podemos pensar el paso como una secuencia:
+\begin{equation}
+U_{2D}=S_y\,C_y\,S_x\,C_x.
+\label{eq:u2d}
+\end{equation}
+
+Aqui:
+
+\begin{enumerate}[leftmargin=*]
+  \item \(C_x\) mezcla internamente antes del salto en \(x\);
+  \item \(S_x\) realiza un desplazamiento condicionado en \(x\);
+  \item \(C_y\) vuelve a mezclar;
+  \item \(S_y\) desplaza condicionado en \(y\).
+\end{enumerate}
+
+\subsection{Hamiltoniano efectivo}
+
+Cuando \(k_x a\ll 1\), \(k_y a\ll 1\) y los angulos de mezcla son pequenos, la estructura efectiva toma la forma
+\begin{equation}
+H_{\text{eff}}^{(2D)}(\vk)\sim v_x k_x \Gamma_x + v_y k_y \Gamma_y + m_{\text{eff}}\Gamma_m.
+\label{eq:heff-2d}
+\end{equation}
+
+Si usamos una representacion de dos componentes, una posibilidad pedagogica es
+\begin{equation}
+H_{\text{eff}}^{(2D)}(\vk)\sim v_x k_x \sigma_z + v_y k_y \sigma_x + m_{\text{eff}}\sigma_y.
+\label{eq:dirac-2d-walk}
+\end{equation}
+
+Eso ya es exactamente la forma algebraica de una teoria tipo Dirac en \(2+1\).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,scale=1.0]
+  \draw[step=1cm,gray!35,thin] (0,0) grid (4,4);
+  \foreach \x in {0,1,2,3,4}
+    \foreach \y in {0,1,2,3,4}
+      \fill[blue!60] (\x,\y) circle (1.7pt);
+
+  \draw[->,very thick,red!70!black] (2,2) -- (3,2) node[midway,above] {\small \(x\)};
+  \draw[->,very thick,green!60!black] (2,2) -- (2,3) node[midway,left] {\small \(y\)};
+  \node[right] at (4.4,2.0) {\small subpaso \(S_x\)};
+  \node[right] at (4.4,1.55) {\small subpaso \(S_y\)};
+\end{tikzpicture}
+\caption{Paso conceptual a \(2D\): la caminata ya no propaga solo en una direccion, sino en dos direcciones independientes.}
+\label{fig:2d-square}
+\end{figure}
+
+\section{La conexion natural con grafeno}
+
+\subsection{Por que la red cuadrada no es el final}
+
+La caminata \(2D\) sobre una red cuadrada ya permite entender como aparece un Hamiltoniano tipo Dirac en dos dimensiones. Pero si queremos conectar con grafeno, hay que cambiar la intuicion geometrica:
+
+\begin{enumerate}[leftmargin=*]
+  \item grafeno no vive sobre una red cuadrada;
+  \item grafeno tiene una estructura honeycomb con dos subredes;
+  \item sus saltos naturales siguen tres direcciones de primeros vecinos.
+\end{enumerate}
+
+Por eso, la ruta natural no es detenerse en \(2D\) cuadrado, sino reorganizar la caminata para que sus direcciones locales recuerden a la geometria triangular/honeycomb.
+
+\subsection{Tres direcciones en lugar de dos}
+
+La red honeycomb puede verse como una red triangular con una base de dos sitios. Sus primeros vecinos estan organizados a lo largo de tres direcciones:
+\begin{equation}
+\vdelta_1,\qquad \vdelta_2,\qquad \vdelta_3.
+\end{equation}
+
+Eso sugiere una caminata donde el paso total se descompone en tres subpasos orientados:
+\begin{equation}
+U_{\mathrm{hex}}\sim S_{\delta_3}\,C_3\,S_{\delta_2}\,C_2\,S_{\delta_1}\,C_1.
+\label{eq:uhexa}
+\end{equation}
+
+La idea fisica es muy simple:
+
+\begin{enumerate}[leftmargin=*]
+  \item cada \(S_{\delta_i}\) empuja la amplitud en una de las tres direcciones naturales de la red;
+  \item cada \(C_i\) mezcla internamente los componentes;
+  \item en el limite continuo, la combinacion de las tres direcciones produce la estructura angular adecuada para una ecuacion de Dirac en \(2+1\).
+\end{enumerate}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.45,>=Latex]
+  \coordinate (A0) at (0,0);
+  \coordinate (B1) at (0,-1);
+  \coordinate (B2) at (0.866,0.5);
+  \coordinate (B3) at (-0.866,0.5);
+  \coordinate (Ar) at (1.732,0);
+  \coordinate (Al) at (-1.732,0);
+  \coordinate (Aul) at (-0.866,1.5);
+  \coordinate (Aur) at (0.866,1.5);
+
+  \foreach \p/\q in {A0/B1,A0/B2,A0/B3,Ar/B2,Ar/B1,Al/B3,Al/B1,Aul/B2,Aul/B3,Aur/B2,Aur/B3}
+    \draw[gray!65,line width=0.75pt] (\p) -- (\q);
+
+  \foreach \p in {A0,Ar,Al,Aul,Aur}
+    \fill[blue!70] (\p) circle (2.1pt);
+  \foreach \p in {B1,B2,B3}
+    \fill[orange!85!black] (\p) circle (2.1pt);
+
+  \draw[->,very thick,red!70!black] (A0) -- (B1) node[midway,right] {\small \(\vdelta_1\)};
+  \draw[->,very thick,green!60!black] (A0) -- (B2) node[midway,above right] {\small \(\vdelta_2\)};
+  \draw[->,very thick,blue!70!black] (A0) -- (B3) node[midway,above left] {\small \(\vdelta_3\)};
+
+  \node[below left] at (-1.65,-1.3) {\footnotesize tres direcciones naturales};
+\end{tikzpicture}
+\caption{La geometria honeycomb sugiere una caminata orientada por tres direcciones de primeros vecinos, no solo por dos ejes cartesianos.}
+\label{fig:honeycomb-directions}
+\end{figure}
+
+\subsection{Que cambia algebraicamente}
+
+En el caso cuadrado, las dos direcciones \(x\) e \(y\) entran de forma bastante directa. En el caso honeycomb/triangular, la estructura efectiva sale de recombinar tres direcciones oblicuas.
+
+Eso es importante porque:
+
+\begin{enumerate}[leftmargin=*]
+  \item el operador efectivo ya no se ve \enquote{cartesiano} a nivel microscopico;
+  \item la isotropia de baja energia aparece despues de combinar las tres direcciones;
+  \item la construccion se parece mucho mas a la logica de grafeno.
+\end{enumerate}
+
+En el limite de baja energia, el resultado puede volver a escribirse en la forma familiar
+\begin{equation}
+H_{\text{eff}}^{\mathrm{hex}}(\vq)\sim v_F\left(\sigma_x q_x+\sigma_y q_y\right)+m_{\text{eff}}\sigma_z,
+\label{eq:heff-honey}
+\end{equation}
+pero ahora el origen microscopico de \(q_x\) y \(q_y\) esta repartido entre las tres direcciones de la red.
+
+\section{Por que esta ruta es tan natural para el proyecto}
+
+Esta continuidad tiene varias ventajas:
+
+\begin{enumerate}[leftmargin=*]
+  \item no rompe el hilo con lo ya aprendido sobre Dirac en \(1D\) y \(2D\);
+  \item muestra como la masa efectiva y las fases pueden controlarse con pasos unitarios;
+  \item permite pasar de una red abstracta a una geometria cercana a grafeno;
+  \item prepara el terreno para preguntar que ocurre en \(3D\), donde habria que coordinar mas direcciones y mas componentes internas.
+\end{enumerate}
+
+En particular, la secuencia completa ya se lee asi:
+
+\begin{displayquote}
+\textbf{QW minima en \(1D\)} \(\to\)
+\textbf{split-step en \(1D\)} \(\to\)
+\textbf{QW en \(2D\)} \(\to\)
+\textbf{QW honeycomb/triangular} \(\to\)
+\textbf{puente conceptual hacia grafeno y hacia discretizaciones mas serias del espacio-tiempo.}
+\end{displayquote}
+
+\section{Mapa visual final}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.35cm]
+  \node[draw,rounded corners,fill=blue!6,minimum width=3.1cm,minimum height=0.95cm,align=center] (w1) {QW minima\\\(1D\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=3.1cm,minimum height=0.95cm,align=center,right=of w1] (w2) {split-step\\\(1D\)};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.1cm,minimum height=0.95cm,align=center,right=of w2] (w3) {QW minima\\\(2D\)};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.6cm,minimum height=0.95cm,align=center,right=of w3] (w4) {QW honeycomb\\triangular};
+
+  \node[draw,rounded corners,fill=orange!10,minimum width=4.2cm,minimum height=0.95cm,align=center,below=1.5cm of $(w2)!0.5!(w3)$] (d) {Dirac efectivo en \(2+1\)};
+  \node[draw,rounded corners,fill=purple!8,minimum width=4.5cm,minimum height=0.95cm,align=center,below=1.5cm of d] (p) {paso posterior hacia \(3+1\) discreto};
+
+  \draw[->,thick] (w1) -- (w2);
+  \draw[->,thick] (w2) -- (w3);
+  \draw[->,thick] (w3) -- (w4);
+  \draw[->,thick] (w2) -- (d);
+  \draw[->,thick] (w3) -- (d);
+  \draw[->,thick] (w4) -- (d);
+  \draw[->,thick] (d) -- (p);
+\end{tikzpicture}
+\caption{El hilo logico completo del bloque de quantum walks. Cada etapa agrega una capa de estructura sin abandonar la idea original.}
+\label{fig:roadmap-final}
+\end{figure}
+
+\section{Resumen final}
+
+Las ideas que conviene retener son estas:
+
+\begin{enumerate}[leftmargin=*]
+  \item la \textbf{quantum walk minima} ya produce una ecuacion tipo Dirac en \(1+1\);
+  \item la \textbf{split-step walk} refina esa construccion y da mas control sobre masa y cierres de gap;
+  \item al pasar a \(2D\), la misma logica se extiende a varias direcciones espaciales;
+  \item si esas direcciones se organizan como en una red \textbf{honeycomb/triangular}, la construccion se vuelve conceptualmente vecina de grafeno;
+  \item por eso, el paso a honeycomb no es un tema aparte: es la version geometrica natural del mecanismo de QW en \(2D\).
+\end{enumerate}
+
+Esta es la razon por la que convenia hacer ambas cosas juntas. Separarlas hubiera ocultado la idea principal: que la geometria de grafeno puede leerse como una reorganizacion natural de la logica de las quantum walks.
+
+\begin{thebibliography}{99}
+
+\bibitem{Arrighi2018}
+P. Arrighi, G. Di Molfetta, I. M\'arquez-Mart\'in y A. P\'erez,
+\newblock \enquote{The Dirac equation as a quantum walk over the honeycomb and triangular lattices},
+\newblock \emph{Physical Review A} \textbf{97}, 062111 (2018).
+
+\bibitem{Farrelly2020}
+T. C. Farrelly,
+\newblock \enquote{A review of Quantum Cellular Automata},
+\newblock \emph{Quantum} \textbf{4}, 368 (2020).
+
+\end{thebibliography}

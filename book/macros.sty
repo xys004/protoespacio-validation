@@ -13,6 +13,10 @@
 \RequirePackage{longtable}
 \RequirePackage{array}
 \RequirePackage{xcolor}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathreplacing}
+\pgfplotsset{compat=1.18}
 \RequirePackage{hyperref}
 
 \hypersetup{
@@ -22,19 +26,79 @@
   urlcolor=blue!50!black
 }
 
+% Spanish babel hace < > activos; los desactivamos para tikz / opciones de paquetes.
+\AtBeginDocument{\shorthandoff{<>}}
+
+% El paquete `book` no define `abstract`; los borradores (de la clase `article`)
+% lo usan al inicio de capitulos. Lo reimplementamos como bloque destacado.
+\providecommand{\abstractname}{Resumen}
+\newenvironment{abstract}{%
+  \par\medskip\noindent
+  \begin{quote}\small\itshape
+  \textbf{\abstractname.\ }\ignorespaces
+}{%
+  \end{quote}\par\medskip
+}
+
 % --- Constantes basicas
 \newcommand{\ii}{\ensuremath{\mathrm{i}}}
 \newcommand{\ee}{\ensuremath{\mathrm{e}}}
 \newcommand{\bbI}{\ensuremath{\mathbb{I}}}
+\newcommand{\bbR}{\ensuremath{\mathbb{R}}}
+\newcommand{\bbC}{\ensuremath{\mathbb{C}}}
+\newcommand{\bbN}{\ensuremath{\mathbb{N}}}
+\newcommand{\bbZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\bbQ}{\ensuremath{\mathbb{Q}}}
 
-% --- Variables de momento (Revision 28-mar-2026). Math-safe en texto.
-\newcommand{\vk}{\ensuremath{\bm{k}}}
-\newcommand{\vq}{\ensuremath{\bm{q}}}
-\newcommand{\vp}{\ensuremath{\bm{p}}}
+% --- Atajos caligraficos \cA..\cZ -> \mathcal{A}..\mathcal{Z}
+\newcommand{\cA}{\ensuremath{\mathcal{A}}}
+\newcommand{\cB}{\ensuremath{\mathcal{B}}}
+\newcommand{\cC}{\ensuremath{\mathcal{C}}}
+\newcommand{\cD}{\ensuremath{\mathcal{D}}}
+\newcommand{\cE}{\ensuremath{\mathcal{E}}}
+\newcommand{\cF}{\ensuremath{\mathcal{F}}}
+\newcommand{\cG}{\ensuremath{\mathcal{G}}}
+\newcommand{\cH}{\ensuremath{\mathcal{H}}}
+\newcommand{\cI}{\ensuremath{\mathcal{I}}}
+\newcommand{\cJ}{\ensuremath{\mathcal{J}}}
+\newcommand{\cK}{\ensuremath{\mathcal{K}}}
+\newcommand{\cL}{\ensuremath{\mathcal{L}}}
+\newcommand{\cM}{\ensuremath{\mathcal{M}}}
+\newcommand{\cN}{\ensuremath{\mathcal{N}}}
+\newcommand{\cO}{\ensuremath{\mathcal{O}}}
+\newcommand{\cP}{\ensuremath{\mathcal{P}}}
+\newcommand{\cQ}{\ensuremath{\mathcal{Q}}}
+\newcommand{\cR}{\ensuremath{\mathcal{R}}}
+\newcommand{\cS}{\ensuremath{\mathcal{S}}}
+\newcommand{\cT}{\ensuremath{\mathcal{T}}}
+\newcommand{\cU}{\ensuremath{\mathcal{U}}}
+\newcommand{\cV}{\ensuremath{\mathcal{V}}}
+\newcommand{\cW}{\ensuremath{\mathcal{W}}}
+\newcommand{\cX}{\ensuremath{\mathcal{X}}}
+\newcommand{\cY}{\ensuremath{\mathcal{Y}}}
+\newcommand{\cZ}{\ensuremath{\mathcal{Z}}}
+
+% --- Variables vectoriales (math-safe en texto).
+% Usamos \def porque el paquete `physics` define varias \v<letra> con argumento;
+% sobreescribimos a proposito para que los borradores --- que asumen \vk=\bm{k}
+% sin argumento --- sigan funcionando.
+\def\vk{\ensuremath{\bm{k}}}
+\def\vq{\ensuremath{\bm{q}}}
+\def\vp{\ensuremath{\bm{p}}}
+\def\va{\ensuremath{\bm{a}}}
+\def\vb{\ensuremath{\bm{b}}}
+\def\vd{\ensuremath{\bm{d}}}
+\def\vx{\ensuremath{\bm{x}}}
+\def\vA{\ensuremath{\bm{A}}}
+\def\vB{\ensuremath{\bm{B}}}
+\def\vK{\ensuremath{\bm{K}}}
+\def\vR{\ensuremath{\bm{R}}}
+\def\vdelta{\ensuremath{\bm{\delta}}}
+\def\vpsi{\ensuremath{\bm{\psi}}}
 
 % --- Espacios internos
-\newcommand{\vsigma}{\ensuremath{\bm{\sigma}}}
-\newcommand{\vtau}{\ensuremath{\bm{\tau}}}
+\def\vsigma{\ensuremath{\bm{\sigma}}}
+\def\vtau{\ensuremath{\bm{\tau}}}
 
 % --- Objetos dinamicos
 \newcommand{\Hop}{\ensuremath{H}}

@@ -1,0 +1,375 @@
+% Importado desde: 2026-03-28_De_Grafeno_a_Weyl_y_Dirac_3D.tex
+\chapter{Puente Pedagogico: --- De grafeno en \(2+1\) a semimetales de Dirac y Weyl en 3D}
+\label{ch:de-grafeno-a-weyl-dirac-3d}
+
+\section{Objetivo}
+
+En el documento anterior derivamos como grafeno produce una ecuacion efectiva de Dirac en \(2+1\) alrededor de los puntos \(K\) y \(K'\). El objetivo ahora es dar el siguiente paso del proyecto: explicar de manera clara y paso a paso como se pasa de esa fisica bidimensional a los semimetales de Weyl y Dirac en tres dimensiones.
+
+La pregunta guia sera:
+\[
+\text{si en grafeno aparece }
+H \sim v_F(\sigma_x q_x + \sigma_y q_y),
+\quad
+\text{que cambia cuando el sistema vive en 3D?}
+\]
+
+La respuesta corta es: en tres dimensiones aparece un tercer termino lineal con \(\sigma_z q_z\), y eso cambia por completo la naturaleza topologica del cruce de bandas.
+
+\section{Punto de partida: lo que ya sabemos de grafeno}
+
+En grafeno, cerca de un valle, el Hamiltoniano efectivo toma la forma
+\begin{equation}
+H_{\text{graphene}}(\vq)=\hbar v_F(\sigma_x q_x + \sigma_y q_y),
+\label{eq:graphene2d}
+\end{equation}
+salvo convenciones de signos y base.
+
+Los ingredientes esenciales eran:
+
+\begin{enumerate}[leftmargin=*]
+  \item dos subredes \(A/B\), que producen un espinor de dos componentes;
+  \item dos variables de baja energia, \(q_x\) y \(q_y\);
+  \item una dispersion lineal
+  \(
+  E_\pm = \pm \hbar v_F \sqrt{q_x^2+q_y^2}.
+  \)
+\end{enumerate}
+
+Ese Hamiltoniano es de Dirac sin masa en \(2+1\). El paso a 3D consiste en entender que ocurre cuando el cruce lineal ya no esta restringido a un plano sino a todo el espacio de momentos tridimensional.
+
+\section{Modelo generico de dos bandas}
+
+\subsection{La forma mas general}
+
+Todo Hamiltoniano hermitico \(2\times 2\) puede escribirse como
+\begin{equation}
+H(\vk)= d_0(\vk)\,I + d_x(\vk)\sigma_x + d_y(\vk)\sigma_y + d_z(\vk)\sigma_z.
+\label{eq:generic2band}
+\end{equation}
+
+De forma compacta,
+\begin{equation}
+H(\vk)=d_0(\vk)\,I + \vd(\vk)\cdot\vsigma,
+\qquad
+\vd=(d_x,d_y,d_z).
+\end{equation}
+
+Los autovalores son
+\begin{equation}
+E_\pm(\vk)=d_0(\vk)\pm |\vd(\vk)|.
+\label{eq:generic-dispersion}
+\end{equation}
+
+Por tanto, las bandas se tocan si y solo si
+\begin{equation}
+d_x(\vk)=d_y(\vk)=d_z(\vk)=0.
+\label{eq:crossing-condition}
+\end{equation}
+
+\subsection{Por que 3D cambia el juego}
+
+La condicion \eqref{eq:crossing-condition} son tres ecuaciones.
+
+\begin{enumerate}[leftmargin=*]
+  \item En \(2D\), el momento tiene solo dos componentes \((k_x,k_y)\). Tres ecuaciones para dos variables suelen ser demasiadas, asi que un cruce lineal necesita simetrias extra.
+  \item En \(3D\), el momento tiene tres componentes \((k_x,k_y,k_z)\). Ahora tres ecuaciones para tres variables pueden tener soluciones puntuales aisladas.
+\end{enumerate}
+
+Esa es una de las razones profundas por las que en tres dimensiones aparecen nodos de Weyl de manera natural como puntos aislados en el espacio recíproco.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,scale=1.1]
+  \node[draw,rounded corners,align=center,minimum width=4.4cm,minimum height=1.1cm,fill=blue!6] (a) at (0,0) {Grafeno en 2D\\ dos variables \((k_x,k_y)\)};
+  \node[draw,rounded corners,align=center,minimum width=4.4cm,minimum height=1.1cm,fill=orange!8] (b) at (7.2,0) {Sistema en 3D\\ tres variables \((k_x,k_y,k_z)\)};
+
+  \node[draw,rounded corners,align=center,minimum width=4.4cm,minimum height=1.2cm,fill=blue!3] (c) at (0,-2.5) {Cruce lineal requiere\\ simetria adicional};
+  \node[draw,rounded corners,align=center,minimum width=4.4cm,minimum height=1.2cm,fill=orange!5] (d) at (7.2,-2.5) {Cruces puntuales aislados\\ son posibles de forma generica};
+
+  \draw[->,thick] (a) -- (c);
+  \draw[->,thick] (b) -- (d);
+\end{tikzpicture}
+\caption{Comparacion conceptual entre 2D y 3D para un Hamiltoniano de dos bandas.}
+\label{fig:2d-vs-3d}
+\end{figure}
+
+\section{Linearizacion alrededor de un cruce en 3D}
+
+\subsection{Expasion de baja energia}
+
+Supongamos que las bandas se tocan en un punto \(\vk_0\), es decir,
+\begin{equation}
+\vd(\vk_0)=0.
+\end{equation}
+
+Escribimos entonces
+\begin{equation}
+\vk=\vk_0+\vq,
+\qquad |\vq| \ll 1.
+\end{equation}
+
+Expandimos cada componente de \(\vd(\vk)\) a primer orden:
+\begin{equation}
+d_i(\vk_0+\vq)\approx \sum_{j=x,y,z} A_{ij} q_j,
+\label{eq:linearization-matrix}
+\end{equation}
+donde
+\begin{equation}
+A_{ij}=
+\left.
+\frac{\partial d_i}{\partial k_j}
+\right|_{\vk_0}.
+\end{equation}
+
+Sustituyendo en \eqref{eq:generic2band},
+\begin{equation}
+H(\vk_0+\vq)\approx \sum_{i,j} A_{ij}q_j \sigma_i.
+\label{eq:weyl-general}
+\end{equation}
+
+Esta es la forma mas general del Hamiltoniano de Weyl linealizado.
+
+\subsection{Caso isotropo}
+
+Si por simplicidad la matriz \(A_{ij}\) puede llevarse a
+\begin{equation}
+A_{ij}=\chi v\,\delta_{ij},
+\qquad \chi=\pm 1,
+\end{equation}
+entonces \eqref{eq:weyl-general} se reduce a
+\begin{equation}
+H_\chi(\vq)=\chi\, v \,(q_x\sigma_x + q_y\sigma_y + q_z\sigma_z).
+\label{eq:weyl-isotropic}
+\end{equation}
+
+Sus autovalores son
+\begin{equation}
+E_\pm(\vq)=\pm v\sqrt{q_x^2+q_y^2+q_z^2}.
+\label{eq:weyl-dispersion}
+\end{equation}
+
+Eso es un fermion de Weyl: un cruce lineal en tres dimensiones descrito por un Hamiltoniano \(2\times 2\).
+
+\section{Que significa la quiralidad}
+
+El signo \(\chi=\pm 1\) en \eqref{eq:weyl-isotropic} se llama quiralidad o carga quiral del nodo. De manera intuitiva:
+
+\begin{enumerate}[leftmargin=*]
+  \item \(\chi=+1\) corresponde a un nodo de una mano;
+  \item \(\chi=-1\) corresponde a un nodo de la mano opuesta.
+\end{enumerate}
+
+Matematicamente, la quiralidad esta relacionada con el signo del determinante de la matriz de velocidades:
+\begin{equation}
+\chi = \mathrm{sign}\,\det(A_{ij}).
+\label{eq:chirality-det}
+\end{equation}
+
+Esta cantidad no cambia bajo deformaciones suaves mientras el nodo no se aniquile con otro de quiralidad opuesta.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.05,>=Latex]
+  \draw[->] (-4.5,0) -- (4.5,0) node[right] {$k_z$};
+  \fill[red!80!black] (-1.9,0) circle (2.5pt);
+  \fill[blue!80!black] (1.9,0) circle (2.5pt);
+  \node[above] at (-1.9,0) {$\chi=-1$};
+  \node[above] at (1.9,0) {$\chi=+1$};
+  \node[below] at (-1.9,0) {$W_-$};
+  \node[below] at (1.9,0) {$W_+$};
+  \draw[dashed,gray] (-1.9,0) circle (0.65);
+  \draw[dashed,gray] (1.9,0) circle (0.65);
+  \node at (0,1.05) {\footnotesize par minimo de nodos de Weyl};
+\end{tikzpicture}
+\caption{Un semimetal de Weyl contiene nodos con quiralidades opuestas. En un cristal real, los nodos aparecen al menos en pares.}
+\label{fig:weyl-pair}
+\end{figure}
+
+\section{Por que los nodos de Weyl vienen en pares}
+
+Grafeno ya nos habia entrenado para esta idea: los puntos \(K\) y \(K'\) aparecen en pares. En tres dimensiones, el mismo espiritu sobrevive. Un cristal periodico no puede contener un unico nodo de Weyl aislado en toda la zona de Brillouin; la suma total de quiralidades debe anularse.
+
+De manera esquematica,
+\begin{equation}
+\sum_{\text{nodos}} \chi_n = 0.
+\label{eq:sum-chirality}
+\end{equation}
+
+Esta es una version fisica del mismo principio que luego se formaliza con Nielsen--Ninomiya: la red impone un balance global de quiralidad.
+
+\section{De Weyl a Dirac en 3D}
+
+\subsection{Idea central}
+
+Un punto de Dirac en 3D puede entenderse, pedagogicamente, como dos nodos de Weyl de quiralidad opuesta colocados exactamente en el mismo punto del espacio de momentos y a la misma energia.
+
+Eso ya no cabe en un Hamiltoniano \(2\times 2\); necesitamos una descripcion \(4\times 4\) porque estamos superponiendo dos sectores de Weyl.
+
+\subsection{Hamiltoniano minimo de Dirac}
+
+Una forma sencilla de escribirlo es
+\begin{equation}
+H_D(\vq)=
+\begin{pmatrix}
+v(q_x\sigma_x+q_y\sigma_y+q_z\sigma_z) & 0\\
+0 & -v(q_x\sigma_x+q_y\sigma_y+q_z\sigma_z)
+\end{pmatrix}.
+\label{eq:dirac4x4}
+\end{equation}
+
+Este Hamiltoniano contiene dos bloques de Weyl:
+
+\begin{enumerate}[leftmargin=*]
+  \item un bloque de quiralidad \(+1\);
+  \item un bloque de quiralidad \(-1\).
+\end{enumerate}
+
+Como ambos bloques se encuentran en el mismo punto \(\vq=0\), el sistema exhibe un punto de Dirac en 3D.
+
+\subsection{Dispersion}
+
+Los autovalores de \eqref{eq:dirac4x4} son
+\begin{equation}
+E_\pm(\vq)=\pm v\sqrt{q_x^2+q_y^2+q_z^2},
+\end{equation}
+con degeneracion doble por el solapamiento de los dos sectores de Weyl.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0,>=Latex]
+  \draw[->] (-5.1,0) -- (5.1,0) node[right] {$k_z$};
+
+  \fill[red!80!black] (-2.8,0) circle (2.3pt);
+  \fill[blue!80!black] (-2.8,0) circle (2.3pt);
+  \node[above] at (-2.8,0.05) {\small Dirac};
+  \node[below] at (-2.8,-0.05) {\small \(W_+\) y \(W_-\) superpuestos};
+
+  \draw[->,thick] (-1.5,0.7) -- (0.1,0.7);
+  \node[above] at (-0.7,0.7) {\footnotesize ruptura de simetria};
+
+  \fill[red!80!black] (2.2,0) circle (2.3pt);
+  \fill[blue!80!black] (3.8,0) circle (2.3pt);
+  \node[above] at (2.2,0) {\small \(W_-\)};
+  \node[above] at (3.8,0) {\small \(W_+\)};
+  \draw[dashed,gray] (2.2,0) circle (0.5);
+  \draw[dashed,gray] (3.8,0) circle (0.5);
+\end{tikzpicture}
+\caption{Interpretacion pedagogica: un punto de Dirac puede verse como dos nodos de Weyl de quiralidad opuesta exactamente superpuestos. Si una simetria que los mantenia pegados se rompe, el punto de Dirac puede separarse en dos nodos de Weyl.}
+\label{fig:dirac-splitting}
+\end{figure}
+
+\section{Como se separa un punto de Dirac}
+
+\subsection{Modelo simple}
+
+Para visualizar la separacion, desplazamos los dos bloques en direcciones opuestas a lo largo de \(q_z\):
+\begin{equation}
+H_{\text{split}}(\vq)=
+\begin{pmatrix}
+v(q_x\sigma_x+q_y\sigma_y+(q_z-b)\sigma_z) & 0\\
+0 & -v(q_x\sigma_x+q_y\sigma_y+(q_z+b)\sigma_z)
+\end{pmatrix}.
+\label{eq:split-model}
+\end{equation}
+
+Este Hamiltoniano sigue siendo block-diagonal, pero ahora los ceros de energia ya no coinciden.
+
+\subsection{Donde quedan los nodos}
+
+Para que el bloque superior tenga energia cero se requiere
+\begin{equation}
+q_x=0,\qquad q_y=0,\qquad q_z=b.
+\end{equation}
+
+Para el bloque inferior se requiere
+\begin{equation}
+q_x=0,\qquad q_y=0,\qquad q_z=-b.
+\end{equation}
+
+Por tanto, el punto de Dirac inicial en \(\vq=0\) se separa en dos nodos de Weyl:
+\begin{equation}
+\vq_+= (0,0,b),
+\qquad
+\vq_-=(0,0,-b).
+\label{eq:node-separation}
+\end{equation}
+
+\subsection{Lectura fisica}
+
+La moraleja es simple:
+
+\begin{enumerate}[leftmargin=*]
+  \item el punto de Dirac en 3D es mas fragil que un nodo de Weyl;
+  \item normalmente necesita simetrias cristalinas, inversion y/o reversibilidad temporal para permanecer degenerado;
+  \item cuando alguna de esas protecciones se rompe, el punto de Dirac puede desdoblarse en nodos de Weyl separados.
+\end{enumerate}
+
+\section{Comparacion directa con grafeno}
+
+\begin{center}
+\begin{tabular}{p{0.3\textwidth}p{0.28\textwidth}p{0.28\textwidth}}
+\toprule
+\textbf{Caracteristica} & \textbf{Grafeno} & \textbf{Semimetales Weyl/Dirac 3D} \\
+\midrule
+Dimensionalidad efectiva & \(2+1\) & \(3+1\) efectiva en baja energia \\
+Hamiltoniano minimo & \(2\times 2\) & Weyl: \(2\times 2\), Dirac: \(4\times 4\) \\
+Variables de momento & \(q_x,q_y\) & \(q_x,q_y,q_z\) \\
+Cruce lineal & puntos \(K,K'\) & nodos de Weyl o punto de Dirac \\
+Quiralidad & implita via valles y subred & explicita en cada nodo de Weyl \\
+Proteccion & simetrias de red & simetrias cristalinas y topologia \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Donde entra la anomalia quiral}
+
+Una vez que existen nodos de Weyl de quiralidad opuesta, campos electricos y magneticos paralelos pueden transferir carga quiral de un nodo al otro. Ese es el origen de la anomalia quiral en estos materiales y de observables como la magnetorresistencia negativa.
+
+No vamos a derivarla todavia, pero ya queda claro por que este fenomeno no aparece de la misma manera en el grafeno minimo: en 3D los nodos de Weyl portan una carga topologica mas directa y la respuesta electromagnetica adquiere una estructura nueva.
+
+\section{Resumen operativo}
+
+\begin{enumerate}[leftmargin=*]
+  \item Grafeno nos ensena como aparece una estructura de Dirac lineal en \(2D\).
+  \item Un Hamiltoniano \(2\times 2\) generico en 3D puede tener cruces puntuales aislados porque hay tres funciones \(d_i(\vk)\) y tres variables \(k_i\).
+  \item La linearizacion alrededor del nodo produce el Hamiltoniano de Weyl
+  \(
+  H_\chi(\vq)=\chi v\, \vq\cdot\vsigma.
+  \)
+  \item Los nodos de Weyl vienen en pares de quiralidad opuesta.
+  \item Un punto de Dirac en 3D puede verse como dos nodos de Weyl superpuestos.
+  \item Una ruptura de simetria puede separar ese punto de Dirac en dos nodos de Weyl.
+\end{enumerate}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  node distance=8mm and 9mm,
+  every node/.style={font=\small},
+  box/.style={draw,rounded corners,thick,align=center,minimum width=3.3cm,minimum height=1cm,fill=blue!6},
+  arr/.style={-{Latex[length=3mm]},thick}
+]
+  \node[box] (g) {Grafeno\\ \(H\sim \sigma_x q_x+\sigma_y q_y\)};
+  \node[box, right=of g] (w) {Weyl 3D\\ \(H\sim \sigma_x q_x+\sigma_y q_y+\sigma_z q_z\)};
+  \node[box, right=of w] (d) {Dirac 3D\\ dos bloques de Weyl superpuestos};
+  \node[box, below=of w] (s) {Ruptura de simetria\\ separacion en nodos};
+
+  \draw[arr] (g) -- (w);
+  \draw[arr] (w) -- (d);
+  \draw[arr] (d) -- (s);
+\end{tikzpicture}
+\caption{Ruta conceptual del paso actual del proyecto.}
+\label{fig:roadmap}
+\end{figure}
+
+\section{Siguiente paso natural}
+
+Con esto ya queda armado el puente conceptual que faltaba. El siguiente paso mas organico del proyecto seria uno de estos dos:
+
+\begin{enumerate}[leftmargin=*]
+  \item derivar un modelo minimo de semimetal de Weyl desde una red o desde una matriz de Bloch concreta;
+  \item agregar perturbaciones fisicas controladas: masa, inversion, reversibilidad temporal, strain o campo magnetico, y seguir como se mueve o se abre el espectro.
+\end{enumerate}
+
+Si queremos mantener el mismo estilo pedagogico, yo seguiria con la opcion 2: un capitulo paso a paso sobre como una perturbacion abre un gap o separa nodos.
