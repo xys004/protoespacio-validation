@@ -23,38 +23,38 @@
 }
 
 % --- Constantes basicas
-\newcommand{\ii}{\mathrm{i}}
-\newcommand{\ee}{\mathrm{e}}
-\newcommand{\bbI}{\mathbb{I}}
+\newcommand{\ii}{\ensuremath{\mathrm{i}}}
+\newcommand{\ee}{\ensuremath{\mathrm{e}}}
+\newcommand{\bbI}{\ensuremath{\mathbb{I}}}
 
-% --- Variables de momento (Revision 28-mar-2026)
-\newcommand{\vk}{\bm{k}}              % momento de Bloch / global k-espacio
-\newcommand{\vq}{\bm{q}}              % desviacion pequena alrededor de un nodo
-\newcommand{\vp}{\bm{p}}              % momento efectivo continuo infrarrojo
+% --- Variables de momento (Revision 28-mar-2026). Math-safe en texto.
+\newcommand{\vk}{\ensuremath{\bm{k}}}
+\newcommand{\vq}{\ensuremath{\bm{q}}}
+\newcommand{\vp}{\ensuremath{\bm{p}}}
 
 % --- Espacios internos
-\newcommand{\vsigma}{\bm{\sigma}}     % pseudospin / Weyl interno
-\newcommand{\vtau}{\bm{\tau}}         % indice quiral / bloque Weyl acoplado
+\newcommand{\vsigma}{\ensuremath{\bm{\sigma}}}
+\newcommand{\vtau}{\ensuremath{\bm{\tau}}}
 
 % --- Objetos dinamicos
-\newcommand{\Hop}{H}                  % Hamiltoniano efectivo / continuo
-\newcommand{\Uop}{U}                  % paso unitario discreto exacto
-\newcommand{\UW}{U_{W}}               % Weyl walk discreto minimo
-\newcommand{\UD}{U_{D}}               % Dirac walk discreto 4-componentes
-\newcommand{\HD}{H_{D}}               % Dirac Hamiltoniano efectivo
+\newcommand{\Hop}{\ensuremath{H}}
+\newcommand{\Uop}{\ensuremath{U}}
+\newcommand{\UW}{\ensuremath{U_{W}}}
+\newcommand{\UD}{\ensuremath{U_{D}}}
+\newcommand{\HD}{\ensuremath{H_{D}}}
 
 % --- Estructura del protoespacio
-\newcommand{\Lattice}{\Lambda}
-\newcommand{\Proto}{\mathfrak{P}_{\mathrm{disc}}}
-\newcommand{\ProtoTuple}{(\Lattice,\mathbb{C}^N,\Uop,G_{\mathrm{micro}})}
+\newcommand{\Lattice}{\ensuremath{\Lambda}}
+\newcommand{\Proto}{\ensuremath{\mathfrak{P}_{\mathrm{disc}}}}
+\newcommand{\ProtoTuple}{\ensuremath{(\Lattice,\mathbb{C}^N,\Uop,G_{\mathrm{micro}})}}
 
 % --- Algebra de Clifford / Lorentz
-\newcommand{\gmu}{\gamma^{\mu}}
-\newcommand{\gnu}{\gamma^{\nu}}
-\newcommand{\sigmunu}{\sigma^{\mu\nu}}
-\newcommand{\acomm}[2]{\{#1,#2\}}
+% Nota: \acomm y \comm vienen del paquete `physics`; no redefinir.
+\newcommand{\gmu}{\ensuremath{\gamma^{\mu}}}
+\newcommand{\gnu}{\ensuremath{\gamma^{\nu}}}
+\newcommand{\sigmunu}{\ensuremath{\sigma^{\mu\nu}}}
 
-% --- Niveles del proyecto (referencias rapidas)
+% --- Niveles del proyecto (referencias rapidas, modo texto)
 \newcommand{\NivelI}{\textbf{Nivel I (microscopico exacto)}}
 \newcommand{\NivelII}{\textbf{Nivel II (efectivo infrarrojo)}}
 \newcommand{\NivelIII}{\textbf{Nivel III (covariante espinorial)}}

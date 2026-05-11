@@ -1,7 +1,8 @@
 import pytest
 
 from validators.nielsen_ninomiya import (
-    cannot_have_single_chirality,
+    balanced_count_required,
+    cannot_have_uniform_chirality,
     chiral_sum_zero_satisfiable,
 )
 
@@ -17,5 +18,10 @@ def test_odd_nodes_unsatisfiable(n):
 
 
 @pytest.mark.parametrize("n", [2, 4, 6])
-def test_no_single_chirality(n):
-    assert cannot_have_single_chirality(n)
+def test_no_uniform_chirality(n):
+    assert cannot_have_uniform_chirality(n)
+
+
+@pytest.mark.parametrize("n", [2, 4, 6, 8])
+def test_balanced_count(n):
+    assert balanced_count_required(n)
