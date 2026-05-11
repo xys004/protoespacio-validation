@@ -1,0 +1,63 @@
+\section{Setup, notation, and three levels}
+\label{p:setup}
+
+\subsection{Notation}
+We use the conventions established in the long form of this work:
+$\vk$ denotes a Bloch momentum on the discrete model, $\vq$ a small
+deviation about a band-crossing point $\vk_{0}$, and $\vp$ the continuum
+infrared momentum. Internal degrees of freedom are organized by
+$\sigma_{i}$ (pseudospin / Weyl two-component) and $\tau_{i}$ (chiral
+index or coupled-block label). The canonical four-component Dirac block
+that we recover at the end of the ladder takes the form
+\begin{equation}
+\HD \;=\; v\,\tau_{z} \otimes (\sigma_{x} p_{x} + \sigma_{y} p_{y} + \sigma_{z} p_{z})
+            \;+\; m\,\tau_{x}\otimes\bbI ,
+\label{p:eq:HDcanon}
+\end{equation}
+whose squared form
+$\HD^{2} = (v^{2}\lvert \vp\rvert^{2} + m^{2})\,\bbI_{4}$
+will reappear several times.
+
+\subsection{Three levels}
+A recurring source of confusion in this corner of the literature is the
+conflation of three distinct levels of statement. We commit to keeping
+them apart throughout the paper:
+
+\begin{description}
+\item[\textbf{Level I (microscopic exact).}]
+    The discrete substrate: lattice or step protocol $\Uop$, locality, the
+    exact group of discrete symmetries, quasi-energy periodicity in
+    discrete-time models. At this level the fundamental dynamical object
+    is $\Uop$, not $\Hop$.
+\item[\textbf{Level II (effective infrared).}]
+    The linearization around a band-crossing point, the appearance of
+    Weyl or Dirac blocks, approximate continuous isotropy, the reading
+    of mass, chirality, and effective velocity. Here it is natural to
+    write $\Uop \simeq \bbI - \ii\,\Delta t\,\Hop_{\mathrm{eff}}$.
+\item[\textbf{Level III (covariant spinorial).}]
+    The Clifford algebra of $\gmu$, the spinorial Lorentz generators
+    $\sigmunu$, the proper orthochronous group $SO^{+}(3,1)$,
+    Poincar\'e, and the double-cover $SL(2,\bbC) \to SO^{+}(3,1)$. This
+    level is the \emph{organization} of the infrared limit, not an exact
+    symmetry of the substrate.
+\end{description}
+
+We will reserve the adjective \enquote{exact} for Level I, and the
+adjective \enquote{effective} or \enquote{infrared} for Levels II and
+III. This split, banal as it sounds, is what saves the rest of the
+construction from over-claiming.
+
+\subsection{The protospace tuple}
+By \emph{protospace} we mean the ampliated structure that carries the
+microscopic dynamics:
+\begin{equation}
+\Proto \;\sim\; \bigl(\Lattice,\,\bbC^{N},\,\Uop,\,G_{\mathrm{micro}}\bigr) ,
+\label{p:eq:proto-tuple}
+\end{equation}
+where $\Lattice$ is the underlying graph (not necessarily periodic),
+$\bbC^{N}$ the local internal Hilbert space, $\Uop$ the local step, and
+$G_{\mathrm{micro}}$ its exact discrete symmetry group. Identifying
+$\Proto$ with the Brillouin torus $T^{d}$ would confuse a
+\emph{calculational device} (the Fourier-space representation of a
+periodic protocol) with the \emph{underlying structure}. We come back to
+this point in Section~\ref{p:open-problems}.

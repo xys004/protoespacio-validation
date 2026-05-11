@@ -1,0 +1,66 @@
+\section{Emergence criteria: causality, isotropy, Nielsen--Ninomiya}
+\label{p:criteria}
+
+A consistent ladder is not enough on its own: one must also state what
+counts as the relativistic limit being \emph{well posed}. We collect
+three operational criteria, each verified by an explicit test.
+
+\subsection{Effective light cone and causality}
+Given a Dirac-like dispersion $E(\vp)^{2} = v^{2}\lvert\vp\rvert^{2}+m^{2}$, the
+group velocity satisfies
+\begin{equation}
+v_{g}^{2}(\vp) - v^{2}
+   \;=\; -\,\frac{m^{2}\,v^{2}}{v^{2}\lvert\vp\rvert^{2}+m^{2}} \;\le\; 0 ,
+\label{p:eq:vg-bound}
+\end{equation}
+with saturation in the massless limit. This is the algebraic basis of
+the effective light cone. The associated effective metric
+$g^{\mu\nu}_{\mathrm{eff}} = \mathrm{diag}(-1,1/v^{2},1/v^{2},1/v^{2})$
+has Lorentzian signature $(-,+,+,+)$ and determinant $-1/v^{6}$, both
+verified symbolically (\texttt{validators/causality.py}). The
+discrete-time analogue obeys $\cos(\varepsilon\,\Delta t) =
+1-(v^{2}\vk^{2}+m^{2})\,\Delta t^{2}/2 + O(\Delta t^{3})$, recovering the
+continuous dispersion at small step
+(\texttt{validators/causalidad\_continuo\_vs\_discreto.py}).
+
+\subsection{Isotropy as effective Lorentz}
+For an anisotropic effective Hamiltonian
+$\Hop_{\mathrm{eff}} = \sum_{a} v_{a}\,\sigma_{a}\,p_{a}$,
+the squared dispersion
+$\Hop_{\mathrm{eff}}^{2}=\sum_{a}v_{a}^{2}\,p_{a}^{2}\,\bbI$ reads as an
+effective Riemannian metric
+$g^{ab}_{\mathrm{eff}} = \mathrm{diag}(v_{x}^{2},v_{y}^{2},v_{z}^{2})$;
+isotropy (a single effective light cone) is the condition
+$v_{x}=v_{y}=v_{z}$. This is encoded as a SMT problem and verified by
+\texttt{validators/isotropy.py}, which both confirms the existence of
+isotropic solutions and the unsatisfiability of any combined
+isotropy-with-anisotropy claim. For position-dependent velocities
+$v_{a}(x)$ (variable tetrad) the same calculation goes through pointwise
+(\texttt{validators/triada.py}).
+
+\subsection{Chirality balance: Nielsen--Ninomiya without torus}
+On any compact periodic lattice, the total chirality summed over band
+nodes vanishes. Translated to combinatorial SMT, the statement is: for
+$n$ even, there exists an assignment of charges $\chi_{i}\in\{\pm 1\}$
+with $\sum_{i}\chi_{i}=0$; for $n$ odd, no such assignment exists.
+Moreover, no uniform-chirality configuration is allowed when the sum is
+zero. This is precisely what
+\texttt{validators/nielsen\_ninomiya.py} verifies.
+
+A stronger statement holds without invoking periodicity. For a finite
+bipartite graph $G=(A\sqcup B,E)$, the chirality matrix
+$\Gamma=\mathrm{diag}(+\bbI_{A},-\bbI_{B})$ anticommutes with the
+adjacency, and the nullity is lower-bounded by $\lvert\lvert A\rvert-\lvert B\rvert\rvert$. On
+a maximum matching the bound saturates. These facts, contained in
+\texttt{validators/rama\_estructural.py}, are exactly the discrete index
+theorem in the absence of reciprocal-space periodicity --- a key
+ingredient of the structural branch of Sec.~\ref{p:open-problems}.
+
+\subsection{Wilson term and the selection of the light Dirac}
+On the 3D Wilson--Dirac lattice of Eq.~\eqref{p:eq:Wilson3D}, the
+seven Brillouin-zone corners other than $\vk=0$ acquire Wilson masses
+$m+2r, m+4r, m+6r$ depending on their distance from the origin in $\pi/a$
+units, while $\vk=0$ retains mass $m$. This is the lattice mechanism
+that lifts the naive fermion doublers and isolates a single light Dirac
+in the infrared (\texttt{validators/wilson\_subsector.py},
+\texttt{validators/protoespacio\_global.py}).

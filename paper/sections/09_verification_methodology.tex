@@ -1,0 +1,63 @@
+\section{Verification methodology}
+\label{p:verification}
+
+The verification policy underlying the whole paper is simple to state
+and tight in practice: \emph{the build of the PDF is gated by a test
+suite}. Concretely:
+
+\paragraph{Two backends, one policy.}
+Algebraic identities are checked by \texttt{sympy}, which is appropriate
+when the claim is an equality between matrix expressions, an expansion
+to first or second order, or a manipulation of Clifford or Pauli
+algebra. Combinatorial and order-theoretic claims (Nielsen--Ninomiya
+balance, isotropy as SMT, bipartite index, structural consistency of
+small causal sets) are checked by the SMT solver \texttt{z3}~\cite{deMoura2008},
+which is appropriate when the natural domain is propositional or
+arithmetic over small finite types.
+
+\paragraph{Granularity.}
+Each chapter of the long form (and each section of this paper, where
+applicable) carries one or more comments of the form
+\begin{center}\small\texttt{\% verified-by: validators/\textless module\textgreater.py::\textless test\textgreater}\end{center}
+inserted immediately after the section heading. The total bookkeeping
+amounts to $153$ such lines distributed across the 32 chapters of the
+long form, covering all explicitly stated algebraic and combinatorial
+claims.
+
+\paragraph{Pipeline.}
+A single script \texttt{scripts/build\_book.ps1} (with a parallel
+\texttt{build\_book.sh} for a WSL/Linux build) runs the test suite
+through \texttt{pytest} and proceeds with \texttt{latexmk} only on a
+clean exit. With the current $146$ tests the full pipeline runs in under
+twenty seconds. Of particular note: the policy caught three classes of
+errors during development. (i) An overconfident formulation of a
+chirality predicate based on the wrong combinatorial restriction, which
+the SMT failed correctly. (ii) A wrong sign in the spinorial covariance
+identity Eq.~\eqref{p:eq:cov-id}, caught by the closed-form symbolic
+test. (iii) An inversion of the Hermitian / anti-Hermitian status of
+rotational vs.\ boost generators in our docstrings, detected by
+\texttt{::test\_rotation\_generators\_hermitian} and
+\texttt{::test\_boost\_generators\_antihermitian}. In each case the
+correction was algorithmic, not interpretive.
+
+\paragraph{Cost / benefit.}
+The cost of writing a verification module per chapter is approximately
+two to four hours of careful work per claim; the cost of running the
+full suite is negligible. The benefit is more important: the manuscript
+becomes \emph{auditable}. A reader who wants to confirm any specific
+algebraic identity of the paper can do so in under a minute by reading
+the corresponding test, without needing to rerun the derivation by hand.
+
+\paragraph{Comparison with related practices.}
+There is a small body of recent work on machine-checked theoretical
+physics, mostly using interactive theorem provers (Lean, Coq, Isabelle)
+applied to relatively small theorems. The present approach is
+deliberately coarser: \texttt{sympy} and \texttt{z3} suffice for the
+algebraic and combinatorial layer we want to certify, do not require
+re-encoding the entire physics in a typed proof assistant, and integrate
+naturally with the working scientist's existing toolchain. The
+trade-off is that we certify the algebra but not, for instance, the
+infinite-dimensional limit of the continuum: that step remains a
+mathematical theorem to be argued by hand. We see this as the right
+granularity for the kind of pedagogical and verificational work
+contained here.

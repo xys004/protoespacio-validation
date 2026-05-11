@@ -1,0 +1,60 @@
+\section{Covariant structure: from \texorpdfstring{$\gamma^{\mu}$}{gamma\^mu} to \texorpdfstring{$SL(2,\mathbb{C})$}{SL(2,C)}}
+\label{p:covariant}
+
+At this point the discrete construction has reached a four-component
+Dirac block whose squared dispersion is Lorentzian. The remaining task
+is to identify the covariant structure that organizes it: a Clifford
+algebra, the spinorial generators of Lorentz, and the connection to
+$SL(2,\bbC)$.
+
+\subsection{Clifford algebra}
+In the Dirac representation, $\gamma^{0} = \tau_{z}\otimes\bbI$ and
+$\gamma^{i} = \ii\,\tau_{x}\otimes\sigma_{i}$. A direct check confirms
+\begin{equation}
+\{\gamma^{\mu},\gamma^{\nu}\}\;=\;2\,\eta^{\mu\nu}\,\bbI_{4} ,
+\qquad \eta=\mathrm{diag}(+1,-1,-1,-1) ,
+\label{p:eq:clifford}
+\end{equation}
+which we verify entry by entry over all sixteen pairs $(\mu,\nu)$
+(\texttt{validators/clifford.py}).
+
+\subsection{Spinorial Lorentz generators}
+The six spinorial Lorentz generators are
+\begin{equation}
+\Sigma^{\mu\nu} \;=\; \frac{\ii}{4}\,[\gamma^{\mu},\gamma^{\nu}] .
+\end{equation}
+Two structural facts then follow:
+\begin{enumerate}[leftmargin=*]
+\item the covariance identity
+\begin{equation}
+[\Sigma^{\rho\sigma},\,\gamma^{\mu}]
+\;=\;\ii\bigl(\eta^{\sigma\mu}\gamma^{\rho}-\eta^{\rho\mu}\gamma^{\sigma}\bigr) ;
+\label{p:eq:cov-id}
+\end{equation}
+\item the closure of the Lorentz algebra,
+\begin{equation}
+[\Sigma^{\mu\nu},\Sigma^{\rho\sigma}] = \ii\bigl(
+  \eta^{\nu\rho}\Sigma^{\mu\sigma}-\eta^{\mu\rho}\Sigma^{\nu\sigma}
+ -\eta^{\nu\sigma}\Sigma^{\mu\rho}+\eta^{\mu\sigma}\Sigma^{\nu\rho}\bigr).
+\label{p:eq:lorentz-closure}
+\end{equation}
+\end{enumerate}
+Both are verified over all 256 quadruples $(\mu,\nu,\rho,\sigma)$ by
+\texttt{validators/lorentz.py::test\_sigma\_mu\_nu\_covariance} and
+\texttt{::test\_lorentz\_algebra\_closure}. Rotational generators
+$\Sigma^{ij}$ are Hermitian; boost generators $\Sigma^{0i}$ are
+anti-Hermitian, consistent with rotations being compact and boosts being
+non-compact.
+
+\subsection{Double cover $SL(2,\bbC)\!\to\!SO^{+}(3,1)$}
+A 2$\pi$ rotation in physical space acts on a spinor as
+$\mathrm{e}^{-\ii\pi\sigma_{z}} = -\bbI$, not $+\bbI$, while a 4$\pi$
+rotation returns the spinor to itself. This is the standard double-cover
+relation, and is verified directly by
+\texttt{validators/puentes\_grupos.py::test\_two\_pi\_gives\_minus\_identity}
+and \texttt{::test\_four\_pi\_gives\_identity}. The chiral matrix
+$\gamma_{5} = \ii\,\gamma^{0}\gamma^{1}\gamma^{2}\gamma^{3}$ anticommutes
+with each $\gamma^{\mu}$ and squares to $\bbI_{4}$, defining the chiral
+projectors $P_{\pm}=(\bbI\pm\gamma_{5})/2$ that decompose the four-spinor
+into Weyl pairs --- closing the loop with the splitting of
+Sec.~\ref{p:weyl-dirac-3d}.

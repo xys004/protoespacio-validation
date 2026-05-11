@@ -1,0 +1,38 @@
+\section{Conclusions}
+\label{p:conclusions}
+
+We have walked the discrete-to-continuous ladder
+$\text{SSH} \to \text{graphene} \to \text{honeycomb QW} \to \text{Weyl/Dirac 3+1}$
+keeping a uniform notation, three clearly separated levels (microscopic
+exact, effective infrared, covariant spinorial), and a strict
+verification policy: every algebraic and combinatorial claim is paired
+with a symbolic test, and the build of the manuscript fails unless all
+$146$ tests pass.
+
+The relativistic structure --- the Clifford algebra of $\gamma^{\mu}$,
+the spinorial Lorentz generators $\Sigma^{\mu\nu}$, the double cover by
+$SL(2,\bbC)$, an effective Lorentzian light cone with controlled group
+velocity, and a chirality balance that holds even in the absence of
+translation invariance --- emerges entirely as an effective infrared
+organization, not as a microscopic symmetry of the discrete step.
+
+The two open problems identified in the long form of this work, on the
+global spectral classification of the discrete step and on the
+formulation of the underlying protospace without reciprocal-space
+language, both come equipped with a first body of machine-checked
+machinery, leaving them open in a precise rather than diffuse sense.
+
+The verification methodology is, we believe, the most reusable
+contribution. It does not require interactive theorem provers, integrates
+with the scientist's existing toolchain, and yields manuscripts whose
+algebraic claims are auditable in under a minute per claim.
+
+\section*{Acknowledgements}
+[Placeholder. Funding, discussions, etc.]
+
+\section*{Code and reproducibility}
+All validation code and the full long-form manuscript are publicly
+available at the repository hosting this paper, under
+\texttt{validators/}, \texttt{tests/}, and \texttt{book/}. The build
+pipeline runs in under twenty seconds end-to-end on a standard
+laptop.

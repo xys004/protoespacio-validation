@@ -1,0 +1,65 @@
+\section{Introduction}
+\label{p:intro}
+
+The (3+1)-dimensional Dirac equation, the Clifford algebra it sits on, and
+the spinorial Lorentz generators that organize it, all sit comfortably in
+the continuum: they assume a smooth manifold and a continuous symmetry
+group. A persistent question, going back to Wilson's lattice fermions and
+revisited recently in quantum-walk and quantum-cellular-automata
+frameworks~\cite{Arrighi2018,Farrelly2020,FarrellyShort2014}, is whether
+this whole relativistic edifice can be obtained as an effective infrared
+sector of a discrete underlying dynamics. The answer is, by now, clearly
+``yes'' at the level of low-energy effective Hamiltonians, but the
+\emph{verification} side has remained a patchwork of analytic
+calculations.
+
+This paper makes three coordinated contributions.
+
+\paragraph{1.~Ladder.}
+We assemble a single coherent ladder, dimension by dimension:
+\[
+\text{SSH in } 1{+}1 \;\longrightarrow\;
+\text{graphene in } 2{+}1 \;\longrightarrow\;
+\text{honeycomb QW} \;\longrightarrow\;
+\text{Weyl/Dirac in } 3{+}1 ,
+\]
+with the same notation and the same algebraic objects all the way
+through.\footnote{The pedagogical ordering is non-trivial: the standard
+graphene derivation already contains everything one needs to do the
+honeycomb QW, but the QW makes the discrete-to-continuous transition
+\emph{explicit}, which is where the relativistic structure earns its
+status as an emergent infrared organization.} Throughout, we keep careful
+track of the distinction between (i) microscopic exact symmetries of the
+discrete step, (ii) effective infrared symmetries of the linearized
+Hamiltonian, and (iii) covariant Lorentz / Clifford structures organizing
+the infrared limit.
+
+\paragraph{2.~Formal verification.}
+Every algebraic identity that the paper claims as a result is paired with
+a machine-checked symbolic test. \texttt{sympy} handles closed-form
+identities (Clifford anticommutators, $\Sigma^{\mu\nu}$ commutators,
+dispersions, Taylor expansions around Dirac points). \texttt{z3}~\cite{deMoura2008}
+handles combinatorial and order-theoretic constraints
+(Nielsen--Ninomiya balance, isotropy, structural consistency of small
+causal sets, bipartite index bounds). Every chapter and every section
+carries a comment of the form
+\begin{center}\small\texttt{\% verified-by: validators/\textless module\textgreater.py::\textless test\textgreater}\end{center}
+that links the claim to the test that backs it. The build pipeline
+(\texttt{scripts/build\_book.ps1}) runs \texttt{pytest} before running
+\texttt{latexmk}; the PDF is produced \emph{only} if all $146$ tests pass.
+
+\paragraph{3.~Open problems with first-line evidence.}
+Two problems are left open: a global classification of the discrete
+quasi-energy spectrum on the Brillouin torus (the \emph{spectral} branch),
+and a formulation of the underlying \emph{protospace} that does not
+depend on the reciprocal-space description (the \emph{structural}
+branch). For both we provide a first body of verified machinery
+(Sections~\ref{p:open-problems}), including a finite-graph treatment of
+chirality balance that does not invoke a torus.
+
+\paragraph{Scope.}
+We do not claim that the ladder is unique, nor that the protospace is
+fixed by it; we claim that the ladder is internally consistent, that the
+relativistic algebra arises as an effective infrared organization rather
+than as a microscopic symmetry, and that the verification methodology is
+fine-grained enough to be useful beyond this corpus.

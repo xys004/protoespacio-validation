@@ -1,0 +1,37 @@
+\section{SSH \texorpdfstring{$\rightarrow$}{->} Dirac in \texorpdfstring{$1{+}1$}{(1+1)}}
+\label{p:ssh}
+
+The first rung of the ladder is the Su--Schrieffer--Heeger model on a
+1D chain with two sites per unit cell and bond alternation $(t_1, t_2)$.
+The Bloch Hamiltonian in the standard convention is
+\begin{equation}
+\Hop_{\mathrm{SSH}}(k)
+    = (t_1 + t_2 \cos k)\,\sigma_x + t_2\,\sin k\,\sigma_y ,
+\label{p:eq:HSSH}
+\end{equation}
+with dispersion
+$E_{\pm}(k) = \pm\sqrt{t_1^2 + 2 t_1 t_2 \cos k + t_2^2}$.
+The gap closes when $t_1 = t_2$ at $k = \pi$. Expanding around that
+critical configuration with $t_1 = t_2 = t > 0$ and $k = \pi + q$ gives
+\begin{equation}
+\Hop_{\mathrm{SSH}}(\pi + q) \;=\; -\,t\,q\,\sigma_y \;+\; O(q^2),
+\label{p:eq:SSH-Dirac1+1}
+\end{equation}
+a massless Dirac Hamiltonian in $1{+}1$. The Pauli generator
+$\sigma_y$ takes the role of the relativistic momentum operator and the
+two SSH sites become the upper and lower spinor components.
+
+\paragraph{Verified facts.}
+\begin{itemize}[leftmargin=*]
+  \item $\Hop_{\mathrm{SSH}}(k)^{2}=(t_1^{2}+2 t_1 t_2 \cos k + t_2^{2})\,\bbI$
+    (\texttt{validators/ssh.py::test\_ssh\_squared}).
+  \item $\Hop_{\mathrm{SSH}}(\pi)\big|_{t_2=t_1}=0$
+    (\texttt{::test\_ssh\_gap\_closes}).
+  \item Linearization $\Hop(\pi+q)\big|_{t_1=t_2=t}=-tq\,\sigma_y+O(q^2)$
+    (\texttt{::test\_ssh\_linearization}).
+\end{itemize}
+
+The pedagogical content of this rung is therefore quite condensed: a
+two-site cell, a band crossing forced by a single tuning parameter, the
+relativistic algebra emerging \emph{only} in the linearized neighborhood
+of the crossing.

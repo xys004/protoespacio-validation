@@ -36,6 +36,7 @@ dist/
 # Build artifacts (regenerados por scripts/build_book.sh)
 book/main.pdf
 paper/main.pdf
+paper/cover_letter.pdf
 
 # Editor / OS
 .vscode/

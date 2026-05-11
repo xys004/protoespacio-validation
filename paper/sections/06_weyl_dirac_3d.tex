@@ -1,0 +1,64 @@
+\section{Three-dimensional Weyl and Dirac}
+\label{p:weyl-dirac-3d}
+
+The transition to three dimensions adds two essential features: a real
+chirality (Weyl nodes are characterized by a sign), and a controlled
+\emph{splitting} between two Weyl nodes of opposite chirality forming a
+Dirac fermion.
+
+\subsection{Weyl in 3D}
+The two-band massless Weyl Hamiltonian is
+$\HW = v\,\vsigma\cdot\vp$. By the Pauli algebra,
+$(\vsigma\cdot\vp)^{2} = \lvert\vp\rvert^{2}\,\bbI$, so the spectrum is
+$E_{\pm}=\pm v\lvert\vp\rvert$ and there is no local mass term: no
+nonzero element of $\{\bbI,\sigma_{i}\}$ anticommutes with all three
+$\sigma_{i}$ simultaneously. The chirality of the node is the sign of
+the determinant of the Jacobian $J_{ab} = \partial h_{a}/\partial k_{b}$
+evaluated at the node, $\chi = \operatorname{sgn}\det J$. For
+$\HW = v\,\vsigma\cdot\vp$, $J=v\,\bbI_{3}$, hence $\chi = \operatorname{sgn} v$.
+A node related by parity carries $\chi$ of the opposite sign
+(\texttt{validators/chirality.py}).
+
+\subsection{Dirac in 3+1 from 4-band structure}
+The canonical four-component construction
+\begin{equation}
+\HD = v\,\tau_{z}\otimes(\vsigma\cdot\vp) + m\,\tau_{x}\otimes\bbI
+\end{equation}
+combines two opposite-chirality Weyl blocks via the mass term that
+anticommutes with the kinetic part:
+$\{\tau_{z}\otimes(\vsigma\cdot\vp),\,\tau_{x}\otimes\bbI\}=0$. Squaring,
+$\HD^{2} = (v^{2}\lvert\vp\rvert^{2}+m^{2})\,\bbI_{4}$, giving a gap
+$2m$ at $\vp=0$ (\texttt{validators/estabilidad\_dirac.py}).
+
+\subsection{Controlled splitting Dirac \texorpdfstring{$\to$}{->} two Weyls}
+A clean way to obtain a pair of Weyl nodes from a single Dirac point is
+to add a Zeeman-like axial term:
+\begin{equation}
+\Hop \;=\; v\,\tau_{z}\otimes(\vsigma\cdot\vp)
+       \;+\; b\,\bbI\otimes\sigma_{z} .
+\end{equation}
+Squaring gives
+\begin{equation}
+\Hop^{2}\;=\;(v^{2}\lvert\vp\rvert^{2} + b^{2})\,\bbI_{4}
+   \;+\; 2 v b\,p_{z}\,(\tau_{z}\otimes\bbI) ,
+\end{equation}
+which separates as a block diagonal in $\tau_{z}$. The two blocks have
+zero modes at $\vp=(0,0,\mp b/v)$ respectively, so the original Dirac
+node splits into two Weyl nodes along $p_{z}$ at separation $2b/v$. The
+seven Wilson-doublers analogous to the 1D case acquire masses
+$m, m+2r, m+4r, m+6r$ as needed for the protospace global construction
+(Sec.~\ref{p:open-problems}; \texttt{validators/desdoblamiento.py},
+\texttt{validators/protoespacio\_global.py}).
+
+\subsection{Lattice realization with Wilson term}
+A concrete three-dimensional lattice realization is
+\begin{equation}
+\Hop(\vk) \;=\; v \sum_{i}\sin(k_{i}a)\,\alpha_{i}
+       + \!\Bigl(m + r\sum_{i}\bigl(1-\cos(k_{i}a)\bigr)\Bigr)\,\beta ,
+\label{p:eq:Wilson3D}
+\end{equation}
+with $\alpha_{i}=\tau_{x}\otimes\sigma_{i}$ and $\beta=\tau_{z}\otimes\bbI$. The
+Wilson term lifts the seven naive doublers, leaving a single light Dirac
+fermion at $\vk=0$. This is the lattice analogue of the structural
+hierarchy in Sec.~\ref{p:setup}, and is the natural input for the
+protospace tuple of Eq.~\eqref{p:eq:proto-tuple}.
