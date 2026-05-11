@@ -1,0 +1,18 @@
+[project]
+name = "protoespacio"
+version = "0.1.0"
+description = "Validacion formal sympy + z3 del proyecto Protoespacio Dirac-Weyl 2026"
+requires-python = ">=3.11"
+dependencies = [
+  "sympy>=1.13",
+  "z3-solver>=4.13",
+  "numpy",
+  "scipy",
+  "matplotlib",
+  "pytest",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q --tb=short"
+pythonpath = ["."]

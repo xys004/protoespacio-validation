@@ -1,0 +1,14 @@
+\chapter*{Prefacio}
+\addcontentsline{toc}{chapter}{Prefacio}
+
+Este libro consolida la serie de borradores fechados en marzo y abril de 2026
+sobre la emergencia de la ecuacion de Dirac en $3+1$ desde dinamicas
+discretas. Su politica editorial es estricta: cada afirmacion algebraica o
+combinatoria significativa esta acompanada por una verificacion automatica
+(\texttt{sympy} para algebra simbolica, \texttt{z3} para satisfacibilidad
+logica), ejecutada antes de cada compilacion del manuscrito.
+
+Cuando un lema indica
+\begin{quote}\small\texttt{\% verified-by: validators/<modulo>.py::<test>}\end{quote}
+significa que el test correspondiente debe pasar bajo el \texttt{pytest} del
+repositorio para que el PDF pueda generarse.

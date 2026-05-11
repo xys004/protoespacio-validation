@@ -1,0 +1,62 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{macros}[2026/05/11 Notacion unificada Protoespacio Dirac-Weyl]
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[spanish,es-nodecimaldot]{babel}
+\RequirePackage{amsmath,amssymb,bm}
+\RequirePackage{mathtools}
+\RequirePackage{physics}
+\RequirePackage{booktabs}
+\RequirePackage{csquotes}
+\RequirePackage{enumitem}
+\RequirePackage{longtable}
+\RequirePackage{array}
+\RequirePackage{xcolor}
+\RequirePackage{hyperref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  citecolor=blue!50!black,
+  urlcolor=blue!50!black
+}
+
+% --- Constantes basicas
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\bbI}{\mathbb{I}}
+
+% --- Variables de momento (Revision 28-mar-2026)
+\newcommand{\vk}{\bm{k}}              % momento de Bloch / global k-espacio
+\newcommand{\vq}{\bm{q}}              % desviacion pequena alrededor de un nodo
+\newcommand{\vp}{\bm{p}}              % momento efectivo continuo infrarrojo
+
+% --- Espacios internos
+\newcommand{\vsigma}{\bm{\sigma}}     % pseudospin / Weyl interno
+\newcommand{\vtau}{\bm{\tau}}         % indice quiral / bloque Weyl acoplado
+
+% --- Objetos dinamicos
+\newcommand{\Hop}{H}                  % Hamiltoniano efectivo / continuo
+\newcommand{\Uop}{U}                  % paso unitario discreto exacto
+\newcommand{\UW}{U_{W}}               % Weyl walk discreto minimo
+\newcommand{\UD}{U_{D}}               % Dirac walk discreto 4-componentes
+\newcommand{\HD}{H_{D}}               % Dirac Hamiltoniano efectivo
+
+% --- Estructura del protoespacio
+\newcommand{\Lattice}{\Lambda}
+\newcommand{\Proto}{\mathfrak{P}_{\mathrm{disc}}}
+\newcommand{\ProtoTuple}{(\Lattice,\mathbb{C}^N,\Uop,G_{\mathrm{micro}})}
+
+% --- Algebra de Clifford / Lorentz
+\newcommand{\gmu}{\gamma^{\mu}}
+\newcommand{\gnu}{\gamma^{\nu}}
+\newcommand{\sigmunu}{\sigma^{\mu\nu}}
+\newcommand{\acomm}[2]{\{#1,#2\}}
+
+% --- Niveles del proyecto (referencias rapidas)
+\newcommand{\NivelI}{\textbf{Nivel I (microscopico exacto)}}
+\newcommand{\NivelII}{\textbf{Nivel II (efectivo infrarrojo)}}
+\newcommand{\NivelIII}{\textbf{Nivel III (covariante espinorial)}}
+
+\endinput
