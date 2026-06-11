@@ -1,0 +1,60 @@
+\chapter{Notacion y supuestos comunes}
+\label{ch:notacion}
+
+\section{Variables de momento}
+
+\begin{align}
+\vk &:\ \text{momento de Bloch o variable global del espacio reciproco},\\
+\vq &:\ \text{desviacion pequena respecto de un nodo o punto de expansion},\\
+\vp &:\ \text{momento efectivo continuo en el sector infrarrojo}.
+\end{align}
+
+Regla practica:
+\begin{enumerate}[label=\arabic*.]
+  \item \vk\ cuando hablemos del modelo discreto exacto;
+  \item $\vk = \vk_0 + \vq$ al linealizar alrededor de un nodo;
+  \item \vp\ una vez pasado al lenguaje efectivo continuo.
+\end{enumerate}
+
+\section{Espacios internos}
+
+\begin{align}
+\sigma_i &:\ \text{grado de libertad tipo Weyl / pseudospin de dos componentes},\\
+\tau_i   &:\ \text{indice quiral o bloque Weyl acoplado}.
+\end{align}
+
+La forma canonica del bloque Dirac efectivo queda:
+\begin{equation}
+\HD = v\,\tau_z\otimes(\sigma_x p_x + \sigma_y p_y + \sigma_z p_z)
+      + m\,\tau_x \otimes \bbI .
+\label{eq:HDcanon}
+\end{equation}
+
+\section{Objetos dinamicos}
+
+\(\Hop\) denota un Hamiltoniano efectivo o continuo; \(\Uop\) denota el paso
+unitario discreto exacto. En particular \UW\ es la caminata Weyl minima y
+\UD\ la caminata Dirac de cuatro componentes.
+
+\section{Tres niveles}
+
+\begin{description}
+  \item[\NivelI] red discreta, localidad de \Uop, grupo de simetrias
+        discretas exactas, periodicidad de cuasienergia.
+  \item[\NivelII] linealizacion en un nodo, bloques Weyl/Dirac, isotropia
+        aproximada, masa y velocidad efectivas.
+  \item[\NivelIII] \gmu, algebra de Clifford, generadores de Lorentz,
+        $SO^+(3,1)$, Poincare, $SL(2,\mathbb{C})$ como \emph{organizacion
+        del limite efectivo}.
+\end{description}
+
+\section{Convenciones de lenguaje}
+
+\begin{itemize}[leftmargin=*]
+  \item \enquote{exacto}: simetrias de \Uop\ para todo \vk; identidades
+        algebraicas cerradas; resultados independientes de expansion en \vq.
+  \item \enquote{efectivo}: Hamiltonianos linealizados; isotropia emergente;
+        Lorentz/Poincare como simetrias del limite continuo.
+  \item \enquote{protoespacio}: la tupla \Proto, nunca una sola de sus
+        proyecciones.
+\end{itemize}

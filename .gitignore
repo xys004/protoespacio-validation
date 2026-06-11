@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# LaTeX intermediate
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.run.xml
+*-blx.bib
+_minted-*/
+build/
+dist/
+
+# Build artifacts (regenerados por scripts/build_book.sh)
+book/main.pdf
+paper/main.pdf
+paper/cover_letter.pdf
+paper/main_quantum.pdf
+
+# Submission artifacts
+submission_quantum.zip
+_staging_submission/
+_test_submission/
+paper 1/main.pdf
+paper 2/main.pdf
+
+# Editor / OS
+.vscode/
+.idea/
+.spyder/
+.spyproject/
+*.bak
+Thumbs.db
+.DS_Store
+
+# Internal editorial/review documents - never public
+paper/REVIEW_NOTES.md
+paper/SUBMISSION.md
+REFEREE_*.md
+*REVIEW_NOTES*.md

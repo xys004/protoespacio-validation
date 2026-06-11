@@ -1,0 +1,56 @@
+\documentclass[11pt]{letter}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+\address{Nelson Bol\'ivar \\
+Astrum Drive Technologies \\
+\href{mailto:astrumdrivetechnologies@gmail.com}{astrumdrivetechnologies@gmail.com}}
+
+\signature{Nelson Bol\'ivar}
+
+\begin{document}
+
+\begin{letter}{Editorial Office \\ Quantum --- the open journal for quantum science}
+
+\opening{Dear Editors,}
+
+I am pleased to submit our manuscript ``Emergent Dirac dynamics in
+$(3{+}1)$ dimensions from discrete quantum walks: a formally verified
+pedagogical ladder'' for consideration by Quantum.
+
+The paper assembles a single coherent ladder
+SSH~$\to$~graphene~$\to$~honeycomb quantum walk~$\to$~Weyl/Dirac in
+$(3{+}1)$, identifying the algebraic structures that survive as the
+infrared organization of the discrete dynamics: the Clifford algebra of
+$\gamma^{\mu}$, the spinorial Lorentz generators $\Sigma^{\mu\nu}$, the
+chirality balance underlying Nielsen--Ninomiya, and a Lorentzian
+effective light cone. Where the paper differs from earlier work in this
+line --- most notably Arrighi \emph{et al.}\ (Phys.\ Rev.\ A 2018) and
+Farrelly (Quantum 2020) --- is that the algebraic claims are paired one
+by one with machine-checked symbolic tests (\texttt{sympy} for
+closed-form identities, \texttt{z3} for combinatorial and
+order-theoretic claims), and the manuscript build is gated by the test
+suite. The methodology section makes this case explicitly and discusses
+what the approach buys relative to interactive theorem provers.
+
+We believe Quantum is the natural venue for the work: it sits in the
+same line as Farrelly's review of quantum cellular automata (Quantum
+2020) and addresses an audience that bridges quantum information, lattice
+fermions, and emergent spacetime. The verification methodology is, we
+believe, the most reusable contribution and is consistent with Quantum's
+emphasis on reproducible and open science.
+
+The paper is approximately 20 pages, single-column, with one bibliography
+of four primary references plus the cited literature. All code is open
+and reproduces every claim of the paper, including its build.
+
+We have not submitted this work elsewhere. We have no conflicts of
+interest to declare.
+
+\closing{Sincerely,}
+
+\end{letter}
+
+\end{document}

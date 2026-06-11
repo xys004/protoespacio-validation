@@ -1,0 +1,93 @@
+% NOTA DE SUBMISSION: para Quantum, cambiar la siguiente linea por
+%   \documentclass[a4paper,onecolumn]{quantumarticle}
+% y agregar \pdfoutput=1 justo despues.
+% Mantenemos `article` aqui porque TeX Live 2025 trae quantumarticle 6.1
+% con un bug de hooks (showkeys) ya resuelto en CTAN al momento de submeter.
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathreplacing,shapes.geometric}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+% Stubs de comandos quantumarticle para retrocompatibilidad al cambiar a esa clase
+\providecommand{\affiliation}[1]{\\ \textit{#1}}
+\providecommand{\email}[1]{\ \href{mailto:#1}{\nolinkurl{#1}}}
+
+% ---- shorthands (paper-only, no collision con book macros)
+\newcommand{\ii}{\ensuremath{\mathrm{i}}}
+\newcommand{\bbI}{\ensuremath{\mathbb{I}}}
+\newcommand{\bbR}{\ensuremath{\mathbb{R}}}
+\newcommand{\bbC}{\ensuremath{\mathbb{C}}}
+\def\vk{\ensuremath{\bm{k}}}
+\def\vq{\ensuremath{\bm{q}}}
+\def\vp{\ensuremath{\bm{p}}}
+\def\vsigma{\ensuremath{\bm{\sigma}}}
+\def\vtau{\ensuremath{\bm{\tau}}}
+\def\vdelta{\ensuremath{\bm{\delta}}}
+\newcommand{\Hop}{\ensuremath{H}}
+\newcommand{\Uop}{\ensuremath{U}}
+\newcommand{\UW}{\ensuremath{U_{W}}}
+\newcommand{\UD}{\ensuremath{U_{D}}}
+\newcommand{\HD}{\ensuremath{H_{D}}}
+\newcommand{\HW}{\ensuremath{H_{W}}}
+\newcommand{\Lattice}{\ensuremath{\Lambda}}
+\newcommand{\Proto}{\ensuremath{\mathfrak{P}_{\mathrm{disc}}}}
+\newcommand{\gmu}{\ensuremath{\gamma^{\mu}}}
+\newcommand{\gnu}{\ensuremath{\gamma^{\nu}}}
+\newcommand{\sigmunu}{\ensuremath{\Sigma^{\mu\nu}}}
+
+\title{Emergent Dirac dynamics in \texorpdfstring{$3{+}1$}{(3+1)} dimensions
+       from discrete quantum walks:\\
+       a formally verified pedagogical ladder}
+
+\author{Nelson Bol\'ivar\thanks{Astrum Drive Technologies, \href{mailto:astrumdrivetechnologies@gmail.com}{\nolinkurl{astrumdrivetechnologies@gmail.com}}}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present a pedagogical reconstruction of the $(3{+}1)$-dimensional Dirac
+equation as the infrared sector of a family of discrete quantum walks (QW).
+Starting from the Su--Schrieffer--Heeger (SSH) chain in $1{+}1$ we traverse
+the tight-binding model of graphene, a split-step QW on the honeycomb
+lattice, and three-dimensional Weyl and Dirac semimetals, identifying at
+each step the algebraic structure that survives the continuum limit: the
+Clifford algebra of $\gamma^{\mu}$, the spinorial Lorentz generators
+$\Sigma^{\mu\nu}$, chirality balance (Nielsen--Ninomiya), and a Lorentzian
+effective light cone. Each algebraic claim is paired with a symbolic test
+in either \texttt{sympy} (closed-form identities and matrix algebra) or
+\texttt{z3} (combinatorial and order-theoretic constraints). The
+build of the long-form companion manuscript is gated by the same
+policy: all $146$ tests must pass before the PDF is produced. We close with two open problems for which a first body
+of verified machinery is already in place: a global spectral
+classification on the Brillouin torus, and a formulation of the underlying
+\emph{protospace} that does not assume reciprocal periodicity.
+\end{abstract}
+
+\input{sections/01_introduction}
+\input{sections/02_setup}
+\input{sections/03_ssh_to_dirac}
+\input{sections/04_graphene}
+\input{sections/05_qw_honeycomb}
+\input{sections/06_weyl_dirac_3d}
+\input{sections/07_covariant_structure}
+\input{sections/08_emergence_criteria}
+\input{sections/09_verification_methodology}
+\input{sections/10_open_problems}
+\input{sections/11_conclusions}
+
+% Para Quantum: \bibliographystyle{quantum}
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}

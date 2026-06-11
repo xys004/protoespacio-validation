@@ -1,0 +1,93 @@
+\section{Verification methodology}
+\label{p:verification}
+
+The verification policy underlying this paper is simple to state and
+tight in practice: \emph{the build of the manuscript is gated by a test
+suite}.
+
+\subsection{Two backends, one policy}
+Algebraic identities are checked by \texttt{sympy}~\cite{Meurer2017}:
+matrix equalities, finite Taylor expansions, Clifford and Pauli
+algebra, eigenvalue computations. Combinatorial and order-theoretic
+claims --- Nielsen--Ninomiya balance, isotropy as SMT, bipartite index,
+structural consistency of small causal sets --- are checked by the SMT
+solver \texttt{z3}~\cite{deMoura2008}. The two backends together cover
+the algebraic skeleton on which the physicist's manipulations rest.
+
+\subsection{Pipeline and numbers}
+A single build script runs \texttt{pytest} and only proceeds with
+\texttt{latexmk} on a clean exit. The numbers are summarized in
+Table~\ref{p:tab:verification}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lr}
+\toprule
+Validator modules                & $25$ \\
+Tests (parametric)               & $146$ \\
+Pure \texttt{sympy} modules      & $20$ \\
+Pure \texttt{z3} modules         & $4$ \\
+Mixed \texttt{sympy}+\texttt{z3} & $1$ \\
+End-to-end build time            & $\sim 17\text{ s}$ \\
+\texttt{\% verified-by:} comments inserted & $153$ \\
+Chapters covered (long form)     & $32/32$ \\
+\bottomrule
+\end{tabular}
+\caption{Verification suite at the time of writing. The long-form
+companion of this paper is itself built by the same pipeline; the
+present manuscript inherits the same policy.}
+\label{p:tab:verification}
+\end{table}
+
+\subsection{Granularity}
+Each section of the long form (and the equivalent places in this paper)
+carries inline references of the form
+\begin{center}\small\texttt{\% verified-by: validators/\textless module\textgreater.py::\textless test\textgreater}\end{center}
+linking each claim to its test. A representative example: the Clifford
+anticommutator check, in essence,
+\begin{verbatim}
+def clifford_holds() -> bool:
+    g = dirac_gamma_matrices()
+    eta = minkowski_metric()
+    I4, Z4 = sp.eye(4), sp.zeros(4, 4)
+    for mu in range(4):
+        for nu in range(4):
+            diff = sp.simplify(
+                g[mu] * g[nu] + g[nu] * g[mu]
+                - 2 * eta[mu, nu] * I4
+            )
+            if diff != Z4:
+                return False
+    return True
+\end{verbatim}
+runs sixteen anticommutator checks against the Minkowski metric in
+under one second. The Lorentz algebra closure
+[Eq.~\eqref{p:eq:lorentz-closure}] is verified analogously across all
+$256$~quadruples $(\mu,\nu,\rho,\sigma)$.
+
+\subsection{Errors caught during development}
+The policy proved useful, not just decorative. Three classes of error
+were caught and corrected by the suite during the writing of the
+long-form manuscript: (i)~an overconfident combinatorial predicate that
+asserted the wrong restriction on chirality assignments
+(SMT correctly reported \texttt{unsat}); (ii)~a sign error in the
+spinorial covariance identity [Eq.~\eqref{p:eq:cov-id}], caught by the
+closed-form symbolic test; (iii)~an inversion in the docstring of the
+Hermitian / anti-Hermitian status of rotation vs.\ boost generators,
+caught by \texttt{::test\_rotation\_generators\_hermitian} and
+\texttt{::test\_boost\_generators\_antihermitian}. In each case, the
+fix was algorithmic and immediately reproducible, not interpretive.
+
+\subsection{Comparison with proof assistants}
+A small but growing body of work uses interactive theorem provers
+(Lean, Coq, Isabelle) to formalize portions of mathematics and
+physics~\cite{Buzzard2022}. The present approach is deliberately
+coarser. We do not certify the entire physics in a typed proof
+assistant; we certify the algebraic and combinatorial skeleton on which
+the standard physicist's manipulations rest, leaving steps such as the
+infinite-dimensional limit of the continuum as theorems argued by hand.
+The trade-off is favourable to the working scientist: the verification
+fits naturally inside an existing \texttt{pytest} + \texttt{latexmk}
+workflow, runs in tens of seconds, and produces manuscripts whose
+algebraic claims are auditable in under a minute per claim by reading
+the test that underwrites them.

@@ -1,0 +1,27 @@
+{
+  "title": "Protospace validation suite: machine-checked algebra for emergent Dirac/Weyl matter, geometry, and induced gravity",
+  "description": "Executable verification harness backing the protospace programme manuscript \"The protospace programme: from a discrete analogue to a substrate whose slow-gradient limit yields induced 3+1 general relativity.\" Pairs each algebraic, combinatorial, and structural claim with a test in sympy (exact symbolic identities), z3 (finite SMT), or numpy/scipy (finite numerical diagnostics). Covers the matter algebra (Clifford, Lorentz, Dirac/Weyl, chirality), graph-local chiral balance, emergent-geometry diagnostics (spectral dimension, cone criterion, low-mode metric, U(1) holonomy), and the new gravity layer (torsion-free spin connection and curvature, the Lichnerowicz R/4 coefficient, and the Sakharov-Volovik induced-gravity skeleton). Reports 218 passing checks.",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Bolivar, Nelson",
+      "affiliation": "Universidad Central de Venezuela; Astrum Drive Technologies"
+    }
+  ],
+  "keywords": [
+    "emergent spacetime",
+    "induced gravity",
+    "Sakharov mechanism",
+    "Dirac fermions",
+    "Weyl fermions",
+    "tetrad",
+    "spin connection",
+    "spectral graph theory",
+    "quantum walks",
+    "reproducible verification",
+    "sympy",
+    "z3"
+  ],
+  "license": "MIT",
+  "access_right": "open"
+}

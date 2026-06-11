@@ -1,0 +1,395 @@
+% Importado desde: 2026-03-28_Weyl_3D_a_Dirac_3p1_desde_dinamica_discreta.tex
+\chapter{Derivacion Pedagogica: --- De una dinamica discreta tipo Weyl en \(3D\) a Dirac en \(3+1\)}
+\label{ch:weyl-3d-a-dirac-3p1-discreto}
+
+
+
+
+
+
+% verified-by: validators/weyl_dispersion.py::test_weyl_squared
+% verified-by: validators/weyl_dispersion.py::test_weyl_eigenvalues
+
+\section{Objetivo}
+
+En el documento anterior fijamos algo decisivo:
+
+\begin{displayquote}
+\textbf{Para llegar a Dirac en \(3+1\), el paso natural no es saltar directamente a una teoria masiva de cuatro componentes, sino construir primero una dinamica tipo Weyl en \(3D\) y luego acoplar dos sectores de quiralidad opuesta.}
+\end{displayquote}
+
+Ese es exactamente el objetivo de este capitulo.
+
+Vamos a hacer tres cosas:
+
+\begin{enumerate}[leftmargin=*]
+  \item escribir una dinamica discreta minima cuyo limite continuo sea un Hamiltoniano de Weyl en \(3D\);
+  \item identificar su quiralidad;
+  \item duplicar el sistema y acoplar los dos sectores para producir un Hamiltoniano de Dirac en \(3+1\).
+\end{enumerate}
+
+\section{La meta local de esta etapa}
+
+La meta inmediata no es aun el grupo de Poincare completo, sino este Hamiltoniano sin masa:
+\begin{equation}
+H_W(\vq)= v\left(\sigma_x q_x + \sigma_y q_y + \sigma_z q_z\right).
+\label{c07:eq:weyl-target}
+\end{equation}
+
+Su espectro es
+\begin{equation}
+E_\pm(\vq)=\pm v\sqrt{q_x^2+q_y^2+q_z^2}.
+\label{c07:eq:weyl-disp}
+\end{equation}
+
+Este es el cono de Weyl tridimensional. La idea es construirlo como limite efectivo de una evolucion discreta y local.
+
+\section{La dinamica discreta minima en \(3D\)}
+
+\subsection{El paso unitario}
+
+Inspirados por las quantum walks anteriores, tomamos una evolucion por pasos:
+\begin{equation}
+\psi(t+\Delta t)=U\,\psi(t).
+\end{equation}
+
+La forma minima y natural para \(3D\) es componer tres subpasos espaciales, uno por direccion:
+\begin{equation}
+U_W = U_z\,U_y\,U_x,
+\label{c07:eq:Uw}
+\end{equation}
+con
+\begin{equation}
+U_x = \ee^{-\,\ii a p_x \sigma_x},
+\qquad
+U_y = \ee^{-\,\ii a p_y \sigma_y},
+\qquad
+U_z = \ee^{-\,\ii a p_z \sigma_z}.
+\label{c07:eq:UxUyUz}
+\end{equation}
+
+La lectura es simple:
+
+\begin{enumerate}[leftmargin=*]
+  \item cada paso espacial esta asociado a una direccion del espacio;
+  \item cada direccion actua sobre el espacio interno con una matriz de Pauli distinta;
+  \item la estructura total ya sugiere la forma del Hamiltoniano de Weyl.
+\end{enumerate}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.15cm]
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.0cm,minimum height=0.82cm] (x) {\(U_x\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.0cm,minimum height=0.82cm,right=of x] (y) {\(U_y\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.0cm,minimum height=0.82cm,right=of y] (z) {\(U_z\)};
+  \draw[->,thick] (x) -- (y);
+  \draw[->,thick] (y) -- (z);
+  \node[below=0.55cm of y] {\small tres subpasos espaciales independientes};
+\end{tikzpicture}
+\caption{Un paso discreto minimo tipo Weyl en \(3D\). Cada direccion espacial aparece con su propia matriz de Pauli.}
+\label{c07:fig:three-steps}
+\end{figure}
+
+\subsection{Expansion a baja energia}
+
+Si \(a|\vp|\ll 1\), expandimos cada factor:
+\begin{equation}
+U_i \simeq \bbI - \ii a p_i \sigma_i.
+\end{equation}
+
+Entonces
+\begin{equation}
+U_W
+\simeq
+\left(\bbI-\ii a p_z\sigma_z\right)
+\left(\bbI-\ii a p_y\sigma_y\right)
+\left(\bbI-\ii a p_x\sigma_x\right).
+\end{equation}
+
+Reteniendo solo primer orden:
+\begin{equation}
+U_W \simeq \bbI - \ii a\left(p_x\sigma_x + p_y\sigma_y + p_z\sigma_z\right).
+\label{c07:eq:Uw-expand}
+\end{equation}
+
+Pero tambien sabemos que
+\begin{equation}
+U_W \simeq \bbI - \ii \Delta t\,H_{\text{eff}}.
+\end{equation}
+
+Comparando, obtenemos
+\begin{equation}
+H_{\text{eff}}=
+\frac{a}{\Delta t}\left(p_x\sigma_x + p_y\sigma_y + p_z\sigma_z\right).
+\end{equation}
+
+Definiendo
+\begin{equation}
+v=\frac{a}{\Delta t},
+\end{equation}
+queda exactamente
+\begin{equation}
+H_{\text{eff}}=v\left(p_x\sigma_x + p_y\sigma_y + p_z\sigma_z\right).
+\label{c07:eq:weyl-eff}
+\end{equation}
+
+Ya llegamos al Hamiltoniano de Weyl.
+
+\section{La quiralidad}
+
+\subsection{Que significa aqui}
+
+En esta construccion, el signo relativo entre las matrices de Pauli y los momentos importa muchisimo. Si hubieramos construido en cambio
+\begin{equation}
+H'_W(\vq)= -v(\sigma_x q_x+\sigma_y q_y+\sigma_z q_z),
+\end{equation}
+obtendriamos el cono opuesto.
+
+La quiralidad del nodo puede verse como el signo de la orientacion de la aplicacion
+\begin{equation}
+\vq \mapsto H_W(\vq).
+\end{equation}
+
+En el caso lineal,
+\begin{equation}
+H_W(\vq)=\sum_{i,j} v_{ij} q_j \sigma_i,
+\end{equation}
+la quiralidad es
+\begin{equation}
+\chi = \mathrm{sign}\!\left[\det(v_{ij})\right].
+\label{c07:eq:chirality}
+\end{equation}
+
+Para nuestro ejemplo minimo, \(v_{ij}=v\delta_{ij}\), de modo que
+\begin{equation}
+\chi = +1.
+\end{equation}
+
+Si invertimos el signo global de una direccion impar del bloque de Pauli, obtenemos
+\begin{equation}
+\chi=-1.
+\end{equation}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,scale=1.0]
+  \draw[rounded corners,thick] (-4,-2.2) rectangle (4,2.2);
+  \fill[blue!75!black] (-1.6,0) circle (4pt);
+  \fill[red!75!black] (1.6,0) circle (4pt);
+  \node[below] at (-1.6,-0.15) {\small \(\chi=+1\)};
+  \node[below] at (1.6,-0.15) {\small \(\chi=-1\)};
+  \draw[->,blue!75!black,thick] (-1.6,0) -- (-2.5,0.75);
+  \draw[->,blue!75!black,thick] (-1.6,0) -- (-0.8,0.9);
+  \draw[->,blue!75!black,thick] (-1.6,0) -- (-0.8,-0.9);
+  \draw[->,red!75!black,thick] (2.5,0.75) -- (1.6,0);
+  \draw[->,red!75!black,thick] (0.8,0.9) -- (1.6,0);
+  \draw[->,red!75!black,thick] (0.8,-0.9) -- (1.6,0);
+  \node at (0,-1.45) {\small dos sectores de quiralidad opuesta};
+\end{tikzpicture}
+\caption{Para llegar a Dirac, necesitamos dos conos tipo Weyl con quiralidades opuestas.}
+\label{c07:fig:two-chiralities}
+\end{figure}
+
+\section{El paso decisivo: duplicar la teoria}
+
+Una sola teoria de Weyl usa un espinor de dos componentes. Para construir Dirac en \(3+1\), tomamos dos copias:
+
+\begin{equation}
+\psi_D=
+\begin{pmatrix}
+\psi_L\\
+\psi_R
+\end{pmatrix},
+\end{equation}
+donde \(\psi_L\) y \(\psi_R\) son espinores de dos componentes.
+
+La dinamica sin masa se escribe entonces como
+\begin{equation}
+H_0(\vq)=
+\begin{pmatrix}
+v\,\vsigma\cdot \vq & 0\\
+0 & -v\,\vsigma\cdot \vq
+\end{pmatrix}.
+\label{c07:eq:block-weyl}
+\end{equation}
+
+Esto es exactamente \enquote{dos Weyl de quiralidad opuesta uno al lado del otro}.
+
+Usando matrices \(\tau_i\) para distinguir el sector izquierdo/derecho:
+\begin{equation}
+H_0(\vq)=v\,\tau_z\otimes(\sigma_x q_x+\sigma_y q_y+\sigma_z q_z).
+\label{c07:eq:block-tauz}
+\end{equation}
+
+\section{Introducir la masa}
+
+Ahora agregamos el termino que mezcla los dos sectores:
+\begin{equation}
+H_m = m\,\tau_x\otimes \bbI_2.
+\label{c07:eq:mass-term}
+\end{equation}
+
+Entonces el Hamiltoniano total es
+\begin{equation}
+H_D(\vq)=
+v\,\tau_z\otimes(\sigma_x q_x+\sigma_y q_y+\sigma_z q_z)
+ + m\,\tau_x\otimes \bbI_2.
+\label{c07:eq:dirac-block}
+\end{equation}
+
+Este es ya un Hamiltoniano de Dirac en \(3+1\), escrito en forma de bloques de Weyl.
+
+\subsection{Por que funciona}
+
+Porque:
+
+\begin{enumerate}[leftmargin=*]
+  \item el bloque \(\tau_z\otimes \sigma_i\) separa los dos sectores quirales;
+  \item el termino \(m\,\tau_x\otimes \bbI_2\) los mezcla;
+  \item ambos anticommutan, y por eso reconstruyen la algebra adecuada.
+\end{enumerate}
+
+Si definimos
+\begin{equation}
+\alpha_i=\tau_z\otimes \sigma_i,
+\qquad
+\beta=\tau_x\otimes \bbI_2,
+\end{equation}
+entonces
+\begin{equation}
+H_D(\vq)= v\sum_{i=1}^3 \alpha_i q_i + m\beta,
+\end{equation}
+y se verifican las relaciones
+\begin{equation}
+\{\alpha_i,\alpha_j\}=2\delta_{ij}\bbI_4,
+\qquad
+\{\alpha_i,\beta\}=0,
+\qquad
+\beta^2=\bbI_4.
+\label{c07:eq:dirac-clifford}
+\end{equation}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.15cm]
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.8cm,minimum height=0.9cm,align=center] (l) {Weyl izquierdo\\\(\chi=+1\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.8cm,minimum height=0.9cm,align=center,right=3cm of l] (r) {Weyl derecho\\\(\chi=-1\)};
+  \node[draw,rounded corners,fill=orange!10,minimum width=2.8cm,minimum height=0.9cm,align=center,below=1.5cm of $(l)!0.5!(r)$] (m) {masa \(m\)};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.6cm,minimum height=0.95cm,align=center,below=1.5cm of m] (d) {Dirac en \(3+1\)};
+  \draw[->,thick] (l) -- (d);
+  \draw[->,thick] (r) -- (d);
+  \draw[->,thick] (m) -- (d);
+\end{tikzpicture}
+\caption{La construccion conceptual clave: dos sectores de Weyl de quiralidad opuesta, mas un acoplamiento de masa, producen un fermion de Dirac.}
+\label{c07:fig:weyl-to-dirac}
+\end{figure}
+
+\section{El espectro}
+
+Para verificar que el resultado es el correcto, calculamos el cuadrado del Hamiltoniano:
+\begin{equation}
+H_D^2 =
+v^2(q_x^2+q_y^2+q_z^2)\bbI_4 + m^2\bbI_4,
+\end{equation}
+porque los terminos cruzados desaparecen por anticonmutacion.
+
+Luego,
+\begin{equation}
+E(\vq)=\pm \sqrt{v^2(q_x^2+q_y^2+q_z^2)+m^2}.
+\label{c07:eq:dirac-spectrum}
+\end{equation}
+
+Es exactamente el espectro de Dirac esperado.
+
+\section{Lectura en terminos de grupos}
+
+Aqui es donde el documento anterior entra en accion.
+
+\subsection{Lo que ya se recupero}
+
+Esta construccion ya recupera:
+
+\begin{enumerate}[leftmargin=*]
+  \item la estructura espinorial de cuatro componentes;
+  \item la algebra de Clifford del Hamiltoniano de Dirac;
+  \item la lectura \enquote{Dirac = Weyl izquierdo + Weyl derecho + masa}.
+\end{enumerate}
+
+\subsection{Lo que aun queda por controlar}
+
+Pero todavia no probamos automaticamente:
+
+\begin{enumerate}[leftmargin=*]
+  \item que toda la simetria de Lorentz emerja con precision;
+  \item que la realizacion discreta respete las restricciones de doblamiento;
+  \item que la discretizacion sea unica o estructuralmente estable;
+  \item que la accion efectiva completa realice una representacion exacta de \(SL(2,\mathbb{C})\) y no solo su sombra infrarroja.
+\end{enumerate}
+
+Eso esta bien. En esta etapa, la meta es mas modesta y mas honesta:
+
+\begin{displayquote}
+\textbf{mostrar como una dinamica discreta local puede organizarse de forma natural en bloques de Weyl y, al acoplarlos, producir el Hamiltoniano de Dirac en \(3+1\).}
+\end{displayquote}
+
+\section{Que no debemos perder de vista}
+
+Este documento deja una moraleja muy importante para el proyecto.
+
+Si nos quedamos solo con analogias geométricas, podemos perdernos. El hilo correcto es:
+
+\begin{enumerate}[leftmargin=*]
+  \item construir el bloque cinetico tipo Weyl;
+  \item identificar la quiralidad;
+  \item duplicar el sistema de forma controlada;
+  \item introducir el acoplamiento de masa;
+  \item verificar la algebra de Clifford;
+  \item solo despues preguntar por la estructura completa de simetrias emergentes.
+\end{enumerate}
+
+Este orden protege la investigacion de dos errores:
+
+\begin{enumerate}[leftmargin=*]
+  \item creer demasiado pronto que cualquier cono lineal ya es \enquote{Dirac relativista};
+  \item olvidar que la estructura de grupos se construye sobre la algebra, no al reves.
+\end{enumerate}
+
+\section{Mapa del paso siguiente}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.2cm]
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.9cm,minimum height=0.88cm,align=center] (a) {dinamica discreta\\tipo Weyl};
+  \node[draw,rounded corners,fill=blue!6,minimum width=2.9cm,minimum height=0.88cm,align=center,right=of a] (b) {quiralidad\\\(\pm\)};
+  \node[draw,rounded corners,fill=orange!10,minimum width=2.9cm,minimum height=0.88cm,align=center,right=of b] (c) {acoplamiento\\de masa};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.1cm,minimum height=0.88cm,align=center,right=of c] (d) {Dirac \(3+1\)};
+  \node[draw,rounded corners,fill=purple!8,minimum width=4.0cm,minimum height=0.92cm,align=center,below=1.5cm of c] (e) {simetrias emergentes y estructura de grupos};
+  \draw[->,thick] (a) -- (b);
+  \draw[->,thick] (b) -- (c);
+  \draw[->,thick] (c) -- (d);
+  \draw[->,thick] (d) -- (e);
+\end{tikzpicture}
+\caption{Orden natural del proyecto a partir de ahora. La teoria de grupos sigue siendo central, pero no debe adelantarse al bloque algebraico minimo.}
+\label{c07:fig:next-step}
+\end{figure}
+
+\section{Resumen final}
+
+La construccion de este documento puede resumirse asi:
+
+\begin{enumerate}[leftmargin=*]
+  \item una evolucion discreta en \(3D\) con tres subpasos espaciales produce, en el limite continuo, un Hamiltoniano de Weyl;
+  \item ese bloque tiene quiralidad definida;
+  \item dos bloques de quiralidad opuesta pueden ponerse juntos en forma diagonal;
+  \item un termino de masa que los mezcla produce el Hamiltoniano de Dirac en \(3+1\);
+  \item la algebra de Clifford aparece de forma transparente en esa representacion por bloques.
+\end{enumerate}
+
+Esta es, probablemente, la primera formulacion del proyecto donde la meta final ya empieza a verse de frente.
+
+Si quieres, el siguiente paso puede ser uno de estos dos:
+
+\begin{enumerate}[leftmargin=*]
+  \item escribir una version mas explicita en lenguaje de \(\gamma^\mu\) y \(SL(2,\mathbb{C})\);
+  \item o revisar ahora como entra Nielsen--Ninomiya en esta construccion concreta de Weyl \(\to\) Dirac.
+\end{enumerate}

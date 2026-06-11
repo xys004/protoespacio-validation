@@ -1,0 +1,76 @@
+\section{Three-dimensional Weyl and Dirac}
+\label{p:weyl-dirac-3d}
+
+The transition to three dimensions adds two essential features absent in
+$2{+}1$: a real chirality assignment to each band-crossing node, and a
+controlled \emph{splitting} between two opposite-chirality Weyl nodes
+that together form a Dirac fermion.
+
+\subsection{Two-band Weyl and four-band Dirac}
+The two-band massless Weyl Hamiltonian is $\HW = v\,\vsigma\cdot\vp$. The
+Pauli algebra gives $(\vsigma\cdot\vp)^{2} = \lvert\vp\rvert^{2}\,\bbI$,
+hence a linear spectrum $E_{\pm}=\pm v\lvert\vp\rvert$ and no local mass
+term: no nonzero element of $\{\bbI,\sigma_{i}\}$ anticommutes with all
+three $\sigma_{i}$ simultaneously, so a Weyl node cannot be gapped by an
+on-site perturbation (in the sense relevant here)~\cite{Burkov2018}. The
+chirality of the node is read directly from the Jacobian
+$J_{ab} = \partial h_{a}/\partial k_{b}$ evaluated at the node, namely
+$\chi = \operatorname{sgn}\det J$. For $\HW = v\,\vsigma\cdot\vp$,
+$J=v\,\bbI_{3}$, so $\chi = \operatorname{sgn} v$; the parity-related node
+carries opposite chirality
+(\texttt{validators/chirality.py}).
+
+A four-component Dirac fermion is then built by combining two
+opposite-chirality Weyl blocks through a mass term that anticommutes
+with the kinetic part:
+\begin{equation}
+\HD = v\,\tau_{z}\otimes(\vsigma\cdot\vp) + m\,\tau_{x}\otimes\bbI ,
+\qquad
+\bigl\{\tau_{z}\!\otimes\!(\vsigma\!\cdot\!\vp),\,\tau_{x}\!\otimes\!\bbI\bigr\} = 0 .
+\end{equation}
+Squaring gives the canonical relativistic form
+$\HD^{2} = (v^{2}\lvert\vp\rvert^{2}+m^{2})\,\bbI_{4}$, hence a gap $2m$
+at $\vp=0$ (\texttt{validators/estabilidad\_dirac.py}). When $m\to 0$ the
+four-band Dirac fermion separates into two two-band Weyl fermions of
+opposite chirality, which is exactly the structure Nielsen--Ninomiya
+requires of any lattice realization.
+
+\input{figures/weyl_splitting}
+
+\subsection{Controlled splitting Dirac \texorpdfstring{$\to$}{->} two Weyls}
+The cleanest way to obtain a separated Weyl pair from a Dirac point is
+to add a Zeeman-like axial term aligned with one spatial direction:
+\begin{equation}
+\Hop \;=\; v\,\tau_{z}\otimes(\vsigma\cdot\vp)
+       \;+\; b\,\bbI\otimes\sigma_{z} .
+\end{equation}
+Squaring,
+\begin{equation}
+\Hop^{2}\;=\;(v^{2}\lvert\vp\rvert^{2} + b^{2})\,\bbI_{4}
+   \;+\; 2\,v\,b\,p_{z}\,(\tau_{z}\otimes\bbI) ,
+\end{equation}
+which is block-diagonal in $\tau_{z}$. The two blocks have zero modes at
+$\vp=(0,0,\mp b/v)$ respectively, so the original Dirac node splits into
+two Weyl nodes along $p_{z}$ at separation $2b/v$, as illustrated in
+Fig.~\ref{p:fig:splitting} (\texttt{validators/desdoblamiento.py}).
+
+\subsection{Lattice realization with Wilson term}
+A concrete three-dimensional lattice realization that we use as input to
+the protospace construction of Sec.~\ref{p:open-problems} is the
+Wilson--Dirac Hamiltonian
+\begin{equation}
+\Hop(\vk) \;=\; v \sum_{i}\sin(k_{i}a)\,\alpha_{i}
+       + \!\Bigl(m + r\!\sum_{i}\bigl(1-\cos(k_{i}a)\bigr)\Bigr)\,\beta ,
+\label{p:eq:Wilson3D}
+\end{equation}
+with $\alpha_{i}=\tau_{x}\otimes\sigma_{i}$ and $\beta=\tau_{z}\otimes\bbI$.
+The Wilson term~\cite{Wilson1974} lifts the seven naive doublers of the
+cubic Brillouin zone, leaving a single light Dirac fermion at $\vk=0$;
+the doublers acquire masses $m+2r,m+4r,m+6r$ depending on how many of
+their momentum components sit at the corner $k_{i}=\pi/a$
+(\texttt{validators/wilson\_subsector.py},
+\texttt{validators/protoespacio\_global.py}). This is the lattice
+analogue of the level hierarchy of Sec.~\ref{p:setup}: a microscopic
+exact Hamiltonian at Level~I whose infrared sector at Level~II is the
+canonical four-component Dirac fermion, organized at Level~III by the
+Clifford algebra of Sec.~\ref{p:covariant}.

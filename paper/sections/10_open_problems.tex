@@ -1,0 +1,75 @@
+\section{Open problems}
+\label{p:open-problems}
+
+Two problems are left open in the long form of this work, and both come
+already equipped with a first body of machine-checked machinery.
+
+\subsection{Spectral branch: global classification on the Brillouin torus}
+Local infrared analysis says nothing about the \emph{global} structure
+of the discrete quasi-energy. Two facts are verified: that the
+quasi-energy is circular ($\varepsilon\in[-\pi,\pi]$ in units of
+$\Delta t$), and that the two sectors $\omega=0$ and $\omega=\pi$ both
+host band-crossing points. For the canonical 1D walk
+$\Uop(k) = \cos(k)\bbI - \ii\sin(k)\sigma_{z}$ a direct check confirms
+$\Uop(0)=\bbI$ and $\Uop(\pi)=-\bbI$, placing band touchings at both
+$\omega=0$ and $\omega=\pi$. In three dimensions the eight-corner family
+of the cubic Brillouin zone admits an assignment of $\chi=\pm 1$ to its
+eight vertices with total sum zero and a $4$-and-$4$ distribution
+between the two quasi-energy sectors --- a satisfiable SMT problem when
+stated correctly, and unsatisfiable when one demands an imbalance such
+as $5$ vs.\ $3$
+(\texttt{validators/brillouin\_global.py}).
+
+The open question is a \emph{complete} classification of the special
+points of the spectrum of $\Uop(\vk)$ over the 3D Brillouin zone,
+taking into account the exact symmetries of the discrete step. The
+verification suite already covers the local algebra and the corner
+combinatorics; what remains is the cohomological / global piece of the
+picture, which we do not address here.
+
+\subsection{Structural branch: protospace without reciprocal language}
+The deeper open question is whether the underlying $\Proto$ admits a
+formulation that does not assume a torus / reciprocal-space description
+to begin with. Three concrete sub-tasks were left open in the long
+form; each has a first verified answer.
+
+\paragraph{(E1) Locality on non-periodic graphs.}
+A tight-binding Hamiltonian on a chain of $n$ sites and on a
+deliberately irregular graph of $6$ sites with mixed vertex degrees
+yields $\Uop_{\Delta t} = \bbI - \ii\Delta t\,\Hop + O(\Delta t^{2})$
+with the nearest-neighbour support pattern dictated by the graph
+adjacency, without invoking Fourier analysis.
+
+\paragraph{(E2) Chirality robust under local disorder.}
+The discrete chiral symmetry $\Gamma$ anticommutes with a
+bond-disordered SSH Hamiltonian
+$(t_{1},t_{2},t_{1}{+}\varepsilon,t_{2})$ exactly, forcing the spectrum
+to remain $\{-E,E\}$-symmetric without invoking translation invariance.
+
+\paragraph{(E3) Index without torus.}
+For a bipartite finite graph $G=(A\sqcup B,E)$, the nullity of the
+adjacency is bounded below by $\lvert\lvert A\rvert-\lvert B\rvert\rvert$
+and saturates on a maximum matching.
+
+The conceptual significance of (E3) deserves emphasis. The conventional
+Nielsen--Ninomiya argument runs over the Brillouin torus
+$T^{d}$~\cite{NielsenNinomiya1981a,NielsenNinomiya1981b}: it counts band
+crossings homotopically as obstructions on $T^{d}$, and so depends
+essentially on the reciprocal-space description. The bipartite index
+bound is the same chirality balance for a finite graph $G$ with no
+group of translations and no torus to homotope over; the argument
+reduces to linear algebra on the adjacency. This is the algebraic
+backbone needed if one ever wants to phrase \enquote{protospace} as a
+piece of structure broader than a periodic lattice --- for instance
+along the causal-set
+line~\cite{BombelliLeeMeyerSorkin1987,Sorkin2003} --- without smuggling
+the torus back in.
+
+All three sub-tasks have machine-checked tests
+(\texttt{validators/rama\_estructural.py}), so the structural branch is
+genuinely \emph{open but well-posed}: the algebra and combinatorics
+necessary to formulate it on arbitrary graphs is in place; what is
+missing is a principle (categorial, topological, or otherwise) that
+selects \emph{which} graphs are the ones a protospace can look like. A
+companion paper devoted entirely to the structural branch is in
+preparation.

@@ -1,0 +1,38 @@
+[project]
+name = "protoespacio-validation"
+version = "0.1.0"
+description = "Validacion formal sympy + z3 del proyecto Protoespacio Dirac-Weyl 2026"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "Nelson Bolivar", email = "astrumdrivetechnologies@gmail.com" },
+]
+keywords = ["dirac", "weyl", "quantum-walks", "sympy", "z3", "validation"]
+dependencies = [
+  "sympy>=1.13",
+  "z3-solver>=4.13",
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "networkx>=3.0",
+  "matplotlib",
+  "pytest",
+]
+
+[project.urls]
+Repository = "https://github.com/xys004/protoespacio-validation"
+Issues = "https://github.com/xys004/protoespacio-validation/issues"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["validators*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q --tb=short"
+pythonpath = ["."]
+filterwarnings = [
+  "ignore::DeprecationWarning:mpmath.*",
+]

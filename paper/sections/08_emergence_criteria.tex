@@ -1,0 +1,64 @@
+\section{Emergence criteria: causal cone, metric structure, chirality balance}
+\label{p:criteria}
+
+A consistent ladder is not enough on its own: one must also state what
+counts as the relativistic limit being \emph{well posed}. We collect two
+operational criteria, each verified by an explicit test.
+
+\subsection{Causal and metric structure}
+Given the Dirac-like dispersion $E(\vp)^{2} = v^{2}\lvert\vp\rvert^{2}+m^{2}$
+that recurs throughout Sections~\ref{p:ssh}--\ref{p:weyl-dirac-3d}, the
+group velocity obeys
+\begin{equation}
+v_{g}^{2}(\vp) \,-\, v^{2}
+   \;=\; -\,\frac{m^{2}\,v^{2}}{v^{2}\lvert\vp\rvert^{2}+m^{2}} \;\le\; 0 ,
+\label{p:eq:vg-bound}
+\end{equation}
+with saturation at $m=0$. This is the algebraic basis of the effective
+light cone. The associated effective metric
+$g^{\mu\nu}_{\mathrm{eff}} = \mathrm{diag}(-1,1/v^{2},1/v^{2},1/v^{2})$
+has Lorentzian signature $(-,+,+,+)$ and determinant $-1/v^{6}$
+(\texttt{validators/causality.py}). The discrete-time analogue obeys
+$\cos(\varepsilon\,\Delta t) = 1-(v^{2}\vk^{2}+m^{2})\,\Delta t^{2}/2 + O(\Delta t^{3})$,
+recovering the continuous dispersion at small step
+(\texttt{validators/causalidad\_continuo\_vs\_discreto.py}).
+
+The same algebraic structure tightens an emergent metric reading. For
+an anisotropic effective Hamiltonian
+$\Hop_{\mathrm{eff}} = \sum_{a} v_{a}\,\sigma_{a}\,p_{a}$, the squared
+dispersion
+$\Hop_{\mathrm{eff}}^{2}=\sum_{a}v_{a}^{2}\,p_{a}^{2}\,\bbI$ reads as an
+effective Riemannian metric
+$g^{ab}_{\mathrm{eff}} = \mathrm{diag}(v_{x}^{2},v_{y}^{2},v_{z}^{2})$;
+isotropy --- a single effective light cone --- is the condition
+$v_{x}=v_{y}=v_{z}$. We encode this as an SMT problem and check that
+isotropic solutions are realized and that anisotropy and isotropy
+cannot coexist (\texttt{validators/isotropy.py}). For
+position-dependent velocities $v_{a}(x)$ (variable tetrad), the same
+calculation goes through pointwise
+(\texttt{validators/triada.py}), which is the natural starting point
+for any geometric continuation of the construction.
+
+\subsection{Chirality balance: Nielsen--Ninomiya, with and without a torus}
+On any compact periodic lattice the Nielsen--Ninomiya
+theorem~\cite{NielsenNinomiya1981a,NielsenNinomiya1981b} forces the
+total chirality summed over band nodes to vanish. Translated to a
+combinatorial SMT statement: for $n$ even there exists an assignment of
+charges $\chi_{i}\in\{\pm 1\}$ with $\sum_{i}\chi_{i}=0$; for $n$ odd no
+such assignment exists, and no uniform-chirality configuration is ever
+allowed (\texttt{validators/nielsen\_ninomiya.py}). On the eight-corner
+family of the cubic Brillouin zone the same machinery handles the
+$4{+}4$ distribution between the $\omega=0$ and $\omega=\pi$ sectors
+of the discrete quasi-energy
+(\texttt{validators/brillouin\_global.py}).
+
+A strictly stronger statement holds \emph{without} invoking periodicity.
+For a finite bipartite graph $G=(A\sqcup B,E)$, define
+$\Gamma=\mathrm{diag}(+\bbI_{A},-\bbI_{B})$. Then
+$\{\Gamma, A\}=0$, the spectrum of the adjacency operator is symmetric
+in $E\mapsto -E$, and the nullity is bounded below by
+$\lvert\lvert A\rvert-\lvert B\rvert\rvert$; on a maximum matching the
+bound saturates. This is the discrete index theorem in the absence of a
+reciprocal-space description (\texttt{validators/rama\_estructural.py}),
+and we will use it in Sec.~\ref{p:open-problems} as the algebraic core
+of the structural branch.

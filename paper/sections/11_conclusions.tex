@@ -1,0 +1,43 @@
+\section{Discussion and outlook}
+\label{p:conclusions}
+
+Two observations seem worth recording. The first is methodological: in
+practice, the verification-as-build pipeline has turned out to be a
+useful editorial discipline, not merely a correctness check. Writing a
+section in the long form alongside its validator pulls one toward
+stating each claim in a way that is unambiguous enough to test --- which
+is exactly the form a reader needs anyway. The catches reported in
+Sec.~\ref{p:verification} (a wrong sign in a covariance identity, an
+inverted Hermiticity statement in a docstring, an overconfident
+combinatorial predicate) are typical of the kind of slip that survives
+hand-checking but does not survive a parameterized symbolic test. We
+suspect the same discipline could productively be applied to other
+discrete-to-continuum derivations beyond the present corpus.
+
+The second observation is interpretive. The relativistic algebra ---
+Clifford, $\Sigma^{\mu\nu}$, $SL(2,\bbC)$, a Lorentzian light cone, a
+chirality balance --- has come out as the \emph{infrared organization}
+of a family of discrete models, not as a microscopic symmetry. This
+distinction is more than terminological: it predicts what the structural
+branch (Sec.~\ref{p:open-problems}) has to look like. If the right
+$\Proto$ is a finite graph rather than a torus, the algebraic content of
+relativity should still be recoverable, but its rigid origin in
+homotopy on $T^{d}$ has to be replaced by something else --- the
+bipartite index bound is one early candidate, and a companion paper
+devoted entirely to the structural branch is in preparation.
+
+\section*{Acknowledgements}
+The author thanks the open-source scientific Python and TeX communities
+whose tools made the verification and typesetting workflow possible.
+AI-assisted coding and editorial tools were used to help draft, refactor,
+and review parts of the validation modules, tests, and manuscript text;
+all scientific claims, validator design choices, and final interpretations
+remain the responsibility of the author.
+
+\section*{Code and reproducibility}
+The validation code is maintained in the companion project repository
+under \texttt{validators/} and \texttt{tests/}. The companion repository
+is available at \url{https://github.com/xys004/protoespacio-validation},
+and the release used for this manuscript is archived on Zenodo at
+\url{https://doi.org/10.5281/zenodo.20129309}. The build pipeline
+runs in under twenty seconds end-to-end on a standard laptop.

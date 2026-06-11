@@ -1,0 +1,74 @@
+\section{Introduction}
+\label{p:intro}
+
+The $(3{+}1)$-dimensional Dirac equation, the Clifford algebra it sits on,
+and the spinorial Lorentz generators that organize it, all live
+comfortably in the continuum: they assume a smooth manifold and a
+continuous symmetry group. Whether the same algebraic edifice can be
+obtained as an effective infrared sector of a discrete underlying
+dynamics is a long-standing question, going back to Wilson's lattice
+fermions~\cite{Wilson1974} and the Nielsen--Ninomiya
+theorem~\cite{NielsenNinomiya1981a,NielsenNinomiya1981b}, and revisited
+in the past decade in the quantum-walk (QW) and quantum-cellular-automata
+frameworks~\cite{Arrighi2018,Farrelly2020,FarrellyShort2014,BisioDAriano2015}.
+The answer is, by now, clearly \enquote{yes} at the level of low-energy
+effective Hamiltonians. What has not been systematized is the
+\emph{verification} side: each derivation in the literature is by hand,
+each algebraic identity is reproved in each paper, and the link between
+a given continuum result and the discrete model that produces it lives
+in the head of the author.
+
+\input{figures/ladder}
+
+This paper makes three coordinated contributions, all anchored on the
+single ladder of Fig.~\ref{p:fig:ladder}. The first is the
+\emph{ladder itself}: we assemble SSH in $1{+}1$, the tight-binding
+model of graphene~\cite{SuSchriefferHeeger1979,Semenoff1984,CastroNeto2009},
+a split-step honeycomb QW, and three-dimensional Weyl/Dirac
+semimetals~\cite{Burkov2018} into one coherent
+construction with uniform notation and a single set of internal degrees
+of freedom $(\sigma_{i},\tau_{i})$. Throughout, we distinguish carefully
+(i)~exact symmetries of the discrete step from (ii)~approximate
+symmetries of the linearized infrared Hamiltonian, from (iii)~the
+covariant Lorentz/Clifford organization of the continuum limit.
+
+The second contribution is methodological. Every algebraic identity that
+we claim as a result of the paper is paired with a machine-checked
+symbolic test, written in either \texttt{sympy}~\cite{Meurer2017} (for
+closed-form matrix identities, Taylor expansions, and commutators) or
+\texttt{z3}~\cite{deMoura2008} (for combinatorial and order-theoretic
+claims such as Nielsen--Ninomiya balance and the bipartite chirality
+index). We choose this layer deliberately. Interactive proof assistants
+such as Lean, Coq, or Isabelle~\cite{Buzzard2022} would re-encode the
+whole construction into a typed proof; \texttt{sympy} and \texttt{z3}
+instead certify the algebraic and combinatorial \emph{skeleton} on top of
+which the physicist's manipulations rest, while integrating with the
+working scientist's toolchain. Across the long-form companion of this
+work, the policy adds up to $146$~tests across $25$ validator modules
+that run end-to-end in under twenty seconds; the symbolic backbone of
+\emph{this paper} is a subset of those tests, and we make the link
+explicit at each section by inline references of the form
+\texttt{\% verified-by: validators/\textless module\textgreater.py::\textless test\textgreater}.
+
+The third contribution is to leave two well-posed open problems with a
+first body of verified machinery already in place. The
+\emph{spectral} branch concerns a global classification of the discrete
+quasi-energy spectrum on the Brillouin torus, beyond the local infrared
+analysis of band-crossing points. The \emph{structural} branch concerns
+the formulation of the underlying \emph{protospace} on finite graphs not
+assumed to be periodic, in the spirit of causal-set
+approaches~\cite{BombelliLeeMeyerSorkin1987,Sorkin2003} but with the
+algebraic content of the relativistic limit kept under explicit
+verification. Both branches have already produced concrete verified
+identities (see Sec.~\ref{p:open-problems}), which sets the stage for a
+companion paper on the structural side.
+
+\paragraph{Scope.} We do not claim that the ladder is unique, nor that
+the protospace is fixed by it. We claim that the ladder is internally
+consistent, that the relativistic algebra emerges as an effective
+infrared \emph{organization} rather than as a microscopic symmetry, and
+that the verification methodology is fine-grained enough to be useful
+beyond this corpus. We use \enquote{the long form} of this work to
+refer to the public companion repository where the validator suite, the
+full $32$-chapter pedagogical manuscript, and the data behind the
+$146$~tests are maintained; see Sec.~\ref{p:conclusions}.

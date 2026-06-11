@@ -1,0 +1,528 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,bm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbI}{\mathbb{I}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\Graph}{G}
+\newcommand{\Gammaop}{\Gamma}
+\newcommand{\Pgraph}{\mathfrak{P}_{\mathrm{graph}}}
+\newcommand{\kerdim}{\dim\ker}
+\providecommand{\doi}[1]{\href{https://doi.org/#1}{doi:#1}}
+
+\title{Chiral balance without Brillouin:\\
+graph-local constraints on emergent zero-mode sectors}
+\author{Nelson Bolivar\\
+\small Astrum Drive Technologies\\
+\small \href{mailto:astrumdrivetechnologies@gmail.com}{astrumdrivetechnologies@gmail.com}}
+\date{Draft 1, May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study a structural version of chiral balance that does not rely on Bloch
+periodicity or a Brillouin torus. The usual lattice discussion of Weyl and
+Dirac fermions is naturally formulated in reciprocal space, where nodes,
+chiral charges, and doubling constraints are expressed over a compact momentum
+manifold. This formulation is powerful for periodic lattices but is not
+obviously primitive for a more general discrete substrate. We replace the
+periodic lattice by finite graph-local data: a graph of sites or events, a
+finite-dimensional internal fiber, a local Hamiltonian or discrete-time step,
+and, when present, a chiral grading. We review the elementary spectral pairing
+implied by $\{\Gamma,H\}=0$, then sharpen the finite-graph statement in two
+directions. First, for generic weighted bipartite graph Hamiltonians, the
+zero-mode count is controlled by the maximum matching number rather than only
+by sublattice imbalance:
+\[
+  \dim\ker H = |A|+|B|-2\nu(G).
+\]
+Second, if the grading is only approximate,
+$\|\{\Gamma,H\}\|\le \epsilon$, exact pairing is replaced by an
+$\epsilon$-pairing of the spectrum, and the zero band of the exactly chiral
+part remains inside an $\epsilon/2$ window. These results do not constitute a
+Nielsen--Ninomiya theorem beyond periodic lattices. They isolate a real-space
+operator layer beneath it: chiral balance can be formulated as matching,
+locality, and approximate-grading constraints on finite graph-local operators,
+without using reciprocal-space periodicity.
+\end{abstract}
+
+\section{Introduction}
+
+The first paper in this sequence showed how Dirac covariance can emerge as an
+infrared organization of local discrete dynamics. The present paper asks a
+deeper structural question: which parts of the Dirac/Weyl obstruction survive
+when reciprocal space is no longer assumed to be fundamental?
+
+The usual route to lattice fermions begins with a periodic lattice. Fourier
+transform converts locality into a smooth matrix-valued function $H(k)$ over a
+Brillouin torus. Weyl nodes become zeros of this function, chirality is read
+from local orientation data, and doubling constraints become global
+cancellation statements over the compact reciprocal manifold. This is the
+natural language of the Nielsen--Ninomiya theorem
+\cite{NielsenNinomiya1981a,NielsenNinomiya1981b}.
+
+The motivating question here is narrower and deliberately safer:
+\begin{quote}
+Can locality, chirality, and Dirac-sector constraints be formulated directly
+on a discrete substrate, without passing first through Bloch momentum?
+\end{quote}
+We do not claim to prove a full Nielsen--Ninomiya theorem beyond periodic
+lattices. Instead, we isolate a finite-graph analogue of chiral balance:
+spectral pairing, zero-mode constraints, and index-type obstructions can be
+formulated without reciprocal-space periodicity, provided the microscopic
+dynamics carries a local graph structure and an internal chiral grading.
+
+\section{From Bloch Space to Graph-Local Data}
+
+The Bloch representation is useful when translation symmetry exists, but it is
+not ontologically neutral. It assumes that the microscopic substrate admits a
+global reciprocal description. If the substrate is a finite graph, a
+causal-local network, or a locally regular but globally non-periodic structure,
+then reciprocal space may not exist as primitive data.
+
+We therefore separate two layers.
+\begin{enumerate}[label=(\alph*)]
+\item The \emph{reciprocal/topological layer}, where Weyl points are zeros of
+      $H(k)$ and total chirality is a global degree or cancellation condition.
+\item The \emph{structural/local layer}, where sites, internal fibers,
+      locality, and algebraic gradings are defined directly.
+\end{enumerate}
+This draft studies the second layer.
+
+\section{Minimal Graph-Local Protospace}
+
+\begin{definition}[Graph-local protospace]
+A minimal graph-local protospace candidate is a tuple
+\[
+  \Pgraph = (\Graph,F,\cH,\mathcal{D},\Gammaop,\mathcal{G}_{\mathrm{micro}}),
+\]
+where $\Graph=(V,E)$ is a finite graph or a family of finite graphs, $F$ is a
+finite-dimensional internal fiber, $\cH=\ell^2(V)\otimes F$ is the microscopic
+Hilbert space, $\mathcal{D}$ is either a Hamiltonian $H$ or a discrete-time
+unitary update $U$, $\Gammaop$ is a chiral grading when present, and
+$\mathcal{G}_{\mathrm{micro}}$ denotes exact microscopic symmetries.
+\end{definition}
+
+The key move is that reciprocal space is not included as primitive data. It may
+emerge, or become a useful representation, when $\Graph$ is periodic. The
+primitive object is a local operator over a graph with finite internal
+structure.
+
+\section{Locality Without Fourier Transform}
+
+\begin{definition}[$R$-local Hamiltonian]
+Let $d_G$ be the graph distance on $G$. A Hamiltonian $H$ on
+$\ell^2(V)\otimes F$ is $R$-local if
+\[
+  \langle x,a|H|y,b\rangle = 0
+  \qquad \text{whenever } d_G(x,y)>R,
+\]
+for vertices $x,y\in V$ and internal labels $a,b\in F$.
+\end{definition}
+
+For a discrete-time update $U$, the same definition applies to the matrix
+elements of $U$. This is enough to formulate microscopic finite propagation
+speed and local causal neighborhoods without invoking reciprocal space.
+
+\section{Chiral Grading and Spectral Pairing}
+
+Let $H$ be a finite-dimensional Hermitian operator and let $\Gammaop$ be a
+unitary involution:
+\[
+  \Gammaop^2=\bbI,\qquad \Gammaop^\dagger=\Gammaop.
+\]
+We say that $H$ is chiral with respect to $\Gammaop$ if
+\[
+  \{\Gammaop,H\}=\Gammaop H+H\Gammaop=0.
+\]
+This is the finite graph-local form of the chiral grading familiar from the
+Altland--Zirnbauer symmetry classes \cite{AltlandZirnbauer1997}.
+
+\begin{theorem}[Spectral pairing]
+If $H\psi=E\psi$ and $E\neq 0$, then
+\[
+  H(\Gammaop\psi)=-E(\Gammaop\psi).
+\]
+Consequently every nonzero eigenvalue appears in an opposite-sign pair.
+\end{theorem}
+
+\begin{proof}
+Using $\Gammaop H=-H\Gammaop$,
+\[
+  H\Gammaop\psi=-\Gammaop H\psi=-E\Gammaop\psi.
+\]
+Thus $\Gammaop\psi$ is an eigenvector of $H$ with eigenvalue $-E$.
+\end{proof}
+
+The proof is purely algebraic. It does not use translation symmetry, Fourier
+transform, Bloch momentum, or a Brillouin torus.
+
+\section{Bipartite Graphs and Zero-Mode Constraints}
+
+Let $G$ be bipartite with $V=A\sqcup B$ and edges only between $A$ and $B$. A
+nearest-neighbor hopping Hamiltonian has block form
+\[
+  H =
+  \begin{pmatrix}
+    0 & T\\
+    T^\dagger & 0
+  \end{pmatrix},
+\]
+where $T:\bbC^{|B|}\to\bbC^{|A|}$. The natural sublattice grading is
+\[
+  \Gammaop =
+  \begin{pmatrix}
+    \bbI_A & 0\\
+    0 & -\bbI_B
+  \end{pmatrix}.
+\]
+Then $\Gammaop H\Gammaop=-H$.
+
+\begin{theorem}[Bipartite zero-mode bound]
+For the bipartite Hamiltonian above,
+\[
+  \kerdim H \geq \big||A|-|B|\big|.
+\]
+\end{theorem}
+
+\begin{proof}
+The kernel of $H$ consists of pairs $(\psi_A,\psi_B)$ satisfying
+\[
+  T\psi_B=0,\qquad T^\dagger\psi_A=0.
+\]
+Thus
+\[
+  \kerdim H = \dim\ker T+\dim\ker T^\dagger.
+\]
+By rank-nullity,
+\[
+  \dim\ker T = |B|-\operatorname{rank}T,\qquad
+  \dim\ker T^\dagger = |A|-\operatorname{rank}T.
+\]
+Therefore
+\[
+  \kerdim H=|A|+|B|-2\operatorname{rank}T.
+\]
+Since $\operatorname{rank}T\leq \min(|A|,|B|)$, the claimed lower bound follows.
+\end{proof}
+
+Sublattice imbalance forces zero modes. This is an index-type statement on
+finite graphs and does not require momentum space. In condensed-matter form,
+closely related imbalance statements appear in Lieb's theorem for bipartite
+Hubbard systems \cite{Lieb1989}; in graph-theoretic language, the sharper
+object is not only the imbalance but the maximum matching structure of the
+underlying bipartite graph \cite{DulmageMendelsohn1958}.
+For disordered bipartite hopping models, the same off-diagonal structure is
+also the source of robust zero-energy phenomena \cite{InuiTrugmanAbrahams1994}.
+
+\section{Matching-Refined Chiral Nullity}
+
+The imbalance bound is universal but not sharp. A graph can have
+$|A|=|B|$ and still support zero modes because its connectivity fails to admit
+a perfect matching. This gives a more precise real-space replacement for the
+first layer of chiral counting.
+
+Let $\nu(G)$ denote the size of a maximum matching of the bipartite graph
+$G=(A\sqcup B,E)$. Let $T(w)$ be the $|A|\times |B|$ weighted bi-adjacency
+matrix with one independent nonzero weight on each edge and zero entries on
+non-edges.
+
+\begin{theorem}[Generic matching nullity]
+For generic edge weights on a finite bipartite graph,
+\[
+  \operatorname{rank} T(w) = \nu(G).
+\]
+Consequently the off-diagonal chiral Hamiltonian
+\[
+  H(w)=
+  \begin{pmatrix}
+    0 & T(w)\\
+    T(w)^\dagger & 0
+  \end{pmatrix}
+\]
+has generic nullity
+\[
+  \dim\ker H(w)=|A|+|B|-2\nu(G).
+\]
+\end{theorem}
+
+\begin{proof}
+Every nonzero $r\times r$ minor of $T(w)$ expands as a sum over matchings of
+size $r$ in the corresponding induced bipartite subgraph. Therefore no minor
+of size larger than $\nu(G)$ can be nonzero. Conversely, a matching of size
+$\nu(G)$ selects a square submatrix whose determinant contains a monomial equal
+to the product of the matched edge weights. With algebraically independent
+edge weights this determinant polynomial is not identically zero, so the
+generic rank is at least $\nu(G)$. The two inequalities give
+$\operatorname{rank}T(w)=\nu(G)$ for all weights outside the algebraic
+exceptional set where the relevant minors accidentally vanish. Since
+\[
+  \dim\ker H = \dim\ker T+\dim\ker T^\dagger
+             = |B|-\operatorname{rank}T + |A|-\operatorname{rank}T,
+\]
+the nullity formula follows.
+\end{proof}
+
+This theorem is not a claim that the graph theorem itself is new. Rather, its
+role here is to identify the real-space combinatorial datum that replaces the
+first pass of Brillouin-zone node counting when translation symmetry is not
+primitive. The sublattice-imbalance bound is the coarse corollary
+\[
+  |A|+|B|-2\nu(G)\geq \big||A|-|B|\big|.
+\]
+
+\section{Approximate Chiral Balance}
+
+Exact microscopic chiral symmetry is often too rigid for an emergent theory.
+The useful question is what survives if the grading is only approximate.
+
+\begin{theorem}[Approximate spectral pairing]
+Let $H$ be finite-dimensional Hermitian and let $\Gamma$ be a unitary
+involution. If
+\[
+  \|\{\Gamma,H\}\|\leq \epsilon,
+\]
+then for every eigenvalue $E\in\sigma(H)$ there exists
+$E'\in\sigma(H)$ such that
+\[
+  |E+E'|\leq \epsilon.
+\]
+\end{theorem}
+
+\begin{proof}
+Let $H\psi=E\psi$ with $\|\psi\|=1$, and set $\phi=\Gamma\psi$. Then
+\[
+  (H+E\bbI)\phi
+  = (H\Gamma+E\Gamma)\psi
+  = (\{\Gamma,H\}-\Gamma H)\psi+E\Gamma\psi
+  = \{\Gamma,H\}\psi.
+\]
+Hence $\|(H-(-E)\bbI)\phi\|\leq \epsilon$. For a Hermitian matrix, a
+normalized vector with residual at most $\epsilon$ from a real number
+$\lambda$ implies that the spectrum has an eigenvalue within $\epsilon$ of
+$\lambda$. Taking $\lambda=-E$ gives the result.
+\end{proof}
+
+There is also a useful zero-band version. Decompose
+\[
+  H_{-}=\frac{H-\Gamma H\Gamma}{2},\qquad
+  H_{+}=\frac{H+\Gamma H\Gamma}{2}.
+\]
+Then $\{\Gamma,H_-\}=0$, while $H_+$ is the grading-breaking part and
+$\|H_+\|\leq \epsilon/2$. If $H_-$ has $d$ exact structural zero modes, Weyl
+stability implies that $H=H_-+H_+$ has at least $d$ eigenvalues in
+$[-\epsilon/2,\epsilon/2]$. Thus approximate chirality converts exact
+structural zeros into a controlled small mass window rather than destroying
+the low-energy sector outright.
+
+\section{A Local Boundary Obstruction}
+
+As a minimal illustration of what a real-space obstruction looks like, consider
+the chain segment
+\[
+  A_1 - B_1 - A_2 - B_2 - A_3
+\]
+with hopping weights $t_1,t_2,t_3,t_4$. A zero mode supported only on the
+interior site $A_2$ would have $\psi_{A_1}=\psi_{A_3}=0$ and
+$\psi_{A_2}\neq0$. The zero-energy equations at $B_1$ and $B_2$ reduce to
+\[
+  t_2\psi_{A_2}=0,\qquad t_3\psi_{A_2}=0.
+\]
+Thus a one-site isolated bulk zero mode forces $t_2=t_3=0$, i.e. it cuts the
+site away from the connected graph.
+
+This is only a local lemma, not a general no-go theorem for all compact
+localized states: on more complicated graphs, multi-site destructive
+interference can produce compact zero modes without severing every adjacent
+edge. Its value here is diagnostic. A credible graph-local replacement for
+reciprocal-space doubling must specify which kinds of localization are
+structural, which are fine-tuned, and which require actual graph cuts.
+
+\section{Relation to Nielsen--Ninomiya}
+
+The Nielsen--Ninomiya theorem is a reciprocal-space/topological obstruction for
+chiral fermions on lattices under assumptions such as locality, Hermiticity,
+and translation invariance. In the usual periodic setting, Weyl points carry
+chiral charges and the total charge over the Brillouin torus cancels.
+
+The present paper does not replace that theorem. It separates the obstruction
+into two layers:
+\begin{description}[leftmargin=2.6cm,style=nextline]
+\item[Layer A] Weyl nodes are zeros of $H(k)$; chirality is a local degree of
+a map; global cancellation follows from compactness of the Brillouin zone.
+\item[Layer B] Finite graph-local operators with chiral grading exhibit
+spectral pairing, matching-refined zero-mode constraints, and approximate
+pairing bounds, independently of reciprocal space.
+\end{description}
+The claim is that Layer B survives beyond Bloch periodicity. It is weaker than
+the full reciprocal/topological theorem, but stronger than the elementary
+observation that a block off-diagonal matrix has a symmetric spectrum.
+
+\section{Why This Matters for Protospace}
+
+If protospace is defined only as a periodic lattice, then Bloch space and
+Brillouin-zone topology dominate the analysis. If protospace is a more general
+local discrete substrate, the first question is not ``what is $H(k)$?'' but:
+\begin{quote}
+What local operator structure is sufficient to support an infrared Dirac
+sector?
+\end{quote}
+
+The results above suggest that the minimum ingredients include local
+connectivity, a finite internal fiber, a grading or approximate grading, a
+mechanism for infrared linearization, stability of the low-energy sector under
+local perturbations, and a structural version of chirality balance. A genuine
+Dirac sector still requires more than the results proved here: one needs an
+infrared notion of momentum, a linear dispersion law, or an effective continuum
+limit.
+
+\section{Verified Graph Families}
+
+The repository contains a first executable validation layer for this draft in
+\path{validators/graph_chiral_balance.py} and
+\path{tests/test_graph_chiral_balance.py}. The checks are deliberately
+finite-dimensional and do not invoke Fourier transform.
+
+\begin{center}
+\small
+\begin{tabular}{p{0.24\linewidth}p{0.27\linewidth}p{0.38\linewidth}}
+\toprule
+Claim & Mathematical object & Validator \\
+\midrule
+Matching nullity & generic bipartite graph & \path{test_generic_matching_nullity} \\
+Approximate pairing & $\epsilon$-chiral finite $H$ & \path{test_approximate_pairing_bound} \\
+Zero-band stability & perturbed imbalanced graph & \path{test_structural_zero_modes_stay_in_epsilon_window} \\
+Local obstruction & symbolic chain segment & \path{test_single_site_bulk_mode_requires_edge_cut} \\
+Spectral pairing & finite chiral $H$ & \path{test_chiral_pairing_finite_matrix} \\
+Bipartite index bound & bipartite blocks & \path{test_bipartite_index_bound} \\
+SSH edge zero modes & open SSH chain & \path{test_ssh_open_chain_zero_modes} \\
+Chiral disorder & disordered bipartite hopping & \path{test_chiral_disorder_preserves_pairing} \\
+Chiral breaking & onsite perturbation & \path{test_chiral_breaking_lifts_pairing} \\
+Graph locality & irregular finite graph & \path{test_irregular_graph_locality} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Relation to Discrete-Time Quantum Walks}
+
+For Hamiltonian systems, chiral symmetry is naturally expressed around
+$E=0$. For discrete-time unitary walks, the spectrum is quasienergy:
+\[
+  U\psi = e^{-i\omega\Delta t}\psi.
+\]
+Quasienergy is periodic, so special sectors occur near $\omega=0$ and
+$\omega=\pi/\Delta t$ \cite{Asboth2012}. The graph-local Hamiltonian results developed here
+should therefore be generalized to unitary chiral walks, where the relevant
+spectral obstructions live on the quasienergy circle rather than on the real
+line. We leave this as a controlled next extension.
+
+\section{Open Problems}
+
+\begin{description}[leftmargin=1.2cm,style=nextline]
+\item[E1] \textbf{Dirac linearization without translation symmetry.}
+Spectral pairing and zero-mode constraints are graph-local. A genuine Dirac
+sector also requires an infrared notion of momentum, linear dispersion, or an
+effective continuum limit.
+
+\item[E2] \textbf{Chiral balance for unitary quantum walks.}
+In discrete time, quasienergy is circular. The analogue of chiral balance must
+account for both $0$ and $\pi$ quasienergy sectors.
+
+\item[E3] \textbf{Structural Nielsen--Ninomiya.}
+Can one formulate a no-go theorem directly in terms of graph-locality, grading,
+and finite propagation, without assuming a Brillouin torus? This draft provides
+algebraic ingredients but not the full theorem.
+\end{description}
+
+\section{Conclusion}
+
+This paper isolates a structural layer beneath the usual reciprocal-space
+discussion of chiral lattice fermions. Chiral spectral pairing, bipartite
+zero-mode constraints, matching-refined generic nullity, and
+$\epsilon$-approximate pairing can be formulated directly on finite
+graph-local operators. These statements require neither Bloch waves nor a
+Brillouin torus.
+
+The result is not a replacement for Nielsen--Ninomiya. Rather, it identifies
+which part of the obstruction survives when reciprocal space is removed from
+the primitive data. The matching number $\nu(G)$ becomes the finite real-space
+datum controlling generic chiral nullity, while approximate grading bounds
+show that small symmetry leakage produces controlled small mass windows rather
+than arbitrary spectral collapse. This gives a sharper meaning to protospace:
+a candidate microscopic substrate is not merely a discrete set of sites, but a
+graph-local operator system with internal fiber, locality, grading structure,
+matching constraints, and controlled infrared sectors.
+
+\section*{Code, Data, and AI Assistance}
+
+The validation code for this draft is maintained in the companion repository
+\url{https://github.com/xys004/protoespacio-validation}. A Zenodo DOI should be
+minted for a frozen Paper II release once the present draft and its validators
+are stable.
+
+AI-assisted coding and editorial tools were used to help draft, refactor, and
+review parts of the validation modules, tests, and manuscript text. All
+scientific claims, validator design choices, and final interpretations remain
+the responsibility of the author.
+
+\begin{thebibliography}{9}
+
+\bibitem{NielsenNinomiya1981a}
+H.~B. Nielsen and M.~Ninomiya.
+\newblock Absence of neutrinos on a lattice. I. Proof by homotopy theory.
+\newblock \emph{Nuclear Physics B}, 185(1):20--40, 1981.
+
+\bibitem{NielsenNinomiya1981b}
+H.~B. Nielsen and M.~Ninomiya.
+\newblock Absence of neutrinos on a lattice. II. Intuitive topological proof.
+\newblock \emph{Nuclear Physics B}, 193(1):173--194, 1981.
+
+\bibitem{AltlandZirnbauer1997}
+A.~Altland and M.~R. Zirnbauer.
+\newblock Nonstandard symmetry classes in mesoscopic normal-superconducting
+hybrid structures.
+\newblock \emph{Physical Review B}, 55:1142--1161, 1997.
+\newblock \doi{10.1103/PhysRevB.55.1142}.
+
+\bibitem{Lieb1989}
+E.~H. Lieb.
+\newblock Two theorems on the Hubbard model.
+\newblock \emph{Physical Review Letters}, 62(10):1201--1204, 1989.
+\newblock \doi{10.1103/PhysRevLett.62.1201}.
+
+\bibitem{DulmageMendelsohn1958}
+A.~L. Dulmage and N.~S. Mendelsohn.
+\newblock Coverings of bipartite graphs.
+\newblock \emph{Canadian Journal of Mathematics}, 10:517--534, 1958.
+\newblock \doi{10.4153/CJM-1958-052-0}.
+
+\bibitem{InuiTrugmanAbrahams1994}
+M.~Inui, S.~A. Trugman, and E.~Abrahams.
+\newblock Unusual properties of midband states in systems with off-diagonal
+disorder.
+\newblock \emph{Physical Review B}, 49:3190--3196, 1994.
+\newblock \doi{10.1103/PhysRevB.49.3190}.
+
+\bibitem{Asboth2012}
+J.~K. Asb{\'o}th.
+\newblock Symmetries, topological phases, and bound states in the
+one-dimensional quantum walk.
+\newblock \emph{Physical Review B}, 86:195414, 2012.
+\newblock \doi{10.1103/PhysRevB.86.195414}.
+
+\end{thebibliography}
+
+\end{document}

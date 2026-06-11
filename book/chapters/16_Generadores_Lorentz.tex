@@ -1,0 +1,631 @@
+% Importado desde: 2026-03-28_Generadores_Lorentz_desde_Gamma.tex
+\chapter{Derivacion Pedagogica: --- generadores de Lorentz desde matrices gamma}
+\label{ch:generadores-lorentz}
+
+
+
+
+
+
+% verified-by: validators/clifford.py::test_dirac_anticommutator
+% verified-by: validators/clifford.py::test_sigma_mu_nu_antisymmetric
+% verified-by: validators/lorentz.py::test_sigma_mu_nu_covariance
+% verified-by: validators/lorentz.py::test_lorentz_algebra_closure
+
+\section{Objetivo}
+En el capitulo anterior llegamos a la ecuacion covariante de Dirac
+\begin{equation}
+(i\gamma^\mu \partial_\mu - m)\Psi = 0,
+\label{c16:eq:dirac}
+\end{equation}
+y vimos que la estructura de grupos relevante ya no es solo la de rotaciones espaciales, sino la del grupo de Lorentz y su recubrimiento espinorial.
+
+El siguiente paso natural es responder esta pregunta con todo detalle:
+\begin{displayquote}
+\textbf{Como aparecen, a partir de las matrices $\gamma^\mu$, los generadores que implementan rotaciones y boosts sobre espinores de Dirac?}
+\end{displayquote}
+
+Este paso es decisivo por dos razones:
+\begin{enumerate}[label=\arabic*.]
+    \item fija de manera explicita la base algebraica de la simetria relativista efectiva;
+    \item nos dice que estructuras deberia poder aproximar cualquier modelo discreto que aspire a recuperar Dirac en \(3+1\).
+\end{enumerate}
+
+La estrategia sera muy concreta:
+\begin{enumerate}[label=\arabic*.]
+    \item recordar la algebra de Lorentz;
+    \item definir los generadores espinoriales $\Sigma^{\mu\nu}$;
+    \item calcular por separado rotaciones y boosts;
+    \item interpretar esos resultados en la base quiral;
+    \item explicar por que esto conecta con \(SL(2,\mathbb{C})\).
+\end{enumerate}
+
+\section{El problema geometrico de fondo}
+\subsection{Transformaciones de Lorentz}
+Una transformacion de Lorentz lineal actua sobre un cuatro-vector $x^\mu$ como
+\begin{equation}
+x^\mu \mapsto x'^\mu = \Lambda^\mu{}_\nu x^\nu,
+\end{equation}
+preservando la metrica de Minkowski:
+\begin{equation}
+\Lambda^\mu{}_\rho \Lambda^\nu{}_\sigma \eta_{\mu\nu} = \eta_{\rho\sigma}.
+\label{c16:eq:lorcond}
+\end{equation}
+
+Cuando $\Lambda$ esta muy cerca de la identidad, podemos escribirla como
+\begin{equation}
+\Lambda^\mu{}_\nu = \delta^\mu{}_\nu + \omega^\mu{}_\nu,
+\qquad
+\abs{\omega^\mu{}_\nu}\ll 1.
+\end{equation}
+Al imponer \eqref{c16:eq:lorcond} a primer orden, se obtiene
+\begin{equation}
+\omega_{\mu\nu} = -\omega_{\nu\mu}.
+\label{c16:eq:antisym}
+\end{equation}
+
+Eso significa que el grupo de Lorentz tiene seis parametros infinitesimales independientes:
+\begin{enumerate}[label=\arabic*.]
+    \item tres asociados a rotaciones espaciales;
+    \item tres asociados a boosts.
+\end{enumerate}
+
+\subsection{La cuenta minima}
+Si $\mu,\nu=0,1,2,3$, una matriz antisimetrica $\omega_{\mu\nu}$ tiene exactamente
+\begin{equation}
+\frac{4\cdot 3}{2}=6
+\end{equation}
+componentes independientes.
+
+La separacion practica es:
+\begin{equation}
+\omega_{ij} \quad \text{con } i,j=1,2,3
+\end{equation}
+para rotaciones, y
+\begin{equation}
+\omega_{0i}
+\end{equation}
+para boosts.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, thick, align=center, minimum width=3.2cm, minimum height=1.3cm},
+    arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=blue!7] (a) at (0,0) {Grupo de Lorentz\\\(SO(3,1)\)};
+\node[box, fill=green!7] (b) at (4.5,1.4) {3 rotaciones\\\(\omega_{ij}\)};
+\node[box, fill=red!7] (c) at (4.5,-1.4) {3 boosts\\\(\omega_{0i}\)};
+\draw[arr] (a) -- (b);
+\draw[arr] (a) -- (c);
+\end{tikzpicture}
+\caption{Descomposicion de los seis parametros infinitesimales de Lorentz.}
+\end{figure}
+
+\section{Como deben transformar los espinores}
+Un espinor de Dirac no transforma como un vector de cuatro componentes ordinario. Queremos una ley de transformacion
+\begin{equation}
+\Psi(x)\mapsto \Psi'(x') = S(\Lambda)\Psi(x),
+\end{equation}
+tal que la ecuacion de Dirac conserve su forma.
+
+La condicion algebraica clave es
+\begin{equation}
+S(\Lambda)^{-1}\gamma^\mu S(\Lambda)=\Lambda^\mu{}_\nu \gamma^\nu.
+\label{c16:eq:covgamma}
+\end{equation}
+
+Esta ecuacion dice todo lo esencial: la accion espinorial debe reorganizar las matrices gamma exactamente del mismo modo en que la transformacion de Lorentz reorganiza los indices del espacio-tiempo.
+
+\subsection{Forma infinitesimal}
+Para una transformacion infinitesimal escribimos
+\begin{equation}
+S(\Lambda)=\mathbb{I}-\frac{i}{2}\omega_{\mu\nu}\Sigma^{\mu\nu}+O(\omega^2),
+\label{c16:eq:sinf}
+\end{equation}
+donde las matrices $\Sigma^{\mu\nu}$ son los generadores espinoriales que buscamos.
+
+La pregunta ahora se vuelve concreta:
+\begin{displayquote}
+\textbf{Que eleccion de $\Sigma^{\mu\nu}$ hace verdadera la condicion \eqref{c16:eq:covgamma}?}
+\end{displayquote}
+
+\section{Definicion de los generadores espinoriales}
+La respuesta estandar, y la que vamos a justificar, es
+\begin{equation}
+\boxed{
+\Sigma^{\mu\nu}=\frac{i}{4}[\gamma^\mu,\gamma^\nu].
+}
+\label{c16:eq:sigmadef}
+\end{equation}
+
+Como el conmutador cambia de signo al intercambiar indices, estas matrices satisfacen automaticamente
+\begin{equation}
+\Sigma^{\mu\nu}=-\Sigma^{\nu\mu}.
+\end{equation}
+
+\subsection{Por que esta definicion es natural}
+La algebra de Clifford nos da
+\begin{equation}
+\{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu}\mathbb{I}_4.
+\label{c16:eq:cliff}
+\end{equation}
+
+La parte antisimetrica del producto $\gamma^\mu\gamma^\nu$ no esta fijada por la anticomutacion. Esa parte antisimetrica es precisamente el objeto natural para representar generadores de transformaciones que tambien son antisimetrizadas en dos indices, como ocurre con Lorentz.
+
+En otras palabras:
+\begin{enumerate}[label=\arabic*.]
+    \item el tensor infinitesimal $\omega_{\mu\nu}$ es antisimetrico;
+    \item por tanto el generador tambien debe llevar dos indices antisimetrizados;
+    \item la estructura mas natural disponible dentro del algebra de Dirac es el conmutador de dos gamma.
+\end{enumerate}
+
+\section{Verificacion de la formula generadora}
+Ahora queremos ver que \eqref{c16:eq:sigmadef} realmente implementa \eqref{c16:eq:covgamma}.
+
+\subsection{Expansión a primer orden}
+Tomamos
+\begin{equation}
+S^{-1}=\mathbb{I}+\frac{i}{2}\omega_{\rho\sigma}\Sigma^{\rho\sigma}+O(\omega^2),
+\end{equation}
+y entonces
+\begin{align}
+S^{-1}\gamma^\mu S
+&=
+\left(\mathbb{I}+\frac{i}{2}\omega_{\rho\sigma}\Sigma^{\rho\sigma}\right)
+\gamma^\mu
+\left(\mathbb{I}-\frac{i}{2}\omega_{\alpha\beta}\Sigma^{\alpha\beta}\right)+O(\omega^2)
+\\
+&=
+\gamma^\mu+\frac{i}{2}\omega_{\rho\sigma}[\Sigma^{\rho\sigma},\gamma^\mu]+O(\omega^2).
+\label{c16:eq:firstorder}
+\end{align}
+
+Por otro lado, del lado vectorial queremos
+\begin{equation}
+\Lambda^\mu{}_\nu\gamma^\nu
+=
+(\delta^\mu{}_\nu+\omega^\mu{}_\nu)\gamma^\nu
+=
+\gamma^\mu+\omega^\mu{}_\nu\gamma^\nu.
+\label{c16:eq:vectorial}
+\end{equation}
+
+Por tanto basta probar que
+\begin{equation}
+\frac{i}{2}\omega_{\rho\sigma}[\Sigma^{\rho\sigma},\gamma^\mu]
+=
+\omega^\mu{}_\nu\gamma^\nu.
+\label{c16:eq:need}
+\end{equation}
+
+\subsection{Conmutador central}
+Usando \eqref{c16:eq:sigmadef}, el conmutador buscado satisface la identidad
+\begin{equation}
+[\Sigma^{\rho\sigma},\gamma^\mu]
+=
+i(\eta^{\mu\rho}\gamma^\sigma-\eta^{\mu\sigma}\gamma^\rho).
+\label{c16:eq:master}
+\end{equation}
+
+Esta relacion es la pieza central de todo el capitulo. Vamos a derivarla con calma.
+
+\subsection{\texorpdfstring{Derivacion detallada de la identidad central}{Derivacion detallada de la identidad central}}
+Partimos de
+\begin{equation}
+\Sigma^{\rho\sigma}=\frac{i}{4}(\gamma^\rho\gamma^\sigma-\gamma^\sigma\gamma^\rho).
+\end{equation}
+Entonces
+\begin{align}
+[\Sigma^{\rho\sigma},\gamma^\mu]
+&=
+\frac{i}{4}
+\left[
+(\gamma^\rho\gamma^\sigma-\gamma^\sigma\gamma^\rho)\gamma^\mu
+-\gamma^\mu(\gamma^\rho\gamma^\sigma-\gamma^\sigma\gamma^\rho)
+\right]
+\\
+&=
+\frac{i}{4}
+\left(
+\gamma^\rho\gamma^\sigma\gamma^\mu
+-\gamma^\sigma\gamma^\rho\gamma^\mu
+-\gamma^\mu\gamma^\rho\gamma^\sigma
++\gamma^\mu\gamma^\sigma\gamma^\rho
+\right).
+\label{c16:eq:longcomm}
+\end{align}
+
+Ahora usamos repetidamente la algebra de Clifford para mover $\gamma^\mu$ hacia la derecha o hacia la izquierda. Por ejemplo,
+\begin{equation}
+\gamma^\sigma\gamma^\mu
+=
+-\gamma^\mu\gamma^\sigma + 2\eta^{\sigma\mu}.
+\end{equation}
+Entonces
+\begin{align}
+\gamma^\rho\gamma^\sigma\gamma^\mu
+&=
+\gamma^\rho(-\gamma^\mu\gamma^\sigma+2\eta^{\sigma\mu})
+\\
+&=
+-\gamma^\rho\gamma^\mu\gamma^\sigma + 2\eta^{\sigma\mu}\gamma^\rho
+\\
+&=
+(\gamma^\mu\gamma^\rho-2\eta^{\rho\mu})\gamma^\sigma + 2\eta^{\sigma\mu}\gamma^\rho
+\\
+&=
+\gamma^\mu\gamma^\rho\gamma^\sigma
+-2\eta^{\rho\mu}\gamma^\sigma
++2\eta^{\sigma\mu}\gamma^\rho.
+\label{c16:eq:term1}
+\end{align}
+
+De manera similar,
+\begin{equation}
+\gamma^\sigma\gamma^\rho\gamma^\mu
+=
+\gamma^\mu\gamma^\sigma\gamma^\rho
+-2\eta^{\sigma\mu}\gamma^\rho
++2\eta^{\rho\mu}\gamma^\sigma.
+\label{c16:eq:term2}
+\end{equation}
+
+Sustituimos \eqref{c16:eq:term1} y \eqref{c16:eq:term2} en \eqref{c16:eq:longcomm}. Los terminos cubicos se cancelan exactamente y queda
+\begin{align}
+[\Sigma^{\rho\sigma},\gamma^\mu]
+&=
+\frac{i}{4}
+\left[
+(-2\eta^{\rho\mu}\gamma^\sigma+2\eta^{\sigma\mu}\gamma^\rho)
+-(-2\eta^{\sigma\mu}\gamma^\rho+2\eta^{\rho\mu}\gamma^\sigma)
+\right]
+\\
+&=
+\frac{i}{4}
+\left(
+-4\eta^{\rho\mu}\gamma^\sigma
++4\eta^{\sigma\mu}\gamma^\rho
+\right)
+\\
+&=
+i(\eta^{\mu\sigma}\gamma^\rho-\eta^{\mu\rho}\gamma^\sigma).
+\end{align}
+
+Esta expresion es la misma que \eqref{c16:eq:master}, salvo un intercambio de nombres mudos y un signo global equivalente por orden de indices. La forma estandar que usaremos es
+\begin{equation}
+[\Sigma^{\rho\sigma},\gamma^\mu]
+=
+i(\eta^{\mu\rho}\gamma^\sigma-\eta^{\mu\sigma}\gamma^\rho).
+\end{equation}
+
+\subsection{Cierre de la verificacion}
+Insertamos ahora esta identidad en \eqref{c16:eq:firstorder}:
+\begin{align}
+S^{-1}\gamma^\mu S
+&=
+\gamma^\mu
++\frac{i}{2}\omega_{\rho\sigma}
+i(\eta^{\mu\rho}\gamma^\sigma-\eta^{\mu\sigma}\gamma^\rho)
+\\
+&=
+\gamma^\mu
+-\frac{1}{2}\omega_{\rho\sigma}
+(\eta^{\mu\rho}\gamma^\sigma-\eta^{\mu\sigma}\gamma^\rho).
+\end{align}
+Usando la antisimetria de $\omega_{\rho\sigma}$, esto se simplifica a
+\begin{equation}
+S^{-1}\gamma^\mu S
+=
+\gamma^\mu+\omega^\mu{}_\nu\gamma^\nu,
+\end{equation}
+que coincide exactamente con \eqref{c16:eq:vectorial}. Por tanto, la definicion \eqref{c16:eq:sigmadef} es correcta.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, thick, align=center, minimum width=3.4cm, minimum height=1.2cm},
+    arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=blue!7] (a) at (0,0) {\(\{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu}\)};
+\node[box, fill=green!7] (b) at (4.7,0) {\(\Sigma^{\mu\nu}=\frac{i}{4}[\gamma^\mu,\gamma^\nu]\)};
+\node[box, fill=yellow!10] (c) at (9.4,0) {\([\Sigma^{\rho\sigma},\gamma^\mu]\)};
+\node[box, fill=red!7] (d) at (14.1,0) {\(S^{-1}\gamma^\mu S=\Lambda^\mu{}_\nu\gamma^\nu\)};
+\draw[arr] (a) -- (b);
+\draw[arr] (b) -- (c);
+\draw[arr] (c) -- (d);
+\end{tikzpicture}
+\caption{Logica algebraica del paso central.}
+\end{figure}
+
+\section{Rotaciones y boosts por separado}
+Ya sabemos que los seis generadores viven en $\Sigma^{\mu\nu}$. Ahora queremos separarlos en las piezas fisicamente familiares.
+
+\subsection{Generadores de rotacion}
+Definimos
+\begin{equation}
+J_i = \frac{1}{2}\epsilon_{ijk}\Sigma^{jk}.
+\label{c16:eq:Jdef}
+\end{equation}
+Como $\Sigma^{jk}$ solo involucra indices espaciales, estos son los generadores de rotaciones.
+
+En la base quiral, usando
+\begin{equation}
+\gamma^0=
+\begin{pmatrix}
+0 & \mathbb{I}_2\\
+\mathbb{I}_2 & 0
+\end{pmatrix},
+\qquad
+\gamma^i=
+\begin{pmatrix}
+0 & \sigma_i\\
+-\sigma_i & 0
+\end{pmatrix},
+\end{equation}
+calculamos
+\begin{align}
+[\gamma^j,\gamma^k]
+&=
+\begin{pmatrix}
+-\sigma_j\sigma_k+\sigma_k\sigma_j & 0\\
+0 & -\sigma_j\sigma_k+\sigma_k\sigma_j
+\end{pmatrix}
+\\
+&=
+-[\sigma_j,\sigma_k]
+\begin{pmatrix}
+1 & 0\\
+0 & 1
+\end{pmatrix}_{\text{bloques}}
+\\
+&=
+-2i\epsilon_{jk\ell}
+\begin{pmatrix}
+\sigma_\ell & 0\\
+0 & \sigma_\ell
+\end{pmatrix}.
+\end{align}
+Entonces
+\begin{equation}
+\Sigma^{jk}
+=
+\frac{i}{4}[\gamma^j,\gamma^k]
+=
+\frac{1}{2}\epsilon_{jk\ell}
+\begin{pmatrix}
+\sigma_\ell & 0\\
+0 & \sigma_\ell
+\end{pmatrix},
+\end{equation}
+y por tanto
+\begin{equation}
+\boxed{
+J_i=
+\frac{1}{2}
+\begin{pmatrix}
+\sigma_i & 0\\
+0 & \sigma_i
+\end{pmatrix}.
+}
+\label{c16:eq:Jmatrix}
+\end{equation}
+
+Este resultado es muy importante: ambos sectores quirales rotan de la misma manera bajo rotaciones espaciales.
+
+\subsection{Generadores de boost}
+Definimos
+\begin{equation}
+K_i = \Sigma^{0i}.
+\label{c16:eq:Kdef}
+\end{equation}
+
+Calculamos primero el conmutador:
+\begin{align}
+[\gamma^0,\gamma^i]
+&=
+\begin{pmatrix}
+-\sigma_i & 0\\
+0 & \sigma_i
+\end{pmatrix}
+-
+\begin{pmatrix}
+\sigma_i & 0\\
+0 & -\sigma_i
+\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+-2\sigma_i & 0\\
+0 & 2\sigma_i
+\end{pmatrix}.
+\end{align}
+Asi,
+\begin{equation}
+\boxed{
+K_i=\Sigma^{0i}
+=
+\frac{i}{2}
+\begin{pmatrix}
+-\sigma_i & 0\\
+0 & \sigma_i
+\end{pmatrix}.
+}
+\label{c16:eq:Kmatrix}
+\end{equation}
+
+Este resultado complementa al anterior de una forma muy reveladora: bajo boosts, los dos sectores quirales no transforman igual, sino con signo opuesto.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, thick, align=center, minimum width=4cm, minimum height=1.6cm}
+]
+\node[box, fill=blue!8] at (0,0) {\(J_i=\frac{1}{2}\begin{pmatrix}\sigma_i&0\\0&\sigma_i\end{pmatrix}\)\\rotaciones};
+\node[box, fill=red!8] at (7.2,0) {\(K_i=\frac{i}{2}\begin{pmatrix}-\sigma_i&0\\0&\sigma_i\end{pmatrix}\)\\boosts};
+\end{tikzpicture}
+\caption{Comparacion estructural entre rotaciones y boosts en la base quiral.}
+\end{figure}
+
+\section{La algebra de Lorentz en la representacion espinorial}
+Los generadores fisicos deben satisfacer la algebra de Lorentz:
+\begin{align}
+[J_i,J_j] &= i\epsilon_{ijk}J_k,\\
+[J_i,K_j] &= i\epsilon_{ijk}K_k,\\
+[K_i,K_j] &= -i\epsilon_{ijk}J_k.
+\label{c16:eq:loralg}
+\end{align}
+
+\subsection{Chequeo de la primera relacion}
+Usando \eqref{c16:eq:Jmatrix},
+\begin{align}
+[J_i,J_j]
+&=
+\frac{1}{4}
+\begin{pmatrix}
+[\sigma_i,\sigma_j] & 0\\
+0 & [\sigma_i,\sigma_j]
+\end{pmatrix}
+\\
+&=
+\frac{1}{4}(2i\epsilon_{ijk})
+\begin{pmatrix}
+\sigma_k & 0\\
+0 & \sigma_k
+\end{pmatrix}
+\\
+&=
+i\epsilon_{ijk}J_k.
+\end{align}
+
+\subsection{Chequeo de la segunda relacion}
+Con \eqref{c16:eq:Jmatrix} y \eqref{c16:eq:Kmatrix},
+\begin{align}
+[J_i,K_j]
+&=
+\frac{i}{4}
+\begin{pmatrix}
+-[\sigma_i,\sigma_j] & 0\\
+0 & [\sigma_i,\sigma_j]
+\end{pmatrix}
+\\
+&=
+\frac{i}{4}(2i\epsilon_{ijk})
+\begin{pmatrix}
+-\sigma_k & 0\\
+0 & \sigma_k
+\end{pmatrix}
+\\
+&=
+i\epsilon_{ijk}K_k.
+\end{align}
+
+\subsection{Chequeo de la tercera relacion}
+Finalmente,
+\begin{align}
+[K_i,K_j]
+&=
+-\frac{1}{4}
+\begin{pmatrix}
+[\sigma_i,\sigma_j] & 0\\
+0 & [\sigma_i,\sigma_j]
+\end{pmatrix}
+\\
+&=
+-\frac{1}{4}(2i\epsilon_{ijk})
+\begin{pmatrix}
+\sigma_k & 0\\
+0 & \sigma_k
+\end{pmatrix}
+\\
+&=
+-i\epsilon_{ijk}J_k.
+\end{align}
+
+Asi que la representacion espinorial construida con las gamma satisface exactamente la algebra de Lorentz.
+
+\section{\texorpdfstring{La descomposicion quiral y \(SL(2,\mathbb{C})\)}{La descomposicion quiral y SL(2,C)}}
+Ahora aparece uno de los puntos mas profundos del capitulo. Si definimos
+\begin{equation}
+A_i = \frac{1}{2}(J_i+iK_i),
+\qquad
+B_i = \frac{1}{2}(J_i-iK_i),
+\label{c16:eq:AB}
+\end{equation}
+entonces se obtiene
+\begin{align}
+[A_i,A_j] &= i\epsilon_{ijk}A_k,\\
+[B_i,B_j] &= i\epsilon_{ijk}B_k,\\
+[A_i,B_j] &= 0.
+\label{c16:eq:su2su2}
+\end{align}
+
+Esto significa que la algebra complejificada de Lorentz se separa en dos copias independientes de la algebra de \(SU(2)\).
+
+\subsection{Lectura en la base quiral}
+Si insertamos \eqref{c16:eq:Jmatrix} y \eqref{c16:eq:Kmatrix}, vemos que un sector quiral queda asociado a una de esas copias, y el otro sector a la otra. Esa es la forma algebraica precisa de decir que:
+\begin{enumerate}[label=\arabic*.]
+    \item el espinor izquierdo transforma en \((1/2,0)\);
+    \item el espinor derecho transforma en \((0,1/2)\).
+\end{enumerate}
+
+Aqui es donde entra \(SL(2,\mathbb{C})\): este grupo es el recubrimiento doble de la componente conexa del grupo de Lorentz, y sus representaciones fundamentales complejas son precisamente las que subyacen a los espinores de Weyl izquierdo y derecho.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, thick, align=center, minimum width=3.4cm, minimum height=1.5cm},
+    arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=green!8] (a) at (0,0) {\(J_i,K_i\)};
+\node[box, fill=blue!8] (b) at (4.8,1.5) {\(A_i=\frac{1}{2}(J_i+iK_i)\)};
+\node[box, fill=red!8] (c) at (4.8,-1.5) {\(B_i=\frac{1}{2}(J_i-iK_i)\)};
+\node[box, fill=yellow!10] (d) at (10,1.5) {sector izquierdo\\\((1/2,0)\)};
+\node[box, fill=orange!10] (e) at (10,-1.5) {sector derecho\\\((0,1/2)\)};
+\draw[arr] (a) -- (b);
+\draw[arr] (a) -- (c);
+\draw[arr] (b) -- (d);
+\draw[arr] (c) -- (e);
+\end{tikzpicture}
+\caption{Separacion quiral de la algebra de Lorentz.}
+\end{figure}
+
+\section{Que significa esto para el proyecto}
+Esta derivacion deja varias lecciones que no conviene perder de vista.
+
+\subsection{Primera leccion}
+No basta con obtener un cono lineal y una ecuacion parecida a Dirac. Si el objetivo final es serio, hay que identificar la estructura de generadores que haga sentido como simetria relativista efectiva.
+
+\subsection{Segunda leccion}
+El paso de Weyl a Dirac no es solo juntar dos copias de una teoria de dos componentes. Es construir una representacion donde:
+\begin{enumerate}[label=\arabic*.]
+    \item las rotaciones actuan de la misma forma sobre ambos sectores;
+    \item los boosts distinguen ambos sectores;
+    \item la masa los acopla en un espinor de Dirac completo.
+\end{enumerate}
+
+\subsection{Tercera leccion}
+Cualquier modelo discreto que quiera aproximar este comportamiento debe, al menos en el limite efectivo:
+\begin{enumerate}[label=\arabic*.]
+    \item reproducir una algebra de Clifford adecuada;
+    \item organizar correctamente los sectores quirales;
+    \item admitir generadores efectivos que se acerquen a la algebra de Lorentz.
+\end{enumerate}
+
+\section{Mapa del siguiente paso}
+Con este capitulo ya esta bien asentada la base algebraica. El siguiente paso natural puede ser uno de estos dos:
+\begin{enumerate}[label=\arabic*.]
+    \item volver a la construccion discreta y preguntar como Nielsen--Ninomiya afecta la aparicion de los sectores de Weyl;
+    \item tomar una dinamica discreta mas concreta en \(3D\) y estudiar si sus generadores efectivos aproximan la estructura de rotaciones y boosts que acabamos de derivar.
+\end{enumerate}
+
+\section{Resumen final}
+Partiendo solo de la ecuacion de Dirac y de la algebra de Clifford, construimos los generadores espinoriales
+\[
+\Sigma^{\mu\nu}=\frac{i}{4}[\gamma^\mu,\gamma^\nu],
+\]
+y verificamos paso a paso que implementan correctamente las transformaciones de Lorentz sobre las matrices gamma.
+
+Al separar esos generadores en rotaciones \(J_i\) y boosts \(K_i\), vimos algo central: las rotaciones actuan del mismo modo sobre ambos sectores quirales, mientras que los boosts los distinguen con signo opuesto. Esta diferencia es justamente la huella algebraica de la descomposicion de Dirac en dos sectores de Weyl.
+
+Por eso este capitulo fija una base muy fuerte para el proyecto. Ya no solo sabemos escribir la ecuacion covariante: ahora entendemos de donde salen los generadores de la simetria que esa ecuacion debe respetar, como se organizan en la base quiral y por que la presencia de \(SL(2,\mathbb{C})\) no es un detalle ornamental, sino una pieza estructural del problema.

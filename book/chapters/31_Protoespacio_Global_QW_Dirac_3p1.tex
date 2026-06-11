@@ -1,0 +1,328 @@
+% Importado desde: 2026-03-28_Protoespacio_Discreto_Global_desde_QW_Dirac_3p1.tex
+\chapter{Derivacion Pedagogica: --- que objeto global estamos construyendo realmente: --- protoespacio discreto mas alla del sector infrarrojo}
+\label{ch:protoespacio-global-qw-dirac-3p1}
+
+
+
+
+
+
+% verified-by: validators/protoespacio_global.py::test_hamiltonian_hermitian
+% verified-by: validators/protoespacio_global.py::test_infrared_limit
+% verified-by: validators/protoespacio_global.py::test_brillouin_periodicity
+% verified-by: validators/protoespacio_global.py::test_wilson_lifts_doublers
+
+\section{Objetivo}
+Hasta aqui cerramos una construccion local consistente:
+\begin{enumerate}[label=\arabic*.]
+    \item una caminata discreta tipo Weyl en \(3D\);
+    \item dos bloques de quiralidad opuesta;
+    \item una mezcla local de masa;
+    \item y la aparicion efectiva de un Hamiltoniano de Dirac en \(3+1\).
+\end{enumerate}
+
+Pero ahora aparece una pregunta mas profunda, y muy importante:
+\begin{displayquote}
+\textbf{si todo esto es realmente consistente solo en el sector infrarrojo, entonces que objeto discreto estamos construyendo globalmente, lejos de la region donde vale la linealizacion?}
+\end{displayquote}
+
+La sospecha que planteas es muy buena: tal vez el \enquote{proto-espacio} ya no sea simplemente la red original desnuda, sino una extension mas rica. Este capitulo intenta ordenar esa idea con cuidado.
+
+\section{Primera aclaracion: que cambia y que no cambia}
+Lo primero que conviene aclarar es esto:
+\begin{displayquote}
+\textbf{al pasar de dos a cuatro componentes no estamos construyendo cuatro copias del espacio.}
+\end{displayquote}
+
+Lo que se amplifica no es la red base, sino el espacio local de estados en cada nodo.
+
+\subsection{Base espacial}
+La base sigue siendo la red cubica
+\begin{equation}
+\Lambda = a\,\mathbb{Z}^3.
+\label{c31:eq:lattice}
+\end{equation}
+
+\subsection{Fibra interna}
+Lo que ahora vive sobre cada sitio es un espacio interno de cuatro componentes:
+\begin{equation}
+\mathcal{H}_{\text{local}}
+=
+\mathbb{C}^2_{\text{quiralidad}}
+\otimes
+\mathbb{C}^2_{\text{Weyl}}.
+\label{c31:eq:fiber}
+\end{equation}
+
+\subsection{Leccion}
+El candidato de protoespacio discreto ya no es simplemente \(\Lambda\). El objeto mas honesto es
+\begin{equation}
+\text{protoespacio} \;\sim\; (\Lambda,\mathcal{H}_{\text{local}},U_D),
+\label{c31:eq:proto}
+\end{equation}
+es decir:
+\begin{enumerate}[label=\arabic*.]
+    \item una red base;
+    \item una fibra local de cuatro componentes;
+    \item y una regla discreta de evolucion local.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, thick, align=center, minimum width=3.9cm, minimum height=1.0cm},
+    arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=blue!7] (a) at (0,0) {red base\\\(\Lambda=a\mathbb{Z}^3\)};
+\node[box, fill=green!7] (b) at (4.8,0) {fibra local\\\(\mathbb{C}^4\)};
+\node[box, fill=yellow!12] (c) at (9.6,0) {regla unitaria\\local \(U_D\)};
+\node[box, fill=red!7] (d) at (14.4,0) {protoespacio\\discreto efectivo};
+\draw[arr] (a) -- (b);
+\draw[arr] (b) -- (c);
+\draw[arr] (c) -- (d);
+\end{tikzpicture}
+\caption{La ampliacion a cuatro componentes modifica el objeto local, no el conjunto de sitios de la red.}
+\end{figure}
+
+\section{Segundo analisis: la caminata exacta de un bloque Weyl}
+Para entender la estructura global, debemos dejar de mirar solo el limite \(a|\vp|\ll 1\) y escribir el operador unitario exacto en espacio de momentos.
+
+\subsection{Bloque Weyl exacto}
+Para un momento de Bloch \(\vk=(k_x,k_y,k_z)\), el paso es
+\begin{equation}
+U_W(\vk)=
+\ee^{-\,\ii a k_z \sigma_z}
+\ee^{-\,\ii a k_y \sigma_y}
+\ee^{-\,\ii a k_x \sigma_x}.
+\label{c31:eq:UWk}
+\end{equation}
+
+Como es una matriz unitaria \(2\times 2\) con determinante uno, puede escribirse como
+\begin{equation}
+U_W(\vk)=
+\cos\!\bigl(\omega(\vk)\Delta t\bigr)\,\bbI
+-\ii \sin\!\bigl(\omega(\vk)\Delta t\bigr)\,\hat{\bm{n}}(\vk)\cdot\vsigma.
+\label{c31:eq:SU2form}
+\end{equation}
+
+\subsection{Cuasienergia exacta}
+La traza fija la cuasienergia:
+\begin{equation}
+\cos\!\bigl(\omega(\vk)\Delta t\bigr)
+=
+\cos(ak_x)\cos(ak_y)\cos(ak_z)
++ \sin(ak_x)\sin(ak_y)\sin(ak_z).
+\label{c31:eq:exactdisp}
+\end{equation}
+
+Esta formula ya nos dice casi todo lo importante.
+
+\subsection{Cerca del infrarrojo}
+Si \(ak_i\ll 1\), entonces
+\begin{equation}
+\cos\!\bigl(\omega\Delta t\bigr)
+\simeq
+1-\frac{a^2}{2}(k_x^2+k_y^2+k_z^2),
+\end{equation}
+y por tanto
+\begin{equation}
+\omega(\vk)\simeq \frac{a}{\Delta t}\sqrt{k_x^2+k_y^2+k_z^2}.
+\end{equation}
+
+Recuperamos el cono isotropo de Weyl.
+
+\subsection{Lejos del infrarrojo}
+Lejos de \(\vk=0\), la estructura cambia drásticamente:
+\begin{enumerate}[label=\arabic*.]
+    \item la cuasienergia es periodica;
+    \item la zona de momentos ya no es \(\mathbb{R}^3\), sino un toro de Brillouin;
+    \item reaparecen anisotropias y estructura angular fina;
+    \item y pueden aparecer otros puntos especiales del espectro.
+\end{enumerate}
+
+\begin{displayquote}
+\textbf{globalmente, la teoria no vive sobre el continuo relativista, sino sobre una dinamica periodica en el toro de Brillouin \(T^3\).}
+\end{displayquote}
+
+\section{Tercer analisis: que protoespacio discreto sugiere esto}
+Ahora podemos responder mejor a la pregunta \enquote{que es el objeto global?}
+
+\subsection{No es solo una red euclidea desnuda}
+Si uno mira solo la base \(\Lambda\), pareceria que el protoespacio es \enquote{una red cubica y nada mas}. Pero eso ya no es suficiente.
+
+La razon es que la dinamica exacta depende esencialmente de:
+\begin{enumerate}[label=\arabic*.]
+    \item una estructura de pasos ordenados;
+    \item una fibra local interna;
+    \item y una orientacion entre direcciones espaciales y matrices internas.
+\end{enumerate}
+
+\subsection{Objeto mas fiel}
+El candidato mas fiel no es \(\Lambda\) sola, sino una especie de \textbf{red fibrada con regla local ordenada}. Es decir:
+\begin{equation}
+\bigl(\Lambda,\mathbb{C}^4,U_D\bigr),
+\end{equation}
+donde la geometria efectiva no se lee solo del grafo de adyacencia, sino del conjunto completo \enquote{red + fibra + paso unitario}.
+
+\subsection{Interpretacion}
+Esto se parece mas a una \enquote{pregeometria dinamica} que a una simple red espacial.
+
+\section{Cuarto analisis: el orden temporal importa}
+Este punto es muy delicado, y seguramente el mas importante del capitulo.
+
+\subsection{El paso no es simetrico en las direcciones}
+El operador
+\begin{equation}
+U_W = U_zU_yU_x
+\end{equation}
+elige un orden de aplicacion. Ese orden importa porque las matrices de Pauli no conmutan.
+
+\subsection{Consecuencia}
+Aunque la red base sea cubica, la regla de actualizacion introduce una estructura temporal orientada:
+\begin{equation}
+x \;\text{antes que}\; y \;\text{antes que}\; z
+\end{equation}
+dentro de cada paso elemental.
+
+\subsection{Leccion}
+Lejos del infrarrojo, el objeto discreto global no es meramente espacial. Lleva una \textbf{microcausalidad ordenada} inscrita en el propio paso.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.15cm]
+  \node[draw,rounded corners,fill=blue!7,minimum width=2.1cm,minimum height=0.82cm] (x) {\(U_x\)};
+  \node[draw,rounded corners,fill=blue!7,minimum width=2.1cm,minimum height=0.82cm,right=of x] (y) {\(U_y\)};
+  \node[draw,rounded corners,fill=blue!7,minimum width=2.1cm,minimum height=0.82cm,right=of y] (z) {\(U_z\)};
+  \node[draw,rounded corners,fill=orange!10,minimum width=3.2cm,minimum height=0.95cm,right=1.5cm of z,align=center] (c) {orden temporal\\del paso};
+  \draw[->,thick] (x) -- (y);
+  \draw[->,thick] (y) -- (z);
+  \draw[->,thick] (z) -- (c);
+\end{tikzpicture}
+\caption{El orden de subpasos forma parte de la estructura global del objeto discreto.}
+\end{figure}
+
+\section{Quinto analisis: ampliar a cuatro componentes}
+La construccion consistente de Dirac la escribimos como
+\begin{equation}
+U_D = M\,U_0,
+\qquad
+M=\ee^{-\,\ii \Delta t\,m\,\tau_x\otimes\bbI_2},
+\label{c31:eq:UD}
+\end{equation}
+donde \(U_0\) contiene dos bloques Weyl opuestos.
+
+\subsection{Que cambia realmente}
+La base espacial no cambia. Lo que cambia es:
+\begin{enumerate}[label=\arabic*.]
+    \item la dimension de la fibra local;
+    \item la regla de mezcla local;
+    \item y la manera en que los sectores quirales se acoplan.
+\end{enumerate}
+
+\subsection{Que no debemos imaginar}
+No debemos imaginar cuatro redes fisicas superpuestas. Lo correcto es imaginar:
+\begin{equation}
+\text{un nodo espacial}
+\quad+\quad
+\text{cuatro amplitudes internas}
+\quad+\quad
+\text{una regla local de transporte y mezcla}.
+\end{equation}
+
+\section{Sexto analisis: simetrias exactas del objeto global}
+Ahora podemos clasificar mejor las simetrias que sobreviven lejos del infrarrojo.
+
+\subsection{Traslaciones discretas}
+Estas siguen siendo exactas. La regla local es la misma en todos los sitios.
+
+\subsection{Periodicidad de Brillouin}
+En espacio de momentos, la estructura global vive sobre
+\begin{equation}
+T^3 = \mathbb{R}^3 / \frac{2\pi}{a}\mathbb{Z}^3.
+\end{equation}
+Esta periodicidad es una simetria exacta del objeto global, no un detalle tecnico.
+
+\subsection{Grupo puntual discreto}
+La red base sigue admitiendo simetrias puntuales discretas, pero el paso ordenado puede reducir la simetria exacta disponible. En otras palabras:
+\begin{displayquote}
+\textbf{la red cubica por si sola puede tener mas simetria que la dinamica concreta que hemos impuesto sobre ella.}
+\end{displayquote}
+
+\subsection{Simetrias internas}
+En el caso sin masa, los sectores quirales estan separados y existe una estructura interna mas rica. Al encender \(m\), la mezcla local reduce esa separacion.
+
+\subsection{Moral}
+Lejos del infrarrojo, las simetrias exactas no son las del continuo relativista, sino las del \textbf{triple}:
+\begin{equation}
+(\text{red},\text{fibra},\text{regla de actualizacion}).
+\end{equation}
+
+\section{Septimo analisis: donde vive de verdad Dirac}
+Con todo esto, ya podemos formular una respuesta honesta.
+
+\subsection{Respuesta corta}
+Dirac en \(3+1\) no vive globalmente sobre todo el objeto discreto. Vive como una descripcion efectiva de un sector de baja energia y largo alcance.
+
+\subsection{Respuesta mas profunda}
+Pero eso no vuelve inutil el objeto global. Al contrario: nos dice que el problema central ya no es \enquote{encontrar Dirac}, sino
+\begin{displayquote}
+\textbf{entender que clase de preestructura discreta admite un sector infrarrojo Dirac y como esa preestructura debe leerse geometricamente fuera de la linealizacion.}
+\end{displayquote}
+
+\subsection{Protoespacio candidato}
+El candidato natural ya no es \enquote{espacio cubico discreto} a secas, sino algo mas cercano a:
+\begin{equation}
+\text{red discreta}
+\;+\;
+\text{fibra espinorial local}
+\;+\;
+\text{microcausalidad por pasos}
+\;+\;
+\text{simetrias discretas globales}.
+\label{c31:eq:protofinal}
+\end{equation}
+
+\section{Que conclusion metodologica debemos sacar}
+Tu intuicion queda muy bien formulada asi:
+\begin{displayquote}
+\textbf{el protoespacio discreto que buscamos puede no coincidir con la red original desnuda, sino con una extension de esta por grados de libertad internos y por una regla de evolucion local ordenada.}
+\end{displayquote}
+
+Eso me parece una conclusion fuerte y correcta.
+
+\subsection{Por que es importante}
+Porque cambia la pregunta del proyecto:
+\begin{enumerate}[label=\arabic*.]
+    \item ya no preguntamos solo \enquote{que red produce Dirac};
+    \item preguntamos \enquote{que objeto discreto completo produce Dirac como sector efectivo}.
+\end{enumerate}
+
+\section{Mapa del siguiente paso}
+Si seguimos realmente paso a paso, lo que toca ahora es estudiar la \textbf{consistencia global} del objeto \eqref{c31:eq:protofinal}. Eso significa:
+\begin{enumerate}[label=\arabic*.]
+    \item entender mejor los puntos especiales de la zona de Brillouin;
+    \item insertar Nielsen--Ninomiya en esta construccion completa;
+    \item y clasificar que simetrias exactas del paso sobreviven despues de la ampliacion a cuatro componentes.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, thick, align=center, minimum width=4cm, minimum height=1.02cm},
+    arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=blue!7] (a) at (0,0) {sector infrarrojo\\Dirac};
+\node[box, fill=green!7] (b) at (4.8,0) {objeto global\\discreto};
+\node[box, fill=yellow!12] (c) at (9.6,0) {Brillouin +\\simetrias exactas};
+\node[box, fill=red!7] (d) at (14.4,0) {protoespacio\\mejor identificado};
+\draw[arr] (a) -- (b);
+\draw[arr] (b) -- (c);
+\draw[arr] (c) -- (d);
+\end{tikzpicture}
+\caption{El foco del proyecto se desplaza ahora del sector efectivo al objeto discreto global que lo sostiene.}
+\end{figure}
+
+\section{Resumen final}
+El paso a cuatro componentes no multiplica el espacio base: amplifica el contenido local de cada sitio. El candidato de protoespacio discreto que emerge del programa no es solo la red cubica original, sino una estructura mas rica formada por red, fibra interna, regla unitaria local y orden temporal de subpasos.
+
+Eso explica por que Dirac puede ser plenamente consistente en el infrarrojo y, sin embargo, no describir todo el objeto global. Lejos de la region infrarroja reaparecen el toro de Brillouin, la periodicidad, la anisotropia fina y las simetrias discretas exactas del paso. Si queremos seguir con honestidad, el siguiente bloque de investigacion debe concentrarse justo ahi: en la consistencia global del protoespacio discreto que sostiene al sector Dirac efectivo.

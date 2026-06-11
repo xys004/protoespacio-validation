@@ -1,0 +1,252 @@
+% Importado desde: 2026-03-28_Exploracion_Estructural_del_Protoespacio_Discreto.tex
+\chapter{Exploracion estructural del protoespacio discreto: --- una formulacion inicial sin depender de Brillouin}
+\label{ch:exploracion-estructural-protoespacio}
+
+
+
+
+
+
+% verified-by: validators/protoespacio_minimo.py::test_linear_chain_partial_order
+% verified-by: validators/protoespacio_minimo.py::test_two_cycle_unsat
+% verified-by: validators/protoespacio_minimo.py::test_chain_extension
+% verified-by: validators/protoespacio_minimo.py::test_cyclic_unsat
+
+\section{Objetivo}
+Queremos empezar una rama nueva del proyecto: explorar el \enquote{protoespacio discreto} sin tomar como punto de partida una zona de Brillouin ni una descripcion reciproca tipo Bloch.
+
+La motivacion es clara:
+\begin{displayquote}
+\textbf{si el protoespacio es algo mas fundamental que una red cristalina efectiva, entonces su descripcion primaria no deberia depender necesariamente de un lenguaje espectral.}
+\end{displayquote}
+
+Este documento no intenta dar todavia el modelo final. Su meta es mas humilde y mas importante:
+\begin{enumerate}[label=\arabic*.]
+    \item proponer una descripcion estructural minima del protoespacio;
+    \item distinguir datos primarios de herramientas derivadas;
+    \item y dejar un marco donde el analisis de Brillouin aparezca, si aparece, solo como representacion secundaria.
+\end{enumerate}
+
+\section{Punto de partida metodologico}
+Hasta ahora trabajamos con modelos periodicos porque eran la puerta mas natural para construir fermiones tipo Dirac y Weyl. Eso estuvo bien. Pero ahora conviene separar dos planos:
+\begin{enumerate}[label=\arabic*.]
+    \item el \textbf{plano instrumental}: redes periodicas, Hamiltonianos de Bloch, zonas de Brillouin;
+    \item el \textbf{plano ontologico-estructural}: que objeto discreto podria sostener una dinamica relativista emergente.
+\end{enumerate}
+
+\begin{displayquote}
+\textbf{Hipotesis de trabajo.} El lenguaje de Brillouin puede ser una muy buena herramienta para algunos modelos, pero no tiene por que ser la forma primaria de describir el protoespacio.
+\end{displayquote}
+
+\section{Que deberia ser primario}
+Si dejamos de pensar primero en el espacio reciproco, los candidatos naturales a datos primarios son otros.
+
+\subsection{Conjunto de sitios o eventos}
+Debe existir un conjunto discreto base:
+\begin{equation}
+X=\{x_a\}.
+\end{equation}
+
+Segun la interpretacion, \(X\) puede leerse como:
+\begin{enumerate}[label=\arabic*.]
+    \item sitios de una red;
+    \item vertices de un grafo;
+    \item eventos de una estructura causal discreta;
+    \item o celdas de una discretizacion mas abstracta.
+\end{enumerate}
+
+\subsection{Relacion de vecindad o incidencia}
+Ademas de los puntos, hace falta una regla que diga que elementos interactuan localmente:
+\begin{equation}
+\cN(x_a)\subset X.
+\end{equation}
+
+Esto es mas primario que el momento de Bloch. Antes de hablar de Fourier, hay que saber quien es vecino de quien.
+
+\subsection{Espacio interno local}
+En cada sitio debe vivir un espacio interno:
+\begin{equation}
+\cH_{x_a}\cong \mathbb{C}^N.
+\end{equation}
+
+Ese \(N\) es lo que luego puede alojar:
+\begin{enumerate}[label=\arabic*.]
+    \item pseudospin;
+    \item quiralidad;
+    \item bloques tipo Weyl;
+    \item o grados de libertad de una representacion espinorial emergente.
+\end{enumerate}
+
+\subsection{Ley dinamica local}
+Hace falta tambien un operador elemental:
+\begin{equation}
+\cU:\bigotimes_{x_a}\cH_{x_a}\longrightarrow \bigotimes_{x_a}\cH_{x_a},
+\end{equation}
+o bien un Hamiltoniano local si el tiempo sigue siendo continuo.
+
+Lo importante es que:
+\begin{enumerate}[label=\arabic*.]
+    \item actue localmente respecto de \(\cN\);
+    \item preserve una nocion de microcausalidad;
+    \item y sea capaz de producir un subsector infrarrojo tipo Dirac.
+\end{enumerate}
+
+\section{Propuesta minima de protoespacio}
+Con esto, una definicion provisional y bastante general seria:
+\begin{equation}
+\cP_{\mathrm{disc}}=(X,\cN,\cH_{\mathrm{loc}},\cU,\cG_{\mathrm{micro}}),
+\label{c30:eq:proto}
+\end{equation}
+donde:
+\begin{enumerate}[label=\arabic*.]
+    \item \(X\) es el conjunto discreto de puntos o eventos;
+    \item \(\cN\) es la estructura de vecindad;
+    \item \(\cH_{\mathrm{loc}}\) es la fibra local;
+    \item \(\cU\) es la ley dinamica elemental;
+    \item \(\cG_{\mathrm{micro}}\) es el grupo de simetrias exactas del objeto.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+box/.style={draw, rounded corners, thick, align=center, minimum width=2.8cm, minimum height=0.95cm},
+arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=blue!8] (a) at (0,0) {\(X\)\\sitios/eventos};
+\node[box, fill=green!8] (b) at (3.8,0) {\(\cN\)\\vecindad};
+\node[box, fill=yellow!12] (c) at (7.6,0) {\(\cH_{\mathrm{loc}}\)\\fibra interna};
+\node[box, fill=orange!10] (d) at (11.4,0) {\(\cU\)\\dinamica local};
+\node[box, fill=red!8] (e) at (15.2,0) {\(\cG_{\mathrm{micro}}\)\\simetrias exactas};
+\draw[arr] (a) -- (b);
+\draw[arr] (b) -- (c);
+\draw[arr] (c) -- (d);
+\draw[arr] (d) -- (e);
+\end{tikzpicture}
+\caption{Datos estructurales minimos del protoespacio discreto antes de introducir herramientas espectrales.}
+\end{figure}
+
+\section{Que pasa con Brillouin en esta formulacion}
+\subsection{Brillouin deja de ser primario}
+En esta nueva lectura, el espacio reciproco ya no entra en la definicion del protoespacio. Solo puede aparecer \emph{despues}, si se satisfacen condiciones adicionales:
+\begin{enumerate}[label=\arabic*.]
+    \item homogeneidad;
+    \item periodicidad;
+    \item simetria traslacional suficiente;
+    \item posibilidad de diagonalizar por modos tipo Bloch.
+\end{enumerate}
+
+\subsection{Conclusion importante}
+Entonces:
+\begin{displayquote}
+\textbf{Brillouin no describe el protoespacio mismo; describe una representacion espectral de ciertos protoespacios discretos altamente regulares.}
+\end{displayquote}
+
+Esto es justo la separacion que nos hacia falta.
+
+\section{Tres capas de descripcion}
+Conviene ordenar todo en tres capas.
+
+\subsection{Capa estructural}
+Aqui solo viven
+\[
+(X,\cN,\cH_{\mathrm{loc}},\cU,\cG_{\mathrm{micro}}).
+\]
+Es la capa mas cercana al protoespacio.
+
+\subsection{Capa espectral}
+Si el sistema es suficientemente regular, se puede pasar a una descripcion espectral:
+\[
+\text{modos, autovalores, cuasienergia, Brillouin, bandas.}
+\]
+
+\subsection{Capa efectiva continua}
+Linealizando un sector adecuado, se obtiene:
+\[
+\text{Dirac, Weyl, Clifford, Lorentz efectivo.}
+\]
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+box/.style={draw, rounded corners, thick, align=center, minimum width=4.2cm, minimum height=1.0cm},
+arr/.style={-{Latex[length=3mm]}, thick}
+]
+\node[box, fill=blue!8] (a) at (0,0) {capa estructural\\protoespacio discreto};
+\node[box, fill=green!8] (b) at (0,-2.2) {capa espectral\\bandas y modos};
+\node[box, fill=yellow!12] (c) at (0,-4.4) {capa efectiva\\Dirac/Weyl continuo};
+\draw[arr] (a) -- node[right] {\small solo si hay regularidad} (b);
+\draw[arr] (b) -- node[right] {\small linealizacion infrarroja} (c);
+\end{tikzpicture}
+\caption{La descripcion reciproca aparece como capa intermedia posible, no como definicion del protoespacio.}
+\end{figure}
+
+\section{Primeras consecuencias para el proyecto}
+\subsection{La red cubica ya no es toda la historia}
+Si usamos una red cubica homogénea, eso solo fija una realizacion particular de \(X\) y \(\cN\). El protoespacio no debe identificarse sin mas con esa realizacion.
+
+\subsection{La fibra interna se vuelve esencial}
+La pregunta fuerte ya no es solo \enquote{que red produce un cono de Dirac?}, sino:
+\begin{displayquote}
+\textbf{que combinacion de vecindad, espacio interno y dinamica local produce un subsector relativista robusto?}
+\end{displayquote}
+
+\subsection{La microcausalidad pesa mas que la periodicidad}
+Si lo que buscamos es un protoespacio, la propiedad mas profunda probablemente sea la localidad causal del paso, no la periodicidad del espectro.
+
+\section{Dos modelos mentales posibles}
+\subsection{Modelo A: red periodica enriquecida}
+En este escenario, el protoespacio sigue siendo una red mas fibra mas dinamica local, y la descripcion de Brillouin es una representacion muy util porque la homogeneidad exacta es parte real del sistema.
+
+\subsection{Modelo B: estructura local mas general}
+En este escenario, la periodicidad solo fue una forma de arrancar. El protoespacio verdadero seria una estructura local mas general:
+\begin{enumerate}[label=\arabic*.]
+    \item tal vez no estrictamente periodica;
+    \item tal vez definida por un grafo regular o casi regular;
+    \item tal vez mas cercana a una red causal que a un cristal.
+\end{enumerate}
+
+En este segundo caso, Brillouin seria solo una aproximacion conveniente en sectores casi homogeneos.
+
+\section{Que criterios deberia satisfacer este protoespacio}
+Si dejamos de pensar primero en Brillouin, los criterios basicos pasan a ser:
+\begin{enumerate}[label=\arabic*.]
+    \item localidad de \(\cU\);
+    \item existencia de una nocion de vecindad robusta;
+    \item capacidad de sostener conos causales efectivos;
+    \item espacio interno suficiente para una estructura tipo Clifford;
+    \item subsector infrarrojo relativamente estable bajo deformaciones locales.
+\end{enumerate}
+
+Notese que ninguno de estos criterios exige de entrada un toro de Brillouin.
+
+\section{Formula de trabajo revisada}
+La pregunta fuerte del proyecto puede reescribirse asi:
+\begin{displayquote}
+\textbf{existe una estructura discreta local \((X,\cN,\cH_{\mathrm{loc}},\cU,\cG_{\mathrm{micro}})\) cuyo sector infrarrojo reproduzca Dirac en \(3+1\), y para la cual la interpretacion de protoespacio sea mas natural que en una simple red periodica?}
+\end{displayquote}
+
+Esta formulacion me parece mas fiel a lo que realmente estamos buscando ahora.
+
+\section{Conclusion}
+El cambio de perspectiva de este capitulo es importante. No invalida el trabajo previo; lo recoloca.
+
+Lo que venimos construyendo hasta ahora puede leerse asi:
+\begin{enumerate}[label=\arabic*.]
+    \item empezamos con una familia de modelos periodicos porque eran tecnicamente manejables;
+    \item eso nos permitio construir bloques Weyl y Dirac efectivos;
+    \item ahora damos un paso atras conceptual y preguntamos por la estructura primaria que podria sostener todo eso;
+    \item y en esa pregunta, Brillouin deja de ser fundamento y pasa a ser, en el mejor de los casos, una herramienta derivada.
+\end{enumerate}
+
+\begin{displayquote}
+\textbf{La idea central que queda fijada es esta: el protoespacio discreto, si existe, deberia definirse primero por su localidad, su vecindad, su fibra interna y su dinamica elemental; solo despues, cuando haya suficiente regularidad, puede admitirse una lectura espectral tipo Brillouin.}
+\end{displayquote}
+
+\section{Siguiente paso natural}
+Desde aqui se abren dos direcciones estructurales muy buenas:
+\begin{enumerate}[label=\arabic*.]
+    \item estudiar que tipo de vecindad y de simetrias locales permiten una emergencia isotropa sin imponer periodicidad exacta;
+    \item o reformular la construccion discreta en lenguaje de grafo, red causal o sistema fibrado local, antes de pasar al espacio reciproco.
+\end{enumerate}
+
+La segunda de esas dos direcciones probablemente sea la mas fiel al espiritu de la pregunta por el protoespacio.

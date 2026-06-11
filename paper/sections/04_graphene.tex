@@ -1,0 +1,61 @@
+\section{Graphene tight-binding \texorpdfstring{$\rightarrow$}{->} Dirac in \texorpdfstring{$2{+}1$}{(2+1)}}
+\label{p:graphene}
+
+Graphene~\cite{Semenoff1984,CastroNeto2009} gives the cleanest
+two-dimensional version. Working with nearest-neighbor vectors
+\[
+\vdelta_1 = (a/2)(1,\sqrt{3}),\qquad
+\vdelta_2 = (a/2)(1,-\sqrt{3}),\qquad
+\vdelta_3 = -a\,(1,0) ,
+\]
+the structural factor is
+\begin{equation}
+\Phi(\vk) \;=\;
+\sum_{i=1}^{3} \mathrm{e}^{\ii\,\vk\cdot\vdelta_{i}}
+\;=\; \mathrm{e}^{\ii\,k_x a/2}\;2\cos(\sqrt{3}\,k_y a / 2)
+  \;+\; \mathrm{e}^{-\ii k_x a},
+\label{p:eq:Phi}
+\end{equation}
+and the bipartite Hamiltonian in the $(A,B)$ basis is
+\begin{equation}
+\Hop_{\mathrm{TB}}(\vk) \;=\; -t\!\begin{pmatrix} 0 & \Phi(\vk) \\ \Phi^{*}(\vk) & 0 \end{pmatrix}.
+\end{equation}
+
+\paragraph{Dirac points and effective cone.}
+$\Phi$ vanishes at the corners of the Brillouin zone, one of which is
+$\vk_{K}=\bigl(2\pi/(3a),\,2\pi/(3\sqrt{3}a)\bigr)$. Verified directly:
+$\Phi(\vk_{K})=0$
+(\texttt{validators/graphene.py::test\_phi\_vanishes\_at\_K}).
+The leading non-trivial behavior is captured by the gradient of $\Phi$ at
+$\vk_{K}$, whose two components $c_x = (\partial_{k_x}\Phi)(\vk_{K})$ and
+$c_y = (\partial_{k_y}\Phi)(\vk_{K})$ satisfy
+\begin{equation}
+\lvert c_x\rvert^{2}\;=\;\lvert c_y\rvert^{2}\;=\;\bigl(3a/2\bigr)^{2},
+\qquad
+\operatorname{Re}\!\bigl(c_x^{*}c_y\bigr)\;=\;0 .
+\label{p:eq:c-magnitudes}
+\end{equation}
+The first identity fixes the magnitude of the Fermi velocity; the second
+guarantees that the bilinear $\lvert\Phi(\vk_{K}+\vq)\rvert^{2}$ is
+diagonal in $(q_x,q_y)$. Together they give
+\begin{equation}
+\lvert\Phi(\vk_{K}+\vq)\rvert^{2}\;=\;\tfrac{9}{4}\,a^{2}\,(q_x^{2}+q_y^{2})
++ O(\vq^{3}),
+\end{equation}
+i.e.\ an isotropic Dirac cone with $v_{F}=\tfrac{3}{2}\,t\,a$.
+
+\paragraph{A computational note.}
+The naive verification --- expand $\lvert\Phi\rvert^{2}$ symbolically and
+match coefficients --- is computationally expensive because the bilinear
+involves nine cross terms with complex exponentials and two-variable
+series expansions. The gradient-based verification of
+\eqref{p:eq:c-magnitudes} computes only two derivatives and finishes in
+milliseconds. We mention this because the analogous reformulation may
+help in any symbolic verification of band-crossing structures in higher
+dimensions or on more complex Bravais lattices.
+\begin{description}
+\item[Verified:]
+\texttt{validators/graphene.py::test\_gradient\_modulus\_is\_dirac},
+\texttt{::test\_cross\_term\_is\_imaginary},
+\texttt{::test\_fermi\_velocity}.
+\end{description}

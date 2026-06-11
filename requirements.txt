@@ -1,0 +1,8 @@
+# Verification suite dependencies (tested with these versions)
+sympy>=1.13
+z3-solver>=4.13
+numpy>=1.26
+scipy>=1.11
+networkx>=3.0
+matplotlib>=3.7
+pytest>=7.4

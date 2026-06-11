@@ -1,0 +1,77 @@
+\chapter{Protoespacio sin lenguaje reciproco}
+\label{ch:proto-sin-brillouin}
+
+% verified-by: validators/rama_estructural.py::test_chain_locality
+% verified-by: validators/rama_estructural.py::test_irregular_graph_locality
+% verified-by: validators/rama_estructural.py::test_ssh_chiral_symmetric
+% verified-by: validators/rama_estructural.py::test_disordered_ssh_chirality_preserved
+% verified-by: validators/rama_estructural.py::test_disordered_ssh_spectrum_paired
+% verified-by: validators/rama_estructural.py::test_index_lower_bound_complete_bipartite
+% verified-by: validators/rama_estructural.py::test_matching_graph_exact_index
+% verified-by: validators/rama_estructural.py::test_chirality_anticommutes
+% verified-by: validators/rama_estructural.py::test_index_on_subgraph
+
+\section{El nudo conceptual}
+
+El lenguaje de Brillouin es util como representacion espectral de modelos
+periodicos homogeneos, pero no agota la pregunta ontologica por el
+protoespacio. Identificar \Proto\ con el toro reciproco confunde un
+\emph{dispositivo de calculo} con la \emph{estructura subyacente}.
+
+\section{Direccion de trabajo}
+
+\begin{enumerate}[label=(E\arabic*),leftmargin=*]
+  \item Formular \Proto\ como tupla \ProtoTuple\ sobre grafos locales no
+        necesariamente periodicos.
+  \item Verificar que el sector efectivo Dirac sobrevive bajo
+        perturbaciones que rompen la traslacion exacta pero preservan la
+        localidad.
+  \item Construir un test combinatorio sobre familias de grafos finitos
+        donde se exija doblamiento fermionico de cargas quirales sin asumir
+        toro reciproco.
+\end{enumerate}
+
+\section{Estado actual: rama estructural ya iniciada}
+
+La rama estructural \emph{no} esta ya abierta: tiene un primer cuerpo de
+verificaciones en \texttt{validators/rama\_estructural.py}, organizado por
+los tres incisos \((E1), (E2), (E3)\).
+
+\subsection*{(E1) Localidad de \(U\) en grafos arbitrarios}
+Para una cadena tight-binding de \(n\) sitios con \(H = -t \sum_i |i\rangle\langle i{+}1| + \mathrm{h.c.}\),
+la expansion \(U_{\Delta t} = \mathbb{I} - i\,\Delta t\,H + O(\Delta t^2)\)
+tiene soporte solo en pares de vecinos. Lo mismo se verifica sobre un grafo
+irregular de 6 sitios (con dos vertices de grado 3, mezclados con grados 1
+y 2). La verificacion es \emph{exacta y no usa transformada de Fourier},
+asi que vale en cualquier grafo finito.
+
+\subsection*{(E2) Quiralidad robusta frente a desorden local}
+La cadena SSH abierta de 4 sitios admite la simetria quiral
+\(\Gamma = \mathrm{diag}(+1,-1,+1,-1)\), que anticonmuta con \(H\).
+Esto fuerza espectro simetrico \(\{-E, E\}\) sin invocar al toro de Bloch.
+La verificacion se sostiene tambien cuando se perturba un bond,
+\((t_1, t_2, t_1+\varepsilon, t_2)\): se prueba simbolicamente que
+\(\{\Gamma, H_{\mathrm{des}}\} = 0\) y que el espectro de \(H_{\mathrm{des}}\)
+sigue siendo emparejado en \(\pm\).
+
+\subsection*{(E3) Indice quiral en grafos bipartitos finitos}
+Para un grafo bipartito \(G = (A \sqcup B, E)\), la adyacencia satisface
+\(\Gamma A + A \Gamma = 0\) con \(\Gamma = \mathrm{diag}(+\mathbb{I}_A, -\mathbb{I}_B)\),
+y la nulidad de \(A\) esta acotada por
+\[
+  \mathrm{null}(A) \ge ||A| - |B||.
+\]
+Para el emparejamiento maximo (cada vertice de un lado conectado a un
+distinto vertice del otro) la cota se satura: \(\mathrm{null} = ||A|-|B||\).
+Para \(K_{n,m}\) (completo) la nulidad es estrictamente mayor, pero la cota
+de indice se respeta. Nada de esto requiere periodicidad espacial.
+
+\section{Implicacion}
+
+Los tres incisos abiertos en la revision del 28 de marzo de 2026 quedan
+\emph{verificados a nivel de los enunciados algebraicos y combinatorios
+basicos}. La pregunta ontologica de fondo --- si la formulacion adecuada
+del protoespacio es algun grafo concreto, una familia de grafos, o un
+objeto mas general --- queda abierta como linea de trabajo. Lo que ya
+quedo asentado es que la \emph{estructura algebraica} que sostiene Dirac
+(simetria quiral, indice, doblamiento) no necesita reciprocidad.

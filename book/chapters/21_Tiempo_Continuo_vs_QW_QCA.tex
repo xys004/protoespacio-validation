@@ -1,0 +1,447 @@
+% Importado desde: 2026-03-28_Tiempo_Continuo_vs_QW_QCA.tex
+\chapter{Derivacion Pedagogica: --- Tiempo continuo vs tiempo discreto: de Hamiltonianos en red a quantum walks y QCA}
+\label{ch:tiempo-continuo-vs-qw-qca}
+
+
+
+
+
+
+% verified-by: validators/tiempo_continuo_vs_qw.py::test_trotter_first_order
+% verified-by: validators/tiempo_continuo_vs_qw.py::test_trotter_second_order
+% verified-by: validators/tiempo_continuo_vs_qw.py::test_unitarity
+
+\section{Objetivo}
+
+Despues de SSH, grafeno, Dirac/Weyl en \(3D\) y Nielsen--Ninomiya, el siguiente paso natural del proyecto es decidir \textbf{como se discretiza exactamente la teoria}. Hay dos rutas principales:
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{espacio discreto y tiempo continuo:} la dinamica se da por un Hamiltoniano \(H\) y una ecuacion de Schrodinger;
+  \item \textbf{espacio-tiempo discreto:} la dinamica se da por una evolucion unitaria por pasos, como en \emph{quantum walks} o \emph{quantum cellular automata} (QCA).
+\end{enumerate}
+
+La meta de este capitulo es comparar esas dos estrategias paso a paso y mostrar, con apoyo visual, como ambas pueden llevar a una ecuacion efectiva de Dirac, aunque lo hagan de maneras conceptualmente distintas.
+
+\section{Panorama general}
+
+La diferencia central puede resumirse con una sola pregunta:
+
+\begin{displayquote}
+\enquote{La variable tiempo es continua desde el principio, o tambien se construye a partir de pasos discretos?}
+\end{displayquote}
+
+Si el tiempo es continuo, escribimos
+\begin{equation}
+\ii \partial_t \psi = H \psi.
+\end{equation}
+
+Si el tiempo es discreto, escribimos
+\begin{equation}
+\psi(t+\Delta t)=U\,\psi(t),
+\end{equation}
+donde \(U\) es un operador unitario local.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.6cm]
+  \node[draw,rounded corners,fill=blue!6,align=center,minimum width=4.1cm,minimum height=1.05cm] (a1) {Red espacial discreta\\tiempo continuo};
+  \node[draw,rounded corners,fill=blue!6,align=center,minimum width=4.1cm,minimum height=1.05cm,below=of a1] (a2) {Hamiltoniano \(H\)};
+  \node[draw,rounded corners,fill=blue!6,align=center,minimum width=4.1cm,minimum height=1.05cm,below=of a2] (a3) {\(\ii\partial_t\psi=H\psi\)};
+
+  \node[draw,rounded corners,fill=green!8,align=center,minimum width=4.1cm,minimum height=1.05cm,right=4.3cm of a1] (b1) {Espacio-tiempo discreto\\pasos unitarios};
+  \node[draw,rounded corners,fill=green!8,align=center,minimum width=4.1cm,minimum height=1.05cm,below=of b1] (b2) {Operador \(U\)};
+  \node[draw,rounded corners,fill=green!8,align=center,minimum width=4.1cm,minimum height=1.05cm,below=of b2] (b3) {\(\psi(t+\Delta t)=U\psi(t)\)};
+
+  \draw[->,thick] (a1) -- (a2);
+  \draw[->,thick] (a2) -- (a3);
+  \draw[->,thick] (b1) -- (b2);
+  \draw[->,thick] (b2) -- (b3);
+
+  \node[draw,rounded corners,fill=orange!10,align=center,minimum width=5.4cm,minimum height=1.05cm,below=2.1cm of $(a3)!0.5!(b3)$] (c) {Limite de baja energia y longitudes de onda grandes\\\(\Longrightarrow\) ecuacion efectiva tipo Dirac};
+  \draw[->,thick] (a3) -- (c);
+  \draw[->,thick] (b3) -- (c);
+\end{tikzpicture}
+\caption{Las dos rutas principales del proyecto. Ambas pueden conducir a una dinamica efectiva de Dirac, pero no parten del mismo objeto matematico.}
+\label{c21:fig:two-routes}
+\end{figure}
+
+\section{Estrategia A: espacio discreto y tiempo continuo}
+
+\subsection{La idea basica}
+
+Esta es la estrategia que ya venimos usando en SSH, grafeno y modelos de Dirac/Weyl. El espacio se discretiza en una red, pero el tiempo sigue siendo continuo. La evolucion esta gobernada por
+\begin{equation}
+\ii \partial_t \psi = H \psi.
+\label{c21:eq:sch-time}
+\end{equation}
+
+La informacion del sistema vive en un Hamiltoniano \(H\), construido a partir de saltos locales entre sitios, subredes, orbitales o grados de libertad internos.
+
+\subsection{Ejemplo minimo en 1D}
+
+Tomemos el Hamiltoniano ingenuo de Dirac en red de una dimension:
+\begin{equation}
+H(k)=\frac{1}{a}\sin(ka)\,\sigma_x + m\,\sigma_z.
+\label{c21:eq:lattice-dirac-cont}
+\end{equation}
+
+Aqui:
+
+\begin{enumerate}[leftmargin=*]
+  \item \(a\) es el espaciado de red;
+  \item \(k\) es el momento de Bloch;
+  \item \(\sigma_x,\sigma_z\) actuan sobre un espacio interno de dos componentes.
+\end{enumerate}
+
+El espectro es
+\begin{equation}
+E(k)=\pm \sqrt{\frac{1}{a^2}\sin^2(ka)+m^2}.
+\end{equation}
+
+Si ahora miramos solo excitaciones de baja energia cerca de \(k=0\), usamos
+\begin{equation}
+\sin(ka)\simeq ka
+\qquad (|ka|\ll 1),
+\end{equation}
+y obtenemos
+\begin{equation}
+H(k)\simeq k\,\sigma_x + m\,\sigma_z.
+\label{c21:eq:dirac-lowk}
+\end{equation}
+
+Volviendo a espacio real, \(k\to -\ii \partial_x\), llegamos a
+\begin{equation}
+\ii \partial_t \psi(x,t)
+=
+\left(
+-\ii \sigma_x \partial_x + m \sigma_z
+\right)\psi(x,t),
+\label{c21:eq:dirac-11-cont}
+\end{equation}
+que es la forma canonica de una ecuacion de Dirac en \(1+1\).
+
+\subsection{Que se gana con esta estrategia}
+
+\begin{enumerate}[leftmargin=*]
+  \item conecta directamente con materia condensada y con modelos tipo \emph{tight-binding};
+  \item permite estudiar bandas, nodos, simetrias de red y linealizaciones;
+  \item es la ruta mas natural para SSH, grafeno, semimetales de Dirac y semimetales de Weyl.
+\end{enumerate}
+
+\subsection{Que limita esta estrategia}
+
+\begin{enumerate}[leftmargin=*]
+  \item el tiempo no forma parte de la estructura discreta;
+  \item la relatividad es efectiva, no microscopica;
+  \item el problema de Nielsen--Ninomiya aparece enseguida si se intenta interpretar la red como sustrato mas fundamental.
+\end{enumerate}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,scale=1.0]
+  \foreach \x in {0,1.2,2.4,3.6,4.8}
+    \fill[blue!70] (\x,0) circle (2.2pt);
+  \draw[very thick] (0,0)--(1.2,0)--(2.4,0)--(3.6,0)--(4.8,0);
+  \node[above] at (2.4,0.25) {\small red espacial};
+
+  \draw[->,very thick] (6.0,-0.4) -- (6.0,1.5);
+  \node[left] at (6.0,1.5) {\small \(t\)};
+  \node[right] at (6.0,0.6) {\small continuo};
+
+  \node[draw,rounded corners,fill=blue!6,minimum width=3.0cm,minimum height=1.0cm] at (9.2,0.5) {\(\ii \partial_t \psi = H\psi\)};
+\end{tikzpicture}
+\caption{En esta ruta la red es espacial, pero el tiempo sigue siendo un parametro continuo.}
+\label{c21:fig:continuous-time-picture}
+\end{figure}
+
+\section{Estrategia B: espacio-tiempo discreto con quantum walks}
+
+\subsection{La idea basica}
+
+Ahora damos un paso mucho mas ambicioso. En lugar de escribir una ecuacion diferencial en el tiempo, imponemos una evolucion por pasos:
+\begin{equation}
+\psi_{n+1}=U\,\psi_n,
+\label{c21:eq:unitary-step}
+\end{equation}
+donde \(n\) cuenta instantes separados por \(\Delta t\).
+
+El objeto fundamental ya no es un Hamiltoniano, sino un operador unitario \(U\). La pregunta pasa a ser:
+
+\begin{displayquote}
+\enquote{Que forma debe tener \(U\) para que, cuando \(\Delta t\) y \(a\) son pequenos, emerja una ecuacion de Dirac?}
+\end{displayquote}
+
+\subsection{Una caminata cuantica minima}
+
+En una \emph{quantum walk} 1D, el estado tiene dos componentes internas. Podemos llamarlas
+\begin{equation}
+\lvert \uparrow \rangle,\qquad \lvert \downarrow \rangle,
+\end{equation}
+y pensar que una de ellas tiende a moverse hacia la derecha y la otra hacia la izquierda.
+
+Un paso elemental se construye con dos piezas:
+
+\begin{enumerate}[leftmargin=*]
+  \item una \textbf{rotacion interna} o \emph{coin} \(C(\theta)\);
+  \item un \textbf{desplazamiento condicionado} \(S\).
+\end{enumerate}
+
+Tomemos
+\begin{equation}
+C(\theta)=\ee^{-\ii \theta \sigma_y},
+\end{equation}
+y un operador de desplazamiento tal que
+\begin{equation}
+S\,\lvert x,\uparrow \rangle=\lvert x+a,\uparrow \rangle,
+\qquad
+S\,\lvert x,\downarrow \rangle=\lvert x-a,\downarrow \rangle.
+\end{equation}
+
+Entonces un paso completo es
+\begin{equation}
+U = S\,C(\theta).
+\label{c21:eq:U-step}
+\end{equation}
+
+\subsection{Como actua en espacio de momentos}
+
+En la representacion de Bloch, el corrimiento condicionado se escribe como
+\begin{equation}
+S(k)=\ee^{-\ii ka \sigma_z}.
+\end{equation}
+
+Por tanto,
+\begin{equation}
+U(k)=\ee^{-\ii ka \sigma_z}\,\ee^{-\ii \theta \sigma_y}.
+\label{c21:eq:Uk}
+\end{equation}
+
+Ahora viene el paso clave. Si \(ka\) y \(\theta\) son pequenos, expandimos:
+\begin{equation}
+\ee^{-\ii ka \sigma_z}\simeq I-\ii ka\,\sigma_z,
+\qquad
+\ee^{-\ii \theta \sigma_y}\simeq I-\ii \theta\,\sigma_y.
+\end{equation}
+
+Multiplicando y reteniendo solo primer orden:
+\begin{equation}
+U(k)\simeq I-\ii\left(ka\,\sigma_z + \theta\,\sigma_y\right).
+\label{c21:eq:Uk-expand}
+\end{equation}
+
+Pero una evolucion por un paso pequeno tambien puede escribirse como
+\begin{equation}
+U(k)\simeq \ee^{-\ii \Delta t\, H_{\text{eff}}(k)}
+\simeq
+I-\ii \Delta t\, H_{\text{eff}}(k).
+\end{equation}
+
+Comparando con \eqref{c21:eq:Uk-expand}, identificamos
+\begin{equation}
+H_{\text{eff}}(k)=\frac{a}{\Delta t}k\,\sigma_z + \frac{\theta}{\Delta t}\sigma_y.
+\label{c21:eq:Heff-walk}
+\end{equation}
+
+Si definimos
+\begin{equation}
+c=\frac{a}{\Delta t},
+\qquad
+m=\frac{\theta}{\Delta t},
+\end{equation}
+queda
+\begin{equation}
+H_{\text{eff}}(k)= c\,k\,\sigma_z + m\,\sigma_y.
+\end{equation}
+
+Al volver a espacio real, \(k\to -\ii \partial_x\), obtenemos
+\begin{equation}
+\ii \partial_t \psi(x,t)
+=
+\left(
+-\ii c\,\sigma_z \partial_x + m\,\sigma_y
+\right)\psi(x,t),
+\label{c21:eq:dirac-qw}
+\end{equation}
+que es de nuevo una ecuacion tipo Dirac en \(1+1\).
+
+\subsection{La leccion conceptual}
+
+La ecuacion de Dirac no fue puesta a mano. Emergió del producto entre:
+
+\begin{enumerate}[leftmargin=*]
+  \item un operador de mezcla interna;
+  \item una traslacion condicionada;
+  \item el limite de pasos pequenos en espacio y tiempo.
+\end{enumerate}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,scale=1.0]
+  \foreach \x in {0,1.3,2.6,3.9,5.2}
+    \fill[blue!70] (\x,0) circle (2pt);
+  \foreach \x in {0.65,1.95,3.25,4.55}
+    \fill[green!70!black] (\x,1.0) circle (2pt);
+
+  \draw[->] (-0.5,-0.2) -- (-0.5,1.4) node[above] {\(t\)};
+  \node[left] at (-0.5,0) {\small \(n\)};
+  \node[left] at (-0.5,1.0) {\small \(n+1\)};
+
+  \draw[->,thick,blue!70!black] (0,0) -- (0.65,1.0);
+  \draw[->,thick,blue!70!black] (1.3,0) -- (1.95,1.0);
+  \draw[->,thick,blue!70!black] (2.6,0) -- (3.25,1.0);
+  \draw[->,thick,red!70!black] (1.3,0) -- (0.65,1.0);
+  \draw[->,thick,red!70!black] (2.6,0) -- (1.95,1.0);
+  \draw[->,thick,red!70!black] (3.9,0) -- (3.25,1.0);
+
+  \node[below] at (2.6,-0.15) {\small espacio};
+  \node[right] at (5.5,0.9) {\small \(\uparrow\) tiende a la derecha};
+  \node[right] at (5.5,0.55) {\small \(\downarrow\) tiende a la izquierda};
+\end{tikzpicture}
+\caption{Esquema minimo de una caminata cuantica 1D. En cada paso temporal discreto, una componente se desplaza hacia la derecha y la otra hacia la izquierda, despues de una mezcla interna.}
+\label{c21:fig:quantum-walk}
+\end{figure}
+
+\section{De quantum walks a QCA}
+
+\subsection{Que anade un QCA}
+
+Una caminata cuantica trabaja muy bien como sistema de una particula o de pocas componentes. Un \emph{quantum cellular automaton} (QCA) lleva la idea a una formulacion mas estructural:
+
+\begin{enumerate}[leftmargin=*]
+  \item el espacio esta discretizado en celdas;
+  \item el tiempo avanza por pasos;
+  \item la regla de evolucion es local y unitaria;
+  \item el mismo esquema puede extenderse a muchos grados de libertad y a formulaciones mas cercanas a un campo discreto.
+\end{enumerate}
+
+Conceptualmente, un QCA es la version \enquote{de muchas celdas y muchas componentes} de la intuicion de las quantum walks.
+
+\subsection{Por que esto importa para tu proyecto}
+
+Si lo que se quiere es solo reproducir la fisica efectiva de Dirac en un material, la estrategia Hamiltoniana suele bastar. Pero si lo que se quiere es explorar un \textbf{ansatz de espacio-tiempo discreto}, entonces los QW/QCA tienen una ventaja decisiva:
+
+\begin{displayquote}
+\enquote{discretizan la evolucion misma, no solo la geometria espacial.}
+\end{displayquote}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.3cm]
+  \node[draw,rounded corners,fill=green!8,minimum width=3.8cm,minimum height=0.95cm,align=center] (q1) {celda local};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.8cm,minimum height=0.95cm,align=center,below=of q1] (q2) {regla unitaria local};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.8cm,minimum height=0.95cm,align=center,below=of q2] (q3) {paso temporal discreto};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.8cm,minimum height=0.95cm,align=center,below=of q3] (q4) {limite continuo efectivo};
+
+  \draw[->,thick] (q1) -- (q2);
+  \draw[->,thick] (q2) -- (q3);
+  \draw[->,thick] (q3) -- (q4);
+
+  \node[right=1.8cm of q2,align=left] {
+    \begin{tabular}{l}
+      \small localidad \\
+      \small causalidad discreta \\
+      \small unitariedad exacta
+    \end{tabular}
+  };
+\end{tikzpicture}
+\caption{Idea estructural de un QCA. La nocion de causalidad local queda incorporada desde el nivel microscopico.}
+\label{c21:fig:qca-logic}
+\end{figure}
+
+\section{Comparacion paso a paso}
+
+\subsection{Objeto fundamental}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{tiempo continuo:} el objeto fundamental es \(H\);
+  \item \textbf{QW/QCA:} el objeto fundamental es \(U\).
+\end{enumerate}
+
+\subsection{Ecuacion microscopica}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{tiempo continuo:} \(\ii\partial_t\psi = H\psi\);
+  \item \textbf{QW/QCA:} \(\psi_{n+1}=U\psi_n\).
+\end{enumerate}
+
+\subsection{Como aparece Dirac}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{tiempo continuo:} linealizando el Hamiltoniano cerca de un nodo del espacio recíproco;
+  \item \textbf{QW/QCA:} expandiendo el operador unitario de un paso para \(ka\ll 1\) y \(\Delta t\) pequeno.
+\end{enumerate}
+
+\subsection{Lectura fisica}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{tiempo continuo:} ideal para bandas, valles, nodos de Dirac/Weyl, topologia de materiales;
+  \item \textbf{QW/QCA:} ideal para explorar una dinamica local discreta con aspiracion mas fundamental.
+\end{enumerate}
+
+\subsection{Riesgo conceptual}
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{tiempo continuo:} puede quedarse en analogia de materia condensada y no tocar la estructura temporal microscopica;
+  \item \textbf{QW/QCA:} es mas cercano a un ansatz de espacio-tiempo discreto, pero mas abstracto y menos directamente conectado con materiales especificos.
+\end{enumerate}
+
+\section{Cual conviene primero en tu programa}
+
+Dado el orden de tu proyecto, la respuesta mas razonable es:
+
+\begin{enumerate}[leftmargin=*]
+  \item primero consolidar la ruta Hamiltoniana, porque conecta naturalmente con SSH, grafeno, Dirac/Weyl y Nielsen--Ninomiya;
+  \item despues pasar a QW/QCA, porque ahi la pregunta ya no es solo \enquote{como emerge Dirac}, sino \enquote{como emerge desde una dinamica local discreta de espacio-tiempo}.
+\end{enumerate}
+
+En otras palabras:
+
+\begin{displayquote}
+\textbf{La ruta de tiempo continuo es el laboratorio conceptual. La ruta QW/QCA es el paso serio hacia la interpretacion de espacio-tiempo discreto.}
+\end{displayquote}
+
+\section{Mapa de continuidad del proyecto}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=1.35cm]
+  \node[draw,rounded corners,fill=blue!6,minimum width=3.0cm,minimum height=0.95cm,align=center] (ssh) {SSH\\\(1+1\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=3.0cm,minimum height=0.95cm,align=center,right=of ssh] (gra) {Grafeno\\\(2+1\)};
+  \node[draw,rounded corners,fill=blue!6,minimum width=3.0cm,minimum height=0.95cm,align=center,right=of gra] (weyl) {Dirac/Weyl\\\(3D\)};
+  \node[draw,rounded corners,fill=orange!10,minimum width=3.3cm,minimum height=0.95cm,align=center,below=of gra] (nn) {Nielsen--Ninomiya};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.5cm,minimum height=0.95cm,align=center,below left=1.4cm and 1.3cm of nn] (ham) {red espacial\\tiempo continuo};
+  \node[draw,rounded corners,fill=green!8,minimum width=3.5cm,minimum height=0.95cm,align=center,below right=1.4cm and 1.3cm of nn] (qca) {QW / QCA\\tiempo discreto};
+  \node[draw,rounded corners,fill=purple!8,minimum width=4.2cm,minimum height=0.95cm,align=center,below=1.5cm of nn] (final) {\(3+1\) discreto\\como objetivo conceptual};
+
+  \draw[->,thick] (ssh) -- (gra);
+  \draw[->,thick] (gra) -- (weyl);
+  \draw[->,thick] (gra) -- (nn);
+  \draw[->,thick] (weyl) -- (nn);
+  \draw[->,thick] (nn) -- (ham);
+  \draw[->,thick] (nn) -- (qca);
+  \draw[->,thick] (ham) -- (final);
+  \draw[->,thick] (qca) -- (final);
+\end{tikzpicture}
+\caption{Ubicacion de este capitulo en la investigacion. Las dos estrategias no son enemigas: funcionan como dos ramas complementarias despues de haber entendido la emergencia de Dirac y el problema del doblamiento.}
+\label{c21:fig:project-map}
+\end{figure}
+
+\section{Resumen final}
+
+Las conclusiones operativas de este capitulo son:
+
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{tiempo continuo} significa: red discreta, Hamiltoniano \(H\), ecuacion diferencial en el tiempo;
+  \item \textbf{QW/QCA} significa: red discreta, operador unitario \(U\), evolucion por pasos temporales;
+  \item en ambos casos, la ecuacion de Dirac aparece como teoria efectiva de baja energia o de pequenos pasos;
+  \item la ruta Hamiltoniana es la mas natural para materiales y para la escalera SSH \(\to\) grafeno \(\to\) Weyl;
+  \item la ruta QW/QCA es la mas natural si queremos tomar en serio la idea de un espacio-tiempo discreto subyacente.
+\end{enumerate}
+
+Por eso, el proyecto no necesita elegir entre una y otra demasiado pronto. Puede usarlas en secuencia:
+
+\begin{enumerate}[leftmargin=*]
+  \item primero, para aprender como emerge Dirac desde una red;
+  \item despues, para preguntar si esa red puede reinterpretarse como una dinamica discreta del propio espacio-tiempo.
+\end{enumerate}
+

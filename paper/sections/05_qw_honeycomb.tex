@@ -1,0 +1,57 @@
+\section{Honeycomb quantum walk}
+\label{p:qw}
+
+The quantum-walk derivation of graphene's Dirac cone, following the
+line of~\cite{Arrighi2018,BisioDAriano2015}, makes the
+discrete-to-continuous transition entirely explicit. The simplest 1D
+walk, included as a warm-up, has the form
+\begin{equation}
+\Uop(k) \;=\; \mathrm{e}^{-\ii\,k\,a\,\sigma_{z}}\,\mathrm{e}^{-\ii\,\theta\,\sigma_{y}} ,
+\label{p:eq:U1Dminimal}
+\end{equation}
+with $\theta$ a coin angle and $a$ a lattice step. Its trace is
+$(1/2)\operatorname{tr}\Uop(k) = \cos(ka)\cos\theta$, defining the
+quasi-energy $\varepsilon(k)$ by $\cos(\varepsilon\,\Delta t) = (1/2)\operatorname{tr}\Uop(k)$.
+First-order expansion in $(ka,\theta)$ yields
+$\Uop \simeq \bbI - \ii\,(k a\,\sigma_{z} + \theta\,\sigma_{y})$,
+which identifies an effective Dirac Hamiltonian in $1{+}1$ with mass
+$\theta/\Delta t$ and velocity $a/\Delta t$
+(\texttt{validators/qw\_minimal\_1d.py::test\_first\_order\_dirac}).
+
+\paragraph{Honeycomb version.}
+For the two-dimensional walk on the honeycomb lattice, the three
+nearest-neighbor unit vectors $\hat{\vdelta}_{1}=(0,-1)$,
+$\hat{\vdelta}_{2}=(\sqrt{3}/2,1/2)$,
+$\hat{\vdelta}_{3}=(-\sqrt{3}/2,1/2)$ define internal coin matrices
+\begin{equation}
+\tau_{i} \;=\; \hat{\vdelta}_{i}\cdot\vsigma \;=\;
+\hat{\delta}_{i}^{x}\,\sigma_{x} + \hat{\delta}_{i}^{y}\,\sigma_{y} ,
+\end{equation}
+with explicit forms
+$\tau_{1} = -\sigma_{y}$,
+$\tau_{2} = (\sqrt{3}/2)\sigma_{x}+(1/2)\sigma_{y}$,
+$\tau_{3} = -(\sqrt{3}/2)\sigma_{x}+(1/2)\sigma_{y}$. Three algebraic
+facts decide the rest of the construction:
+
+\begin{enumerate}[leftmargin=*]
+\item $\sum_{i}\tau_{i} = 0$ (the three NN unit vectors close to a
+triangle).
+\item $\{\tau_{i},\tau_{j}\}=2\,(\hat{\vdelta}_{i}\cdot\hat{\vdelta}_{j})\,\bbI$
+(anticommutator gives Euclidean inner product).
+\item $\sum_{i}\hat{\delta}_{i}^{x}\,\tau_{i} = (3/2)\,\sigma_{x}$ and
+$\sum_{i}\hat{\delta}_{i}^{y}\,\tau_{i} = (3/2)\,\sigma_{y}$.
+\end{enumerate}
+
+The third identity is the crucial one. Combining the three directional
+shifts with their associated coins and expanding to first order in the
+walk step gives an effective Hamiltonian
+\begin{equation}
+\Hop_{\mathrm{eff}}(\vk) \;=\; \sum_{i}(\vk\cdot\hat{\vdelta}_{i})\,\tau_{i}
+\;=\; \tfrac{3}{2}\,(k_x\,\sigma_x + k_y\,\sigma_y),
+\label{p:eq:Heff-honeycomb}
+\end{equation}
+i.e.\ an isotropic Dirac cone in $2{+}1$ with $v_{F}=3/2$ in units where
+$a=1$. The same numerical factor that appeared in
+Eq.~\eqref{p:eq:c-magnitudes} reappears here as a discrete identity,
+verified line by line:
+\texttt{validators/qw\_honeycomb\_2d.py}.
