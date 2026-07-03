@@ -8,7 +8,7 @@ modules that check the algebraic and finite combinatorial claims used by the
 manuscript.
 
 Repository URL: <https://github.com/xys004/protoespacio-validation>
-Archived release: <https://doi.org/10.5281/zenodo.20129309>
+Archived release (concept DOI, always resolves to the latest version): <https://doi.org/10.5281/zenodo.20129308>
 
 The current validation suite contains 290 tests. On the Windows-native project
 environment it passes in about 15 seconds.
