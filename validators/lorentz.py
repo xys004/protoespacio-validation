@@ -3,7 +3,7 @@ Generadores Lorentz espinoriales Sigma^{mu nu} = (i/4)[gamma^mu, gamma^nu].
 
 Verifica:
   - antisimetria  Sigma^{mu nu} = - Sigma^{nu mu}
-  - covariancia   [Sigma^{rho sigma}, gamma^mu] = i (eta^{rho mu} gamma^sigma - eta^{sigma mu} gamma^rho)
+  - covariancia   [Sigma^{rho sigma}, gamma^mu] = i (eta^{sigma mu} gamma^rho - eta^{rho mu} gamma^sigma)
   - cierre        [Sigma^{mu nu}, Sigma^{rho sigma}] = i (eta^{mu rho} Sigma^{nu sigma} - eta^{mu sigma} Sigma^{nu rho} - eta^{nu rho} Sigma^{mu sigma} + eta^{nu sigma} Sigma^{mu rho})
 
 Sustenta:

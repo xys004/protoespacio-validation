@@ -2,7 +2,7 @@ from validators.lorentz import covariance_holds, lorentz_algebra_closes
 
 
 def test_sigma_mu_nu_covariance():
-    """[Sigma^{rho sigma}, gamma^mu] = i (eta^{rho mu} gamma^sigma - eta^{sigma mu} gamma^rho)."""
+    """[Sigma^{rho sigma}, gamma^mu] = i (eta^{sigma mu} gamma^rho - eta^{rho mu} gamma^sigma)."""
     assert covariance_holds()
 
 

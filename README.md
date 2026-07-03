@@ -10,8 +10,8 @@ manuscript.
 Repository URL: <https://github.com/xys004/protoespacio-validation>
 Archived release: <https://doi.org/10.5281/zenodo.20129309>
 
-The current validation suite contains 165 tests. On the Windows-native project
-environment it passes in about 14 seconds.
+The current validation suite contains 290 tests. On the Windows-native project
+environment it passes in about 15 seconds.
 
 ## Contents
 
@@ -30,7 +30,7 @@ See `VALIDATION.md` for the module-by-module map.
 Recommended Windows-native workflow:
 
 ```powershell
-# from C:\Users\Nelson\Dev\protoespacio
+# from C:\Users\Nelson\Dev\physics\protoespacio
 powershell -ExecutionPolicy Bypass -File scripts\doctor.ps1
 powershell -ExecutionPolicy Bypass -File scripts\test.ps1
 ```
@@ -76,11 +76,19 @@ Validated areas include:
 - Graph-local chiral balance, matching-refined nullity, approximate pairing,
   bipartite index constraints, and locality checks for Paper II.
 - Brillouin-zone corner and quasi-energy consistency checks.
+- Graph-Laplacian low-mode projectors and the coordinate-free cone criterion.
+- Gravity layer (Part V): tetrad from a graded step, torsion-free spin
+  connection solved (not postulated) on general 2D and 4D FRW tetrads, the
+  signed Lichnerowicz coefficient with a general-Riemann certificate, the
+  spinor curvature commutator derived from the repo's own Lorentz generators,
+  Seeley-DeWitt a_1 derived spectrally on the round S^2, and proper-time
+  integrals deriving the cutoff scalings of the induced Newton and
+  cosmological terms.
 
 Latest local audit:
 
 ```text
-165 passed in 13.60s
+290 passed in 11.76s
 ```
 
 ## AI Assistance Statement
