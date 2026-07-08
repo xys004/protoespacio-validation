@@ -44,11 +44,16 @@ whole construction into a typed proof; \texttt{sympy} and \texttt{z3}
 instead certify the algebraic and combinatorial \emph{skeleton} on top of
 which the physicist's manipulations rest, while integrating with the
 working scientist's toolchain. Across the long-form companion of this
-work, the policy adds up to $146$~tests across $25$ validator modules
+work, the policy adds up to $290$~tests across $38$ validator modules
 that run end-to-end in under twenty seconds; the symbolic backbone of
 \emph{this paper} is a subset of those tests, and we make the link
 explicit at each section by inline references of the form
-\texttt{\% verified-by: validators/\textless module\textgreater.py::\textless test\textgreater}.
+\texttt{\% verified-by: validators/\textless module\textgreater.py::\textless test\textgreater}.\footnote{The
+reference names the validator module that implements the check. The
+executable \texttt{pytest} node asserting it is
+\texttt{tests/test\_\textless module\textgreater.py::\textless test\textgreater};
+each test consists of a single \texttt{assert} on the corresponding
+validator function.}
 
 The third contribution is to leave two well-posed open problems with a
 first body of verified machinery already in place. The
@@ -71,4 +76,4 @@ that the verification methodology is fine-grained enough to be useful
 beyond this corpus. We use \enquote{the long form} of this work to
 refer to the public companion repository where the validator suite, the
 full $32$-chapter pedagogical manuscript, and the data behind the
-$146$~tests are maintained; see Sec.~\ref{p:conclusions}.
+$290$~tests are maintained; see Sec.~\ref{p:conclusions}.
