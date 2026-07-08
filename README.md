@@ -1,6 +1,6 @@
 # Protoespacio validators
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20129309.svg)](https://doi.org/10.5281/zenodo.20129309)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20129308.svg)](https://doi.org/10.5281/zenodo.20129308)
 
 Companion repository for the Protoespacio / Dirac-Weyl project. The core of
 this repository is the executable validation layer: small `sympy` and `z3`
@@ -10,7 +10,7 @@ manuscript.
 Repository URL: <https://github.com/xys004/protoespacio-validation>
 Archived release (concept DOI, always resolves to the latest version): <https://doi.org/10.5281/zenodo.20129308>
 
-The current validation suite contains 290 tests. On the Windows-native project
+The current validation suite contains 319 tests. On the Windows-native project
 environment it passes in about 15 seconds.
 
 ## Contents
@@ -84,11 +84,25 @@ Validated areas include:
   Seeley-DeWitt a_1 derived spectrally on the round S^2, and proper-time
   integrals deriving the cutoff scalings of the induced Newton and
   cosmological terms.
+- Causal structure from the substrate: strict support cone of the local walk,
+  causal partial order, Malament/HKM executable (order alone recovers the
+  light-cone slope, interval counting recovers proper time), local recovery
+  of a position-dependent cone, Myrheim-Meyer dimension, nonlocal negative
+  controls.
+- Emergent continuous symmetries: full Poincare closure (orbital + spin +
+  total spot check), lattice translations embedded exactly, boost breaking
+  first at dimension six (parity-protected, with the dimension-five negative
+  control), graphene C3-patterned isotropy breaking, dilatation extension at
+  the massless point.
+- Numerical curvature reconstruction: second-order finite-difference Ricci
+  from metric data (conformal, sphere, graded substrate step), Regge
+  deficit-angle curvature from lengths alone, and the first numerical 4D
+  check (FRW / de Sitter) against the certified symbolic route.
 
 Latest local audit:
 
 ```text
-290 passed in 11.76s
+319 passed
 ```
 
 ## AI Assistance Statement
@@ -109,9 +123,10 @@ The local Windows project environment is:
 
 `scripts/doctor.ps1` checks these assumptions.
 
-## Before Public Release
+## Releases
 
-- Choose and add a repository license.
-- Add the public GitHub URL to the paper's data/code availability statement.
-- For a later public release, decide whether to add an explicit software
-  license and whether to mint a new Zenodo version DOI.
+The repository is public under the MIT license (see `LICENSE`), and the
+paper's code availability statement points here. Each release is tagged
+(`vX.Y.Z`), archived on Zenodo, and gets its own version DOI under the
+concept DOI <https://doi.org/10.5281/zenodo.20129308>, which always
+resolves to the latest archived version.

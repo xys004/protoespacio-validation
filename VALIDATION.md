@@ -66,6 +66,14 @@ are covered by matching pytest files in `tests/`.
 | `validators/induced_scales.py` | Proper-time integrals deriving (not postulating) the Lambda^4 / Lambda^2 / log Lambda cutoff scalings, per-scheme constants, and exact-rational magnitude bands: induced Lambda within an order of magnitude of the Planck scale, and the ~10^120 cosmological-constant overshoot made executable. |
 | `validators/induced_gravity.py` | Signed sign-flow from the Lichnerowicz seam to the induced 1/G: E consumed from the certified upstream coefficient, loop-statistics signs, per-scheme kappa (hard and Gaussian regulators, boson flip certified), the Euclidean matching sign documented as an explicit input, undecidability of the 1/G sign without scheme/statistics inputs, dimensional consistency. |
 
+## Causal Structure, Symmetry Emergence, and Numerical Curvature
+
+| Module | Checks |
+| --- | --- |
+| `validators/causal_order.py` | From the substrate to the full causal structure: exact support cone of a local coined walk (zero amplitude outside the ball, edge attained), the influence relation is a strict causal partial order, the IR metric cone sits inside the strict lattice cone (equality iff massless), Malament/HKM executable (the order alone brackets the light-cone slope; interval counting recovers proper time, so order + volume = full metric), a position-dependent cone c(x) recovered locally from pure order data, Myrheim-Meyer dimension d = 2 from the ordering fraction, and negative controls (total order, 3+1 sprinkling, wormhole-edge nonlocal step with no cone). |
+| `validators/poincare_emergence.py` | The full Poincare algebra closes: orbital [P,P], [M,P], [M,M] exhaustively on a generic function, spin generators from the repo's gammas close on the same structure constants, total-generator spot check on a 4-spinor; lattice translations embed exactly in the continuous group; the lattice breaks boosts first at k^4 (dimension six, parity-protected --- no dimension-five term), with the inversion-breaking dimension-five negative control; graphene's O(q^2) cone is exactly isotropic while the O(q^3) warping is C3-invariant but not SO(2); dilatation extends the algebra at the massless point (scale invariance iff m = 0). |
+| `validators/curvature_numerics.py` | Numerical curvature reconstructed from metric data alone: second-order finite-difference Ricci pipeline (convergence order verified) matching the exact conformal curvature and R = 2 on the sphere patch; Regge deficit-angle curvature from geodesic lengths only (K = 1 sphere, 0 flat); the graded substrate step v(x,y) -> metric v^{-2} delta -> numerical R matching -2 e^{-2phi} Delta phi; first numerical FOUR-DIMENSIONAL check: FRW through the same pipeline matches the certified symbolic route, including de Sitter R = -12 H^2; flat 2D/4D machine-zero controls. |
+
 ## Audit Commands
 
 ```powershell
@@ -82,7 +90,7 @@ Additional sanity checks used during repo preparation:
 Current local result:
 
 ```text
-290 passed in 11.76s
+319 passed
 ```
 
 ## Limits
