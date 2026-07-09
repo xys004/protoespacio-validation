@@ -70,7 +70,8 @@ are covered by matching pytest files in `tests/`.
 
 | Module | Checks |
 | --- | --- |
-| `validators/causal_order.py` | From the substrate to the full causal structure: exact support cone of a local coined walk (zero amplitude outside the ball, edge attained), the influence relation is a strict causal partial order, the IR metric cone sits inside the strict lattice cone (equality iff massless), Malament/HKM executable (the order alone brackets the light-cone slope; interval counting recovers proper time, so order + volume = full metric), a position-dependent cone c(x) recovered locally from pure order data, Myrheim-Meyer dimension d = 2 from the ordering fraction, and negative controls (total order, 3+1 sprinkling, wormhole-edge nonlocal step with no cone). |
+| `validators/causal_order.py` | From the substrate to the full causal structure: exact support cone of a local coined walk (zero amplitude outside the ball, edge attained), the influence relation is a strict causal partial order, the IR metric cone sits inside the strict lattice cone (equality iff massless), Malament/HKM executable (the order alone brackets the light-cone slope in 1+1 and, from the full R^3 spatial separation, the isotropic SO(3) cone in 3+1; interval counting recovers proper time, so order + volume = full metric), a position-dependent cone c(x) recovered locally from pure order data, Myrheim-Meyer dimension d = 2 from the ordering fraction, and negative controls (total order, 3+1 sprinkling, wormhole-edge nonlocal step with no cone). |
+| `validators/connection_holonomy.py` | The emergent U(1) gauge connection (Peierls phases on the substrate's edges) is genuine: trivial connection has identity holonomy and a real Hamiltonian, gauge equivalence is spectral equivalence at machine precision (holonomy exactly invariant under theta_e -> theta_e + chi(head) - chi(tail)), flux is detected only through holonomy (equal-flux assignments isospectral, different-flux not), the spectral response to a threaded flux is exactly 2 pi periodic, and an intermediate (pi) flux genuinely moves the spectrum (periodicity, not inertness). |
 | `validators/poincare_emergence.py` | The full Poincare algebra closes: orbital [P,P], [M,P], [M,M] exhaustively on a generic function, spin generators from the repo's gammas close on the same structure constants, total-generator spot check on a 4-spinor; lattice translations embed exactly in the continuous group; the lattice breaks boosts first at k^4 (dimension six, parity-protected --- no dimension-five term), with the inversion-breaking dimension-five negative control; graphene's O(q^2) cone is exactly isotropic while the O(q^3) warping is C3-invariant but not SO(2); dilatation extends the algebra at the massless point (scale invariance iff m = 0). |
 | `validators/curvature_numerics.py` | Numerical curvature reconstructed from metric data alone: second-order finite-difference Ricci pipeline (convergence order verified) matching the exact conformal curvature and R = 2 on the sphere patch; Regge deficit-angle curvature from geodesic lengths only (K = 1 sphere, 0 flat); the graded substrate step v(x,y) -> metric v^{-2} delta -> numerical R matching -2 e^{-2phi} Delta phi; first numerical FOUR-DIMENSIONAL check: FRW through the same pipeline matches the certified symbolic route, including de Sitter R = -12 H^2; flat 2D/4D machine-zero controls. |
 
@@ -90,7 +91,7 @@ Additional sanity checks used during repo preparation:
 Current local result:
 
 ```text
-319 passed
+325 passed
 ```
 
 ## Limits

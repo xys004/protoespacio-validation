@@ -10,7 +10,7 @@ manuscript.
 Repository URL: <https://github.com/xys004/protoespacio-validation>
 Archived release (concept DOI, always resolves to the latest version): <https://doi.org/10.5281/zenodo.20129308>
 
-The current validation suite contains 319 tests. On the Windows-native project
+The current validation suite contains 325 tests. On the Windows-native project
 environment it passes in about 15 seconds.
 
 ## Contents
@@ -102,7 +102,7 @@ Validated areas include:
 Latest local audit:
 
 ```text
-319 passed
+325 passed
 ```
 
 ## AI Assistance Statement

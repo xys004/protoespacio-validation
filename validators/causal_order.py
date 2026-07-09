@@ -229,6 +229,39 @@ def counting_recovers_proper_time(c_true: float = 0.7) -> bool:
     return n_interval > 200 and rel_err < max(tol, 0.05)
 
 
+def order_recovers_light_cone_slope_3plus1(c_true: float = 0.7) -> bool:
+    """The genuinely (3+1)-dimensional statement, so the reconstruction is
+    not a 1+1 toy where the conformal class is just two null directions.
+
+    On a 3+1 Minkowski sprinkling whose only retained structure is the order
+    relation p < q  iff  t_q - t_p > |x_q - x_p| / c, the invariant maximal
+    signal speed c is re-extracted by the same bracketing that works in 1+1,
+    now with the FULL spatial separation |Delta x| in R^3:
+
+        sup over related pairs of |Delta x|/Delta t  <  c
+            <  inf over unrelated future pairs of |Delta x|/Delta t,
+
+    tight around the emergent speed. Recovering a single isotropic slope from
+    3D spatial separations (not one null direction per axis) is the content
+    that the 1+1 case cannot exhibit: the whole SO(3)-invariant cone is fixed
+    by the order."""
+    rng = np.random.default_rng(_SEED + 7)
+    n_pts = 2600
+    t_len = 1.0
+    ts = rng.uniform(0.0, t_len, n_pts)
+    xs = rng.uniform(-0.7, 0.7, (n_pts, 3))
+    dt = ts[None, :] - ts[:, None]
+    dr = np.linalg.norm(xs[None, :, :] - xs[:, None, :], axis=2)
+    rel = (dt > 0) & (dr < c_true * dt)
+    future = dt > 1e-9
+    ratio = np.where(future, dr / np.where(future, dt, 1.0), np.nan)
+    sup_related = np.nanmax(np.where(rel, ratio, np.nan))
+    inf_unrelated = np.nanmin(np.where(future & ~rel, ratio, np.nan))
+    bracket_ok = sup_related < c_true < inf_unrelated
+    tight = (inf_unrelated - sup_related) / c_true < 0.08
+    return bool(bracket_ok and tight)
+
+
 # ---------------------------------------------------------------------------
 # (6) a position-dependent cone is recovered locally from the order
 # ---------------------------------------------------------------------------

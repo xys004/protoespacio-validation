@@ -7,6 +7,7 @@ from validators.causal_order import (
     myrheim_meyer_dimension_is_two,
     nonlocal_step_has_no_cone,
     order_recovers_light_cone_slope,
+    order_recovers_light_cone_slope_3plus1,
     support_cone_edge_is_attained,
     support_outside_ball_is_exactly_zero,
 )
@@ -35,6 +36,11 @@ def test_emergent_cone_inside_strict_cone():
 def test_order_recovers_light_cone_slope():
     """Malament/HKM executable: order alone brackets the cone slope tightly."""
     assert order_recovers_light_cone_slope()
+
+
+def test_order_recovers_light_cone_slope_3plus1():
+    """The full (3+1) cone (not a 1+1 toy) is fixed by the order alone."""
+    assert order_recovers_light_cone_slope_3plus1()
 
 
 def test_counting_recovers_proper_time():
