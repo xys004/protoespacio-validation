@@ -1,6 +1,13 @@
 """
 Protoespacio global desde QW Dirac 3+1.
 
+NOTA DE ALCANCE. Como `protoespacio_minimo.py`, este modulo trabaja con la
+tupla del libro P_min = (X, N, prec, H_loc, U, G_micro), NO con la
+Definicion 1 del manuscrito P = (G, F, H, D, Gamma, L_G, G_micro). Lo que
+certifica son consistencias de ensamblaje de un modelo concreto (QW Dirac
+3+1 tipo Wilson); la proposicion que consume la Definicion 1, y en
+particular L_G, esta en `protospace_theorem.py`.
+
 Combina las piezas (X, N, prec, H_loc, U, G_micro) verificadas en otros
 modulos:
   - estructura combinatoria (X, N, prec)  -> validators/protoespacio_minimo.py

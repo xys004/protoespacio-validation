@@ -2,7 +2,18 @@
 Modelo minimo del protoespacio: propiedades SMT de un orden causal
 discreto sobre un conjunto finito X.
 
-  P_min = (X, N, prec, H_loc, U, G_micro)
+NOTA DE ALCANCE (conciliacion con la Definicion 1 del manuscrito). Este
+modulo NO verifica la tupla de la Definicion 1,
+P = (G, F, H, D, Gamma, L_G, G_micro). Verifica un objeto ANTERIOR y mas
+pobre, el del cap. 28 del libro,
+
+  P_min = (X, N, prec, H_loc, U, G_micro),
+
+del que solo se usa aqui el par (X, prec): un conjunto finito y una relacion
+de orden. Es un chequeo de consistencia interna del sector combinatorio, no
+un certificado sobre la Definicion 1, y no aparece etiquetado en el
+manuscrito. La proposicion que SI consume la Definicion 1 --- y que exhibe
+que L_G es carga util --- vive en `protospace_theorem.py`.
 
 Verificamos en z3 propiedades estructurales basicas del par (X, prec):
   - un orden estricto antisimetrico y transitivo es consistente (sat);
