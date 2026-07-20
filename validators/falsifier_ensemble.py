@@ -55,6 +55,7 @@ from validators.geometry_diagnostics import (
 
 _HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 _ENSEMBLE = os.path.join(_HERE, "results", "expander_ensemble.json")
+_SCALE = os.path.join(_HERE, "results", "falsifier_scale.json")
 
 # Must match results/expander_ensemble.py exactly; asserted below.
 _SIDES = (16, 22, 32, 44)
@@ -238,3 +239,125 @@ def mutated_recomputation_against_wrong_seed_matches() -> bool:
     stored_spans = {int(n): float(v) for n, v in stored["span_by_size"]}
     return all(abs(span - stored_spans[n]) <= 1e-9
                for n, span in _recomputed_spans("expander", 7, _SIZES[1]))
+
+
+# ---------------------------------------------------------------------------
+# 4. The scale-up: three sizes x three expander degrees
+#
+# `results/falsifier_scale.json` (1800 records, 150 seeds, N = 256, 1024, 2304,
+# expander degrees 3, 4, 6) asks three questions the fixed-size ensemble above
+# cannot: does the separation survive at other sizes, does it survive for
+# expanders other than cubic, and does the margin hold up as N grows. The answers
+# sharpen the manuscript's claim in one direction and QUALIFY it in another.
+# ---------------------------------------------------------------------------
+
+@lru_cache(maxsize=1)
+def _scale_records() -> tuple:
+    with open(_SCALE, encoding="utf-8") as fh:
+        return tuple(json.load(fh)["records"])
+
+
+_SCALE_SIZES = (256, 1024, 2304)
+_SCALE_DEGREES = (3, 4, 6)
+
+
+def _scale_margin(n: int, key: str, lattice_is_high: bool) -> float:
+    lat = [r[key] for r in _scale_records() if r["family"] == "grid" and r["n"] == n]
+    exp = [r[key] for r in _scale_records() if r["family"] == "expander" and r["n"] == n]
+    return (min(lat) - max(exp)) if lattice_is_high else (min(exp) - max(lat))
+
+
+def expander_rejection_is_perfect_at_every_size_and_degree() -> bool:
+    """No false negatives anywhere: all 1350 expander instances are REJECTed,
+    across N = 256, 1024, 2304 and degrees 3, 4, 6.
+
+    The degree sweep matters. The manuscript's expander is cubic, the minimal
+    case; if the criterion only rejected cubic graphs it would be a statement
+    about degree 3 rather than about expansion."""
+    exp = [r for r in _scale_records() if r["family"] == "expander"]
+    if len(exp) != 150 * len(_SCALE_SIZES) * len(_SCALE_DEGREES):
+        return False
+    for n in _SCALE_SIZES:
+        for d in _SCALE_DEGREES:
+            cell = [r for r in exp if r["n"] == n and r["degree"] == d]
+            if len(cell) != 150 or any(r["verdict"] != "REJECT" for r in cell):
+                return False
+    return True
+
+
+def lattice_acceptance_is_perfect_only_above_the_smallest_size() -> bool:
+    """THE QUALIFICATION, certified rather than buried. Lattice acceptance is
+    150/150 at N = 1024 and N = 2304 but 149/150 at N = 256: the criterion needs
+    a substrate of some size before it is reliable in the accepting direction.
+
+    This is asserted as an exact count, so if a future change made the small-size
+    failure disappear or spread, the test fails and the manuscript's statement is
+    known to be stale."""
+    counts = {}
+    for n in _SCALE_SIZES:
+        lat = [r for r in _scale_records() if r["family"] == "grid" and r["n"] == n]
+        if len(lat) != 150:
+            return False
+        counts[n] = sum(1 for r in lat if r["verdict"] == "ACCEPT")
+    return counts[256] == 149 and counts[1024] == 150 and counts[2304] == 150
+
+
+def the_small_size_failure_is_a_threshold_margin_effect() -> bool:
+    """The single rejected lattice (seed 121 at N = 256) fails only the embedding
+    diagnostic, at rho = 0.9389 against the acceptance threshold 0.94 -- it misses
+    by 0.0011. Its other three diagnostics pass comfortably.
+
+    So the failure is a finite-size margin effect at one threshold, not a lattice
+    that stopped looking geometric; and the honest reading is that N = 256, the
+    size the single-instance section uses, sits close enough to the boundary that
+    a fraction of a percent of instances cross it."""
+    bad = [r for r in _scale_records()
+           if r["family"] == "grid" and r["verdict"] != "ACCEPT"]
+    if len(bad) != 1:
+        return False
+    r = bad[0]
+    return (r["n"] == 256 and r["seed"] == 121
+            and 0.93 < r["rho"] < 0.94             # the failing diagnostic
+            and 0.94 - r["rho"] < 0.002            # and it misses by a hair
+            and r["sigma_ds"] < 0.10               # plateau flatness passes
+            and r["span_slope"] > 0.8)             # infrared scaling passes
+
+
+def separation_margins_grow_with_system_size() -> bool:
+    """The margins do not merely survive the scale-up, they WIDEN: the metric
+    correlation margin goes 0.394 -> 0.614 -> 0.734 and the plateau-flatness
+    margin 0.061 -> 0.097 -> 0.101 across N = 256, 1024, 2304, while the
+    infrared-scaling margin holds at 0.807.
+
+    A margin that shrank with N would mean the separation was a finite-size
+    artefact and the falsifier would not survive the continuum limit that the
+    whole programme is about. This is the check that would have caught that."""
+    rho = [_scale_margin(n, "rho", True) for n in _SCALE_SIZES]
+    sigma = [_scale_margin(n, "sigma_ds", False) for n in _SCALE_SIZES]
+    slope = [_scale_margin(n, "span_slope", True) for n in _SCALE_SIZES]
+    return (all(m > 0 for m in rho + sigma + slope)
+            and rho[0] < rho[1] < rho[2]
+            and sigma[0] < sigma[1] < sigma[2]
+            and min(slope) > 0.8)
+
+
+def spectral_dimension_ranges_overlap_across_sizes() -> bool:
+    """Across the full scale-up the d_s ranges OVERLAP outright -- lattices
+    [1.60, 2.08], expanders [1.30, 2.78] -- so the spectral dimension is not
+    merely a weak discriminator, it is not a discriminator at all.
+
+    This is strictly stronger than the fixed-size statement above, where the
+    ranges were ordered but the gap was negligible. Pooling sizes reveals the
+    overlap directly."""
+    lat = [r["d_s"] for r in _scale_records() if r["family"] == "grid"]
+    exp = [r["d_s"] for r in _scale_records() if r["family"] == "expander"]
+    overlaps = not (max(lat) < min(exp) or max(exp) < min(lat))
+    return overlaps and min(exp) < min(lat) and max(exp) > max(lat)
+
+
+def mutated_scale_margins_read_backwards_still_grow() -> bool:
+    """MUTATION: compute the margins with the two families exchanged. Every one
+    becomes negative, so the growth check must FAIL; otherwise it would be
+    measuring a spread rather than a signed separation. Must return False."""
+    rho = [-_scale_margin(n, "rho", True) for n in _SCALE_SIZES]
+    return all(m > 0 for m in rho) and rho[0] < rho[1] < rho[2]

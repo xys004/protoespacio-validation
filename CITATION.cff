@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this verification suite, please cite this repository and the associated manuscript."
 title: "Protospace validation suite: machine-checked algebra for emergent Dirac/Weyl matter, geometry, and induced gravity"
-version: "0.4.1"
-date-released: "2026-07-08"
+version: "0.5.0"
+date-released: "2026-07-20"
 doi: "10.5281/zenodo.20129308"
 license: MIT
 repository-code: "https://github.com/xys004/protoespacio-validation"

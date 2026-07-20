@@ -75,6 +75,13 @@ are covered by matching pytest files in `tests/`.
 | `validators/poincare_emergence.py` | The full Poincare algebra closes: orbital [P,P], [M,P], [M,M] exhaustively on a generic function, spin generators from the repo's gammas close on the same structure constants, total-generator spot check on a 4-spinor; lattice translations embed exactly in the continuous group; the lattice breaks boosts first at k^4 (dimension six, parity-protected --- no dimension-five term), with the inversion-breaking dimension-five negative control; graphene's O(q^2) cone is exactly isotropic while the O(q^3) warping is C3-invariant but not SO(2); dilatation extends the algebra at the massless point (scale invariance iff m = 0). |
 | `validators/curvature_numerics.py` | Numerical curvature reconstructed from metric data alone: second-order finite-difference Ricci pipeline (convergence order verified) matching the exact conformal curvature and R = 2 on the sphere patch; Regge deficit-angle curvature from geodesic lengths only (K = 1 sphere, 0 flat); the graded substrate step v(x,y) -> metric v^{-2} delta -> numerical R matching -2 e^{-2phi} Delta phi; first numerical FOUR-DIMENSIONAL check: FRW through the same pipeline matches the certified symbolic route, including de Sitter R = -12 H^2; flat 2D/4D machine-zero controls. |
 
+## Ensemble Falsifier
+
+| Module | Checks |
+| --- | --- |
+| `validators/geometry_diagnostics.py` | Spectral dimension from the heat trace, low-mode metric embedding, infrared scaling-window growth, the coordinate-free cone defect, and the composite ACCEPT/REJECT verdict, on the irregular grid and the random expander. |
+| `validators/falsifier_ensemble.py` | Ensemble certification of the falsifier over stored cluster runs: 400 instances per family at N up to 1936 (400/400 REJECT, 400/400 ACCEPT, disjoint diagnostic ranges), and a 1800-instance sweep over three sizes x three expander degrees (1350/1350 expander rejection; lattice acceptance perfect only above the smallest size, the single N=256 failure certified as a 0.0011 threshold miss; margins that widen with N; spectral-dimension ranges that overlap outright). Includes an anti-drift certificate: instances rebuilt from their seeds under current code must reproduce the stored spectra. |
+
 ## Audit Commands
 
 ```powershell
@@ -91,7 +98,7 @@ Additional sanity checks used during repo preparation:
 Current local result:
 
 ```text
-325 passed
+469 passed
 ```
 
 ## Limits

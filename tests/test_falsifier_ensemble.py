@@ -9,6 +9,12 @@ from validators.falsifier_ensemble import (
     spectral_dimension_alone_does_not_separate,
     stored_ensemble_reproduces_under_current_code,
     what_separates_is_plateau_stability_not_its_value,
+    expander_rejection_is_perfect_at_every_size_and_degree,
+    lattice_acceptance_is_perfect_only_above_the_smallest_size,
+    mutated_scale_margins_read_backwards_still_grow,
+    separation_margins_grow_with_system_size,
+    spectral_dimension_ranges_overlap_across_sizes,
+    the_small_size_failure_is_a_threshold_margin_effect,
 )
 
 
@@ -60,3 +66,35 @@ def test_mutation_swapped_families():
 def test_mutation_wrong_seed():
     """MUTATION: the integrity check fails when matched against a different seed."""
     assert not mutated_recomputation_against_wrong_seed_matches()
+
+
+# --- the scale-up: three sizes x three expander degrees ---------------------
+
+def test_expander_rejection_perfect_at_every_size_and_degree():
+    """1350/1350 expanders REJECT across N = 256, 1024, 2304 and degrees 3, 4, 6."""
+    assert expander_rejection_is_perfect_at_every_size_and_degree()
+
+
+def test_lattice_acceptance_needs_size():
+    """Lattices: 150/150 at N >= 1024 but 149/150 at N = 256 -- the criterion needs size."""
+    assert lattice_acceptance_is_perfect_only_above_the_smallest_size()
+
+
+def test_small_size_failure_is_a_threshold_margin():
+    """The one rejected lattice misses the embedding threshold by 0.0011, nothing else."""
+    assert the_small_size_failure_is_a_threshold_margin_effect()
+
+
+def test_margins_grow_with_size():
+    """Metric-correlation margin 0.394 -> 0.614 -> 0.734: the separation widens with N."""
+    assert separation_margins_grow_with_system_size()
+
+
+def test_spectral_dimension_ranges_overlap():
+    """Pooled over sizes the d_s ranges overlap outright: not a discriminator at all."""
+    assert spectral_dimension_ranges_overlap_across_sizes()
+
+
+def test_mutation_scale_margins_backwards():
+    """MUTATION: margins with the families exchanged are negative, so growth fails."""
+    assert not mutated_scale_margins_read_backwards_still_grow()
