@@ -256,12 +256,15 @@ def scaling_window_span(eigenvalues) -> float:
     return float(np.log10(hi / lo))
 
 
-def spectral_dimension_plateau(eigenvalues) -> tuple[float, float]:
-    """(d_s, sigma_ds) on the flattest sub-window of the scaling window.
+def plateau_segment(eigenvalues):
+    """(taus, curve, start, width, median, sigma) for the flattest sub-window.
 
-    Returns the median and the standard deviation of d_s over the contiguous
-    sub-window of width `_PLATEAU_FRACTION` of the log-range that minimises
-    that standard deviation.
+    Exposed so that the figure generator draws the plateau the diagnostic
+    actually measures, over the window the diagnostic actually uses, instead of
+    redrawing it over a hand-chosen tau range. The figures shipped with the
+    Foundations of Physics submission plotted a tau range unrelated to
+    [1/lambda_max, 1/lambda_1], so the plateau the captions described was off
+    the right-hand edge of every panel (finding C4 of the 2026-09-16 audit).
     """
     lo, hi = scaling_window(eigenvalues)
     taus = np.logspace(np.log10(lo), np.log10(hi), _N_TAU)
@@ -269,13 +272,26 @@ def spectral_dimension_plateau(eigenvalues) -> tuple[float, float]:
     width = max(5, int(round(_PLATEAU_FRACTION * _N_TAU)))
     best_sigma = np.inf
     best_median = float("nan")
+    best_start = 0
     for start in range(_N_TAU - width + 1):
         segment = curve[start:start + width]
         sigma = float(np.std(segment))
         if sigma < best_sigma:
             best_sigma = sigma
             best_median = float(np.median(segment))
-    return best_median, best_sigma
+            best_start = start
+    return taus, curve, best_start, width, best_median, best_sigma
+
+
+def spectral_dimension_plateau(eigenvalues) -> tuple[float, float]:
+    """(d_s, sigma_ds) on the flattest sub-window of the scaling window.
+
+    Returns the median and the standard deviation of d_s over the contiguous
+    sub-window of width `_PLATEAU_FRACTION` of the log-range that minimises
+    that standard deviation.
+    """
+    *_rest, median, sigma = plateau_segment(eigenvalues)
+    return median, sigma
 
 
 # --------------------------------------------------------------------------
