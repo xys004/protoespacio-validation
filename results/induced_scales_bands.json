@@ -1,0 +1,62 @@
+{
+  "finding": "A1 (post-rejection audit 2026-09-16)",
+  "scheme_parameter": "hard proper-time cutoff s >= a/Lambda^2, a in [1, 2]",
+  "c_window": {
+    "exact": [
+      "Mul(Rational(1, 12), Pow(pi, Integer(-1)))",
+      "Mul(Rational(1, 6), Pow(pi, Integer(-1)))"
+    ],
+    "pretty": [
+      "1/(12*pi)",
+      "1/(6*pi)"
+    ],
+    "float": [
+      0.026525823848649224,
+      0.05305164769729845
+    ],
+    "derived_value_a_eq_1": "1/(6*pi)",
+    "source_of_derived_value": "induced_gravity.derived_inverse_newton"
+  },
+  "c_prime_window": {
+    "pretty": [
+      "1/(64*pi**2)",
+      "1/(16*pi**2)"
+    ],
+    "float": [
+      0.0015831434944115277,
+      0.006332573977646111
+    ],
+    "derived_value_a_eq_1": "1/(16*pi**2)",
+    "source_of_derived_value": "induced_gravity.field_induced_vacuum_energy"
+  },
+  "species_window": [
+    1,
+    16
+  ],
+  "cutoff_band_over_M_Planck": {
+    "exact": [
+      "sqrt(3*pi/8)",
+      "sqrt(12*pi)"
+    ],
+    "float": [
+      1.0854018818374014,
+      6.139960247678931
+    ],
+    "quote_as": "M_Pl < Lambda < 7 M_Pl",
+    "superseded": "M_Pl < Lambda < 20 M_Pl (window excluded c = 1/(6 pi))"
+  },
+  "vacuum_overshoot": {
+    "corner_coefficients_times_H": [
+      "9/256",
+      "9"
+    ],
+    "log10": [
+      121.49173084572932,
+      123.89997081104117
+    ],
+    "quote_as": "10^121 < |rho_vac|/rho_obs < 10^124",
+    "superseded": "10^121 < ... < 10^127",
+    "note": "comparison of MAGNITUDES; induced sign is negative (AdS)"
+  },
+  "legacy_window_gap_factor": "16*pi/3"
+}

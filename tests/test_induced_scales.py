@@ -5,9 +5,14 @@ from validators.induced_scales import (
     a3_term_is_cutoff_finite,
     corner_reduction_is_justified,
     hard_cutoff_scheme_constants_are_derived,
+    implied_cutoff_band_corners_are_exact,
     implied_cutoff_is_planckian,
+    legacy_newton_window_excluded_derived_value,
+    newton_scheme_window_contains_derived_value,
+    overshoot_corners_are_rational_pi_free,
     pi_bracket_is_certified,
     scheme_constant_varies_but_power_is_invariant,
+    scheme_window_endpoints_are_generated_not_quoted,
     mutated_cutoff_power_matches,
     mutated_dimension_prefactor_matches,
     mutated_measure_matches,
@@ -66,14 +71,46 @@ def test_corner_reduction():
     assert corner_reduction_is_justified()
 
 
+def test_newton_window_contains_derived_value():
+    """THE SEAM THAT WAS MISSING (finding A1, 2026-09-16). The scheme window for
+    c must contain the c = 1/(6 pi) that induced_gravity certifies. Its absence
+    is what let a window a factor 16.76 too low ship to Foundations of Physics."""
+    assert newton_scheme_window_contains_derived_value()
+
+
+def test_scheme_window_endpoints_are_generated():
+    """Both windows come from one parameter a in [1, 2]; a = 2 reproduces the two
+    endpoints the manuscript already names, 1/(12 pi) and 1/(64 pi^2)."""
+    assert scheme_window_endpoints_are_generated_not_quoted()
+
+
+def test_legacy_window_excluded_the_derived_value():
+    """REGRESSION GUARD: the shipped window [1/(32 pi^2), 1/(12 pi)] does NOT
+    contain 1/(6 pi), and the gap to its lower end is exactly 16 pi/3. Restoring
+    the old literals must make this fail."""
+    assert legacy_newton_window_excluded_derived_value()
+
+
 def test_cutoff_is_planckian():
-    """M_Pl < Lambda < 20 M_Pl over the whole (N, c) window: Planck scale as output."""
+    """M_Pl < Lambda < 7 M_Pl over the whole (N, c) window: Planck scale as output."""
     assert implied_cutoff_is_planckian()
 
 
+def test_cutoff_band_corners_are_exact():
+    """The band corners are sqrt(3 pi/8) and sqrt(12 pi), closed forms; anything
+    the manuscript prints must be a rounding of these two and of nothing else."""
+    assert implied_cutoff_band_corners_are_exact()
+
+
 def test_vacuum_overshoot_1e120():
-    """10^121 < rho_vac/rho_obs < 10^127 over the window: the CC problem, executable."""
+    """10^121 < |rho_vac|/rho_obs < 10^124 over the window: the CC problem, executable."""
     assert vacuum_overshoot_is_ten_to_120_class()
+
+
+def test_overshoot_corners_are_rational():
+    """Both overshoot corners are rational multiples of H (9/256 and 9): pi
+    cancels exactly, which the pre-A1 upper corner did not."""
+    assert overshoot_corners_are_rational_pi_free()
 
 
 def test_mutation_cutoff_power():
