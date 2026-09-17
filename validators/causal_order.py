@@ -58,14 +58,38 @@ WHAT COMES OUT (and what does not)
       for an event set of temporal extent N.  The recovered slope is the
       walk's STRICT support speed, computed independently from the step
       operator, and the bracket closes on it as O(1/N).
-  (5) The recovered slope is NOT the infrared group velocity cos(theta).
-      The causal order is fixed by the MAXIMAL signal speed of the substrate,
-      which is the ballistic edge of the support cone (speed `shift`), while
-      the Dirac cone of the low-energy theory has speed cos(theta) < shift
-      for theta > 0.  The two coincide exactly at the massless point.  This
-      is the correct result and it is a genuine substrate statement: the
-      order-theoretic reconstruction sees the lattice cone, and the emergent
-      metric cone sits strictly inside it whenever the walk is massive.
+  (5) The recovered slope is the emergent LIGHT cone, and it is mass
+      independent --- as a light cone must be.  The causal order is fixed by
+      the maximal signal speed of the substrate, the ballistic edge of the
+      support (speed `shift`), and this is exactly the light speed of the
+      emergent Dirac field in the continuum limit: with theta = m dt and
+      a = c dt, cos(w dt) = cos(k c dt) cos(m dt) gives w^2 = c^2 k^2 + m^2
+      with c = a/dt = `shift` sites/step, independent of m.
+
+      REFRAMED 2026-09-16 (finding A2 of the post-rejection audit).  This
+      module previously compared the recovered slope against cos(theta) and
+      called the difference a scoping failure -- "the recovered slope is NOT
+      the infrared group velocity" -- with cos(theta) labelled "the Dirac cone
+      of the low-energy theory".  That label was wrong, and the comparison had
+      the interpretation backwards.  At finite theta there are THREE distinct
+      velocities:
+
+          strict support speed        = `shift`            (Level I, exact)
+          max_k |dw/dk|               = cos(theta)         (Level I, exact)
+          low-k fit of w^2 = m^2+v^2k^2 -> v = sqrt(theta cot theta)
+
+      and all three collapse to `shift` in the Dirac scaling limit dt -> 0.
+      cos(theta) is the Brillouin-truncated maximum group velocity of a
+      MASSIVE excitation, so it lies strictly inside the light cone and
+      saturates only at m = 0 -- which is precisely the bound the manuscript
+      already derives at eq. (cone), v_g^2 - v^2 = -m^2 v^2/(v^2 p^2 + m^2)
+      <= 0, "saturating for the massless mode".  A massive particle travelling
+      slower than light is ordinary relativistic kinematics, not a defect in
+      the reconstruction; and a causal cone that does not depend on the mass of
+      the matter propagating on it is the correct behaviour, not a partial
+      result.  So the order-theoretic reconstruction returns the light cone
+      with the right mass-independence, and that is a consistency check on the
+      emergent causal structure rather than a limitation of it.
   (6) VOLUME COUNTING, ON THE SUBSTRATE.  The Alexandrov interval of the
       walk's order between two events is order-isomorphic to a product of
       two chains; counting its events with the substrate's own event density
@@ -374,7 +398,7 @@ def massless_support_relation_needs_transitive_closure() -> bool:
     coin angle in [0, pi/2) once closure is taken --- the order is mass
     independent --- and the coin angle only controls whether the walk realizes
     that order directly or only through composition.  This is the order-level
-    counterpart of `recovered_cone_is_the_strict_cone_not_the_infrared_cone`."""
+    counterpart of `recovered_cone_is_the_light_cone_and_is_mass_independent`."""
     n_steps, x_half = 6, 6
     n_sites = 4 * n_steps + 4 * x_half + 5
     x0 = n_sites // 2
@@ -555,35 +579,84 @@ def substrate_cone_reconstruction_converges_with_lattice_size() -> bool:
     return all(widths[i + 1] < widths[i] for i in range(len(widths) - 1))
 
 
-def recovered_cone_is_the_strict_cone_not_the_infrared_cone() -> bool:
-    """THE PHYSICS POINT.  The causal order is fixed by the substrate's
-    MAXIMAL signal speed, so what the reconstruction returns is the strict
-    lattice cone (speed 1 site/step, the ballistic edge of the support), not
-    the infrared group velocity cos(theta) of the emergent Dirac cone.
+def recovered_cone_is_the_light_cone_and_is_mass_independent() -> bool:
+    """THE PHYSICS POINT.  The causal order is fixed by the substrate's maximal
+    signal speed, so what the reconstruction returns is the emergent LIGHT cone
+    (1 site/step, the ballistic edge of the support), and it does not depend on
+    the coin angle -- which is the correct behaviour for a light cone, since the
+    causal cone of a relativistic theory does not depend on the mass of the
+    matter propagating on it.
 
-    Checked: for theta in {0, 0.2, pi/4, 1.1} the recovered slope is 1 in
-    every case, while cos(theta) takes the four distinct values
-    {1, 0.980, 0.707, 0.454}; the recovered slope is therefore mass
-    independent, and it equals cos(theta) exactly at, and only at, the
-    massless point theta = 0.  The emergent metric cone is a strict subcone
-    of the causal cone whenever the walk is massive."""
+    Checked: for theta in {0, 0.2, pi/4, 1.1} the recovered slope is 1 in every
+    case (mass independence), and the maximum group velocity of the massive
+    excitation, cos(theta) in {1, 0.980, 0.707, 0.454}, lies strictly INSIDE it
+    for theta > 0 and saturates it only at theta = 0.  That is exactly the
+    manuscript's eq. (cone) bound, v_g^2 - v^2 = -m^2 v^2/(v^2 p^2 + m^2) <= 0,
+    "saturating for the massless mode", now read off the substrate's own order
+    instead of the frozen dispersion.
+
+    See item (5) of the module docstring for why this replaces the earlier
+    framing (finding A2), in which cos(theta) was mislabelled as the infrared
+    Dirac cone and the difference reported as a scoping failure."""
     recovered = []
     for theta in (0.0, 0.2, np.pi / 4, 1.1):
         events, rel, x0, _L, _m = _substrate_cone(theta, 20)
         sup_rel, _inf = _bracket(events, rel, lambda x: x - x0)
         recovered.append(sup_rel)
-    # mass independence of the recovered cone
+    # the recovered cone is the light cone, and is mass independent
     if max(recovered) - min(recovered) > 1e-12:
         return False
     if abs(recovered[0] - 1.0) > 1e-12:
         return False
-    # the IR cone genuinely differs, except at theta = 0
-    ir = [np.cos(t) for t in (0.0, 0.2, np.pi / 4, 1.1)]
-    if abs(ir[0] - recovered[0]) > 1e-15:
+    # the massive excitation's max group velocity sits inside it, saturating at m=0
+    v_g_max = [np.cos(t) for t in (0.0, 0.2, np.pi / 4, 1.1)]
+    if abs(v_g_max[0] - recovered[0]) > 1e-15:
         return False
-    if not all(v < recovered[0] - 1e-3 for v in ir[1:]):
+    if not all(v < recovered[0] - 1e-3 for v in v_g_max[1:]):
         return False
     return True
+
+
+def three_finite_theta_velocities_collapse_in_the_dirac_limit() -> bool:
+    """The quantity cos(theta) is one of THREE distinct velocities the walk has
+    at finite coin angle, and naming which one is meant is the whole content of
+    finding A2:
+
+        strict support speed            1                    (what the order returns)
+        max_k |dw/dk|                   cos(theta)
+        low-k fit w^2 = m^2 + v^2 k^2   sqrt(theta cot theta)
+
+    At theta = pi/4 they are 1, 0.7071 and 0.8862: three different numbers, so
+    "the infrared Dirac cone" is ambiguous until the Level (I or II) is fixed.
+    This function certifies (i) that the three are pairwise distinct for
+    theta > 0, ordered cos(theta) < sqrt(theta cot theta) < 1, and (ii) that
+    they collapse onto the support speed in the Dirac scaling limit
+    theta = m dt, a = c dt, dt -> 0, where the emergent light speed is
+    c = a/dt = 1 site/step.  Hence the cone the order recovers IS the emergent
+    Dirac light cone; the finite-theta gaps are O(theta^2) lattice artefacts."""
+    # (i) three distinct, ordered velocities at finite theta
+    for theta in (0.2, np.pi / 4, 1.1):
+        v_group = np.cos(theta)
+        v_fit = np.sqrt(theta / np.tan(theta))
+        # closed form for the low-k fit: w^2 ~ theta^2 + theta cot(theta) k^2
+        k = np.linspace(1e-6, 1e-3, 64)
+        w = np.arccos(np.clip(np.cos(theta) * np.cos(k), -1.0, 1.0))
+        slope = np.polyfit(k**2, w**2, 1)[0]
+        if abs(np.sqrt(slope) - v_fit) > 1e-6:
+            return False
+        if not (v_group < v_fit - 1e-3 < 1.0 - 1e-3):
+            return False
+    # (ii) the Dirac scaling limit collapses all three onto the support speed
+    m, c, k0 = 1.0, 1.0, 0.5
+    errs = []
+    for dt in (1e-1, 1e-2, 1e-3):
+        theta = m * dt
+        w = np.arccos(np.cos(k0 * c * dt) * np.cos(m * dt)) / dt
+        errs.append(abs(w - np.sqrt(c**2 * k0**2 + m**2)))
+        if np.cos(theta) < 1.0 - 10 * dt**2:  # cos(theta) -> 1 as O(dt^2)
+            return False
+    # relativistic dispersion recovered, and the error falls as dt^2
+    return errs[-1] < 1e-7 and errs[0] > errs[1] > errs[2]
 
 
 def reconstruction_tracks_substrate_shift_range() -> bool:

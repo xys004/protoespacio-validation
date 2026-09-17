@@ -17,7 +17,8 @@ from validators.causal_order import (
     mutated_event_density_fails_proper_time,
     mutated_wormhole_walk_breaks_substrate_reconstruction,
     nonlocal_step_has_no_cone,
-    recovered_cone_is_the_strict_cone_not_the_infrared_cone,
+    recovered_cone_is_the_light_cone_and_is_mass_independent,
+    three_finite_theta_velocities_collapse_in_the_dirac_limit,
     reconstruction_tracks_substrate_shift_range,
     substrate_cone_reconstruction_converges_with_lattice_size,
     substrate_counting_recovers_proper_time,
@@ -84,9 +85,17 @@ def test_substrate_cone_reconstruction_converges_with_lattice_size():
     assert substrate_cone_reconstruction_converges_with_lattice_size()
 
 
-def test_recovered_cone_is_the_strict_cone_not_the_infrared_cone():
-    """The order returns the lattice cone (slope 1), mass independent, not cos(theta)."""
-    assert recovered_cone_is_the_strict_cone_not_the_infrared_cone()
+def test_recovered_cone_is_the_light_cone_and_is_mass_independent():
+    """The order returns the light cone (slope 1), mass independent as a light
+    cone must be; the massive excitation's max group velocity sits inside it."""
+    assert recovered_cone_is_the_light_cone_and_is_mass_independent()
+
+
+def test_three_velocities_collapse_in_the_dirac_limit():
+    """Finding A2: at finite theta the walk has three distinct velocities
+    (1, cos theta, sqrt(theta cot theta)); they collapse onto the support speed
+    in the Dirac scaling limit, so the recovered cone IS the emergent light cone."""
+    assert three_finite_theta_velocities_collapse_in_the_dirac_limit()
 
 
 def test_reconstruction_tracks_substrate_shift_range():
