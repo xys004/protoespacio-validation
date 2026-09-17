@@ -1,0 +1,46 @@
+[
+  {
+    "object": "walk",
+    "n": 49,
+    "note": "manifoldlike by construction",
+    "myrheim_meyer_dim": 0.6010937263745635,
+    "midpoint_dim": 1.7078192485066896,
+    "spectral_dim": 1.8893094759853213,
+    "spectral_sigma": 0.06357684423680147,
+    "metric_rho": 0.9634434528742354,
+    "ordering_fraction": 0.625
+  },
+  {
+    "object": "sprinkle",
+    "n": 120,
+    "note": "Poisson sprinkling, 1+1 Minkowski",
+    "myrheim_meyer_dim": 1.9213266499463364,
+    "midpoint_dim": 2.0995356735509145,
+    "spectral_dim": 3.2964707238129733,
+    "spectral_sigma": 0.18395826806839755,
+    "metric_rho": 0.6218882214730602,
+    "ordering_fraction": 0.26512605042016807
+  },
+  {
+    "object": "random",
+    "n": 120,
+    "note": "random partial order, NOT manifoldlike",
+    "myrheim_meyer_dim": 2.5618352662553807,
+    "midpoint_dim": 2.5145731728297585,
+    "spectral_dim": 3.252268212762928,
+    "spectral_sigma": 0.12493232343928969,
+    "metric_rho": 0.2629488274307443,
+    "ordering_fraction": 0.16218487394957984
+  },
+  {
+    "object": "expander",
+    "n": 120,
+    "note": "the manuscript's non-example",
+    "myrheim_meyer_dim": 4.8577464512822175,
+    "midpoint_dim": 5.906890595608519,
+    "spectral_dim": 2.134371379103456,
+    "spectral_sigma": 0.1439457781123768,
+    "metric_rho": 0.5552357683283292,
+    "ordering_fraction": 0.024089635854341738
+  }
+]

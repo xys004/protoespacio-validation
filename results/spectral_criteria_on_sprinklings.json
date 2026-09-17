@@ -1,0 +1,45 @@
+{
+  "sprinklings": [
+    {
+      "n_sprinkled": 80,
+      "n_kept": 80,
+      "deg_max": 10,
+      "spectral_dim": 3.0075726289112197,
+      "spectral_sigma": 0.18772103484666483,
+      "metric_rho": 0.5499596943957263,
+      "spectral_gap": 1.1821962866618918
+    },
+    {
+      "n_sprinkled": 160,
+      "n_kept": 160,
+      "deg_max": 13,
+      "spectral_dim": 3.4253191687347595,
+      "spectral_sigma": 0.14788835265803174,
+      "metric_rho": 0.5921454125410447,
+      "spectral_gap": 0.9324830425608454
+    },
+    {
+      "n_sprinkled": 320,
+      "n_kept": 320,
+      "deg_max": 88,
+      "spectral_dim": 0.5276300608289102,
+      "spectral_sigma": 0.17088068453489405,
+      "metric_rho": 0.4847358821543444,
+      "spectral_gap": 1.7851709321482612
+    },
+    {
+      "n_sprinkled": 640,
+      "n_kept": 640,
+      "deg_max": 202,
+      "spectral_dim": 0.7942822400182958,
+      "spectral_sigma": 0.23636538201865415,
+      "metric_rho": 0.4993303038824677,
+      "spectral_gap": 1.7061463565195538
+    }
+  ],
+  "reference_grid": {
+    "d_s": 1.9603730713260106,
+    "sigma": 0.05948656837134985,
+    "rho": 0.9588196241692327
+  }
+}
