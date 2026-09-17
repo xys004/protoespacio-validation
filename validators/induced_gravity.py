@@ -435,8 +435,15 @@ def any_pure_fermion_content_is_sign_definite() -> bool:
 def total_sign_is_a_condition_on_matter_content() -> bool:
     """The manuscript's CONCLUSION, made executable in its corrected form: the
     total induced coefficient over a mixed content is a condition on that
-    content. With n_D Dirac species and n_X scalars at xi = 1/4 the total is
-    kappa_tot ~ (n_X/384 - n_D/96)/pi^2, which is negative for n_X < 4 n_D,
+    content. With n_D Dirac species and n_X scalars at xi = 1/4,
+
+        kappa_tot = (n_X/384 - n_D/96) Lambda^2/pi^2,
+
+    and the quantity `total` computed below is kappa_tot/Lambda^2, i.e. the
+    COEFFICIENT and not kappa_tot itself. Saying otherwise is what put a
+    dimensionally inconsistent kappa_tot into the manuscript (finding A3 of the
+    2026-09-16 audit), where the neighbouring pure-fermion line carried its
+    Lambda^2 and this one did not. The coefficient is negative for n_X < 4 n_D,
     EXACTLY ZERO at n_X = 4 n_D (exhibited here at n_D = 1, n_X = 4) and
     positive beyond -- so all three regimes are realized by admissible integer
     content. Sign-definiteness is therefore not a theorem of the mechanism, and

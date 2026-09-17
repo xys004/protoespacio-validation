@@ -557,6 +557,16 @@ def scaling_slope_times_plateau_dimension_is_two(family: str) -> bool:
     Measured products: cycle 2.00, grid 1.97, expander 0.05. Band [1.8, 2.2]
     for the lattices (a 10% window, comfortably tighter than the factor-40
     gap to the expander); the expander is required to be below 0.3.
+
+    THE SIZE MATTERS AND MUST BE QUOTED WITH THE NUMBER (finding A4 of the
+    2026-09-16 audit). d_s here is taken at the TOP of each ladder -- cycle
+    N = 512 (d_s = 1.000), grid 20x20 (d_s = 1.995), expander N = 512 -- while
+    the manuscript's surrounding prose quotes the plateau at the sizes used for
+    the single-instance illustration, cycle N = 256 (1.00037) and grid 16x16
+    (1.960). Both sets of numbers are correct; they are simply not the same
+    grids. A reader who multiplies the two numbers printed side by side gets
+    0.99 * 1.960 = 1.94, not the 1.97 computed here. The manuscript now states
+    which size the product uses.
     """
     if family == "cycle":
         d_s, _ = spectral_dimension_plateau(cycle_spectrum(512))
