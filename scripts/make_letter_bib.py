@@ -6,8 +6,8 @@ for silent drift.
 """
 import io, os, re
 
-MASTER = r"C:\Users\Nelson\Dev\physics\Protoespacio_Dirac_Weyl_2026\current_submission\master_programme_2026-06-10\refs_master.bib"
-LETTER_DIR = r"C:\Users\Nelson\Dev\physics\Protoespacio_Dirac_Weyl_2026\current_submission\letter_sign_and_scale_2026-09-16"
+MASTER = r"C:\Users\Nelson\Dev\Personal\physics\Protoespacio_Dirac_Weyl_2026\current_submission\master_programme_2026-06-10\refs_master.bib"
+LETTER_DIR = r"C:\Users\Nelson\Dev\Personal\physics\Protoespacio_Dirac_Weyl_2026\current_submission\letter_sign_and_scale_2026-09-16"
 TEX = os.path.join(LETTER_DIR, "letter_sign_and_scale.tex")
 OUT = os.path.join(LETTER_DIR, "refs_letter.bib")
 
