@@ -1,0 +1,178 @@
+{
+ "seed": 20260610,
+ "constants": {
+  "TARGET_DIMENSION": 2,
+  "N_TAU": 240,
+  "PLATEAU_FRACTION": 0.3333333333333333,
+  "N_MODES": 2,
+  "GRID_SIDE": 16,
+  "GRID_REMOVED": 0.08,
+  "EXPANDER_DEGREE": 3,
+  "N_VERTICES": 256
+ },
+ "criteria": [
+  {
+   "id": 1,
+   "name": "infrared scaling",
+   "functional": "slope of span(N) = log10(lambda_max/lambda_1) against log10 N",
+   "accept_if": ">=",
+   "threshold": 0.8,
+   "rationale": "a substrate whose scaling window does not widen with size has no infrared limit to reconstruct a geometry in; diffusive scaling lambda_1 ~ L^-2 gives slope = 2/d_s",
+   "measured": {
+    "cycle": 1.999636048819802,
+    "grid": 0.9884985426787377,
+    "expander": 0.025172320272064376
+   },
+   "ensemble": {
+    "expander": {
+     "mean": 0.04142525112035114,
+     "std": 0.037682456404943325,
+     "min": -0.07537513575054922,
+     "max": 0.13342793994743507
+    },
+    "grid": {
+     "mean": 0.9906904570203033,
+     "std": 0.019038074683459492,
+     "min": 0.8711099595490688,
+     "max": 1.032410209351713
+    }
+   }
+  },
+  {
+   "id": 2,
+   "name": "low-mode metric embedding",
+   "functional": "Spearman rho between graph geodesic distance and Euclidean distance in the first 2 non-trivial eigenvectors of L_G, over all vertex pairs",
+   "accept_if": ">=",
+   "threshold": 0.94,
+   "rationale": "the low modes must recover the ordering of the graph metric, which is what makes them coordinates",
+   "measured": {
+    "cycle": null,
+    "grid": 0.9588196241692327,
+    "expander": 0.43546583058689464
+   },
+   "ensemble": {
+    "expander": {
+     "mean": 0.222301550468803,
+     "std": 0.01104319542212694,
+     "min": 0.18137862313034916,
+     "max": 0.2557758635213538
+    },
+    "grid": {
+     "mean": 0.9674606933440719,
+     "std": 0.0009780035167604826,
+     "min": 0.9630692372729799,
+     "max": 0.9704576343476126
+    }
+   }
+  },
+  {
+   "id": 3,
+   "name": "plateau stability",
+   "functional": "sigma of d_s(tau) over the flattest contiguous sub-window of width 0.333333 of the log-range of [1/lambda_max, 1/lambda_1]",
+   "accept_if": "<=",
+   "threshold": 0.1,
+   "rationale": "a spectral dimension that is not stable over its own scaling window is not a dimension; this is the weakest of the three and the one whose margin is narrowest",
+   "measured": {
+    "cycle": 0.00044544200848722426,
+    "grid": 0.05948656837134985,
+    "expander": 0.1575894522988726
+   },
+   "ensemble": {
+    "expander": {
+     "mean": 0.18303755889985937,
+     "std": 0.0013257941137582979,
+     "min": 0.17967580875754685,
+     "max": 0.18692214644588967
+    },
+    "grid": {
+     "mean": 0.07104371174771003,
+     "std": 0.00364413748541361,
+     "min": 0.05658070761060191,
+     "max": 0.08082353271401456
+    }
+   }
+  }
+ ],
+ "non_criteria": {
+  "cone_defect": {
+   "why_not": "exactly zero for every connected graph under the uniform-fibre directed-half-edge definition, so it is structurally non-discriminating; recorded in the verdict precisely so that it is on record as never failing",
+   "expander_passes": true,
+   "lattice_passes": true
+  },
+  "spectral_dimension_value": {
+   "why_not": "the expander's plateau value lies inside the same two-dimensionality band as the grid's, so the value of d_s admits the non-example that its stability rejects",
+   "band": [
+    1.85,
+    2.15
+   ],
+   "measured": {
+    "cycle": 1.000374337545395,
+    "grid": 1.9603730713260106,
+    "expander": 2.0931558723653296
+   },
+   "ensemble_overlap": {
+    "expander": [
+     2.074712797239897,
+     2.0863165193391353
+    ],
+    "grid": [
+     2.030484292991524,
+     2.0778889244314698
+    ]
+   }
+  }
+ },
+ "instances": {
+  "cycle": {
+   "d_s": 1.000374337545395,
+   "sigma_ds": 0.00044544200848722426,
+   "span_slope": 1.999636048819802,
+   "span_decades": 3.8222019866690236,
+   "spectral_gap": 0.0006023626075915001
+  },
+  "grid": {
+   "d_s": 1.9603730713260106,
+   "sigma_ds": 0.05948656837134985,
+   "span_slope": 0.9884985426787377,
+   "span_decades": 2.391444596407058,
+   "spectral_gap": 0.031028833385544435,
+   "rho": 0.9588196241692327,
+   "verdict": "ACCEPT",
+   "cone_ok": true
+  },
+  "expander": {
+   "d_s": 2.0931558723653296,
+   "sigma_ds": 0.1575894522988726,
+   "span_slope": 0.025172320272064376,
+   "span_decades": 1.4810788431061317,
+   "spectral_gap": 0.19162663605449592,
+   "rho": 0.43546583058689464,
+   "verdict": "REJECT",
+   "cone_ok": true
+  }
+ },
+ "sprinkling": {
+  "n_sizes": 4,
+  "n_accepted": 0,
+  "rho_range": [
+   0.4847358821543444,
+   0.5921454125410447
+  ],
+  "sigma_ds_range": [
+   0.14788835265803174,
+   0.23636538201865415
+  ],
+  "gap_range": [
+   0.9324830425608454,
+   1.7851709321482612
+  ],
+  "deg_max_range": [
+   10,
+   202
+  ]
+ },
+ "consistency": {
+  "grid_verdicts_follow_from_thresholds": true,
+  "expander_verdicts_follow_from_thresholds": true
+ }
+}

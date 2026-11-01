@@ -10,7 +10,7 @@ manuscript.
 Repository URL: <https://github.com/xys004/protoespacio-validation>
 Archived release (concept DOI, always resolves to the latest version): <https://doi.org/10.5281/zenodo.20129308>
 
-The current validation suite contains 475 tests. On the Windows-native project
+The current validation suite contains 481 tests. On the Windows-native project
 environment it passes in about three minutes.
 
 ## Contents
@@ -30,7 +30,7 @@ See `VALIDATION.md` for the module-by-module map.
 Recommended Windows-native workflow:
 
 ```powershell
-# from C:\Users\Nelson\Dev\physics\protoespacio
+# from C:\Users\Nelson\Dev\Personal\physics\protoespacio
 powershell -ExecutionPolicy Bypass -File scripts\doctor.ps1
 powershell -ExecutionPolicy Bypass -File scripts\test.ps1
 ```
@@ -77,8 +77,10 @@ Validated areas include:
   bipartite index constraints, and locality checks for Paper II.
 - Brillouin-zone corner and quasi-energy consistency checks.
 - Graph-Laplacian low-mode projectors and the coordinate-free cone criterion.
-- Gravity layer (Part V): tetrad from a graded step, torsion-free spin
-  connection solved (not postulated) on general 2D and 4D FRW tetrads, the
+- Geometry layer: an explicit Hermitian discrete-link Hamiltonian whose
+  centered continuum expansion yields the variable tetrad with $O(a^2)$
+  lattice error; a torsion-free spin connection then chosen and solved on
+  general 2D and 4D FRW tetrads; the
   signed Lichnerowicz coefficient with a general-Riemann certificate, the
   spinor curvature commutator derived from the repo's own Lorentz generators,
   Seeley-DeWitt a_1 derived spectrally on the round S^2, and proper-time
@@ -102,7 +104,7 @@ Validated areas include:
 Latest local audit:
 
 ```text
-475 passed
+481 passed
 ```
 
 ## AI Assistance Statement

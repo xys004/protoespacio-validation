@@ -18,6 +18,7 @@ from validators.geometry_diagnostics import (
     expander_fails_metric_embedding_lattice_passes,
     expander_fails_plateau_lattice_passes,
     expander_gap_does_not_close,
+    expander_dirac_has_uniform_fixed_fiber,
     expander_is_chirally_paired,
     expander_is_local,
     expander_passes_cone_criterion,
@@ -31,6 +32,7 @@ from validators.geometry_diagnostics import (
     mutated_shuffled_embedding_correlates,
     mutated_star_graph_has_a_one_dimensional_plateau,
     mutated_unsigned_incidence_matches_laplacian,
+    recognition_contract_is_two_dimensional,
     scaling_slope_times_plateau_dimension_is_two,
     wrong_dimension_band_accepts_cycle,
     wrong_family_passes_infrared_scaling,
@@ -75,8 +77,14 @@ def test_irregular_grid_metric_embedding_correlates():
     assert irregular_grid_metric_embedding_correlates()
 
 
+def test_recognition_contract_is_explicitly_two_dimensional():
+    """The fixed slope threshold and two-mode embedding are a d=2 contract;
+    a regular d=3 lattice lies outside its scope rather than failing geometry."""
+    assert recognition_contract_is_two_dimensional()
+
+
 # --------------------------------------------------------------------------
-# Matter-level tests the expander passes (exact integer arithmetic)
+# Structural operator tests the expander passes (exact integer arithmetic)
 # --------------------------------------------------------------------------
 
 def test_expander_passes_cone_criterion():
@@ -100,6 +108,12 @@ def test_expander_is_chirally_paired():
     """The expander's bipartite Dirac doubling anticommutes exactly with the
     chirality operator, so its spectrum is chirally paired."""
     assert expander_is_chirally_paired()
+
+
+def test_expander_dirac_uses_a_uniform_fixed_fiber():
+    """The cubic expander doubling acts on l^2(V) tensor C^4, so the matter
+    operator and graph diagnostics belong to the same protospace datum."""
+    assert expander_dirac_has_uniform_fixed_fiber()
 
 
 # --------------------------------------------------------------------------
@@ -147,7 +161,7 @@ def test_expander_plateau_value_is_a_false_positive():
 
 
 def test_expander_fails_metric_embedding_lattice_passes():
-    """Same embedding code and the same n_modes = 2 give rho = 0.436 for the
+    """Same embedding code and the same n_modes = 2 give rho = 0.435 for the
     expander against 0.959 for the grid."""
     assert expander_fails_metric_embedding_lattice_passes()
 
@@ -176,7 +190,7 @@ def test_lattice_composite_verdict_is_accept():
 # --------------------------------------------------------------------------
 
 def test_mutated_unsigned_incidence_does_not_match_laplacian():
-    """Replacing the oriented incidence matrix by the unsigned one gives the
+    """Erasing the signs of the fixed-fibre half-edge incidence gives the
     signless Laplacian, and the cone identity breaks."""
     assert not mutated_unsigned_incidence_matches_laplacian()
 

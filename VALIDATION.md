@@ -56,7 +56,7 @@ are covered by matching pytest files in `tests/`.
 
 | Module | Checks |
 | --- | --- |
-| `validators/tetrad_from_step.py` | Position-dependent tetrad read off from a slowly varying discrete step: frozen-coefficient H^2 identity and flat/graded limits. |
+| `validators/tetrad_from_step.py` | Explicit Hermitian nearest-neighbour link Hamiltonian: exact finite-matrix Hermiticity, continuum limit to the symmetrized variable-velocity Dirac operator, second-order centered-link error, frozen-principal-symbol square, flat/graded limits, and an explicit separation between lattice and adiabatic expansion parameters. The torsion-free connection is an additional geometric choice, not an output of the link expansion. |
 | `validators/spin_connection.py` | Torsion-free spin connection and curvature from a variable 2D conformal tetrad, Cartan vs Christoffel Ricci cross-check, flat limit. |
 | `validators/spin_connection_general_2d.py` | General non-conformal 2D diagonal tetrad: torsion-free connection solved uniquely (not postulated), exact reduction to the conformal case, two-route Ricci agreement for arbitrary A, B. |
 | `validators/spin_connection_frw_4d.py` | First 4D Lorentzian check: FRW tetrad, unique torsion-free spin connection, genuinely nonabelian omega-wedge-omega term, two-route Ricci scalar R = -6(a''/a + (a'/a)^2) for arbitrary a(t), de Sitter R = -12 H^2, flat limit, torsion negative control. |
@@ -79,7 +79,7 @@ are covered by matching pytest files in `tests/`.
 
 | Module | Checks |
 | --- | --- |
-| `validators/geometry_diagnostics.py` | Spectral dimension from the heat trace, low-mode metric embedding, infrared scaling-window growth, the coordinate-free cone defect, and the composite ACCEPT/REJECT verdict, on the irregular grid and the random expander. |
+| `validators/geometry_diagnostics.py` | Spectral dimension from the heat trace, low-mode metric embedding, infrared scaling-window growth, the uniform-fibre squared-Laplacian non-criterion, and the composite ACCEPT/REJECT verdict, on the irregular grid and the random expander. |
 | `validators/falsifier_ensemble.py` | Ensemble certification of the falsifier over stored cluster runs: 400 instances per family at N up to 1936 (400/400 REJECT, 400/400 ACCEPT, disjoint diagnostic ranges), and a 1800-instance sweep over three sizes x three expander degrees (1350/1350 expander rejection; lattice acceptance perfect only above the smallest size, the single N=256 failure certified as a 0.0011 threshold miss; margins that widen with N; spectral-dimension ranges that overlap outright). Includes an anti-drift certificate: instances rebuilt from their seeds under current code must reproduce the stored spectra. |
 
 ## Audit Commands
@@ -98,7 +98,7 @@ Additional sanity checks used during repo preparation:
 Current local result:
 
 ```text
-475 passed
+481 passed
 ```
 
 ## Corrections

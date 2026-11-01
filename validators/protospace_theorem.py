@@ -62,8 +62,9 @@ candidate velocity v > 0, and set
 
 Assume g_L > 0. Then
 
-  (i)   [infrared decoupling]   || Q_L H P_L ||_F <= kap / g_L,
-        and the bound is attained.
+  (i)   [infrared decoupling]   || Q_L H P_L ||_F <= kap / g_L.
+        The constant 1/g_L is sharp: equality is attained on K_2, while the
+        inequality is strict on the defected C_6 example.
 
   (ii)  [chirality descends]    H_L := P_L H P_L is self-adjoint and
         satisfies {Gamma, H_L} = 0, so the infrared block is chiral on a

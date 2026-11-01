@@ -4,12 +4,13 @@ embedding, and the expander falsifier.
 
 WHAT THIS MODULE IS FOR
 -----------------------
-Sec. IV.C of the master programme reconstructs two geometric data from the
-spectrum of the graph Laplacian L_G alone --- an effective dimension and an
-effective metric --- and Sec. IV.D uses a random regular expander as the
-declared counterexample: a substrate that is local and chirally paired (so it
-passes the matter-level tests) yet is not a geometry. Until now that entire
-layer had no executable backing in this repository. This module supplies it.
+Sec. IV.C of the master programme estimates an effective dimension from the
+Laplacian eigenvalues and candidate coordinates from its eigenvectors, then
+evaluates those coordinates against graph distance. Sec. IV.D uses a random
+regular expander as a non-example: a substrate satisfying locality, exact
+grading, and a squared-Laplacian identity while lacking an infrared scaling
+limit. Those structural conditions are not a complete relativistic matter
+sector. This module supplies the executable diagnostics.
 
 DEFINITIONS (all fixed here, none inherited from an external pipeline)
 ----------------------------------------------------------------------
@@ -48,25 +49,32 @@ LOW-MODE EMBEDDING. The first `n_modes` non-trivial eigenvectors of L_G
 (columns 1..n_modes of the ordered spectral decomposition, the zero mode
 dropped) are used as coordinates; we report the Spearman rank correlation
 between graph geodesic distance and Euclidean distance in those coordinates,
-over all vertex pairs. We use n_modes = 2 UNIFORMLY, for the lattice and for
-the expander, so that the falsification comparison runs through one code
-path. Spearman (rank) rather than Pearson because the claim is that the
-low-mode coordinates recover the ORDERING of the graph metric, not its scale.
+    over all vertex pairs. We use n_modes = 2 UNIFORMLY, for the lattice and for
+    the expander, because this module tests a TWO-DIMENSIONAL recognition
+    checklist. It is not a dimension-independent manifoldlikeness test: the
+    infrared-scaling threshold and the embedding dimension are calibrated to
+    d = 2. Spearman (rank) rather than Pearson because the claim is that the
+    low-mode coordinates recover the ORDERING of the graph metric, not its scale.
 
 CONE DEFECT. The manuscript quotes an "isolated cone defect" of 2.6e-3 for
 the expander but does not define the quantity anywhere in the text, and the
 pipeline that produced it is not in this repository. We therefore state our
-own definition and report what it gives. For any finite graph, let B be the
-ORIENTED incidence matrix and
+own definition and report what it gives. To respect the protospace Hilbert
+space l^2(V) tensor F, give every vertex one scalar component and Delta
+directed-half-edge slots, where Delta is the maximum degree. Unused slots are
+zero. Let B_h be the n by n*Delta signed incidence matrix whose column (u,j)
+is e_u-e_v when slot j at u points to v. Every undirected edge occurs twice,
+so B_h B_h^T = 2 L_G exactly. With B = B_h/sqrt(2),
 
-    D = [[0, B], [B^T, 0]]   ==>   D^2 = diag(B B^T, B^T B) = diag(L_G, L_E).
+    D = [[0, B], [B^T, 0]]   ==>   D^2|_V = B B^T = L_G.
 
-The cone criterion of `cone_criterion.py` (H^2 = L_G tensor 1 on the vertex
-sector) is therefore satisfied EXACTLY, with defect identically zero, by
-every connected graph -- lattice and expander alike. Under this definition
-the manuscript's point is stronger than it claims: the cone diagnostic is not
-merely a small false positive on the expander, it is structurally incapable of
-discriminating.
+After a permutation of basis, D acts on l^2(V) tensor C^(1+Delta), with a
+uniform finite fibre and a site-local grading. The cone criterion on the scalar
+vertex component is therefore satisfied EXACTLY, with defect identically zero,
+by every connected graph -- lattice and expander alike. Under this definition
+the diagnostic is structurally incapable of discriminating. This does not make
+the expander a relativistic matter model: it certifies only locality, grading,
+and the squared-Laplacian identity.
 
 WHAT SEPARATES A LATTICE FROM AN EXPANDER, IN ORDER OF STRENGTH
 ---------------------------------------------------------------
@@ -76,7 +84,7 @@ vertices:
   (1) scaling-window growth   slope d(span)/d(log10 N):
         cycle 2.00, irregular grid 0.99, expander 0.025   -- factor ~40
   (2) low-mode metric correlation rho (n_modes = 2):
-        grid 0.959, expander 0.436                        -- factor ~2.2
+        grid 0.959, expander 0.435                        -- factor ~2.2
   (3) plateau flatness sigma_ds:
         grid 0.059, expander 0.158                        -- factor ~2.6
 
@@ -138,11 +146,57 @@ from validators.laplacian_projector import cycle_laplacian
 SEED = 20260610          # manuscript version date; the only randomness source
 _N_TAU = 240             # log-uniform samples across the scaling window
 _PLATEAU_FRACTION = 1.0 / 3.0   # width of the plateau sub-window, in log-range
-_N_MODES = 2             # low-mode embedding dimension, same for every family
+TARGET_DIMENSION = 2     # this is explicitly a two-dimensional checklist
+_N_MODES = TARGET_DIMENSION  # embedding dimension, same for every family
 _GRID_SIDE = 16          # flagship irregular grid is 16 x 16 = 256 vertices
 _GRID_REMOVED = 0.08     # 8% of edges deleted -> "mildly irregular"
 _EXPANDER_DEGREE = 3     # cubic random regular graph: the minimal expander
 _N_VERTICES = 256        # matches the manuscript's N = 256
+
+# --------------------------------------------------------------------------
+# Acceptance thresholds of the three criteria, in one place.
+#
+# These were literals repeated across ten call sites, which is how a threshold
+# and the number the manuscript quotes for it drift apart in silence. They are
+# named here so that the criterion statements in the paper, the tests, and the
+# deposited log in `results/geometry_criteria.py` all read the same value.
+# Changing one of these changes the verdict, so a change here should be
+# accompanied by a re-run of the ensembles.
+# --------------------------------------------------------------------------
+
+SIGMA_DS_MAX = 0.10             # criterion 3, plateau stability: accept if <=
+SPAN_SLOPE_MIN = 0.8            # criterion 1, infrared scaling: accept if >=
+RHO_MIN = 0.94                  # criterion 2, metric embedding: accept if >=
+
+# Rejection-side bands, used only by the separation assertions: they record how
+# far the non-example sits from the acceptance threshold, and are not part of
+# the verdict.
+RHO_EXPANDER_MAX = 0.75
+SPAN_SLOPE_EXPANDER_MAX = 0.10
+
+# The two-dimensionality band on the plateau VALUE. Deliberately not part of the
+# verdict: the expander's plateau value lies inside it, which is the paper's
+# point that the value of d_s does not discriminate.
+DS_2D_LO, DS_2D_HI = 1.85, 2.15
+
+
+def diffusive_scaling_expected_slope(dimension: int) -> float:
+    """Expected d(span)/d(log10 N) when lambda_1 ~ L^-2 and N ~ L^d.
+
+    The result 2/d makes the scope of the fixed 0.8 threshold explicit: it is
+    compatible with d = 2, but a regular d >= 3 lattice is outside the stated
+    checklist rather than a geometry that the checklist has refuted.
+    """
+    if dimension <= 0:
+        raise ValueError("dimension must be positive")
+    return 2.0 / dimension
+
+
+def recognition_contract_is_two_dimensional() -> bool:
+    """The fixed threshold accepts the d=2 diffusive exponent but not d=3."""
+    return (TARGET_DIMENSION == _N_MODES == 2
+            and diffusive_scaling_expected_slope(2) >= SPAN_SLOPE_MIN
+            and diffusive_scaling_expected_slope(3) < SPAN_SLOPE_MIN)
 
 
 # --------------------------------------------------------------------------
@@ -401,7 +455,7 @@ def irregular_grid_plateau_is_two() -> bool:
     it does not).
     """
     d_s, sigma = spectral_dimension_plateau(_laplacian_spectrum(irregular_grid()))
-    return 1.85 <= d_s <= 2.15 and sigma <= 0.10
+    return DS_2D_LO <= d_s <= DS_2D_HI and sigma <= SIGMA_DS_MAX
 
 
 def irregular_grid_metric_embedding_correlates() -> bool:
@@ -411,18 +465,36 @@ def irregular_grid_metric_embedding_correlates() -> bool:
     Measured rho = 0.9588 on the flagship 16 x 16 / 8% grid. Across the same
     irregularity and seed sweep the observed range was [0.942, 0.967]; the
     manuscript's quoted 0.964 lies inside it. The band is set at 0.94 to
-    contain that spread; it is far above the expander's 0.436
+    contain that spread; it is far above the expander's 0.435
     (`expander_fails_metric_embedding_lattice_passes`).
     """
-    return metric_embedding_correlation(irregular_grid()) >= 0.94
+    return metric_embedding_correlation(irregular_grid()) >= RHO_MIN
 
 
 # --------------------------------------------------------------------------
-# Matter-level tests the expander PASSES (exact, integer arithmetic)
+# Structural operator tests the expander passes (exact, integer arithmetic)
 # --------------------------------------------------------------------------
 
-def _oriented_incidence(graph: nx.Graph) -> np.ndarray:
-    return nx.incidence_matrix(graph, oriented=True).toarray().astype(np.int64)
+def _fixed_fiber_half_edge_incidence(graph: nx.Graph) -> np.ndarray:
+    """Signed directed-half-edge incidence in a uniform per-vertex fibre.
+
+    Columns are indexed by (vertex, local neighbour slot), padded to the
+    maximum degree. For a d-regular graph the microscopic Hilbert space of the
+    chiral doubling therefore has dimension n*(1+d), i.e. it is exactly
+    l^2(V) tensor C^(1+d). Each edge contributes both orientations, hence
+    B_h B_h^T = 2 L_G in exact integer arithmetic.
+    """
+    nodes = list(graph.nodes())
+    node_index = {node: i for i, node in enumerate(nodes)}
+    max_degree = max((degree for _node, degree in graph.degree()), default=0)
+    inc = np.zeros((len(nodes), len(nodes) * max_degree), dtype=np.int64)
+    for u in nodes:
+        u_idx = node_index[u]
+        for slot, v in enumerate(sorted(graph.neighbors(u), key=repr)):
+            col = u_idx * max_degree + slot
+            inc[u_idx, col] = 1
+            inc[node_index[v], col] = -1
+    return inc
 
 
 def _integer_laplacian(graph: nx.Graph) -> np.ndarray:
@@ -430,9 +502,10 @@ def _integer_laplacian(graph: nx.Graph) -> np.ndarray:
 
 
 def cone_defect_is_exactly_zero(graph: nx.Graph) -> bool:
-    """B B^T = L_G exactly, so the bipartite Dirac operator D = [[0, B],
-    [B^T, 0]] satisfies D^2 = L_G tensor 1 on the vertex sector with defect
-    identically zero.
+    """B_h B_h^T = 2 L_G exactly in the uniform-fibre construction.
+
+    Thus B = B_h/sqrt(2) and D = [[0, B], [B^T, 0]] satisfy
+    D^2|_V = L_G on the scalar vertex component with zero defect.
 
     Integer arithmetic throughout: no tolerance, the residual matrix is
     compared to the zero matrix elementwise. This is the cone criterion of
@@ -441,8 +514,18 @@ def cone_defect_is_exactly_zero(graph: nx.Graph) -> bool:
     the expander, which is the point -- the cone diagnostic cannot fail, so
     it cannot discriminate.
     """
-    inc = _oriented_incidence(graph)
-    return bool(np.array_equal(inc @ inc.T, _integer_laplacian(graph)))
+    inc = _fixed_fiber_half_edge_incidence(graph)
+    return bool(np.array_equal(inc @ inc.T, 2 * _integer_laplacian(graph)))
+
+
+def expander_dirac_has_uniform_fixed_fiber() -> bool:
+    """The cubic expander construction acts on l^2(V) tensor C^4 exactly."""
+    graph = random_expander()
+    inc = _fixed_fiber_half_edge_incidence(graph)
+    n_vertices = graph.number_of_nodes()
+    return (inc.shape == (n_vertices, n_vertices * _EXPANDER_DEGREE)
+            and n_vertices + inc.shape[1]
+            == n_vertices * (1 + _EXPANDER_DEGREE))
 
 
 def expander_passes_cone_criterion() -> bool:
@@ -460,25 +543,26 @@ def lattice_passes_cone_criterion() -> bool:
 def expander_is_local() -> bool:
     """The expander has bounded degree (every vertex has exactly `degree`
     neighbours), so it is local in the graph-locality sense used for the
-    matter-level tests. Exact integer check."""
+    structural operator tests. Exact integer check."""
     degrees = {d for _v, d in random_expander().degree()}
     return degrees == {_EXPANDER_DEGREE}
 
 
 def expander_is_chirally_paired() -> bool:
-    """The bipartite doubling D = [[0, B], [B^T, 0]] anticommutes exactly with
-    the chirality operator gamma = diag(+1, -1), so its spectrum is symmetric
-    under lambda -> -lambda: the expander is chirally paired and passes the
-    matter-level chirality test. Exact integer check, {gamma, D} = 0.
+    """The fixed-fibre doubling anticommutes exactly with its site grading.
+
+    Nonzero eigenvalues are paired under lambda -> -lambda. This is a
+    structural chirality check, not a claim that the expander has a protected
+    full-rank band crossing or a relativistic infrared sector.
     """
-    inc = _oriented_incidence(random_expander())
-    n_v, n_e = inc.shape
+    inc = _fixed_fiber_half_edge_incidence(random_expander())
+    n_v, n_h = inc.shape
     dirac = np.block([
         [np.zeros((n_v, n_v), dtype=np.int64), inc],
-        [inc.T, np.zeros((n_e, n_e), dtype=np.int64)],
+        [inc.T, np.zeros((n_h, n_h), dtype=np.int64)],
     ])
     gamma = np.diag(np.concatenate([np.ones(n_v, dtype=np.int64),
-                                    -np.ones(n_e, dtype=np.int64)]))
+                                    -np.ones(n_h, dtype=np.int64)]))
     return bool(np.array_equal(gamma @ dirac + dirac @ gamma,
                                np.zeros_like(dirac)))
 
@@ -556,9 +640,9 @@ def expander_fails_infrared_scaling_lattice_passes() -> bool:
     This is the executable content of the manuscript's "its O(1) spectral gap
     forbids any infrared scaling".
     """
-    return (cycle_span_growth_slope() >= 0.8
-            and grid_span_growth_slope() >= 0.8
-            and expander_span_growth_slope() <= 0.10)
+    return (cycle_span_growth_slope() >= SPAN_SLOPE_MIN
+            and grid_span_growth_slope() >= SPAN_SLOPE_MIN
+            and expander_span_growth_slope() <= SPAN_SLOPE_EXPANDER_MAX)
 
 
 def scaling_slope_times_plateau_dimension_is_two(family: str) -> bool:
@@ -610,7 +694,7 @@ def expander_fails_plateau_lattice_passes() -> bool:
     """
     _d_grid, sigma_grid = spectral_dimension_plateau(_laplacian_spectrum(irregular_grid()))
     _d_exp, sigma_exp = spectral_dimension_plateau(_laplacian_spectrum(random_expander()))
-    return (sigma_grid <= 0.10
+    return (sigma_grid <= SIGMA_DS_MAX
             and sigma_exp >= 0.12
             and sigma_exp >= 2.0 * sigma_grid)
 
@@ -633,14 +717,14 @@ def expander_fails_metric_embedding_lattice_passes() -> bool:
     """The low-mode coordinates do not recover the expander's graph metric.
 
     Same function (`metric_embedding_correlation`) and the same n_modes = 2
-    for both families. Measured rho = 0.436 (expander) against 0.959 (grid).
+    for both families. Measured rho = 0.435 (expander) against 0.959 (grid).
     Bands: grid >= 0.94, expander <= 0.75. The 0.75 threshold sits well above
     the expander's four-seed range [0.417, 0.477] and well below the grid's
     sweep range [0.942, 0.967], so the two families cannot be confused.
     """
     rho_grid = metric_embedding_correlation(irregular_grid())
     rho_exp = metric_embedding_correlation(random_expander())
-    return rho_grid >= 0.94 and rho_exp <= 0.75
+    return rho_grid >= RHO_MIN and rho_exp <= RHO_EXPANDER_MAX
 
 
 def expander_embedding_fails_for_every_mode_count() -> bool:
@@ -652,7 +736,7 @@ def expander_embedding_fails_for_every_mode_count() -> bool:
     """
     graph = random_expander()
     rhos = [metric_embedding_correlation(graph, n_modes=m) for m in (1, 2, 3, 4, 6)]
-    return max(rhos) <= 0.75
+    return max(rhos) <= RHO_EXPANDER_MAX
 
 
 # --------------------------------------------------------------------------
@@ -660,7 +744,14 @@ def expander_embedding_fails_for_every_mode_count() -> bool:
 # --------------------------------------------------------------------------
 
 def diagnostic_report(graph: nx.Graph, span_slope: float) -> dict:
-    """All five diagnostics for one substrate, as booleans plus raw numbers."""
+    """One substrate's verdict inputs: booleans plus the raw numbers behind them.
+
+    Four booleans, not five: the three criteria of the manuscript
+    (`infrared_scaling_ok`, `embedding_ok`, `plateau_ok`) plus `cone_ok`, which
+    is carried so that its never failing is on record. `d_s` is reported and is
+    deliberately NOT a criterion, since the expander's plateau value lies inside
+    the same two-dimensionality band as the lattice's.
+    """
     spectrum = np.asarray(_laplacian_spectrum(graph))
     d_s, sigma = spectral_dimension_plateau(spectrum)
     rho = metric_embedding_correlation(graph)
@@ -670,9 +761,9 @@ def diagnostic_report(graph: nx.Graph, span_slope: float) -> dict:
         "rho": rho,
         "span_slope": span_slope,
         "cone_ok": cone_defect_is_exactly_zero(graph),
-        "plateau_ok": sigma <= 0.10,
-        "infrared_scaling_ok": span_slope >= 0.8,
-        "embedding_ok": rho >= 0.94,
+        "plateau_ok": sigma <= SIGMA_DS_MAX,
+        "infrared_scaling_ok": span_slope >= SPAN_SLOPE_MIN,
+        "embedding_ok": rho >= RHO_MIN,
     }
 
 
@@ -717,14 +808,14 @@ def lattice_composite_verdict_is_accept() -> bool:
 # --------------------------------------------------------------------------
 
 def mutated_unsigned_incidence_matches_laplacian() -> bool:
-    """MUTATION of `cone_defect_is_exactly_zero`: replace the oriented
-    incidence matrix by the UNSIGNED one. Then B B^T is the signless
-    Laplacian D + A, not D - A, and the cone identity breaks (residual 2 on
-    every edge). Must return False.
+    """MUTATION: erase the signs in the fixed-fibre half-edge incidence.
+
+    Then B_h B_h^T = 2(D+A), not 2(D-A), so the cone identity breaks.
+    Must return False.
     """
     graph = random_expander()
-    inc = nx.incidence_matrix(graph, oriented=False).toarray().astype(np.int64)
-    return bool(np.array_equal(inc @ inc.T, _integer_laplacian(graph)))
+    inc = np.abs(_fixed_fiber_half_edge_incidence(graph))
+    return bool(np.array_equal(inc @ inc.T, 2 * _integer_laplacian(graph)))
 
 
 def mutated_shuffled_embedding_correlates() -> bool:
@@ -739,7 +830,7 @@ def mutated_shuffled_embedding_correlates() -> bool:
     rng = np.random.default_rng(SEED + 1)
     shuffled = coords[rng.permutation(coords.shape[0])]
     graph_d, embed_d = _pairwise_graph_and_embedding_distances(graph, shuffled)
-    return float(spearmanr(graph_d, embed_d).statistic) >= 0.94
+    return float(spearmanr(graph_d, embed_d).statistic) >= RHO_MIN
 
 
 def mutated_star_graph_has_a_one_dimensional_plateau() -> bool:
@@ -761,7 +852,7 @@ def wrong_dimension_band_accepts_cycle() -> bool:
     all. Must return False.
     """
     d_s, sigma = spectral_dimension_plateau(cycle_spectrum(_N_VERTICES))
-    return 1.85 <= d_s <= 2.15 and sigma <= 0.10
+    return DS_2D_LO <= d_s <= DS_2D_HI and sigma <= SIGMA_DS_MAX
 
 
 def wrong_family_passes_infrared_scaling() -> bool:
@@ -770,7 +861,7 @@ def wrong_family_passes_infrared_scaling() -> bool:
     A slope of 0.025 is not 0.8, and this is the assertion that the sharp
     falsifier is sharp in the direction that matters.
     """
-    return expander_span_growth_slope() >= 0.8
+    return expander_span_growth_slope() >= SPAN_SLOPE_MIN
 
 
 def mutated_antiperiodic_spectrum_matches_sympy(n: int = 8) -> bool:
